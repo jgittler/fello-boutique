@@ -1,0 +1,314 @@
+<!-- Box text -->
+<div class="section-block-text">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-4">
+        <div class="block-text text-center margin-bottom-20">
+          <h5 class="text">{{settings.shipping_info_1_h17}}</h5>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <div class="block-text text-center margin-bottom-20" style="background-color: #e05b70;">
+          <h5 class="text">{{settings.shipping_info_2_h17}}</h5>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <div class="block-text text-center margin-bottom-20" style="background-color: #93d1d2;">
+          <h5 class="text">{{settings.shipping_info_3_h17}}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Box text -->
+
+{% if settings.use_slider_hp17 %}
+<!-- Home slide -->
+<div class="slider-homepage">
+  {% include 'shortcode-slider' %}
+</div> 
+<!-- ./Home slide -->
+{% endif %}
+
+{% if settings.use_product_countdown_home17%}
+<!-- HOT DEAL -->
+<div class="margin-top-55">
+  <div class="container">
+    <div class="section-title border">
+      <h3>HOT DEALS</h3>
+    </div>
+    <ul class="hotdeal-slide owl-carousel nav-style5" data-nav="true" data-dots="false" data-loop="true" data-autoplay="false" data-margin="30" data-responsive='{"0":{"items":1,"nav":false},"600":{"items":1,"nav":false},"1000":{"items":2}}'>
+      {% assign dem = 0 %}
+      {% for product in collections.all.products %}
+        {% if product.metafields.event.countdown %}
+        	{% include "product-style7" %}
+      		{% assign dem = dem | plus: 1 %}
+        {% endif %}
+      {% if dem == 10 %} {%break%} {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+<!-- ./HOT DEAL -->
+{% endif %}
+
+{% if settings.use_group_banner_home17 %}
+<!-- GROUP BANNER  -->
+<div class="margin-top-50">
+  <div class="container">
+    <div class="row group-banner-text">
+      <div class="col-sm-4 item">
+        <div class="block-banner-text style2">
+          <div class="image">            
+            <a href="{{settings.banner_small_top_1_link}}">
+              {% if settings.banner_small_top_1_img == blank %}
+              {{'48.gif'| asset_url | img_tag}}
+              {% else %}
+              {{settings.banner_small_top_1_img | img_tag }}
+              {% endif %}
+            </a>
+          </div>
+          <div class="banner-content">
+            <div class="inner">
+              <h3 class="title">{{settings.banner_small_top_1_title}}</h3>
+              <a href="{{settings.banner_small_top_1_link}}" class="banner-link">{{settings.banner_small_top_1_link_title}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 item">
+        <a class="banner-border margin-bottom-30" href="{{settings.banner_small_top_2_link}}">
+          {% if settings.banner_small_top_2_img == blank %}
+          {{'50.gif'| asset_url | img_tag}}
+          {% else %}
+          {{settings.banner_small_top_2_img | img_tag }}
+          {% endif %}
+        </a>
+      </div>
+      <div class="col-sm-4 item">
+        <div class="block-banner-text style2">
+          <div class="image">
+            <a href="{{settings.banner_small_top_3_link}}">
+              {% if settings.banner_small_top_3_img == blank %}
+              {{'48.gif'| asset_url | img_tag}}
+              {% else %}
+              {{settings.banner_small_top_3_img | img_tag }}
+              {% endif %}
+            </a>
+          </div>
+          <div class="banner-content">
+            <div class="inner">
+              <h3 class="title">{{settings.banner_small_top_3_title}}</h3>
+              <a href="{{settings.banner_small_top_3_link}}" class="banner-link">{{settings.banner_small_top_3_link_title}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row group-banner-text">
+    <div class="col-sm-6 item">
+      <div class="block-banner-horizontal" data-color="#f1d8ae">
+        <div class="image">
+          <a href="{{settings.banner_large_top_1_link}}">
+              {% if settings.banner_large_top_1_img == blank %}
+              {{'52.gif'| asset_url | img_tag}}
+              {% else %}
+              {{settings.banner_large_top_1_img | img_tag }}
+              {% endif %}
+          </a>
+        </div>
+        <div class="content">
+          <div class="inner">
+            <h3 class="big-title">{{settings.banner_large_top_1_big_title}}</h3>
+            <h4 class="medium-title">{{settings.banner_large_top_1_medium_title}}</h4>
+            <a href="{{settings.banner_large_top_1_link}}" class="banner-link">{{settings.banner_large_top_1_link_title}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 item">
+      <div class="block-banner-horizontal gray" data-color="#eaeaea">
+        <div class="image">
+          <a href="{{settings.banner_large_top_2_link}}">
+            {% if settings.banner_large_top_2_img == blank %}
+            {{'52.gif'| asset_url | img_tag}}
+            {% else %}
+            {{settings.banner_large_top_2_img | img_tag }}
+            {% endif %}
+          </a>
+        </div>
+        <div class="content">
+          <div class="inner">
+            <h4 class="medium-title">{{settings.banner_large_top_2_big_title}}</h4>
+            <h5>{{settings.banner_large_top_2_medium_title}}</h5>
+            <a href="{{settings.banner_large_top_2_link}}" class="banner-link">{{settings.banner_large_top_2_link_title}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./GROUP BANNER  -->
+{% endif %}
+
+{% if settings.use_tab_category_product_home17 %}
+{% if settings.handleize_product_home17 != blank %}
+<!-- Tab category product-->
+<div class="container">
+  <div class="tab-product style3 margin-top-20">
+    <div class="tab-head">
+      {% assign collection_name = 'handleize_product_home17'  %}
+      {% assign handleize_tab = settings[collection_name]  %}
+      {% if handleize_tab != "" %}
+      <h3 class="title">{{collections[handleize_tab].title | escape }}</h3>
+      {% endif %}
+      <ul class="box-tabs nav-tab tab-owl-fade-effect home17">
+        <li class="active kiti"><a data-animated="fadeInUp" data-toggle="tab" data-view="best-selling" data-handle="{{handleize_tab}}" href="#tab-1-{{handleize_tab}}">Best Sellers</a></li>
+        <li class="kiti"><a data-animated="fadeInUp" data-toggle="tab" data-view="created-descending" data-handle="{{handleize_tab}}" href="#tab-2-{{handleize_tab}}">New Product</a></li>
+        <li><a data-animated="fadeInUp" data-toggle="tab" href="#tab-3-{{handleize_tab}}">On Sales</a></li>
+      </ul>
+    </div>
+    <div class="tab-content">
+      <div class="tab-container">
+        <div id="tab-1-{{handleize_tab}}" class="tab-panel active"></div>
+        <div id="tab-2-{{handleize_tab}}" class="tab-panel"></div>
+        <div id="tab-3-{{handleize_tab}}" class="tab-panel">
+          <ul class="nav-center-center owl-carousel nav-style7" data-nav="true" data-dots="false" data-loop="true" data-autoplay="true" data-margin="30" data-responsive='{"0":{"items":1,"nav":false},"600":{"items":3,"nav":false},"1000":{"items":4}}'>
+            {% for product in collections[handleize_tab].products %}
+            {% if product.compare_at_price > product.price %}
+            {% include "product-style8" %}
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./Tab category product-->
+{% endif %}
+
+{% if settings.handleize_tab_1_s3_home17 != blank %}
+<!-- Tab category product-->
+<div class="container">
+  <div class="tab-product style3 margin-top-50">
+    <div class="tab-head">
+      {% assign collection_name = 'handleize_tab_1_s3_home17'  %}
+      {% assign handleize_tab = settings[collection_name]  %}
+      {% if handleize_tab != "" %}
+      <h3 class="title">{{collections[handleize_tab].title | escape }}</h3>
+      {% endif %}
+       <ul class="box-tabs nav-tab tab-owl-fade-effect home17">
+        <li class="active kiti"><a data-animated="fadeInUp" data-toggle="tab" data-view="best-selling" data-handle="{{handleize_tab}}" href="#tab-1-{{handleize_tab}}">Best Sellers</a></li>
+        <li class="kiti"><a data-animated="fadeInUp" data-toggle="tab" data-view="created-descending" data-handle="{{handleize_tab}}" href="#tab-2-{{handleize_tab}}">New Product</a></li>
+        <li><a data-animated="fadeInUp" data-toggle="tab" href="#tab-3-{{handleize_tab}}">On Sales</a></li>
+      </ul>
+    </div>
+    <div class="tab-content">
+      <div class="tab-container">
+        <div id="tab-1-{{handleize_tab}}" class="tab-panel active"></div>
+        <div id="tab-2-{{handleize_tab}}" class="tab-panel"></div>
+        <div id="tab-3-{{handleize_tab}}" class="tab-panel">
+          <ul class="nav-center-center owl-carousel nav-style7" data-nav="true" data-dots="false" data-loop="true" data-autoplay="true" data-margin="30" data-responsive='{"0":{"items":1,"nav":false},"600":{"items":3,"nav":false},"1000":{"items":4}}'>
+            {% for product in collections[handleize_tab].products %}
+              {% if product.compare_at_price > product.price %}
+              	{% include "product-style8" %}
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./Tab category product-->
+
+{% endif %}
+{% endif %}
+
+{% if settings.use_blocknewletter_home17 %}
+<!-- Block newletter -->
+<div class="margin-top-50">
+  <div class="container">
+    <div class="block-newletter">
+      <div class="head">
+        <div class="section-title text-center">
+          <h3>{{settings.title_newletter_home17}}</h3>
+          <span class="sub-title">{{settings.sub_title_newletter_home17}}</span>
+        </div>
+      </div>
+      <div class="form">
+        {% if settings.newsletter_form_action != blank %}
+        {% assign form_action = settings.newsletter_form_action %}
+        {% else %}
+        {% assign form_action = '#' %}
+        {% endif %}
+        <form class="newletter" action="{{ form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+          <input class="email-text" type="text" name="newsletter" placeholder="{{'general.newsletter_form.placeholder' | t}}" value="">
+          <input type="submit" value="SIGNUP" class="button">
+        </form>
+        <div class="desc">
+          {{settings.form_desc_newletter_home17 | flile_url | img_tag}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./Block newletter -->
+{% endif %}
+
+{% if settings.use_our_blog_home17 %}
+<!-- Blog -->
+<div class="margin-top-50">
+  <div class="container">
+    <div class="section-title border"><h3>{{settings.title_blog_home17}}</h3></div>
+    <div class="lastest-blog style6 nav-center-center nav-style7 owl-carousel" data-nav="true" data-dots="false" data-loop="true" data-margin="30" data-responsive='{"0":{"items":1},"600":{"items":2},"1000":{"items":3}}'>
+      {% assign handle_name = settings.id_blog_home17%}
+      {% if handle_name == blank %}
+      {% assign handle_name = 'news' %}
+      {% endif %}
+      {% for article in blogs[handle_name].articles limit: 15 %}
+      <div class="item-blog">
+        <div class="thumb">
+          {% if article.image %}
+          <a href="{{ article.url }}"> 
+            <img src="{{ article.image.src | img_url: 'medium' }}" srcset="{{ article.image.src | img_url: 'medium' }} 1x, {{ article.image.src | img_url: 'small' }} 2x" alt="{{ article.title }}">
+          </a>
+          {% endif %}
+        </div>
+        <div class="info">
+          <div class="date">
+            <span class="day">{{ article.published_at | date: '%d' }}</span>
+            <div class="my">
+              <span class="month">{{ article.published_at | date: '%b' | upcase }}</span>
+              <span class="year">{{ article.published_at | date: '%Y' }}</span>
+            </div>
+          </div>
+          <h3 class="blog-title"><a href="{{ article.url }}">{{ article.title| truncate: 20 }}</a></h3>
+        </div>
+        <div class="metas">
+          <span class="author">{{ article.author }}</span>
+          {% assign title_counts = 'comment' %}
+          {% if article.comments_count > 1 %}
+          {% assign title_counts = 'comments' %}
+          {% endif %}
+          <span class="comment"><i class="fa fa-comment"></i> {{article.comments_count}} {{ title_counts }}</span>
+        </div>
+      </div>      
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- ./Blog -->
+{% endif %}
+
+{% if settings.use_brand_home19 %}
+<!-- Brand -->
+<div class="container">
+  {% include 'shortcode' load: '[brand bottom="60"]'  %}
+</div>
+<!-- Brand -->
+{% endif %}

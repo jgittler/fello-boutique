@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="main-header">
+    <div class="row">
+      {% if cattegories == "menu" %}
+      <div class="col-sm-12 col-md-12 col-lg-3">
+        <div class="logo">
+          {% if settings.logo_use_image%}
+          <a href="/">{{'logo.png' | asset_url | img_tag}}</a>
+          {% else %}
+          <a href="/"><img src="{{'logo.gif' | asset_url}}" alt=""></a>
+          {%endif%}
+        </div>
+      </div>
+      {% endif %}
+      <div class="col-sm-12 col-md-12 col-lg-9">
+        <ul class="category-menu">
+          {% for i in (1..4) %}
+          {% assign catt_icon = 'catt_icon' | append: i | append: '.png' %}
+          {% assign catt_collection = 'catt_collection' | append: i %}
+            {% if settings[catt_collection] != blank %}
+              {% if cattegories_style == "left" %}
+                <li>
+                  <a href="/collections/{{handleize_tab}}">
+                    <span class="icon"><img src="{{catt_icon | asset_url}}" alt="{{settings[catt_collection]}}"></span>
+                    {{settings[catt_collection] | capitalize | replace: '-', ' ' }}
+                  </a>
+                </li>
+              {% else %}
+                <li>
+                  <a href="/collections/{{settings[catt_collection]}}">
+                    <img src="{{catt_icon | asset_url}}" alt="{{settings[catt_collection]}}">
+                    {{settings[catt_collection] | capitalize | replace: '-', ' ' }}
+                  </a>
+                </li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          {% if cattegories == "menu" %}
+          {% assign position ="cattegories" %}
+          {% include "mini-cart" %}
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+
+<li class="product-item list view-list  row">                      
+    <div class="product-thumb col-sm-4">
+        <a href="{{ product.url | within: collection }}"><img src="{{ product.featured_image.src | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}"></a>                           
+    </div>
+    <div class="product-info col-sm-8">
+        <h3 class="product-name"><a href="{{ product.url | within: collection }}">{{ product.title }}</a></h3>
+        <span class="price">
+	        {% if on_sale %}
+		        <ins>{{product.price | money }}</ins>
+		        <del>{{product.compare_at_price | money }}</del>
+	        {% else %}
+	        	<ins>{{product.price | money }}</ins>
+	        {% endif %}
+      </span>
+  		<div class="rating">
+  			<span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+  		</div>	
+        <div class="available">
+        	{% assign variant = product.variants.first %}
+                {% if variant.available %}
+                  {% if variant.inventory_management != '' %}
+                   {% comment %}{{ variant.inventory_quantity }}{% endcomment %} Available:
+                      <span>{{ 'products.product.in_stock' | t }}</span>
+
+                  {% endif %}
+                  
+                 {% else %}
+                 	 Available:
+                  <span> {{ 'products.product.out_of_stock' | t }}</span>
+                {% endif %}
+        </div>
+        <div class="short-descript">
+            <p>{{ product.content | strip_html | truncatewords: 30 }}</p>
+        </div>
+
+        {% assign on_sale = false %}
+			{% assign sale_text = 'products.product.sale' | t %}
+			{% if product.compare_at_price > product.price %}
+		  		{% assign on_sale = true %}
+			{% endif %}
+
+		{% assign sold_out = true %}
+			{% assign sold_out_text = 'products.product.sold_out' | t %}
+				{% if product.available %}
+		  	{% assign sold_out = false %}
+		{% endif %}
+        <div class="gorup-button">
+        	<div class="pro-add-to-cart">
+            	{% if sold_out == false %}
+		          {% if product.variants.size > 1 %}
+		        		<a class="button select-option" onclick="location.href='{{ product.url | within: collection }}'">{{'products.product.select_option' | t | upcase }}</a>
+		          {% else %}
+		        		{% if product.variants.first.available %}
+		          		<a class="button add-to-cart boutique__add-to-cart" data-pid="{{ product.variants.first.id }}">{{'products.product.add_to_cart' | t | upcase }}</a>
+		              <span class="adding-cart"></span>
+		        		{% endif %}
+		          {% endif %}
+		      	{% else %}
+					<a class="button" onclick="location.href='{{ product.url | within: collection }}'">{{'products.product.sold_out' | t | upcase }}</a>
+		    	{% endif %}
+		    </div>
+
+            {% assign button = "" %}
+            <a class="quick-view" href="{{ product.url | within: collection }}" data-pid="{{ product.id }}" title="Quick View"><i class="fa fa-search"></i></a>
+
+              <a class="compare" data-pid="{{product.handle}}" title="Compare">
+                <i class="fa fa-exchange"></i>
+              </a>
+	        {% include 'wishlist-product' %}
+      </div>
+    </div>
+</li>

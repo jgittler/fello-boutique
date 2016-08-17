@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    {% if settings.favicon_enable %}
+  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
+  {% endif %}
+
+  <!-- Title and description ================================================== -->
+  <title>
+    {{ page_title | capitalize }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} | {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} | {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} | {{ shop.name }}{% endunless %}
+  </title>
+  
+    {% include 'header-stylesheets' %}
+    {% include 'header-scripts' %}
+    {{ content_for_header }}
+</head>
+<body class="home {% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" id="{{ page_title | handle }}">
+  {% include 'header' %}
+  
+  {{ content_for_layout }}
+  
+  {% include 'footer-index' %}
+  <!-- Large modal Compare -->
+    <div id="loading">
+      {{ 'lightbox/v204/loading.gif' | global_asset_url |img_tag}}
+    </div>
+  <div class="modal fade bs-example-modal-lg" id="moda-compare" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" id="compare-modal">
+        <div class="modal-header">
+
+          <h4 class="modal-title">COMPARE PRODUCTS</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-hover">
+            <thead>
+              <tr class="th-compare">
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="table-compare">
+
+            </tbody>
+
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'popup-newsletter' %}
+  {% include 'modal-quickview' %}
+  {% include 'currencies' %}
+  {% include 'bottom-scripts' %}
+</body>
+</html>

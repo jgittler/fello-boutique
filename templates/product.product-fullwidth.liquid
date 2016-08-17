@@ -1,0 +1,9 @@
+<div itemscope itemtype="http://schema.org/Product">
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+  {% if product.available %}
+    {% include 'product-fullwidth' %}
+  {% else %}
+    {% include 'product-outofstock' %}
+  {% endif %}
+</div>

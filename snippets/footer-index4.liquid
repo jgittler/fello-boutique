@@ -1,0 +1,47 @@
+
+<footer class="footer style2 style4">
+  <div class="footer-top">
+    <div class="container">
+      <div class="widget contact-info">
+        {% if settings.use_footer_logo %}
+        <div class="logo">
+          <a href="/"><img alt="" src="{{'footer_logo.png' | asset_url}}"></a>
+        </div>
+        {% endif %}
+        <div class="content">
+        {% if settings.footer_widget_address_contact != blank %}<p>{{settings.footer_widget_address_contact}}</p>{% endif %}
+        {% if settings.footer_widget_phone_contact != blank %}<p class="phone"><i class="fa fa-phone"></i> <span>{{settings.footer_widget_phone_contact}}</span></p>{% endif %}
+        </div>
+      </div>
+	
+      {% assign footer_handle2 = settings.footer_widget_handle_infomation %}
+      {% if footer_handle2 != blank %}
+      <ul class="footer-menu">
+        {% for link in linklists[footer_handle2].links %}
+          <li><a href="{{link.url}}">{{link.title | capitalize }}</a></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="payment">
+        <div class="head">
+          {% if settings.footer_small_title_payment != blank %}<span>{{settings.footer_small_title_payment}}</span>{% endif %}
+          {% if settings.footer_widget_title_payment != blank %}<span class="PlayfairDisplay">{{settings.footer_widget_title_payment}}</span>{% endif %}
+        </div>
+        <div class="list">
+          {% for i in (1..8) %}
+          {% assign link = "payment_link_" %}
+          {% assign image = "payment_image_" | append : i %}
+          {% assign link = link | append : i %}
+          {% assign image = image | append : ".png"%}
+          {% if settings[link] != blank %}
+          	<a href="{{settings[link]}}" class="item"><img src="{{image | asset_url}}" alt=""></a>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+  </div>
+</footer>
+<a href="#" class="scroll_top" title="Scroll to Top" style="display: block;"><i class="fa fa-arrow-up"></i></a>

@@ -1,0 +1,138 @@
+  {% assign total_image= 100 %} 
+  {% assign number  = 12  %}
+
+  {% assign count_image = 0 %}
+  {% for i_total in (1..total_image)  %}
+      {% assign product_item = 'img_lookbook' | append : i_total %}
+      {% capture this_product_item %}{%include 'shortcode-render' render: product_item %}{% endcapture %}
+      {% if this_product_item != "" %}      
+        {% assign count_image = count_image | plus: 1   %}  
+      {% else %}          
+          {% break %}
+      {% endif %}
+  {% endfor %}
+  {% assign page  = 0  %}
+    {% assign tg  = 0  %}
+      <div class="container">
+      {{'47.jpg' | asset_url | img_tag }}
+          <ul class="kt-popup-gallery lookbook-list row">
+            {% for i in (1..count_image) %}
+            {% assign product_item = 'img_lookbook' | append : i %}
+            {% capture this_product_item %}{%include 'shortcode-render' render: product_item %}{% endcapture %}
+                {% assign tg  = tg | plus: 1   %}
+                {% assign index  = page | plus: 1 %}
+                <li class="item col-sm-4 col-md-3 page_p_{{ index }} page_look" style="display:none;">
+                    <a href="{{this_product_item | file_url  }}">
+                      <img src="{{this_product_item | file_url  }}" alt="" />
+                    </a>
+                </li> 
+
+                {% if tg == number and i != count_image %}
+                   {% assign page = page | plus: 1   %}
+                   {% assign tg  = 0  %}                     
+                {% endif %}
+                
+            {% endfor %}
+         </ul>
+        <div class="navigation">
+          <ul id="paginate-ul">
+            <li id="prev-left"><a href=""><i class="fa fa-long-arrow-left"></i></a></li>
+             {% assign sum_page = page | plus: 1 %}
+             {% for i_page in (1..sum_page) %}
+              <li style="cursor:pointer;"{% if forloop.first  %} class="active" {% endif %}><a href="" id="p_{{i_page}}" >{{i_page}}</a></li>
+             {% endfor %}
+            <li id="next-right"><a href=""><i class="fa fa-long-arrow-right"></i></a></li>
+          </ul>
+        </div>
+    </div>
+<script type="text/javascript">
+  (function($) {
+    'use strict';
+    jQuery(document).ready(function($) {
+      var currenp = 0;
+
+      $("[id^='p_']").on("click", function(event) {
+        event.preventDefault();
+        var id = $(this).attr('id');
+        $(".page_look").hide();
+        $(".page_"+id).show();
+        currenp = $(this).text();
+        $('html, body').animate({scrollTop: 0}, 800);
+      });
+
+        var pageItem = $("#paginate-ul li").not("#prev-left, #next-right");
+        var pagition_prev = $("#paginate-ul li#prev-left");
+        var pagition_next = $("#paginate-ul li#next-right");
+        var s_page = {{sum_page}};
+
+          pageItem.click(function() {
+            pageItem.removeClass("active");
+            $(this).not("#prev-left, #next-right").addClass("active");
+
+            var thisBtn = $(this);
+            if (thisBtn.index() == s_page) {
+              pagition_prev.show();
+              pagition_next.hide();
+            }
+            else if(thisBtn.index() == 1) {
+                pagition_prev.hide();
+                pagition_next.show();
+            }
+            else{
+              pagition_prev.show();
+              pagition_next.show();
+            }
+          });
+
+          $(document).on('click',"#paginate-ul li#next-right",function(event){
+            event.preventDefault();
+              pageItem.removeClass("active");
+              currenp++;
+              $("#p_"+currenp).parent().addClass('active');
+
+              $(".page_look").hide();
+              $(".page_p_"+currenp).show();
+
+              if (currenp == s_page) {
+                pagition_prev.show();
+                pagition_next.hide();
+              }
+              else if(currenp == 1) {
+                  pagition_prev.hide();
+                  pagition_next.show();
+              }
+              else{
+                pagition_prev.show();
+                pagition_next.show();                
+              }       
+           });
+
+          $(document).on('click',"#paginate-ul li#prev-left",function(event){
+            event.preventDefault();
+            pageItem.removeClass("active");
+            currenp--;           
+            $("#p_"+currenp).parent().addClass('active');
+
+            $(".page_look").hide();
+            $(".page_p_"+currenp).show();
+
+            if (currenp == s_page) {
+              pagition_prev.show();
+              pagition_next.hide();
+            }
+            else if(currenp == 1) {
+                pagition_prev.hide();
+                pagition_next.show();
+            }
+            else{
+              pagition_prev.show();
+              pagition_next.show();                
+            }
+          });
+
+
+      $("#p_1").trigger("click");
+    });    
+  })(jQuery);
+
+</script>

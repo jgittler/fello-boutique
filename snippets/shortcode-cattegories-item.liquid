@@ -1,0 +1,38 @@
+{% capture cattegories_item_image_title  %}{% include 'shortcode-render' render:'image_title' default: "" %}{% endcapture %}
+{% capture cattegories_item_title %}{% include 'shortcode-render' render:'title' default:'Clothing' %}{% endcapture %}
+{% capture handleize_tab  %}{% include 'shortcode-render' render:'collection_handle' default:'frontpage'%}{% endcapture %}
+
+{% if handleize_tab == blank %}
+	{% assign handleize_tab = "frontpage" %}
+{% endif %}
+{% if cattegories_style == "left" %}
+<li>
+  <a href="/collections/{{handleize_tab}}">
+    {% if cattegories_item_image_title == blank %}
+    	<span class="icon">{{'cattegories-item.gif' | asset_url | img_tag}}</span>
+    {% else %}
+    	<span class="icon">{{cattegories_item_image_title | file_url | img_tag}}</span>
+    {% endif %}
+
+    {% if cattegories_item_image_title == blank %}
+    	{% assign cattegories_item_title = "Clothing" %}
+    {% endif %}
+    {{cattegories_item_title}}
+  </a>
+</li>
+{% else %}
+<li>
+  <a href="/collections/{{handleize_tab}}">
+    {% if cattegories_item_image_title == blank %}
+    	{{'cattegories-item.gif' | asset_url | img_tag}}
+    {% else %}
+    	{{cattegories_item_image_title | file_url | img_tag}}
+    {% endif %}
+    
+    {% if cattegories_item_image_title == blank %}
+    	{% assign cattegories_item_title = "Clothing" %}
+    {% endif %}
+    {{cattegories_item_title}}
+  </a>
+</li>
+{% endif %}

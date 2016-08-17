@@ -1,0 +1,45 @@
+<div id="box-mobile-menu" class="box-mobile-menu full-height full-width">
+  <div class="box-inner">
+    <span class="close-menu"><span class="icon pe-7s-close"></span></span>
+  </div>
+</div>
+<div id="header-ontop" class="is-sticky"></div>
+<!-- Header -->
+<header id="header" class="header style1">
+  <div class="top-header">
+    <div class="container">
+      <div class="inner">
+        <div class="main-menu-wapper">
+          <div class="row">
+            <div class="col-sm-8">
+              {% include 'menu_import' %}
+            </div>
+            <div class="col-sm-4">
+              <span class="mobile-navigation">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27.13 24" width="17px" height="17px">
+                  <defs><style>.cls-1{fill:#6d6e71;stroke:#6d6e71;stroke-miterlimit:10;}</style></defs>
+                  <title>Menu</title>
+                  <g id="Layer_2" data-name="Layer 2">
+                    <g id="Layer_1-2" data-name="Layer 1">
+                      <rect class="cls-1" x="0.5" y="0.5" width="26.13" height="3.94" rx="1" ry="1"/>
+                      <rect class="cls-1" x="0.5" y="10.5" width="26.13" height="3.81" rx="1" ry="1"/>
+                      <rect class="cls-1" x="0.5" y="19.94" width="26.13" height="3.56" rx="1" ry="1"/>
+                    </g>
+                  </g>
+                </svg>
+              </span>               
+              <div class="box-control">
+                {% assign search_style = "show-input" %}
+                {% include 'search-bar' %}
+                {% include"settings-box" %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% assign cattegories ="menu" %}
+  {% include 'cattegories' %}
+</header>
+<!-- ./Header -->

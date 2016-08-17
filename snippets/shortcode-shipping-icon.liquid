@@ -1,0 +1,124 @@
+{% unless margin_shipping_icon %}
+{% assign margin_shipping_icon = "margin-top-60" %}
+{% endunless %}
+
+{% unless margin_shipping_icon_9 %}
+{% assign margin_shipping_icon_9 = "margin-top-60 margin-bottom-30" %}
+{% endunless %}
+
+{% unless container_shipping_icon %}
+{% capture container_shipping_icon %} class="container"{% endcapture %}
+{% endunless %}
+
+{% if style =="2" %}
+<!-- Block paralax -->
+<div class="block-paralax1 bg-parallax">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="element-icon style3">
+          <div class="icon">
+            {% if settings.use_img_1 %}
+            {{'shipping_info_1_img.png' | asset_url | img_tag}}
+            {% else %}
+            <i class="flaticon flaticon-origami28"></i>
+            {% endif %}
+          </div>
+          <div class="content">
+            <h4 class="title">{{settings.shipping_info_1_content}}</h4>
+            <span class="subtite">{{settings.shipping_sinfo_1_content}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="element-icon style3">
+          <div class="icon">
+          {% if settings.use_img_2 %}
+            {{'shipping_info_2_img.png' | asset_url | img_tag}}
+          {% else %}
+            <i class="flaticon flaticon-curvearrows9"></i>
+          {% endif %}
+          </div>
+          <div class="content">
+            <h4 class="title">{{settings.shipping_info_2_content}}</h4>
+            <span class="subtite">{{settings.shipping_sinfo_2_content}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="element-icon style3">
+          <div class="icon">
+          {% if settings.use_img_3 %}
+            {{'shipping_info_3_img.png' | asset_url | img_tag}}
+          {% else %}
+            <i class="flaticon flaticon-headphones54"></i>
+          {% endif %}
+          </div>
+          <div class="content">
+            <h4 class="title">{{settings.shipping_info_3_content}}</h4>
+            <span class="subtite">{{settings.shipping_sinfo_3_content}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./lock paralax -->
+{% else %}
+{% if template contains "index" %}
+<div class="{{margin_shipping_icon_9}}">
+  <div class="row">
+    {% else %}
+    <div class="{{margin_shipping_icon}}">
+      <div{{container_shipping_icon}}>
+        <div class="row">
+        {% endif %}
+    <div class="col-sm-12 col-md-4">
+      <div class="element-icon style2">
+        <div class="icon">
+          {% if settings.use_img_1 %}
+            {{'shipping_info_1_img.png' | asset_url | img_tag}}
+          {% else %}
+            <i class="flaticon flaticon-origami28"></i>
+          {% endif %}
+        </div>
+        <div class="content">
+          <h4 class="title">{{settings.shipping_info_1_content }}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <div class="element-icon style2">
+        <div class="icon">
+          {% if settings.use_img_2 %}
+            {{'shipping_info_2_img.png' | asset_url | img_tag}}
+          {% else %}
+            <i class="flaticon flaticon-curvearrows9"></i>
+          {% endif %}
+        </div>
+        <div class="content">
+          <h4 class="title">{{settings.shipping_info_3_content }}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <div class="element-icon style2">
+        <div class="icon">
+          {% if settings.use_img_3 %}
+            {{'shipping_info_3_img.png' | asset_url | img_tag}}
+          {% else %}
+            <i class="flaticon flaticon-headphones54"></i>
+          {% endif %}
+        </div>
+        <div class="content">
+          <h4 class="title">{{settings.shipping_info_3_content }}</h4>
+        </div>
+      </div>
+    </div>
+{% if template contains "index" %}
+        </div></div>
+      {% else %}
+    </div></div></div>
+{% endif %}
+{% endif %}
+

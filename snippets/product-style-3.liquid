@@ -1,0 +1,71 @@
+{% unless grid_item_width %}
+  {% assign grid_item_width = 'large--one-third medium-down--one-half' %}
+{% endunless %}
+
+{% unless grid_item_width_style4 %}
+  {% assign grid_item_width_style4 = 'style4 view-grid' %}
+{% endunless %}
+
+{% unless current_collection == blank %}
+  {% assign current_collection = collection %}
+{% endunless %}
+
+{% assign on_sale = false %}
+{% assign sale_text = 'products.product.sale' | t %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% assign sold_out_text = 'products.product.sold_out' | t %}
+{% if product.available %}
+  {% assign sold_out = false %}
+{% endif %}
+	<li class="product-item {{grid_item_width_style4}} {{grid_item_width}} {% if check_product_style_3 > 6 %} hidden {% endif%}">
+		<div class="product-inner">
+			<div class="product-thumb has-back-image">
+				<a href="{{ product.url | within: collection }}"><img src="{{ product.featured_image.src | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}"></a>
+				{% if settings.use_second_img %}
+			        {% if product.images.size > 1 %}
+			      		<a class="back-image" href="{{ product.url | within: collection }}">{{product.images[1].src |img_url: 'grande'| img_tag: product.title }}</a>
+			        {% endif %}
+			      {% endif %}
+				<div class="gorup-button">
+					{% assign button = "" %}
+					{% include 'wishlist-product' %}
+					<a class="compare" title="Compare" data-pid="{{product.handle}}">
+			          <i class="fa fa-exchange"></i>
+			        </a>
+			        <a class="quick-view" title="Quick View" href="{{ product.url | within: collection }}" data-pid="{{ product.id }}"><i class="fa fa-search"></i></a>
+				</div>
+
+			    
+			    <div class="add-cart-wapper">
+			        {% if sold_out == false %}
+			          {% if product.variants.size > 1 %}
+			        		<a class="button select-option add_to_cart_button" onclick="location.href='{{ product.url | within: collection }}'">{{'products.product.select_option' | t | upcase }}</a>
+			          {% else %}
+			        	{% if product.variants.first.available %}
+			          		<a class="button add_to_cart_button boutique__add-to-cart" data-pid="{{ product.variants.first.id }}">{{'products.product.add_to_cart' | t | upcase }}</a>
+			              
+			        	{% endif %}
+			          {% endif %}
+			        {% else %}
+					<a class="button btn-sold-out add_to_cart_button" onclick="location.href='{{ product.url | within: collection }}'">{{'products.product.sold_out' | t | upcase }}</a>
+			    {% endif %}
+			    </div>
+			    
+			</div>
+			<div class="product-info">
+				<h3 class="product-name"><a href="{{ product.url | within: collection }}">{{ product.title }}</a></h3>
+				<span class="price">
+			        {% if on_sale %}
+			          <ins>{{product.price | money }}</ins>
+			          <del>{{product.compare_at_price | money }}</del>
+			        {% else %}
+			          <ins>{{product.price | money }}</ins>
+			        {% endif %}
+			     </span>
+			</div>
+		</div>
+	</li>

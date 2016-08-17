@@ -1,0 +1,52 @@
+
+{% unless margin_shipping_text %}
+{% assign margin_shipping_text = "margin-top-20" %}
+{% endunless %}
+
+{% unless include %}
+{% capture text_content %}{% include 'shortcode-render' render:'text' default:'' %}{% endcapture %}
+{% capture position %}{% include 'shortcode-render' render:'position' default:'' %}{% endcapture %}
+{% capture margin_shipping %}{% include 'shortcode-render' render:'margin' default:'' %}{% endcapture %}
+{% capture style %}{% include 'shortcode-render' render:'style' default:'' %}{% endcapture %}
+{% if margin_shipping != blank %}
+{% assign margin_shipping_text = "margin-top-" | append: margin_shipping %}
+{% endif %}
+{% endunless %}
+
+
+
+{% if position == "" and style == "" %}
+<div class="text-center {{margin_shipping_text}}">
+  {% if text_content == blank %}
+  	FREE UK DELIVERY + RETURN OVER £85.00 (EXCLUDING HOMEWARE) | FREE UK COLLECT FROM STORE
+  {% else %}
+  	{{text_content}}
+  {% endif %}
+</div>
+{% endif %}
+{% if position == "top-header" %}
+<div class="top-header">
+  <div class="container">
+    <div class="text-border">
+      <p>
+        {% if text_content == blank %}
+          {{settings.shipping_text_box}}
+        {% else %}
+          {{text_content}}
+        {% endif %}
+      </p>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% if style == "section" %}
+  <div class="text-border {{margin_shipping_text}}">
+    <p>
+        {% if text_content == blank %}
+          {{settings.shipping_text_box}}
+        {% else %}
+          {{text_content}}
+        {% endif %}
+    </p>
+  </div>
+{% endif %}

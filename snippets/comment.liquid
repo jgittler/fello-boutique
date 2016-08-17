@@ -1,0 +1,28 @@
+
+<!-- /snippets/comment.liquid -->
+{% comment %}
+
+  This snippet generates the structure of a comment.
+  It is used to show not only recent comments, but also comments that were
+  just published but not yet approved.
+
+  More information:
+   - http://docs.shopify.com/themes/liquid-variables/comment
+
+{% endcomment %}
+
+<div class="comment-item">
+    <div class="comment-author">
+          <img class="avatar avatar-68 photo" src="//www.gravatar.com/avatar/{{ article.user.email | md5 }}?s=50" alt="{{article.author}}">
+      </div>
+        <div class="comment-body">
+            {% capture author %}<h5 class="author">{{ comment.author }}</h5>{% endcapture %}
+            {% capture date %}<span class="date-comment"><time datetime="{{ comment.created_at | date: '%Y-%m-%d' }}">{{ comment.created_at | date: "%d %b %Y" }}</time></span>{% endcapture %}
+             {{ 'blogs.article.comment_meta_html' | t: author: author, date: date }}
+            <div class="comment-content">
+                 <p>{{ comment.content }}</p>
+            </div>
+            
+           {% comment %}<a rel="nofollow" class="comment-reply-link" href="#">reply<i class="fa fa-mail-reply"></i></a>{% endcomment %}
+        </div>
+</div>

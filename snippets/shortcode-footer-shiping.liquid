@@ -1,0 +1,15 @@
+{% capture icon_font %}{% include 'shortcode-render' render:'name_icon' default:'fa fa-truck' %}{% endcapture %}
+{% capture title  %}{% include 'shortcode-render' render:'title' default: "Free shipping" %}{% endcapture %}
+{% capture text  %}{% include 'shortcode-render' render:'text' default:'from £150 purchase *'%}{% endcapture %}
+{% capture plus  %}{% include 'shortcode-render' render:'plus' default:''%}{% endcapture %}
+<div class="col-sm-4">
+  <div class="element-icon style5{% if plus =="" %} plus{% endif %}">
+    <div class="icon">
+      <span class="{{icon_font}}"></span>
+    </div>
+    <div class="content">
+      <h4 class="title">{{title}}</h4>
+      <div class="text">{{text}}</div>
+    </div>
+  </div>
+</div>

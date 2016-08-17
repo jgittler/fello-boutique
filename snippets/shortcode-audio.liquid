@@ -1,0 +1,6 @@
+{% assign source =''  %}
+{% capture source %}{%include 'shortcode-render' render:'source' default:''%}{% endcapture %}
+{% unless source == "" %}
+	<audio id="player2" src="{{source | file_url }}" controls="controls">		
+	</audio>	
+{% endunless %}

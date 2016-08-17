@@ -1,0 +1,146 @@
+
+{% unless include %}
+{% capture banner_description_style %}{% include 'shortcode-render' render:'style' default: 'des__middle-left' %}{% endcapture %}
+{% capture banner_description_title %}{% include 'shortcode-render' render:'title' default: 'fashions' %}{% endcapture %}
+{% capture banner_description_sub_title %}{% include 'shortcode-render' render:'sub_title' default: 'For Women' %}{% endcapture %}
+{% capture banner_description_status %}{% include 'shortcode-render' render:'status' default: '-30<span>%</span>' %}{% endcapture %}
+{% capture banner_description_link %}{% include 'shortcode-render' render:'link' default: '#' %}{% endcapture %}
+{% capture banner_description_title_link %}{% include 'shortcode-render' render:'title_link' default: 'read more' %}{% endcapture %}
+{% capture banner_description_description %}{% include 'shortcode-render' render:'des' default: '' %}{% endcapture %}
+{% capture banner_description_image_title %}{% include 'shortcode-render' render:'image_title' default: '' %}{% endcapture %}
+{% capture banner_description_col %}{% include 'shortcode-render' render:'col' default: '' %}{% endcapture %}
+{% endunless %}
+
+{% if banner_description_style == "des__middle-left" %}
+<div class="col-sm-{{banner_description_col}}">
+  <div class="butique-banner">
+    <div class="image">
+      {% if banner_description_image_title == blank %}
+      	<img src="{{'29.gif' | asset_url}}" alt="">
+      {% else %}
+      	<img src="{{banner_description_image_title | file_url}}" alt="">
+      {% endif %}
+    </div>
+    <div class="banner-inner">
+      <div class="top">
+        {% if banner_description_status != blank %}
+        <span class="status">{{banner_description_status}}</span>
+        {% endif %}
+        
+        <div class="head">
+          {% if banner_description_title != blank %}
+          <h2 class="title">{{banner_description_title}}</h2>
+          {% endif %}
+          {% if banner_description_sub_title != blank %}
+          <h3 class="subtitle">{{banner_description_sub_title}}</h3>
+          {% endif %}
+        </div>
+      </div>
+      <div class="bottom">
+        {% if banner_description_description != blank %}
+        <div class="desc">
+          <p>{{banner_description_description}}</p>
+        </div>
+        {% endif %}
+        {% if banner_description_description != blank %}
+        <a class="block-link" href="{{banner_description_link}}">{{banner_description_title_link}}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+{% if banner_description_style == "des__middle-right" %}
+<div class="col-sm-{{banner_description_col}}">
+  <div class="butique-banner left">
+    <div class="image">
+      {% if banner_description_image_title == blank %}
+      	<img src="{{'29.gif' | asset_url}}" alt="">
+      {% else %}
+      	<img src="{{banner_description_image_title | file_url}}" alt="">
+      {% endif %}
+    </div>
+    <div class="banner-inner">
+      <div class="top">
+        {% if banner_description_status != blank %}
+        <span class="status">{{banner_description_status}}</span>
+        {% endif %}
+        
+        <div class="head">
+          {% if banner_description_title != blank %}
+          <h2 class="title">{{banner_description_title}}</h2>
+          {% endif %}
+          {% if banner_description_sub_title != blank %}
+          <h3 class="subtitle">{{banner_description_sub_title}}</h3>
+          {% endif %}
+        </div>
+      </div>
+      <div class="bottom">
+        {% if banner_description_description != blank %}
+        <div class="desc">
+          <p>{{banner_description_description}}</p>
+        </div>
+        {% endif %}
+        {% if banner_description_description != blank %}
+        <a class="block-link" href="{{banner_description_link}}">{{banner_description_title_link}}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+{% if banner_description_style == "des__top-left" %}
+<div class="col-sm-{{banner_description_col}}">
+  <div class="butique-banner style2 ">
+    <div class="image">
+      {% if banner_description_image_title == blank %}
+      	<img src="{{'14.gif' | asset_url}}" alt="">
+      {% else %}
+      	<img src="{{banner_description_image_title | file_url}}" alt="">
+      {% endif %}
+    </div>
+    <div class="banner-inner">
+      <div class="top">
+        <div class="head">
+          {% if banner_description_title != blank %}
+          <h2 class="title"><a href="{{banner_description_link}}">{{banner_description_title}}</a></h2>
+          {% endif %}
+          {% if banner_description_sub_title != blank %}
+          <h3 class="subtitle">{{banner_description_sub_title}}</h3>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if banner_description_style == "des__top-right" %}
+<div class="col-sm-{{banner_description_col}}">
+  <div class="butique-banner left style2 ">
+    <div class="image">
+      {% if banner_description_image_title == blank %}
+      	<img src="{{'14.gif' | asset_url}}" alt="">
+      {% else %}
+      	<img src="{{banner_description_image_title | file_url}}" alt="">
+      {% endif %}
+    </div>
+    <div class="banner-inner">
+      <div class="top">
+        <div class="head">
+          {% if banner_description_title != blank %}
+          <h2 class="title"><a href="{{banner_description_link}}">{{banner_description_title}}</a></h2>
+          {% endif %}
+          {% if banner_description_sub_title != blank %}
+          <h3 class="subtitle">{{banner_description_sub_title}}</h3>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

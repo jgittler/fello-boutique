@@ -1,0 +1,209 @@
+
+{% capture product_x_limit %}{% include 'shortcode-render' render:'limit' default: '8' %}{% endcapture %}
+{% capture product_x_title %}{% include 'shortcode-render' render:'title' default: '' %}{% endcapture %}
+{% capture product_x_sub_title %}{% include 'shortcode-render' render:'sub_title' default: '' %}{% endcapture %}
+{% capture rows %}{% include 'shortcode-render' render:'rows' default: '' %}{% endcapture %}
+{% capture product_x_style %}{% include 'shortcode-render' render:'style' default: '' %}{% endcapture %}
+{% capture product_x_nav_style %}{% include 'shortcode-render' render:'nav-style' default: 'nav-style7' %}{% endcapture %}
+{% capture number_post_dt %}{% include 'shortcode-render' render:'number_post_dt' default: '4' %}{% endcapture %}
+{% capture number_post_tb %}{% include 'shortcode-render' render:'number_post_tb' default: '2' %}{% endcapture %}
+{% capture number_post_mb %}{% include 'shortcode-render' render:'number_post_mb' default: '1' %}{% endcapture %}
+{% capture handleize_tab  %}{% include 'shortcode-render' render:'collection' default:''%}{% endcapture %}
+
+{% if number_post_dt == blank %}
+	{% assign number_post_dt_end = 4 %}
+{% else %}
+	{% assign number_post_dt_end = number_post_dt | plus: 0 %}
+{% endif %}
+{% if number_post_tb == blank %}
+	{% assign number_post_tb_end = 2 %}
+{% else %}
+	{% assign number_post_tb_end = number_post_tb | plus: 0 %}
+{% endif %}
+{% if number_post_mb == blank %}
+	{% assign number_post_mb_end = 1 %}
+{% else %}
+	{% assign number_post_mb_end = number_post_mb | plus: 0 %}
+{% endif %}
+
+{% if product_x_style =="show-product" %}
+    
+    <div class="margin-top-60">
+      {% if product_x_title !="" %}   
+      <div class="section-title text-center margin-bottom-40">
+        <h3>{{product_x_title}}</h3>
+      </div>
+      {% endif %}
+      <div class="block-top-sell">
+        <ul class="box-product-list row owl-carousel-mobile" data-nav="false" data-dots="false" data-margin="0" data-loop="true" data-items="1">
+          {% assign limit = 0 %}
+          {% for product in collections[handleize_tab].products %}
+          {% assign grid_item_width = 'mobile-slide-item col-sm-4 col-md-3' %}
+          {% assign sale_box ="no" %}
+          {% include "product-loop" %}{% assign limit = limit | plus: 1 %}
+          {% if limit == 8 %}{% break %}{% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+{% elsif product_x_style =="show-title-center-top"  %}
+<div class="margin-top-90">
+  <div class="section-title style2 text-center">
+    <span class="sub-title">{{product_x_sub_title}}</span>
+    <h3>{{product_x_title}}</h3>
+    <span class="driver"></span>
+  </div>
+  <ul class="slide-product owl-carousel nav-center-outside {{product_x_nav_style}}" data-nav="true" data-autoplay="false" data-dots="false" data-loop="true" data-margin="30" data-responsive='{"0":{"items":{{number_post_mb_end}}},"600":{"items":{{number_post_tb_end}}},"1000":{"items":{{number_post_dt_end}}}}'>
+    {% for product in collections[handleize_tab].products limit:8 %}
+    {% assign grid_item_width = '' %}
+    	{% include "product-grid-item" %}
+    {% endfor %}
+  </ul>
+</div>
+{% elsif product_x_style =="text-head"  %}
+<div class="margin-top-50">
+  <div class="container">
+    <div class="tab-product style2 tab-owl-fade-effect">
+      <ul class="box-tabs nav-tab">
+        <li class="text-head">W</li>
+        {% assign check_count_collection = 0  %}
+        {% for i in (1..3) %}
+        {% assign collection_name = 'collection' | append: i  %}
+        {% capture handleize_tab  %}{% include 'shortcode-render' render: collection_name default:''%}{% endcapture %}
+          {% if handleize_tab != "" %}
+        {% if check_count_collection == 0 %}
+              {% capture animate %}class="active"><a data-animated='fadeInUp'{% endcapture %}
+          {% elsif check_count_collection == 1 %}
+              {% capture animate %}class="trick"><a data-animated='slideInLeft'{% endcapture %}
+          {% elsif check_count_collection == 2 %}
+              {% capture animate %}><a data-animated='zoomInUp'{% endcapture %}
+        {% endif %}
+            <li {{animate}} data-toggle="tab" href="#tab-product-{{handleize_tab}}">{{collections[handleize_tab].title | escape }}</a></li>
+            {% assign check_count_collection = check_count_collection | plus: 1  %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+      <div class="tab-content">
+        <div class="tab-container">
+          {% assign check_count_collection = 0  %}
+          {% for i in (1..10) %}
+          {% assign collection_name = 'collection' | append: i  %}
+          {% capture handleize_tab  %}{% include 'shortcode-render' render: collection_name default:''%}{% endcapture %}
+          {% if handleize_tab != "" %}
+          <div id="tab-product-{{handleize_tab}}" class="tab-panel {% if check_count_collection == 1 %}active{% endif %}">
+            <ul class="product-list owl-carousel" data-nav="false" data-dots="false" data-margin="30" data-loop="true" data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
+              {% for product in collections[handleize_tab].products limit: limit %}
+              {% assign grid_item_width = "style3 mobile-slide-item col-sm-4 col-md-3" %}
+              {% include "product-style-5" %}
+              {% assign check_product_style_2 = check_product_style_2 | plus: 1 %}
+              {% endfor %}
+            </ul>
+          </div>
+          {% assign check_count_collection = check_count_collection | plus: 1  %}
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./Tab product -->
+{% else %}     
+<div class="margin-top-50">
+  <div class="tab-product {%if rows != ""%}tab-product-fade-effect{%endif%}">
+    {% if rows != "" %}
+    <ul class="box-tabs nav-tab">
+      {% assign check_count_collection = 0  %}
+      {% for i in (1..10) %}
+      {% assign collection_name = 'collection' | append: i  %}
+      {% capture handleize_tab  %}{% include 'shortcode-render' render: collection_name default:''%}{% endcapture %}
+        {% if handleize_tab != "" %}
+      {% if check_count_collection == 0 %}
+      		{% capture animate %}class="active"><a data-animated='fadeInUp'{% endcapture %}
+ 		{% elsif check_count_collection == 1 %}
+      		{% capture animate %}><a data-animated='slideInLeft'{% endcapture %}
+ 		{% elsif check_count_collection == 2 %}
+      		{% capture animate %}><a data-animated='zoomInUp'{% endcapture %}
+ 		{% elsif check_count_collection == 3 %}
+      		{% capture animate %}><a data-animated='slideInRight'{% endcapture %}
+		{% else %}
+      		{% capture animate %}><a data-animated='fadeInDown'{% endcapture %}
+	  {% endif %}
+          <li {{animate}} data-toggle="tab" href="#tab-{{handleize_tab}}">{{collections[handleize_tab].title | escape }}</a></li>
+          {% assign check_count_collection = check_count_collection | plus: 1  %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+    <div class="tab-content">
+      <div class="tab-container">
+        {% assign check_count_collection = 0  %}
+      {% for i in (1..10) %}
+      {% assign collection_name = 'collection' | append: i  %}
+      {% capture handleize_tab  %}{% include 'shortcode-render' render: collection_name default:''%}{% endcapture %}
+        {% if handleize_tab != "" %}
+          <div id="tab-{{handleize_tab}}" class="tab-panel {% if check_count_collection == 0 %}active{% endif %}">
+            <ul class="product-list-grid2 tab-list owl-carousel-mobile" data-nav="false" data-dots="false" data-margin="0" data-loop="true"  data-items="1">
+            {% assign check_product_style_2 = 1 %}
+              {% for product in collections[handleize_tab].products limit: limit %}
+              	{% assign grid_item_width = "style3 mobile-slide-item col-sm-4 col-md-3" %}
+                {% include "product-style-2" %}
+                {% assign check_product_style_2 = check_product_style_2 | plus: 1 %}
+              {% endfor %}
+          	</ul>
+              {% if check_product_style_2 > 8 %}
+              <a class="button-loadmore" href="javascript:void(0)"  title="{{handleize_tab}}" name="tab-{{handleize_tab}}">load more!</a><a class="button-loadmore" href="javascript:void(0)"  title="{{handleize_tab}}" name="tab-{{handleize_tab}}">load more!</a>
+              {% endif %}
+          </div>
+          {% assign check_count_collection = check_count_collection | plus: 1  %}
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+    {% else %}
+    <ul class="box-tabs nav-tab tab-owl-fade-effect">
+      {% assign check_count_collection = 0  %}
+      {% for i in (1..10) %}
+      {% assign collection_name = 'collection' | append: i  %}
+      {% capture handleize_tab  %}{% include 'shortcode-render' render: collection_name default:''%}{% endcapture %}
+        {% if handleize_tab != "" %}
+      {% if check_count_collection == 0 %}
+      		{% capture animate %}class="active"><a data-animated='fadeInUp'{% endcapture %}
+ 		{% elsif check_count_collection == 1 %}
+      		{% capture animate %}><a data-animated='slideInLeft'{% endcapture %}
+ 		{% elsif check_count_collection == 2 %}
+      		{% capture animate %}><a data-animated='slideInRight'{% endcapture %}
+ 		{% elsif check_count_collection == 3 %}
+      		{% capture animate %}><a data-animated='fadeInDown'{% endcapture %}
+		{% else %}
+      		{% capture animate %}><a data-animated='fadeInDown'{% endcapture %}
+	  {% endif %}
+          <li {{animate}} data-toggle="tab" href="#tab-{{handleize_tab}}">{{collections[handleize_tab].title | escape }}</a></li>
+          {% assign check_count_collection = check_count_collection | plus: 1  %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+    <div class="tab-content">
+      <div class="tab-container">
+        
+      {% assign check_count_collection = 0  %}
+      {% for i in (1..10) %}
+      {% assign collection_name = 'collection' | append: i  %}
+      {% capture handleize_tab  %}{% include 'shortcode-render' render: collection_name default:''%}{% endcapture %}
+        {% if handleize_tab != "" %}
+          <div id="tab-{{handleize_tab}}" class="tab-panel {% if check_count_collection == 0 %}active{% endif %}">
+            <ul class="tab-list owl-carousel {{product_x_nav_style}} nav-center-center" data-nav="true" data-autoplay="false" data-dots="false" data-loop="true" data-margin="30" data-responsive='{"0":{"items":{{number_post_mb_end}}},"600":{"items":{{number_post_tb_end}}},"1000":{"items":{{number_post_dt_end}}}}'>
+              {% for product in collections[handleize_tab].products %}
+              {% assign grid_item_width ="" %}
+              	{% include "product-grid-item" %}
+              {% endfor %}
+            </ul>
+          </div>
+          {% assign check_count_collection = check_count_collection | plus: 1  %}
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}

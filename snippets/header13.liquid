@@ -1,0 +1,36 @@
+<div id="box-mobile-menu" class="box-mobile-menu full-height full-width">
+  <div class="box-inner">
+    <span class="close-menu"><span class="icon pe-7s-close"></span></span>
+  </div>
+</div>
+<div id="header-ontop" class="is-sticky"></div>
+<header id="header" class="header style2 style15">
+  <div class="main-header">
+    <div class="container">
+      <div class="main-menu-wapper">
+        <div class="row">
+          <div class="col-sm-12 col-md-2">
+            <div class="logo">
+              {% if settings.logo_use_image%}
+              <a href="/">{{'logo.png' | asset_url | img_tag}}</a>
+              {% else %}
+              <a href="/"><img src="{{'logo.gif' | asset_url}}" alt=""></a>
+              {%endif%}
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-10">
+            <div class="box-control">
+              {% assign search_style = "icon2" %}
+              {% include 'search-bar' %}
+              {% assign position ="menu" %}
+              {% include "mini-cart" %}
+              {% include"settings-box" %}
+            </div>
+            {% include 'menu_import' %}
+            <span class="mobile-navigation"><i class="fa fa-bars"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,46 @@
+{% unless include %}
+{% capture cattegories_style  %}{% include 'shortcode-render' render:'style' default: "" %}{% endcapture %}
+
+{% if cattegories_style != "" %}
+  {% capture cattegories_style %}our-category {% endcapture %}
+{% endif %}
+{% endunless %}
+
+{% unless margin_cattegories %}
+{% assign margin_cattegories = "margin-top-60" %}
+{% endunless %}
+<div class="{{margin_cattegories}} {{cattegories_style}}">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-5">
+      <div class="section-title text-center margin-top-40 margin-bottom-30">
+        <h3>{{settings.cat_title}}</h3>
+        <span class="sub-title">{{settings.cat_sub_title}}</span>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-7">
+      <ul class="category-menu category-carousel pull-left owl-carousel nav-style7 nav-center-center" data-nav="true" data-autoplay="false" data-dots="false" data-loop="true" data-margin="30" data-responsive='{"0":{"items":1},"600":{"items":4},"1000":{"items":4}}'>
+          {% for i in (1..12) %}
+          {% assign catt_icon = 'catt_icon' | append: i | append: '.png' %}
+          {% assign catt_collection = 'catt_collection' | append: i %}
+            {% if settings[catt_collection] != blank %}
+              {% if cattegories_style == "left" %}
+                <li>
+                  <a href="/collections/{{handleize_tab}}">
+                    <span class="icon"><img src="{{catt_icon | asset_url}}" alt="{{settings[catt_collection]}}"></span>
+                    {{settings[catt_collection] | capitalize | replace: '-', ' ' }}
+                  </a>
+                </li>
+              {% else %}
+                <li>
+                  <a href="/collections/{{settings[catt_collection]}}">
+                    <img src="{{catt_icon | asset_url}}" alt="{{settings[catt_collection]}}">
+                    {{settings[catt_collection] | capitalize | replace: '-', ' ' }}
+                  </a>
+                </li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>

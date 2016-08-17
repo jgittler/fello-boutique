@@ -1,0 +1,93 @@
+<div id="box-mobile-menu" class="box-mobile-menu full-height full-width">
+  <div class="box-inner">
+    <span class="close-menu"><span class="icon pe-7s-close"></span></span>
+  </div>
+</div>
+<div id="header-ontop" class="is-sticky"></div>
+<header id="header" class="header style3 style12">
+  <div class="container">
+    <div class="topbar">
+      <ul class="boutique-nav topbar-menu left">
+        {% if settings.footer_widget_phone_contact != blank %}<li{% if settings.turnoff_phone_header %} class="hidden-xs"{% endif %}><a href="#"><i class="fa fa-phone"></i>Call Us: {{settings.footer_widget_phone_contact}}</a></li>{% endif %}
+        {% if settings.footer_widget_email_contact != blank %}<li{% if settings.turnoff_email_header %} class="hidden-xs"{% endif %}><a href="#"><i class="fa fa-envelope"></i>{{settings.footer_widget_email_contact}}</a></li>{% endif %}
+      </ul>
+      <ul class="boutique-nav topbar-menu right">
+      
+        {% if shop.customer_accounts_enabled %}
+        <li class="menu-item-has-children">
+          <a href="/account"><i class="fa fa-lock"></i> Account</a>
+          <ul class="sub-menu">
+            {% assign menu_settings_dropdown = settings.menu_settings_dropdown %}
+            {% for link in linklists[menu_settings_dropdown].links %}
+            <li><a href="{{link.url}}"><span>{{link.title }}</span></a></li>
+            {% endfor %}
+              {% if customer %}
+                <li><a href="/account/logout"><span>{{"layout.customer.log_out"|t}}</span></a></li>
+              {% else %}
+                <li><a href="/account/login"><span>{{"layout.customer.log_in"|t}}</span></a></li>
+              {% endif %}
+          </ul>
+        </li>
+      {% endif %}
+        {% include "currency-picker" %}
+        <li class="menu-item-has-children currency-lists">
+          <a class="currency_display">{{settings.default_currency}}</a>
+          <ul class="sub-menu dropdown-select-menu">
+            {% assign money = settings.default_currency | downcase %}
+            {% assign moneyss = settings.supported_currencies | split: ' ' %}
+            {% for moneys in moneyss %}
+              <li {% if moneys == money %}class="active"{% endif %}>
+                <a class="currency-select" name="{{moneys | upcase }}">{{moneys | upcase }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% comment %}
+        <li class="menu-item-has-children">
+          <a href="#"><img src="images/flag3.png" alt="">English</a>
+          <ul class="sub-menu">
+            <li><a href="#">English</a></li>
+            <li><a href="#">French</a></li>
+          </ul>
+        </li>
+        {% endcomment %}
+      </ul>
+    </div>
+    <div class="main-header">
+      <div class="main-menu-wapper">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="logo2 text-center">
+              {% if settings.logo_use_image%}
+              <a href="/">{{'logo.png' | asset_url | img_tag}}</a>
+              {% else %}
+              <a href="/"><img src="{{'logo.gif' | asset_url}}" alt=""></a>
+              {%endif%}
+            </div>
+          </div>
+          <div class="col-xs-2 col-sm-3 col-md-7 col-lg-5">
+          {% include 'menu_import' %}
+            <span class="mobile-navigation"><i class="fa fa-bars"></i></span>
+          </div>			
+          <div class="col-sm-12 col-md-12 col-lg-3 logo-main">
+            <div class="logo">
+              {% if settings.logo_use_image%}
+              <a href="/">{{'logo.png' | asset_url | img_tag}}</a>
+              {% else %}
+              <a href="/"><img src="{{'logo.gif' | asset_url}}" alt=""></a>
+              {%endif%}
+            </div>
+          </div>
+          <div class="col-xs-10 col-sm-9 col-md-5 col-lg-4 control-wapper">
+            <div class="box-control">
+              {% assign search_style = "show-input2" %}
+              {% include 'search-bar' %}
+              {% assign position ="top-menu" %}
+              {% include "mini-cart" %}							
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

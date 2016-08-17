@@ -1,0 +1,131 @@
+<div class="main-container no-sidebar">
+  <div class="container">
+    <div class="main-content">
+      <div class="page-title">
+          <h3>WISHLIST</h3>
+      </div>
+      <div id="addtocart-message"><span id="title-addtocart"></span> Product correctly added to cart</div>
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          {% if customer %}
+            <table class="shop_table cart">
+              <thead>
+                <tr>
+                  <th class="product-thumbnail" style=""></th>
+                  <th style="">Product Name</th>
+                  <th style="">Unit Price</th>
+                  <th class="product-remove" style=""></th>
+                  <th></th>
+                </tr> 
+              </thead>
+              <tbody>
+                {% paginate collection.products by collection.all_products_count %}
+
+                  {% capture tags %}{% for tag in customer.tags %}{{ tag }} {% endfor %}{% endcapture %}
+                    {% assign tags = tags | remove:'x' | split:' ' | uniq | join:' ' %}
+                      {% for product in collection.products %}
+
+                        {% assign on_sale = false %}
+                          {% if product.compare_at_price > product.price %}
+                            {% assign on_sale = true %}
+                          {% endif %}
+
+                        {% assign sold_out = true %}
+                          {% if product.available %}
+                            {% assign sold_out = false %}
+                          {% endif %}
+
+                        {% if tags contains product.id %}
+                          {% for tag in customer.tags %}
+                            {% if tag contains product.id %}{% assign t = tag %}{% endif %}
+                          {% endfor %}
+
+                          {% assign check = t.size | minus:product.id.size | modulo:2 %}
+                          {% assign  check_mod =  t.size | modulo :2   %}
+                            {% if check == 0 or check_mod == 0  %}
+                                <tr class="x{{ t }} {{ product.variants[0].id }}">
+                                  <td class="product-thumbnail">{{ product.featured_image | product_img_url:'small' | img_tag:product.title }}</td>
+
+                                  <td class="product-name"><a href="{{ product.url }}">{{ product.title }}</a></td>
+                                  <td class="product-price">
+                                      
+                                      {% if on_sale %}
+                                        {{product.price | money }}
+                                        <del>{{product.compare_at_price | money }}</del>
+                                      {% else %}
+                                        {{product.price | money }}
+                                      {% endif %}
+
+                                      {% if sold_out %}
+                                        <br><strong>{{ 'products.product.sold_out' | t }}</strong>
+                                      {% endif %}
+                                    </td>
+                                    <td>
+
+                                        {% if product.available %}
+                                          <p id="inventory">
+                                          {% assign variant = product.variants.first %}
+                                            {% if variant.available %}
+                                              {% if variant.inventory_management != '' %}
+                                                {% comment %}{{ variant.inventory_quantity }} available{% endcomment %}
+                                                  {{ 'products.product.in_stock' | t }}
+                                              {% endif %}
+                                            {% endif %}
+                                          </p>
+                                        {% else %}
+                                          <p id="inventory-na">  
+                                            {{ 'products.product.sold_out' | t }}
+                                          </p>
+                                        {% endif %}
+                                    </td>
+
+                                    <td class="product-remove">
+                                      <a href="#" class="wishlist-remove" data-wid="x{{ t }}"><i class="fa fa-close"></i></a>
+                                    </td>
+                                    <td class="product-add-to-cart text-right">
+                                      {% if sold_out == false %}
+
+                                        {% if product.variants.size > 1 %}
+                                          <button class="button quick-view" data-original-title="Select Option"  href="{{ product.url | within: collection }}" data-pid="{{ product.id }}">
+                                            {{ 'products.product.select_option' | t }}
+                                          </button>
+                                        {% else %}
+                                          {% if product.variants.first.available %}
+                                            <button type="button" name="add" class="button wishlist-addtocart" data-original-title="Add to cart" data-wid="{{ product.variants[0].id }}">{{ 'products.product.add_to_cart' | t }}</button>
+                                          {% endif %}
+                                        {% endif %}
+
+                                      {% else %}
+                                        <button class="button" data-original-title="Select Option" onclick="location.href='{{ product.url | within: collection }}'">
+                                          Sold Out
+                                        </button>
+                                      {% endif %}
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endif %}
+                      {% endfor %}
+                {% endpaginate %}
+              </tbody>
+            </table>
+          {% else %}
+            <h4>Please login to add product to wishlist </h4>
+          {% endif %}
+        
+          {% form 'customer' %} 
+              <input type='hidden' name='contact[email]' value='{{ customer.email }}'/>
+              <input type='hidden' name='contact[tags]' class='remove-value' value='' />
+          {% endform %}
+            <form action='/cart/add' class='add-variant' method='post'>
+              <input type='hidden' name='id' class='product-select' value='' />
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% assign margin_shipping_icon = "margin-top-60" %}
+        {% include 'shortcode-shipping-icon' %}
+</div>
+
+
+

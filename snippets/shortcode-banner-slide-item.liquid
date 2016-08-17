@@ -1,0 +1,86 @@
+{% unless include %}
+{% capture banner_slide_image_title %}{% include 'shortcode-render' render:'image_title' default:'' %}{% endcapture %}
+{% capture banner_slide_image_title_icon %}{% include 'shortcode-render' render:'icon' default:'' %}{% endcapture %}
+{% capture banner_slide_title %}{% include 'shortcode-render' render:'title' default:'' %}{% endcapture %}
+{% capture banner_slide_sub_title %}{% include 'shortcode-render' render:'sub_title' default:'' %}{% endcapture %}
+{% capture banner_slide_link %}{% include 'shortcode-render' render:'link' default:'#' %}{% endcapture %}
+{% capture banner_slide_link_title %}{% include 'shortcode-render' render:'title_link' default:'' %}{% endcapture %}
+{% capture banner_slide_style %}{% include 'shortcode-render' render:'style' default:'' %}{% endcapture %}
+{% endunless %}
+
+
+{% if banner_slide_image_title_icon == "1" %}
+{% capture banner_slide_image_title_icon %}<img src="{{'icon_banner_slide1.png' | asset_url}}" alt="">{% endcapture %}
+{% elsif banner_slide_image_title_icon == "2" %}
+{% capture banner_slide_image_title_icon %}<img src="{{'icon_banner_slide2.png' | asset_url}}" alt="">{% endcapture %}
+{% elsif banner_slide_image_title_icon == "3" %}
+{% capture banner_slide_image_title_icon %}<img src="{{'icon_banner_slide3.png' | asset_url}}" alt="">{% endcapture %}
+{% endif %}
+
+
+{% if banner_slide_style == "zoom-in" %}
+<div class="banner-text style4">
+  <div class="image">
+    <a href="{{banner_slide_link}}">
+      {% if banner_slide_image_title == blank %}
+      <img src="{{'26.gif' | asset_url}}" alt="">
+      {% else %}
+      <img src="{{banner_slide_image_title | file_url}}" alt="">
+      {% endif %}
+    </a>
+  </div>	
+  <div class="content-text">
+    {% if banner_slide_sub_title != blank%}
+    <h4 class="subtitle">{{banner_slide_sub_title}}</h4>
+    {% endif %}
+    {% if banner_slide_title != blank%}
+    <h3 class="title">{{banner_slide_title}}</h3>
+    {% endif %}        
+    {% if banner_slide_link_title != blank%}
+    <a href="{{banner_slide_link}}" class="shop-now">{{banner_slide_link_title}}</a>
+    {% endif %}
+  </div>
+</div>
+{% else %}
+
+  {% if banner_slide_image_title_icon == blank and banner_slide_title == blank and banner_slide_sub_title == blank %}
+  <div class="banner-text">
+    <a class="banner-border primary" href="{{banner_slide_link}}">
+      {% if banner_slide_image_title == blank %}
+      <img src="{{'26.gif' | asset_url}}" alt="">
+      {% else %}
+      <img src="{{banner_slide_image_title | file_url}}" alt="">
+      {% endif %}
+    </a>
+  </div>
+  {% else %}
+  <div class="banner-text style3">
+    <a href="{{banner_slide_link}}">
+      {% if banner_slide_image_title == blank %}
+      <img src="{{'26.gif' | asset_url}}" alt="">
+      {% else %}
+      <img src="{{banner_slide_image_title | file_url}}" alt="">
+      {% endif %}
+    </a>
+    <div class="content-text">
+      <div class="inner">
+        {% if banner_slide_image_title_icon != blank %}
+        {{banner_slide_image_title_icon}}
+        {% endif %}
+
+        {% if banner_slide_title != blank%}
+        <h2 class="title">{{banner_slide_title}}</h2>
+        {% endif %}
+
+        {% if banner_slide_sub_title != blank%}
+        <h3 class="subtitle">{{banner_slide_sub_title}}</h3>
+        {% endif %}
+        
+        {% if banner_slide_link_title != blank%}
+        <a href="{{banner_slide_link}}" class="box-link">{{banner_slide_link_title}}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+{% endif %}

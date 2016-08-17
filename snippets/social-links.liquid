@@ -1,0 +1,53 @@
+
+<div class="social">
+  {% if settings.social_facebook_link != blank %}
+  	<a href="{{ settings.social_facebook_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Facebook' }}">
+      <i class="fa fa-facebook"></i>
+  	</a>
+  {% endif %}
+  {% if settings.social_twitter_link != blank %}
+    <a href="{{ settings.social_twitter_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Twitter' }}">
+      <i class="fa fa-twitter"></i>
+    </a>
+  {% endif %}
+  {% if settings.social_google_plus_link != blank %}
+  	<a href="{{ settings.social_google_plus_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Google Plus' }}" rel="publisher">
+      <i class="fa fa-google-plus"></i>
+  	</a>
+  {% endif %}
+  {% if settings.social_instagram_link != blank %}
+  	<a href="{{ settings.social_instagram_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Instagram' }}">
+      <i class="fa fa-instagram"></i>
+  	</a>
+  {% endif %}
+  {% if settings.social_pinterest_link != blank %}
+    <a href="{{ settings.social_pinterest_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Pinterest' }}">
+      <i class="fa fa-pinterest"></i>
+    </a>
+  {% endif %}
+  {% if settings.social_tumblr_link != blank %}
+    <a href="{{ settings.social_tumblr_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Tumblr' }}">
+      <i class="fa fa-tumblr"></i>
+    </a>
+  {% endif %}
+  {% if settings.social_youtube_link != blank %}
+      <a href="{{ settings.social_youtube_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'YouTube' }}">
+        <i class="fa fa-youtube"></i>
+      </a>
+  {% endif %}
+  {% if settings.social_vimeo_link != blank %}
+      <a href="{{ settings.social_vimeo_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Vimeo' }}">
+        <i class="fa fa-vimeo"></i>
+      </a>
+  {% endif %}
+  {% if settings.social_fancy_link != blank %}
+    <a href="{{ settings.social_fancy_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Fancy' }}">
+      <i class="icon icon-fancy"></i>
+    </a>
+  {% endif %}
+  {% if settings.social_rss_link != blank %}
+    <a class="icon-fallback-text" href="{{ settings.social_rss_link }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'RSS' }}">
+      <i class="fa fa-rss"></i>
+    </a>
+  {% endif %}
+</div>

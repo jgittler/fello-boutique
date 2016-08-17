@@ -1,0 +1,58 @@
+<div id="box-mobile-menu" class="box-mobile-menu full-height full-width">
+  <div class="box-inner">
+    <span class="close-menu"><span class="icon pe-7s-close"></span></span>
+  </div>
+</div>
+<div id="header-ontop" class="is-sticky"></div>
+<header id="header" class="header style3 style4">
+  <div class="top-header">
+    <div class="inner">
+      <div class="main-menu-wapper">
+        <div class="row">
+          <div class="col-md-12 col-lg-3 logo-wapper">
+            <div class="logo">
+              {% if settings.logo_use_image%}
+              <a href="/">{{'logo.png' | asset_url | img_tag}}</a>
+              {% else %}
+              <a href="/"><img src="{{'logo.gif' | asset_url}}" alt=""></a>
+              {%endif%}
+            </div>
+          </div>
+          <div class="col-xs-2 col-sm-3 col-md-6 col-lg-6">
+            {% include 'menu_import' %}
+            <span class="mobile-navigation"><i class="fa fa-bars"></i></span>
+          </div>
+          <div class="col-xs-10 col-sm-9 col-md-6 col-lg-3 control-wapper">
+            <div class="box-control">
+              <form  class="box-search">
+                <input type="text" class="search" placeholder="Search here...">
+                <button class="button-search"><span class="pe-7s-search"></span></button>
+              </form>
+              {% assign position ="top-menu" %}
+              {% include "mini-cart" %}
+              {% include"settings-box" %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main-header">
+    <div class="container">
+      <ul class="category-menu style2">
+          {% for i in (1..4) %}
+          {% assign catt_icon = 'catt_icon' | append: i | append: '.png' %}
+          {% assign catt_collection = 'catt_collection' | append: i %}
+            {% if settings[catt_collection] != blank %}
+              <li>
+                <a href="/collections/{{handleize_tab}}">
+                  <span class="icon"><img src="{{catt_icon | asset_url}}" alt="{{settings[catt_collection]}}"></span>
+                  {{settings[catt_collection] | capitalize | replace: '-', ' ' }}
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+      </ul>
+    </div>
+  </div>
+</header>

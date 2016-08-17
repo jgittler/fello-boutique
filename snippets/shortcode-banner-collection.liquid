@@ -1,0 +1,44 @@
+{% unless include %}
+{% capture bn_cll_title %}{% include 'shortcode-render' render:'title' default:'FEATURED ITEMS' %}{% endcapture %}
+{% capture bn_cll_des %}{% include 'shortcode-render' render:'description' default:'Our Featured today!' %}{% endcapture %}
+{% capture bn_cll_title_link %}{% include 'shortcode-render' render:'title_link' default:'SHOP MORE ITEMS' %}{% endcapture %}
+{% capture bn_cll__link %}{% include 'shortcode-render' render:'link' default:'#' %}{% endcapture %}
+{% capture bn_cll__style %}{% include 'shortcode-render' render:'banner_position' default:'' %}{% endcapture %}
+{% capture image_title  %}{% include 'shortcode-render' render:'image_title' default: "" %}{% endcapture %}
+{% capture handleize_tab  %}{% include 'shortcode-render' render:'collection' default:''%}{% endcapture %}
+{% endunless %}
+
+{% unless margin_bn_cll %}
+{% assign margin_bn_cll = "margin-top-60" %}
+{% endunless %}
+
+
+{% unless banner_opacity_9 %}
+{% assign banner_opacity_9 = "" %}
+{% endunless %}
+
+<div class="{{margin_bn_cll}}">
+  <div class="box-product-featured{% if bn_cll__style == "right" %} right{% endif %}">
+    <div class="box-head {{banner_opacity_9}}">
+      {% if image_title == blank %}
+      {{'4.gif' | asset_url | img_tag}}
+      {% else %}
+      {{image_title | file_url | img_tag}}
+      {% endif %}
+      <div class="inner">
+        <h2 class="box-title">{{bn_cll_title}}</h2>
+        <span class="box-sub-title">{{bn_cll_des}}</span>
+        <a href="{{bn_cll__link}}" class="box-link">{{bn_cll_title_link}}</a>
+      </div>
+    </div>
+    <div class="box-content">
+      <div class="box-content-inner">
+        <ul class="box-product-list owl-carousel nav-style2 nav-center-outside" data-nav="true" data-dots="false" data-margin="30" data-loop="true" data-responsive='{"0":{"items":1},"600":{"items":2},"1000":{"items":3}}'>
+          {% for product in collections[handleize_tab].products limit:8 %}
+          {% include "product-loop" %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

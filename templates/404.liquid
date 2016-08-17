@@ -1,0 +1,16 @@
+    <div class="container">
+        <div class="text-center page-404">
+            {% if settings.heading404 != blank %}
+            <h1 class="heading">{{ settings.heading404}}</h1>
+          {% endif %}
+          
+           {% if settings.title404 != blank %}
+            <h2 class="title">{{settings.title404}}</h2>
+          {% endif %}
+            <p>{{ settings.information_desc_404}}</p>
+            <a class="button" href="/">Go to Home</a>
+        </div>
+    </div>
+    {% assign margin_shipping_icon = "margin-top-60 margin-bottom-30" %}
+    {% include 'shortcode-shipping-icon' %}  
+    

@@ -1,0 +1,25 @@
+<div class="kt-processbar">
+        
+    {% assign current_data_bgskill = 'data-bgskill' %}
+    {% assign current_data_bgbar = 'data-bgbar'%}
+    {% assign current_data_percent = 'data-percent'%}
+    {% assign current_processbar_title = 'processbartitle'%}
+    {% assign current_processbar_percent = 'percent'%}
+    
+    {% capture this_bgskill %}{%include 'shortcode-render' render: current_data_bgskill default:''%}{% endcapture %}
+    {% capture this_bgbar %}{%include 'shortcode-render' render: current_data_bgbar default:''%}{% endcapture %}
+    {% capture this_percent %}{%include 'shortcode-render' render: current_data_percent default:''%}{% endcapture %}
+    {% capture this_processbar_title  %}{%include 'shortcode-render' render: current_processbar_title default:''%}{% endcapture %}
+
+    {% if current_data_percent != "" %}
+    
+    <div data-bgskill="{{ this_bgskill }}" data-bgbar="{{ this_bgbar }}" data-percent="{{ this_percent }}" data-height="36" class="item-processbar">
+      <span class="processbar-title">{{this_processbar_title | strip_html }}</span>
+      <div class="processbar-bg">
+        <div class="processbar-width">
+          <div class="processbar-percent">{{this_percent | strip_html }}%</div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+</div>

@@ -1,0 +1,56 @@
+<div class="main-container shop-with-banner left-slidebar">
+	<div class="container">
+		{% if settings.enable_banner_content_collection %}
+            <div class="shop-banner">
+                {{ 'slider-cat2.jpg' | asset_url | img_tag }}
+            </div>
+        {% endif %}
+		<div class="breadcrumbs style2">
+            {% include "breadcrumb" %}
+        </div>
+		<div class="row">
+			<div class="main-content col-sm-8 col-md-9">
+			{% paginate collection.products by 9 %}
+				<div class="shop-top">
+                    <div class="shop-top-left">
+                        <span class="woocommerce-result-count"> Showing {{paginate.current_page}}&ndash;{{paginate.page_size }} of {{paginate.items}} results</span>
+                    </div>
+                    <div class="shop-top-right">
+                        <div class="orderby-wapper">
+                            {% include 'collection-sorting' %}
+                        </div>
+                        {% include 'collection-views' %}
+                    </div>
+                </div>
+				<ul class="product-list-grid desktop-columns-3 tablet-columns-2 mobile-columns-1 row flex-flow" id="collection-product">
+					{% for product in collection.products %}
+		            {% assign grid_item_width = 'col-sm-6 col-md-4' %}
+		              {% include 'product-style-2' %}
+		              {% include 'product-list-item' %} 
+		            {% endfor %}
+				</ul>
+					{% if paginate.pages > 1 %}
+                        <div class="navigation">
+                        {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+                      </div>
+                    {% endif %}
+                {% endpaginate %}
+			</div>
+			<div class="col-sm-4 col-md-3 sidebar"> 
+				<div class="widget widget_product_categories">
+		          <h2 class="widget-title">{{ 'blogs.sidebar.categories' | t }}</h2>
+		          <ul class="product-categories">
+		              {% paginate collections by 12 %}
+		                  {% for line_collection in collections  %}
+		                      <li class="{% if collection.handle == line_collection.handle %} current-cat {% endif %}"><a href="{{line_collection.url}}?view=category-style">{{line_collection.title}} <span class="count">({{line_collection.products_count}})</span></a></li>
+		                  {% endfor %}
+		              {% endpaginate %}
+		          </ul>
+		        </div>
+                {% include 'collection-sidebar-style' %}
+        	</div>
+		</div>
+	</div>
+</div>
+{% assign margin_shipping_icon = "margin-top-30" %}
+{% include 'shortcode-shipping-icon' %} 

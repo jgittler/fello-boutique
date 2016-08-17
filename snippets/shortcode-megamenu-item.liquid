@@ -1,0 +1,136 @@
+{% capture dropdown_col_start %}{% include 'shortcode-render' render:'col_start' default:'' %}{% endcapture %}
+{% capture dropdown_col_one %}{% include 'shortcode-render' render:'one_col' default:'' %}{% endcapture %}
+{% capture dropdown_col_end %}{% include 'shortcode-render' render:'col_end' default:'' %}{% endcapture %}
+{% capture dropdown_col_munber %}{% include 'shortcode-render' render:'col_number' default:'6' %}{% endcapture %}
+{% capture sub_style %}{% include 'shortcode-render' render:'sub_style' default: '' %}{% endcapture %}
+
+{% comment %}
+<!-- Service Style -->
+{% endcomment %}
+{% capture mega_service__title %}{% include 'shortcode-render' render:'title' default:'Title' %}{% endcapture %}
+{% capture mega_service__text %}{% include 'shortcode-render' render:'text' default: "Description" %}{% endcapture %}
+
+{% comment %}
+<!-- Blog Style -->
+{% endcomment %}
+{% capture mega_blog__handle %}{% include 'shortcode-render' render:'blog_handle' default:'news' %}{% endcapture %}
+{% capture number_post_dt %}{% include 'shortcode-render' render:'number_post_dt' default: '2' %}{% endcapture %}
+{% capture number_post_tb %}{% include 'shortcode-render' render:'number_post_tb' default: '1' %}{% endcapture %}
+{% capture number_post_mb %}{% include 'shortcode-render' render:'number_post_mb' default: '1' %}{% endcapture %}
+{% capture class_style %}{% include 'shortcode-render' render:'style' default: 'nav-style7' %}{% endcapture %}
+
+{% comment %}
+<!-- Features Style -->
+{% endcomment %}
+{% capture image_title %}{% include 'shortcode-render' render:'image_title' default: "" %}{% endcapture %}
+
+
+{% capture hot %}{% include 'shortcode-render' render:'hot' default:'' %}{% endcapture %}
+{% capture new %}{% include 'shortcode-render' render:'new' default:'' %}{% endcapture %}
+
+{% if number_post_dt == blank %}
+	{% assign number_post_dt_end = 2 %}
+{% else %}
+	{% assign number_post_dt_end = number_post_dt | plus: 0 %}
+{% endif %}
+{% if number_post_tb == blank %}
+	{% assign number_post_tb_end = 1 %}
+{% else %}
+	{% assign number_post_tb_end = number_post_tb | plus: 0 %}
+{% endif %}
+{% if number_post_mb == blank %}
+	{% assign number_post_mb_end = 1 %}
+{% else %}
+	{% assign number_post_mb_end = number_post_mb | plus: 0 %}
+{% endif %}
+
+{% if dropdown_col_start == "start" %}
+  {% capture dropdown_col_start %}
+    <div class="col-sm-{{dropdown_col_munber}}">
+  {% endcapture %}
+{% endif %}
+{% if dropdown_col_end == "end" %}
+  {% capture dropdown_col_end %}
+	</div>
+  {% endcapture %}
+{% endif %}
+{% if dropdown_col_one %}
+  {% capture dropdown_col_start %}
+    <div class="col-sm-{{dropdown_col_munber}}">
+  {% endcapture %}
+  {% capture dropdown_col_end %}
+	</div>
+  {% endcapture %}
+{% endif %}
+
+
+{{dropdown_col_start}}
+{% if style_class == "features"%}
+  <div class="element-icon">
+    <div class="icon">
+      <img src="{% if image_title =="" %}{{'icon-color.gif' | asset_url}}{% else %}{{image_title | file_url}}{% endif %}" alt="">
+    </div>
+    <div class="content">
+      <h4 class="title">{{mega_service__title}}</h4>
+      <div class="text"><p>{{mega_service__text}}</p></div>
+    </div>
+  </div>
+{% endif %}
+
+
+{% if style_class == "blog"%}
+    {% assign check = 0 %}
+    {% for article in blogs[mega_blog__handle].articles limit: 10 %}
+      	{% assign check = check | plus : 1 %}
+    {% endfor %}
+    
+    {% if check > 4 %}
+      <div class="lastest-blog owl-carousel nav-center-center {{class_style}}" data-nav="true" data-dots="false" data-loop="true" data-margin="30"
+       data-responsive='{"0":{"items":{{number_post_mb_end}}},"600":{"items":{{number_post_tb_end}}},"1000":{"items":{{number_post_dt_end}}}}'>
+        {% for article in blogs[mega_blog__handle].articles limit: 10 %}
+        <div class="item-blog">
+          {% if article.image %}
+          {% assign image_alt = article.title | escape %}
+          <p>{{ article | img_url: 'large' | img_tag: image_alt, 'article__image' | link_to: article.url }}</p>
+          {% endif %}
+          <h5 class="blog-title">{{ article.title | link_to: article.url }}</h5>
+          <div class="meta">
+            <span class="author">{{ article.author }}</span>
+            {% assign title_counts = 'comment' %}
+            {% if article.comments_count > 1 %}
+            {% assign title_counts = 'comments' %}
+            {% endif %}
+            <span class="comment"><i class="fa fa-comment"></i> {{article.comments_count}} {{ title_counts }}</span>
+          </div>
+        </div>
+        {% assign check = check | plus : 1 %}
+        {% endfor %}
+      </div>
+    {% else %}
+      {% for article in blogs[mega_blog__handle].articles limit: 10 %}
+      <div class="col-md-3">
+        {% if article.image %}
+        {% assign image_alt = article.title | escape %}
+        <p>{{ article | img_url: 'large' | img_tag: image_alt, 'article__image' | link_to: article.url }}</p>
+        {% endif %}
+        <h5 class="blog-title">{{ article.title | link_to: article.url }}</h5>
+          <div class="meta">
+            <span class="author">{{ article.author }}</span>
+              {% assign title_counts = 'comment' %}
+              {% assign title_count = 0 %}
+              {% for comment in article.comments %}
+                {% assign title_count = title_count | plus: 1 %}
+              {% endfor %}
+              {% if title_count > 1 %}
+              	{% assign title_counts = 'comments' %}
+              {% endif %}
+            <span class="comment"><i class="fa fa-comment"></i> {{article.comments_count}} {{ title_counts }}</span>
+          </div>
+      </div>
+      {% assign check = check | plus : 1 %}
+      {% endfor %}
+    {% endif %}
+ 
+{% endif %}
+
+{{dropdown_col_end}}

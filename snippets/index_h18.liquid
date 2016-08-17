@@ -1,0 +1,135 @@
+<div class="container">
+  <!-- Home slide -->
+  <div class="home-top-category-slide">
+    <a href="#" class="block-toggle"><span class="icon pe-7s-close"></span></a>
+    {% if settings.use_categories_home18 %}
+    <div class="block-category-carousel scrollbar style2 open">
+      <div class="inner">
+        <h3 class="title">{{settings.cat_title}}</h3>
+        <span class="sub-title">{{settings.cat_sub_title}}</span>
+        <div class="block-inner owl-carousel" data-nav="false" data-dots="true" data-items="1" data-loop="false" data-autoplay="true">
+          {% assign check_row_catt = 1 %}
+          {% for i in (1..12) %}
+          {% assign catt_icon = 'catt_icon' | append: i | append: '.png' %}
+          {% assign catt_collection = 'catt_collection' | append: i %}
+			
+            {% if settings[catt_collection] != blank %}
+              {% if check_row_catt == 1 %}
+              <ul class="list-cat">
+                {% endif %} 
+                <li>
+                  <a href="/collections/{{settings[catt_collection]}}">
+                    <img src="{{catt_icon | asset_url}}" alt="{{settings[catt_collection]}}">
+                    {{settings[catt_collection] | capitalize | replace: '-', ' ' }}
+                  </a>
+                </li>
+                {% if  check_row_catt  >=  4  or forloop.last %}
+              </ul>
+              {% assign check_row_catt = 0 %}
+              {% endif %}
+              {% assign check_row_catt = check_row_catt | plus : 1 %}
+          
+                {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if settings.use_slider_hp18 %}
+    <div class="slider-homepage">
+      {% include 'shortcode-slider' %}
+    </div> 
+    {% endif %}
+  </div>
+  <!-- ./Home slide -->
+  {% if settings.use_block_banner_home18 %}
+   <div class="row margin-0 ">
+      <div class="col-sm-6 padding-0">
+        <div class="kt-banner block-kt-banner style1" data-background="{{settings.databackground_1_home18}}" data-height="585" data-positiontop="60px" data-positionright="0px" data-positionleft="0px">
+          <a href="{{settings.banner_link_button_1_home18}}" class="bg-image"></a>
+        </div>
+        <div class="kt-banner block-kt-banner style3" data-background="{{settings.databackground_2_home18}}" data-height="300" data-position="center" data-positionright="30px">
+          <a href="{{settings.banner_link_button_2_home18}}" class="bg-image"></a>
+        </div>
+        <div class="kt-banner block-kt-banner" data-background="{{settings.databackground_3_home18}}" data-height="585" data-positiontop="60px" data-positionright="0px" data-positionleft="0px">
+          <a href="{{settings.banner_link_button_3_home18}}" class="bg-image"></a>
+        </div>
+        
+        {% if settings.use_blocknewletter_home18 %}
+        <div class="block-newletter style4">
+          <div class="head">
+            <div class="section-title text-center">
+              <h3>{{settings.title_newletter_home18}}</h3>
+              <span class="sub-title">{{settings.sub_title_newletter_home18}}</span>
+            </div>
+          </div>
+          <div class="form">
+            <div class="desc">
+              <span class="text-primary">{{settings.form_desc_newletter_home18 | img_tag }}</span>
+            </div>
+            {% if settings.newsletter_form_action != blank %}
+              {% assign form_action = settings.newsletter_form_action %}
+            {% else %}
+              {% assign form_action = '#' %}
+            {% endif %}
+            <form class="newletter" action="{{ form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+              <input class="email-text" type="text" name="newsletter" placeholder="{{'general.newsletter_form.placeholder' | t}}" value="">
+             <input type="submit" value="SIGNUP" class="button">
+            </form>
+          </div>
+        </div>        	
+        {% endif %}
+      </div>
+      <div class="col-sm-6 padding-0">
+        <div class="kt-banner block-kt-banner style2" data-background="{{settings.databackground_4_home18}}" data-height="300" data-position="center" data-positionright="65px" data-positionleft="65px">
+          <a href="{{settings.banner_link_button_4_home18}}" class="bg-image"></a>
+        </div>
+        <div class="kt-banner block-kt-banner" data-background="{{settings.databackground_5_home18}}" data-height="585" data-positiontop="60px" data-positionright="0px" data-positionleft="0px">
+          <a href="{{settings.banner_link_button_5_home18}}" class="bg-image"></a>
+        </div>
+        <div class="kt-banner block-kt-banner style3 style4" data-background="{{settings.databackground_6_home18}}" data-height="300" data-position="center" data-positionleft="30px">
+          <a href="{{settings.banner_link_button_6_home18}}" class="bg-image"></a>
+        </div>
+        <div class="kt-banner block-kt-banner" data-background="{{settings.databackground_7_home18}}" data-height="585" data-positiontop="60px" data-positionright="0px" data-positionleft="0px">
+          <a href="{{settings.banner_link_button_7_home18}}" class="bg-image"></a>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  
+  {% if settings.use_video_banner_home18 %}
+    <div class="margin-bottom-80">
+      <div class="row margin-0">
+        <div class="col-sm-4 padding-0">
+          <div class="kt-banner block-kt-banner style2" data-background="{{settings.databackground_8_home18}}" data-position="center" data-height="300" data-positionright="65px" data-positionleft="65px">
+            <a href="{{settings.banner_link_button_8_home18}}" class="bg-image"></a>
+          </div>
+        </div>
+        <div class="col-sm-4 padding-0">
+
+            <div class="kt-banner block-kt-banner style5" data-background="{{settings.databackground_9_home18}}" data-height="300" data-positiontop="60px" data-position="center" data-positionleft="0px" data-positionright="0px">
+				<a href="{{settings.banner_link_button_9_home18}}" class="bg-image"></a>
+              {% if settings.link_videoid_home18 == blank %}
+                  {% assign videoid = "134060140" %}
+              {% endif %}
+
+              {% if settings.link_videosite_home18 == blank %}
+                  {% assign videosite = "vimeo" %}
+              {% endif %}
+               <div class="banner-content text-center">
+                  <div class="video video-lightbox">
+                    <a href="#" class="link-lightbox button-play" data-videoid="{{settings.link_videoid_home18}}" data-videosite="{{settings.link_videosite_home20}}"></a>
+                  </div>
+              </div>              
+            </div>
+        </div>
+        <div class="col-sm-4 padding-0">
+          <div class="kt-banner block-kt-banner style2" data-background="{{settings.databackground_10_home18}}" data-position="center" data-height="300" data-positionright="65px" data-positionleft="65px">
+            <a href="{{settings.banner_link_button_10_home18}}" class="bg-image"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div> 

@@ -1,0 +1,110 @@
+
+{% if settings.use_slider_hp11 %}
+<!-- Home slide -->
+<div class="slider-homepage">
+  {% include 'shortcode-slider' %}
+</div>
+<!-- ./Home slide -->
+{% endif %}
+
+{% if settings.use_banner_carousel_home11 %}
+{% include 'shortcode-banner-slide'  %}
+{% endif %}
+
+{% if settings.use_shipping_text_home11 %}
+<div class="container"> 
+  {% assign margin_shipping_icon_9 = "margin-top-50 container" %}
+  {% include 'shortcode-shipping-icon' %}
+</div>
+{% endif %}
+
+<div class="container">
+  <span class="line margin-top-30"></span>
+</div>
+
+{% if settings.use_product_tab_home11 %}
+  {% assign limit = settings.number_product_show %}
+  <div class="margin-top-55">
+    <div class="container">
+      <div class="tab-product tab-product-fade-effect">
+        <ul class="box-tabs nav-tab">
+        {% assign check_count_collection = 0  %}
+        {% for i in (1..6) %}
+        {% assign collection_name = 'handleize_tab_' | append: i | append: "_s3_home11"  %}
+        {% assign handleize_tab = settings[collection_name]  %}
+          {% if handleize_tab != "" %}
+        {% if check_count_collection == 0 %}
+              {% capture animate %}class="active"><a data-animated='fadeInUp'{% endcapture %}
+          {% elsif check_count_collection == 1 %}
+              {% capture animate %}><a data-animated='slideInLeft'{% endcapture %}
+          {% elsif check_count_collection == 2 %}
+              {% capture animate %}><a data-animated='zoomInUp'{% endcapture %}
+          {% elsif check_count_collection == 3 %}
+              {% capture animate %}><a data-animated='slideInRight'{% endcapture %}
+          {% else %}
+              {% capture animate %}><a data-animated='fadeInDown'{% endcapture %}
+        {% endif %}
+            <li {{animate}} data-toggle="tab" href="#tab-{{handleize_tab}}">{{collections[handleize_tab].title | escape }}</a></li>
+            {% assign check_count_collection = check_count_collection | plus: 1  %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+      <div class="tab-content">
+        <div class="tab-container">
+          {% assign check_count_collection = 0 | plus: 0 %}
+        {% for i in (1..6) %}
+        {% assign collection_name = 'handleize_tab_' | append: i | append: "_s3_home11"  %}
+          {% assign handleize_tab = settings[collection_name]  %}
+          {% if handleize_tab != "" %}
+            <div id="tab-{{handleize_tab}}" class="tab-panel {% if check_count_collection == 0 %}active{% endif %}">
+              <ul class="product-list-grid2 tab-list owl-carousel-mobile" data-nav="false" data-dots="false" data-margin="0" data-loop="true"  data-items="1">
+              {% assign check_product_style_2 = 1 %}
+                {% for product in collections[handleize_tab].products limit: limit %}
+                  {% assign grid_item_width = "style3 mobile-slide-item col-sm-4 col-md-3" %}
+                  {% include "product-style-2" %}
+                  {% assign check_product_style_2 = check_product_style_2 | plus: 1 %}
+                {% endfor %}
+              </ul>
+              {% if check_product_style_2 > 8 %}
+              <a class="button-loadmore" href="javascript:void(0)"  title="{{handleize_tab}}" name="tab-{{handleize_tab}}">load more!</a>
+              {% endif %}
+            </div>
+            {% assign check_count_collection = check_count_collection | plus: 1  %}
+          {% endif %}
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+{% endif %}
+  
+{% if settings.use_product_tab_home11 %}
+  <div class="container">
+    {% assign include="" %}
+    {% include 'shortcode' load: '[brand bottom="70"]'  %}
+  </div>
+{% endif %}
+    
+<div class="container">
+  <span class="line margin-top-60"></span>
+</div>
+      
+{% if settings.use_our_blog_home11 %}
+<div class="container">
+  {% assign handle_name = settings.id_blog_home11 %}
+  {% assign number_post_title = settings.title_blog_home11 %}
+  {% assign margin_blog_post ="margin-top-60 no-border" %}
+  {% assign include="" %}
+  {% include 'shortcode-blog' %}
+</div>
+{% endif %}
+
+{% if settings.use_shipping_text_home11 %}
+<div class="container">
+{% assign include = "" %}
+{% assign style = "section" %}
+{% assign margin_shipping_text = "margin-bottom-60" %}
+  {% include 'shortcode-shipping-text' %}
+</div>
+{% endif %}

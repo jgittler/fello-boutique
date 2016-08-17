@@ -1,0 +1,24 @@
+{% capture newsletter_title %}{% include 'shortcode-render' render:'title' default: 'NEWSLETTER' %}{% endcapture %}
+{% capture newsletter_description %}{% include 'shortcode-render' render:'text' default: 'Sign up for Our Newsletter &amp; Promotions' %}{% endcapture %}
+
+{% if newsletter_title == blank %}
+	{% assign newsletter_title = "NEWSLETTER" %}
+{% endif %}
+{% if newsletter_description == blank %}
+	{% assign newsletter_description = "Sign up for Our Newsletter &amp; Promotions" %}
+{% endif %}
+<div class="margin-top-30">
+  <div class="newsletter style2">
+    {% if settings.newsletter_form_action != blank %}
+    {% assign form_action = settings.newsletter_form_action %}
+    {% else %}
+    {% assign form_action = '#' %}
+    {% endif %}
+    <div class="section-title text-center"><h3>{{newsletter_title}}</h3></div>
+    <i class="newsletter-info">{{newsletter_description}}</i>
+    <form class="form-newsletter" action="{{ form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+      <input type="text" name="newsletter" placeholder="Your email..." value="">
+      <span><button class="newsletter-submit" name="subscribe" id="subscribe" type="submit">SIGNUP</button></span>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+
+
+<div class="widget widget_recent_product">
+ {% assign number_of_products = 4 %}
+ {% assign number_of_products_to_fetch = number_of_products | plus: 1 %}
+
+ {% if collection == null or collection.handle == 'frontpage' or collection.handle == 'all' %}
+ {% assign found_a_collection = false %}
+ {% for c in product.collections %}
+ {% if found_a_collection == false and c.handle != 'frontpage' and c.handle != 'all' and c.all_products_count > 1 %}
+ {% assign found_a_collection = true %}
+ {% assign collection = c %}
+ {% endif %}
+ {% endfor %}
+ {% endif %}
+
+ {% if collection and collection.products_count > 1 %}
+  <h2 class="widget-title">{{ 'products.general.related_products_title' | t  | escape  }}</h2>
+  <ul class="product-categories">
+   {% assign current_product = product %}
+    {% assign current_product_found = false %}
+      {% for product in collection.products limit: number_of_products_to_fetch %}
+        {% if product.handle == current_product.handle %}
+          {% assign current_product_found = true %}
+        {% else %}
+        {% unless current_product_found == false and forloop.last %}
+   {% assign grid_item_width = 'large--one-quarter medium--one-quarter small--one-half' %}
+    <li>
+      <div class="product-thumb">
+        <a href="{{ product.url | within: collection }}"><img alt="{{ product.featured_image.alt | escape }}" src="{{ product.featured_image.src | img_url: 'grande' }}"></a>
+      </div>
+      <div class="product-info">
+        <h3 class="product-name"><a href="{{ product.url | within: collection }}">{{ product.title }}</a></h3>
+        
+        {% assign on_sale = false %}
+          {% assign sale_text = 'products.product.sale' | t %}
+            {% if product.compare_at_price > product.price %}
+              {% assign on_sale = true %}
+            {% endif %}
+
+        {% assign sold_out = true %}
+          {% assign sold_out_text = 'products.product.sold_out' | t %}
+            {% if product.available %}
+              {% assign sold_out = false %}
+            {% endif %}
+        <span class="price">
+          {% if on_sale %}
+            <ins>{{product.price | money }}</ins>
+            <del>{{product.compare_at_price | money }}</del>
+          {% else %}
+            <ins>{{product.price | money }}</ins>
+          {% endif %}
+        </span>                                 
+      </div>
+    </li>
+   {% endunless %}
+   {% endif %}
+   {% endfor %}
+ </ul>
+ {% endif %}
+</div>

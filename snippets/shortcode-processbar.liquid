@@ -1,0 +1,11 @@
+  {% assign sub_processbar = settings.processbar_subtitle %}
+  {% assign processbar_title = settings.processbar_title %}
+  <div class="section-skills margin-top-80">
+    <div class="container">
+    <div class="section-title text-center style7">
+      <span class="sub-title">{{ sub_processbar| strip_html }}</span>
+      <h3>{{ processbar_title | strip_html }}</h3>
+    </div>
+    {% include 'render-layout' register_section: 'shortcode_processbar'  %}
+    </div>
+  </div>

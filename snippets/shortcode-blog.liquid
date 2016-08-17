@@ -1,0 +1,105 @@
+{% unless include %}
+{% capture handle_name %}{% include 'shortcode-render' render:'handle' default:'news' %}{% endcapture %}
+{% capture number_post_title %}{% include 'shortcode-render' render:'title' default: '' %}{% endcapture %}
+{% capture number_post_dt %}{% include 'shortcode-render' render:'number_post_dt' default: '2' %}{% endcapture %}
+{% capture number_post_tb %}{% include 'shortcode-render' render:'number_post_tb' default: '1' %}{% endcapture %}
+{% capture number_post_mb %}{% include 'shortcode-render' render:'number_post_mb' default: '1' %}{% endcapture %}
+{% capture margin_blog_post %}{% include 'shortcode-render' render:'top' default: '' %}{% endcapture %}
+  {% if margin_blog_post != blank %}
+    {% assign margin_blog_post ="margin-top-" | append: margin_blog_post %}
+  {% endif %}
+{% endunless %}
+
+{% capture class_style %}{% include 'shortcode-render' render:'style' default: 'nav-style7' %}{% endcapture %}
+
+{% if number_post_dt == blank %}
+	{% assign number_post_dt = 2 %}
+{% else %}
+	{% assign number_post_dt = number_post_dt | plus: 0 %}
+{% endif %}
+{% if number_post_tb == blank %}
+	{% assign number_post_tb = 1 %}
+{% else %}
+	{% assign number_post_tb = number_post_tb | plus: 0 %}
+{% endif %}
+{% if number_post_mb == blank %}
+	{% assign number_post_mb = 1 %}
+{% else %}
+	{% assign number_post_mb = number_post_mb | plus: 0 %}
+{% endif %}
+
+{% unless margin_blog_post %}
+  {% assign margin_blog_post = "margin-top-30" %}
+  {% endunless %}
+{% unless handle_name =="" %}
+{% if style == "text-head"%}
+<div class="{{margin_blog_post}} section-lasttest-blog">
+  <div class="container">
+    <div class="section-title style4 text-center">
+      <span class="text-head">B</span>
+      <h3>{{number_post_title}}</h3>
+    </div>
+    <div class="lastest-blog style3 nav-center-center nav-style7 owl-carousel" data-nav="true" data-dots="false" data-loop="true" data-margin="30" 
+         data-responsive='{"0":{"items":{{number_post_mb}}},"600":{"items":{{number_post_tb}}},"1000":{"items":{{number_post_dt}}}}'>
+      {% for article in blogs[handle_name].articles limit: 15 %}
+        <div class="item-blog">
+          <h3 class="blog-title"><a href="{{ article.url }}">{{ article.title| truncate: 50 }}</a></h3>
+          <div class="thumb"><a href="{{ article.url }}"><img src="{{ article.image.src | img_url: 'medium' }}" alt=""></a></div>
+          <div class="metas">
+            <span><a href="#">{{ article.author }}</a></span>
+            <span class="date">{{ article.published_at | date: '%d %b %Y' }}</span>
+            {% assign title_counts = 'comment' %}
+            {% if article.comments_count > 1 %}
+            {% assign title_counts = 'comments' %}
+            {% endif %}
+            <span class="comment"> {{article.comments_count}} {{ title_counts }}</span>
+          </div>
+          <div class="desc">
+            <p>{{article.content | strip_html | truncate: 150}}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- ./Blog -->
+{% else %}
+<div class="{{margin_blog_post}} section-lasttest-blog">
+  {% if number_post_title != "" %}
+  <div class="section-title text-center">
+    <h3>{{number_post_title}}</h3>
+  </div>
+  {% endif %}
+  <div class="lastest-blog owl-carousel nav-center-center {{class_style}}" data-nav="true" data-dots="false" data-loop="true" data-margin="30"
+       data-responsive='{"0":{"items":{{number_post_mb}}},"600":{"items":{{number_post_tb}}},"1000":{"items":{{number_post_dt}}}}'>
+  {% for article in blogs[handle_name].articles limit: 15 %}
+      <div class="item-blog">
+        <div class="left">
+          <div class="blog-date">
+            <span class="day">{{ article.published_at | date: '%d' }}</span>
+            <span class="month">/{{ article.published_at | date: '%b' | upcase }}</span><br>
+            <span class="year">{{ article.published_at | date: '%Y' }}</span>
+          </div>
+          <h3 class="blog-title"><a href="{{ article.url }}">{{ article.title| truncate: 20 }}</a></h3>
+          <div class="meta">
+            <span class="author">{{ article.author }}</span>
+            {% assign title_counts = 'comment' %}
+            {% if article.comments_count > 1 %}
+            {% assign title_counts = 'comments' %}
+            {% endif %}
+            <span class="comment"><i class="fa fa-comment"></i> {{article.comments_count}} {{ title_counts }}</span>
+          </div>
+        </div>
+        <div class="right">
+        {% if article.image %}
+        <a href="{{ article.url }}" class="banner-border"> 
+          <img src="{{ article.image.src | img_url: 'medium' }}" srcset="{{ article.image.src | img_url: 'medium' }} 1x, {{ article.image.src | img_url: 'small' }} 2x" alt="{{ article.title }}">
+        </a>
+        {% endif %}
+        </div>
+      </div>
+  {% endfor %}
+  </div>
+</div>
+{% endif %}
+{% endunless %}

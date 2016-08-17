@@ -1,0 +1,91 @@
+<div class="main-container page-wrapper">
+<!-- PROJECT-AREA START -->
+<div class="single-project-area">
+		<div class="container">
+			<div class="row">
+              <header class="header-pages">
+              <h1 class="title-pages">
+                {{ 'general.portfolio.title' | t }}
+              </h1>
+            </header>
+            {% assign excerpt_start =  article.excerpt | split: '[end]' %}
+            {% assign end_excerpt =  excerpt_start[0]  | split: '[start]'  %}
+				<div class="product-photo-area">
+					<div class="col-lg-5 col-xs-12 col-sm-9 col-md-5">
+						<div class="project-left">
+                          {% if article.image %}
+							<a class="fancybox" data-fancybox-group="group" href="{{ article.image.src | img_url: '1024x1024' }}"><img src="{{ article.image.src | img_url: '1024x1024' }}" alt="{{ article.title }}"></a>
+                          {% endif %}
+						</div>
+					</div>
+					<div class="col-lg-1 col-xs-12 col-sm-3 col-md-1">
+                      <div class="project-right">
+                        {% include  'shortcode' load: end_excerpt[1] %}
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12">
+					<div class="project-decs-area">
+						<div class="project-date">
+							<span class="day">{{ article.published_at | date: '%d' }}</span>
+							<span class="separator">/</span>
+							<span class="month">{{ article.published_at | date: '%b' }}</span>
+                            {% include 'social-sharing' %}
+						</div>
+						<div class="project-decs">
+							<h2>{{ article.title }}</h2>
+							<div class="project-text">                             
+                              {% include  'shortcode' load: article.content %}
+                          </div>
+							<div class="project-meta">
+								<div class="categories">
+									<h3>Categories:</h3>
+									<ul>
+                                      {% include 'tags-articleportfolio' %}
+                                  </ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- PROJECT-AREA END -->
+<!-- RELATED PROJECTS START-->
+<div class="related-project-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <h2 class="project-title">Related Projects</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="related-project">
+        
+        {% capture blog_handle1 %}{{ settings.blog_home_choose }}{% endcapture %}
+        {% for article in blogs[blog_handle1].articles limit: 4 offset: 2 %}
+        {% if article.image %}
+        <!-- SINGLE-PROJECT-START -->
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="single-portfolio">
+            <a href="{{article.url}}">
+              <div class="project-thumbnail">
+                <img alt="" src="{{ article.image.src | img_url: 'master' }}">
+              </div>
+              <span class="project-info">
+                <span class="project-date">{{ article.published_at | date: '%B %d, %Y' }}</span>
+                <span class="project-title">{{ article.title }}</span>
+              </span>
+            </a>
+          </div>
+        </div>
+        <!-- SINGLE-PROJECT-END -->
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- RELATED PROJECTS END-->

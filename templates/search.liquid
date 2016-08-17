@@ -1,0 +1,177 @@
+
+<script>
+  var json_collection_filter =  {{collection.products | json }};
+  var json_wishlist = [];
+  {% if customer %}
+  {% for tag in customer.tags %}
+     {% assign tag_rmx =   tag | remove: 'x'  %}
+     {% assign check_size =  tag.size | minus: tag_rmx.size  %}
+     {% assign check_mod =   check_size | modulo: 2  %}
+     {% if check_mod == 0  %}
+        json_wishlist.push({{tag_rmx}});
+     {% endif %}
+  {% endfor %}
+{% endif %}
+</script>
+{% assign grid_results = false %}
+
+{% comment %}
+  Check to enforce respond.js
+{% endcomment %}
+{% assign respond_js_secret_key = shop.domain | md5 %}
+{% unless search.terms == respond_js_secret_key %}
+<div class="banner">
+  <div class="banner-content">
+    {% if settings.banner_header_search_page == blank %}
+    {{ '1.jpg' | asset_url | img_tag }}
+    {% else %}
+    {{settings.banner_header_search_page | img_tag }}
+    {% endif %}
+  </div>
+</div>
+<div class="main-container left-slidebar">
+  
+  <div class="container">
+    {% unless template == 'index' %}
+      <div class="breadcrumbs" style="padding: 20px 0;  margin-bottom: 20px;">
+        
+        <a href="/" title="{{ 'general.breadcrumbs.home_link_title' | t }}">{{ 'general.breadcrumbs.home' | t }}</a>
+        <span>{{ 'general.search.results_for_html' | t: terms: search.terms }}</span>
+
+      {% endunless %}
+    </div>
+    <div class="row">
+    
+      {% if search.performed %}
+
+        {% comment %}
+          Avoid accessing search.results before the opening paginate tag.
+          If you do, the pagination of results will be broken.
+        {% endcomment %}
+        {% paginate search.results by 10 %}
+
+          {% comment %}
+            We don't have any results to show. Feel free to show off featured products
+            or suggested searches here.
+          {% endcomment %}
+          {% if search.results_count == 0 %}
+
+            <div class="section-header section-header--large col-xs-12">
+              <h1 class="section-header__title h2">{{ 'general.search.no_results_html' | t: terms: search.terms }}</h1>
+            </div>
+            {% include 'search-bar' %}
+
+          {% else %}
+
+            
+
+            <div class="main-content col-sm-8 col-md-9">
+                <div class="shop-top">
+                  <div class="shop-top-left">   
+                      <h1 class="shop-title">{{ 'general.search.results_for_html' | t: terms: search.terms }}</h1>
+                    {% include 'search-bar' %}           
+                  </div>
+                  <div class="shop-top-right">
+                    <span class="woocommerce-result-count"> Showing {{paginate.current_page}}&ndash;{{paginate.page_size }} of {{paginate.items}} results</span>
+                    
+                      {% include 'collection-views' %}
+                  </div>
+                </div>
+              <ul class="product-list-grid desktop-columns-3 tablet-columns-2 mobile-columns-1 row" id="collection-product">
+                {% assign enable_show_review =true %}
+                  {% for item in search.results %}
+                    {% assign product = item %}
+                    <!-- begin list search results-->
+
+                {% if item.object_type == 'article'  %}
+                  {% assign article = item %}
+                    {% case item.template_suffix %}
+                      {% when 'video'%}
+                        <div class="col-md-6 col-xs-12">
+                          {% include 'blog-video' %}
+                        </div> 
+                      {% when 'gallery' %}
+                        <div class="col-md-6 col-xs-12">
+                          {% include 'blog-gallery' %}
+                        </div>
+                      {% when 'audio' %}
+                        <div class="col-md-6 col-xs-12">
+                          {% include 'blog-audio' %}
+                        </div>
+                      {% when 'image' %}
+                        <div class="col-md-6 col-xs-12">
+                          {% include 'blog-image' %}
+                        </div>
+                {% else %}
+                    <div class="col-md-6 col-xs-12">
+                      {% include 'blog-simple' %}
+                    </div>
+                {% endcase %}
+
+                {% elsif item.object_type == 'page' %}
+
+                {% else %}
+                  {% assign grid_item_width = 'col-sm-6 col-md-4' %}
+                      {% include 'product-grid-item' %}
+                      {% include 'product-list-item' %} 
+
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="col-sm-4 col-md-3 sidebar">
+              <div class="widget widget_product_categories">
+                <h2 class="widget-title">{{ 'blogs.sidebar.categories' | t }}</h2>
+                <ul class="product-categories">
+                  {% paginate collections by 12 %}
+                    {% for line_collection in collections  %}
+                      <li class="{% if collection.handle == line_collection.handle %} current-cat {% endif %}"><a href="{{line_collection.url}}">{{line_collection.title}} <span class="count">({{line_collection.products_count}})</span></a></li>
+                    {% endfor %}
+                    {% endpaginate %}
+                </ul>
+              </div>
+              {% include 'recent-product-sidebar' %}
+              
+              <div class="widget widget_product_tag_cloud">
+                  <h2 class="widget-title">POPULAR TAGS</h2>
+                  <div class="tagcloud">
+                      {% for tag  in  collection.tags limit: 10 %}
+                          {{ tag | link_to_tag: tag }}
+                      {% endfor %}
+                  </div>
+              </div>
+            </div>
+
+          {% endif %}
+
+          {% if paginate.pages > 1 %}
+            <div class="text-center">
+              {% include 'pagination-custom' %}
+            </div>
+          {% endif %}
+
+        {% endpaginate %}
+
+      {% else %}
+
+        {% comment %}
+          If search.performed is false, someone either accessed the page without
+          the q parameter, or it was blank.
+          Be sure to show a search form here, along with anything else you want to showcase.
+        {% endcomment %}
+        <div class="section-header section-header--large">
+          <h1 class="section-header__title h2">{{ 'general.search.title' | t }}</h1>
+        </div>
+        {% include 'search-bar' %}
+
+      {% endif %}
+
+          {% else %}
+            {% include 'respond' %}
+            {% layout none %}
+          {% endunless %}
+      </div>
+  </div>
+  {% assign margin_shipping_icon = "margin-top-30 margin-bottom-0" %}
+      {% include 'shortcode-shipping-icon' %} 
+</div>

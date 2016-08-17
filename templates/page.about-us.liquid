@@ -1,0 +1,29 @@
+{% if template contains "about" %}
+<div class="page-banner about-banner">
+  <div class="banner-content">
+    <span class="subtitle">{{settings.banner_about_title}}</span>
+    <h2 class="title">{{settings.banner_about_desc}}</h2>
+  </div>
+</div>
+{% endif %}
+<div class="section-about ">
+  <div class="container">
+    <div class="section-title text-center style7 margin-top-60">
+      <span class="sub-title">{{settings.about_section_title}}</span>
+      <!--       <h3>THE BOUTIQUE</h3> -->
+    </div>
+
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <blockquote class="style2 margin-bottom-10">{{settings.about_desc_title_quote}}</blockquote>
+      </div>
+    </div>
+    <div class="text-center GreatVibes">
+      {{settings.author_quote}}
+    </div>
+  </div>
+</div>
+{% include 'render-layout' register_section: 'shortcode_about'  %}
+  {% assign margin_shipping_icon = "margin-top-60 margin-bottom-30" %}
+        {% include 'shortcode-shipping-icon' %}
+

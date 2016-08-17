@@ -1,0 +1,45 @@
+<header id="header" class="header sidebar">
+  <span class="close-header-sidebar"><span class="icon pe-7s-close"></span></span>
+  <span class="open-header-sidebar"><i class="fa fa-angle-double-right"></i></span>
+  <div class="header-top sidebar-menu">
+    <div class="logo">
+      {% if settings.logo_use_image%}
+      <a href="/">{{'logo.png' | asset_url | img_tag}}</a>
+      {% else %}
+      <a href="/"><img src="{{'logo.gif' | asset_url}}" alt=""></a>
+      {%endif%}
+    </div>
+    <ul class="boutique-nav main-menu menu-sidebar">   
+    {% for link in linklists.main-menu.links %} 
+    {% assign child_list_handle = link.title | handle %}
+      {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}                                   
+      <li class="{% if link.active %}active{% endif %} menu-item-has-children">
+        <a href="{{ link.url }}">{{ link.title }}</a>
+        <ul class="sub-menu">
+          {% for child_link in linklists[child_list_handle].links %}
+          {% assign grand_child_list_handle = child_link.title | handle %}
+          <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% else %}                             
+      <li class="{% if link.active %}active{% endif %}"><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    <div class="box-control">
+      {% assign search_style = "icon" %}
+      {% include 'search-bar' %}
+      <div class="mini-cart">
+        <a class="cart-link" href="/cart"><span class="icon pe-7s-cart"></span> <span class="count cartCount">{{ cart.item_count }}</span></a>
+      </div>
+      {% include"settings-box" %}
+    </div>
+
+    <div class="line-header"></div>
+    {% include "social-links" %}
+    <div class="sidebar-footer">
+      <div class="coppyright">2016 BOUTIQUE. ALL RIGHTS RESERVED</div>
+    </div>
+  </div>
+</header>

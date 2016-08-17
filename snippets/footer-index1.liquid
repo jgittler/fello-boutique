@@ -1,0 +1,95 @@
+
+
+{% assign num_footer_columns = 0 %}
+{% if settings.use_footer_contact %}
+  {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+{% endif %}
+{% if settings.use_footer_menu1 %}
+  {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+{% endif %}
+{% if settings.use_footer_follow_us %}
+  {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+{% endif %}
+
+{% case num_footer_columns %}
+  {% when 0 %}
+  {% when 1 %}
+    {% assign footer_column_width = 'col-md-12' %}
+  {% when 2 %}
+    {% assign footer_column_width = 'col-md-6' %}
+  {% when 3 %}
+    {% assign footer_column_width = 'col-md-4' %}
+{% endcase %}
+
+<footer class="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row flex-flow">
+        {% if settings.use_footer_contact %}
+        <div class="col-sm-12 {{footer_column_width}} footer-sidebar">
+          <div class="widget contact-info">
+            {% if settings.footer_small_title_contact != blank %}<span class="text-primary PlayfairDisplay">{{settings.footer_small_title_contact}}</span>{% endif %}
+            {% if settings.footer_widget_title_contact != blank %}<h3 class="widget-title">{{settings.footer_widget_title_contact}}</h3>{% endif %}
+            <div class="content">
+              {% if settings.footer_widget_address_contact != blank %}<p class="address">{{settings.footer_widget_address_contact}}</p>{% endif %}
+              {% if settings.footer_widget_phone_contact != blank %}<p class="phone"><i class="fa fa-phone"></i> {{settings.footer_widget_phone_contact}}</p>{% endif %}
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% if settings.use_footer_menu1 %}
+        <div class="col-sm-12 {{footer_column_width}} footer-sidebar">
+          <div class="widget our-service">
+            {% if settings.footer_small_title_services != blank %}<span class="text-primary PlayfairDisplay">{{settings.footer_small_title_services}}</span>{% endif %}
+            {% assign footer_handle1 = settings.footer_widget_handle_services %}
+            {% if settings.footer_widget_handle_services != blank %}
+            <h3 class="widget-title">{{ settings.footer_widget_title_services | upcase }}</h3>
+            <div class="content">
+              <ul>
+                {% for link in linklists[footer_handle1].links %}
+                <li><a href="{{link.url}}">{{link.title | capitalize }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+        {% if settings.use_footer_follow_us %}
+        <div class="col-sm-12 {{footer_column_width}} footer-sidebar">
+          <div class="widget widget_social">
+            {% if settings.footer_small_title_follow != blank %}<span class="text-primary PlayfairDisplay">{{settings.footer_small_title_follow}}</span>{% endif %}
+            {% if settings.footer_widget_title_follow != blank %}<h3 class="widget-title">{{settings.footer_widget_title_follow}}</h3>{% endif %}
+            <div class="content">
+              {% include "social-links" %}
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="payment">
+        <div class="head">
+          {% if settings.footer_small_title_payment != blank %}<span>{{settings.footer_small_title_payment}}</span>{% endif %}
+          {% if settings.footer_widget_title_payment != blank %}<span class="PlayfairDisplay">{{settings.footer_widget_title_payment}}</span>{% endif %}
+        </div>
+        <div class="list">
+          {% for i in (1..8) %}
+          {% assign link = "payment_link_" %}
+          {% assign image = "payment_image_" | append : i %}
+          {% assign link = link | append : i %}
+          {% assign image = image | append : ".png"%}
+          {% if settings[link] != blank %}
+          	<a href="{{settings[link]}}" class="item"><img src="{{image | asset_url}}" alt=""></a>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="#" class="scroll_top" title="Scroll to Top" style="display: block;"><i class="fa fa-arrow-up"></i></a>

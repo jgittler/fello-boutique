@@ -1,0 +1,49 @@
+{% capture banner_text_top %}{% include 'shortcode-render' render:'top' default:'' %}{% endcapture %}
+{% capture banner_text_bottom %}{% include 'shortcode-render' render:'bottom' default:'' %}{% endcapture %}
+{% capture number_post_dt %}{% include 'shortcode-render' render:'number_post_dt' default: '6' %}{% endcapture %}
+{% capture number_post_tb %}{% include 'shortcode-render' render:'number_post_tb' default: '3' %}{% endcapture %}
+{% capture number_post_mb %}{% include 'shortcode-render' render:'number_post_mb' default: '1' %}{% endcapture %}
+
+{% assign handle_brand_use = 'brand_use_' %}
+{% assign handle_brand_image ='brand_logo_'  %}
+{% assign handle_brand_link = 'brand_link_'  %}
+{% capture class_style %}{% include 'shortcode-render' render:'style' default: 'nav-style7' %}{% endcapture %}
+
+{% if number_post_dt == blank %}
+	{% assign number_post_dt_end = 6 %}
+{% else %}
+	{% assign number_post_dt_end = number_post_dt | plus: 0 %}
+{% endif %}
+{% if number_post_tb == blank %}
+	{% assign number_post_tb_end = 3 %}
+{% else %}
+	{% assign number_post_tb_end = number_post_tb | plus: 0 %}
+{% endif %}
+{% if number_post_mb == blank %}
+	{% assign number_post_mb_end = 1 %}
+{% else %}
+	{% assign number_post_mb_end = number_post_mb | plus: 0 %}
+{% endif %}
+
+{% if banner_text_top != "" %}
+  {% capture banner_text_top %} margin-top-{{banner_text_top}} {% endcapture %}
+{% endif %}
+
+{% if banner_text_bottom != "" %}
+  {% capture banner_text_bottom %} margin-bottom-{{banner_text_bottom}} {% endcapture %}
+{% endif %}
+
+<div class="section-brand-slide {{banner_text_top}} {{banner_text_bottom}}">
+  <div class="brands-slide owl-carousel nav-center-center {{class_style}}" data-nav="true" data-dots="false" data-loop="true" data-margin="60" data-responsive='{"0":{"items":{{number_post_mb_end}}},"600":{"items":{{number_post_tb_end}}},"1000":{"items":{{number_post_dt_end}}}}'>
+    {% for  i in (1..20) %}
+    {% assign brand_handle   = handle_brand_use | append: i %}
+    {% assign brand_image  =  handle_brand_image | append: i | append: '.png'%}
+    {% assign brand_link = handle_brand_link | append: i  %}
+      {% if settings[brand_handle] %}
+      <a href="{{ settings[brand_link] }}" title="{{settings[brand_name] | strip_html }}">
+        {{ brand_image | asset_url | img_tag }}
+      </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>

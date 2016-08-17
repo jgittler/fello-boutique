@@ -1,0 +1,77 @@
+{% if position =="cattegories" %}
+<li class="mini-cart">
+  <a class="cart-link" href="#">
+    <img src="{{'cart_icon.png' | asset_url}}" alt="">
+    My cart
+    <span class="count cartCount">{{ cart.item_count }}</span>
+  </a>
+{% elsif position =="menu" %}
+  <div class="mini-cart">
+    <a class="cart-link" href="/cart">
+      <span class="pe-7s-cart"></span> 
+      <span class="count cartCount">{{ cart.item_count }}</span>
+    </a>
+{% elsif position =="top-menu" %}
+    <div class="mini-cart">
+      <a class="cart-link" href="/cart">
+        <span class="icon pe-7s-cart"></span>
+        <span class="count cartCount">{{ cart.item_count }}</span>
+        {% if style20 == "style20" %}
+        	<span class="amout">{{ cart.total_price | money }}</span>
+        {% else %}
+        	<p class="cartCost">{{ cart.total_price | money }}</p>
+        {% endif %}
+      </a>
+{% endif %}
+  <div class="show-shopping-cart {% if hidden == "hidden" %}hidden {% endif %}">
+    {% if cart.item_count > 0 %}
+    <h3 class="title">YOU HAVE <span class="text-primary">({{ cart.item_count }} ITEMS)</span> IN YOUR CART</h3>
+
+    <ul class="list-product">
+      {% comment %}{% assign index_item_cart = 0 %}{% endcomment %}
+      {% for item in cart.items%}
+      <li class="item-{{ item.id }}">
+        <div class="thumb">
+          <img src="{{ item | img_url: 'small' }}" alt="{{ item.title | escape }}">
+        </div>
+        <div class="info">
+          <h4 class="product-name"><a href="{{ item.product.url }}">{{ item.title }}</a></h4>
+          <span class="price">{{ item.quantity | append : "x" }}{{ item.price | money }}</span>
+          <a class="remove-item" href="/cart/change/{{ item.variant.id }}?quantity=0" data-id="{{ item.id }}" title="Remove">
+            <i class="fa fa-close"></i>
+          </a>
+        </div>
+      </li>
+      {% endfor %}
+      
+      {% comment %}{% for item in cart.items %}
+      {% assign index_item_cart = index_item_cart | plus: 1 %}
+      {% endfor %}
+      {% if index_item_cart > 2 %}{% assign index_item_cart = index_item_cart | minus: 3%}
+      {% if index_item_cart != 0 %}
+      <label>Show more {{index_item_cart}} item in your cart... </label>
+      {% endif %}
+      {% endif %}{% endcomment %}
+    </ul>
+    <div class="sub-total">
+      {{ 'cart.general.subtotal' | t }} 
+      <div class="cartCost">
+        {{ cart.total_price | money }}
+      </div>
+    </div>
+    <div class="group-button">
+      <a href="/cart" class="button">{{ 'cart.general.view_cart' | t }}</a>
+      <a href="/checkout" class="check-out button">{{ 'cart.general.checkout' | t }}</a>
+    </div>
+    {% else %}
+    <h3 class="title">{{ 'cart.general.empty' | t }}</h3>
+    <div class="group-button">
+      <a href="/collections/all" class="button">{{ 'cart.general.continue_shopping' | t }}</a>
+    </div>
+    {% endif %}
+  </div>
+{% if position =="cattegories" %}
+  </li>
+{% elsif position =="menu" or position =="top-menu"%}
+</div>
+{% endif %}

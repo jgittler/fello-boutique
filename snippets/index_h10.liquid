@@ -1,0 +1,45 @@
+
+{% if settings.use_slider_hp10 %}
+<!-- Home slide -->
+<div class="slider-homepage">
+  {% include 'shortcode-slider' %}
+</div>
+<!-- ./Home slide -->
+{% endif %}
+
+{% if settings.use_banner_carousel_home10 %}
+{% include 'shortcode-banner-slide'  %}
+{% endif %}
+
+{% assign check_even_int = 1| plus :0 %}
+{% for i in (1..10) %}
+  {% assign handle = "handle_product_fw_" | append: i | append: "_home10" %}
+  {% if settings[handle] != blank %}
+
+
+  {% assign check_even_int = check_even_int | plus :1 %}
+  {% if check_even_int == 2 %}
+    {% assign product_full_width_style = "style2" %}
+  {% elsif check_even_int == 3 %}
+    {% assign check_even_int = 1 %}
+    {% assign product_full_width_style = "" %}
+  {% endif %}
+
+  {% assign include ="" %}
+  {% assign product_full_width_handle = settings[handle] %}
+  	{% include 'shortcode-product-fullwidth'  %}
+  {% endif %}
+{% endfor %}
+
+{% if settings.use_brand_home10 %}
+  <div class="container">
+    {% include 'shortcode' load: '[brand top="40"]'  %}
+  </div>
+{% endif %}
+	
+{% if settings.use_shipping_text_home10 %}
+<div class="container">
+  {% assign margin_shipping_icon_9 = "margin-top-40 margin-bottom-30" %}
+  {% include 'shortcode-shipping-icon' %}
+</div>
+{% endif %}

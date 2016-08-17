@@ -1,0 +1,53 @@
+<div class="page-banner contact-banner">
+  <div class="banner-content">
+    <span class="subtitle">{{ settings.banner_contact_title }}</span>
+    <h2 class="title">{{ settings.banner_contact_desc }}</h2>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="kt-contact-form margin-top-60">
+        <div id="message-box-conact"></div>
+        <h3 class="title">{{settings.contact_title}}</h3>
+
+        {% form 'contact' %}
+
+        {% if form.posted_successfully? %}
+        <p class="note form-success">
+          {{ 'contact.form.post_success' | t }}
+        </p>
+        {% endif %}
+        <div class="col-lg-12 col-md-12">{{ form.errors | default_errors }}</div>
+        <p>
+          {% assign name_attr = 'contact.form.name' | t | handle %}
+          <input type="text" id="ContactFormName" name="contact[{{ name_attr }}]" placeholder="{{ 'contact.form.name' | t }}" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+        </p>
+        <p>
+          {% assign name_attr = 'contact.form.your_email' | t | handle %}
+          <input type="text" id="ContactFormEmail" name="contact[email]" placeholder="{{ 'contact.form.your_email' | t }}" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" required>
+        </p>
+        <p>
+          {% assign name_attr = 'contact.form.your_message' | t | handle %}
+          <textarea id="ContactFormMessage" name="contact[body]" placeholder="{{ 'contact.form.your_message' | t }}">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+        </p>
+        <button id='btn-send-contact' class="button" type="submit" value="{{ 'contact.form.send' | t }}">{{ 'contact.form.send' | t }}</button>
+        {% endform %}
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="margin-top-60">
+        {% if settings.use_contact_map %}
+          <div class="google_map">
+            {{ settings.map_iframe }}
+          </div>
+        {% endif %}
+        <h6 class="margin-top-20">{{settings.title_call}}</h6>
+        <p class="roboto">{{ settings.call_desc }}</p>
+        <p style="font-size: 18px; color: #222; font-weight: bold;"><i class="fa fa-phone"></i>{{ settings.phone_contact }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+    {% assign margin_shipping_icon = "margin-top-60 margin-bottom-30" %}
+        {% include 'shortcode-shipping-icon' %}

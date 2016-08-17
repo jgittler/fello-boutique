@@ -1,0 +1,59 @@
+
+<div class="box-settings">
+  {% if settings.icon_settings == "bars" %}
+  <span class="icon pe-7s-config"></span>
+  {% else %}
+  <span class="icon bar">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+  {% endif %}
+  <div class="settings-wrapper">
+    <div class="setting-content">
+      {% if settings.use_currency %}
+      <div class="select-currency">
+        <div class="currency-title">{{'layout.settings_dropdown.currency_title' | t}}</div>
+        <div class="currency-topbar">                                                
+          <div class="currency-list currency-lists">
+            {% include "currency-picker" %}
+            <ul class="clearfix">
+              {% assign money = settings.default_currency | downcase %}
+              {% for i in (1..5) %}
+              {% assign crr_icon = 'crr_icon_' | append: i  %}
+              {% if settings[crr_icon] != blank %}
+              {% assign moneys = settings[crr_icon] | remove: "fa-" %}
+              <li {% if moneys == money %}class="active"{% endif %}>
+                <a class="{{moneys | upcase }}">
+                  <span class="sym">
+                    <i class="fa {{settings[crr_icon]}}"></i>
+                  </span>
+                </a>
+              </li>
+              {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% if settings.menu_settings_dropdown %}
+      <div class="setting-option">
+        <ul>
+          {% assign menu_settings_dropdown = settings.menu_settings_dropdown %}
+          {% for link in linklists[menu_settings_dropdown].links %}
+          <li><a href="{{link.url}}"><span>{{link.title }}</span></a></li>
+          {% endfor %}
+          {% if shop.customer_accounts_enabled %}
+            {% if customer %}
+              <li><a href="/account/logout"><span>{{"layout.customer.log_out"|t}}</span></a></li>
+            {% else %}
+              <li><a href="/account/login"><span>{{"layout.customer.log_in"|t}}</span></a></li>
+            {% endif %}
+          {% endif %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

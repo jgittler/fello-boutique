@@ -1,0 +1,137 @@
+{% assign num_footer_columns = 0 %}
+{% if settings.use_footer_contact %}
+  {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+{% endif %}
+{% if settings.use_footer_menu1 %}
+  {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+{% endif %}
+{% if settings.use_footer_newsletter_form %}
+  {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+{% endif %}
+{% if settings.use_footer_tags %}
+  {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+{% endif %}
+
+{% case num_footer_columns %}
+  {% when 0 %}
+  {% when 1 %}
+    {% assign footer_column_width = 'col-md-12' %}
+  {% when 2 %}
+    {% assign footer_column_width = 'col-md-6' %}
+  {% when 3 %}
+    {% assign footer_column_width = 'col-md-4' %}
+  {% when 4 %}
+    {% assign footer_column_width = 'col-md-3' %}
+{% endcase %}
+
+<footer class="footer style2 style5">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">        
+        {% if settings.use_footer_contact %}
+        <div class="col-sm-12 {{footer_column_width}}">
+          <div class="widget contact-info">
+            {% if settings.use_footer_logo %}
+            <div class="logo">
+              <a href="/"><img alt="" src="{{'footer_logo.png' | asset_url}}"></a>
+            </div>
+            {% endif %}
+
+            <div class="content">
+              {% if settings.footer_widget_address_infor != blank %}<p>{{settings.footer_widget_address_infor}}</p>{% endif %}
+              {% if settings.footer_widget_address_contact != blank %}<p class="address"><i class="fa fa-home"></i><span>{{settings.footer_widget_address_contact}}</span></p>{% endif %}
+              {% if settings.footer_widget_phone_contact != blank %}<p class="phone"><i class="fa fa-phone"></i> <span> {{settings.footer_widget_phone_contact}}</span></p>{% endif %}
+              {% if settings.footer_widget_email_contact != blank %}<p class="mail"><i class="fa fa-envelope"></i><span>{{settings.footer_widget_email_contact}}</span></p>{% endif %}
+
+            </div>
+          </div>
+        </div>
+
+        {% endif %}
+        
+        {% if settings.use_footer_menu1 %}
+        <div class="col-sm-12 {{footer_column_width}}">
+          <div class="widget our-service style3">
+            {% assign footer_handle2 = settings.footer_widget_handle_infomation %}
+            {% if settings.footer_widget_handle_infomation != blank %}
+            <h3 class="widget-title">{{ settings.footer_widget_title_infomation | upcase }}</h3>
+            <div class="content">
+              <ul>
+                {% for link in linklists[footer_handle2].links %}
+                <li><a href="{{link.url}}">{{link.title | capitalize }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if settings.use_footer_newsletter_form or settings.use_footer_follow_us %}
+        <div class="col-sm-12 {{footer_column_width}}">
+          {% if settings.use_footer_newsletter_form %}
+            <div class="widget widget_newletter">
+            {% if settings.newsletter_form_action != blank %}
+              {% assign form_action = settings.newsletter_form_action %}
+            {% else %}
+              {% assign form_action = '#' %}
+            {% endif %}
+              {% if settings.footer_widget_title_newsletter != blank %}<h3 class="widget-title">{{settings.footer_widget_title_newsletter}}</h3>{% endif %}
+              {% if settings.footer_widget_info_newsletter != blank %}<p>{{settings.footer_widget_info_newsletter}}</p>{% endif %}
+              <form class="newletter" action="{{ form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+                <input class="email-text" type="text" name="newsletter" placeholder="Your email..." value="">
+                <button class="button add_to_cart_button" value="SEND" name="subscribe" id="subscribe" type="submit"></button>
+              </form>
+            </div>
+          {% endif %}
+          {% if settings.use_footer_follow_us %}
+          <div class="widget widget_social">
+            <div class="content">
+              <div class="social">
+                {% include "social-links" %}
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+        
+        {% if settings.use_footer_tags %}
+        <div class="col-sm-12 {{footer_column_width}}">
+          <div class="widget our-service">
+            {% if settings.footer_widget_title_tags != blank %}<h2 class="widget-title">{{settings.footer_widget_title_tags}}</h2>{% endif %}
+            <div class="content">
+              <div class="tagcloud">
+                {% for tag in collections.all.tags limit: 10 %}
+                <a href="#">{{ tag }}</a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="payment">
+        <div class="head">
+          {% if settings.footer_small_title_payment != blank %}<span>{{settings.footer_small_title_payment}}</span>{% endif %}
+          {% if settings.footer_widget_title_payment != blank %}<span class="PlayfairDisplay">{{settings.footer_widget_title_payment}}</span>{% endif %}
+        </div>
+        <div class="list">
+          {% for i in (1..8) %}
+          {% assign link = "payment_link_" %}
+          {% assign image = "payment_image_" | append : i %}
+          {% assign link = link | append : i %}
+          {% assign image = image | append : ".png"%}
+          {% if settings[link] != blank %}
+          	<a href="{{settings[link]}}" class="item"><img src="{{image | asset_url}}" alt=""></a>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

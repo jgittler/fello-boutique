@@ -1,0 +1,53 @@
+{% capture videoid %}{{settings.videoid}}{% endcapture %}
+{% capture videosite %}{{settings.videosite}}{% endcapture %}
+{% capture image_background %}{{settings.image_background}}{% endcapture %}
+{% capture newsletter_title %}{{settings.title}}{% endcapture %}
+{% capture newsletter_description %}{{settings.text}}{% endcapture %}
+
+{% unless margin_newsletter_sc %}
+{% assign margin_newsletter_sc = "margin-top-60" %}
+{% endunless %}
+
+{% if videoid == blank %}
+	{% assign videoid = "134060140" %}
+{% endif %}
+{% if videosite == blank %}
+	{% assign videosite = "vimeo" %}
+{% endif %}
+{% if newsletter_title == blank %}
+	{% assign newsletter_title = "NEWSLETTER" %}
+{% endif %}
+{% if newsletter_description == blank %}
+	{% assign newsletter_description = "Sign up for Our Newsletter &amp; Promotions" %}
+{% endif %}
+
+<div class="{{margin_newsletter_sc}}">
+  <div class="row">
+    <div class="col-sm-12 col-md-7">
+      <div class="video video-lightbox">
+        {% if image_background == blank %}
+        	<img src="{{'background_video.gif' | asset_url}}" alt="">
+        {% else %}
+        	{{ image_background | img_tag }}
+        {% endif %}
+        <div class="overlay"></div>
+        <a href="#"  class="link-lightbox button-play" data-videoid="{{videoid}}" data-videosite="{{videosite}}"></a>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-5">
+      <div class="newsletter">
+        {% if settings.newsletter_form_action != blank %}
+          {% assign form_action = settings.newsletter_form_action %}
+        {% else %}
+          {% assign form_action = '#' %}
+        {% endif %}
+        <div class="section-title text-center"><h3>{{newsletter_title}}</h3></div>
+        <i class="newsletter-info">{{newsletter_description}}</i>
+        <form class="form-newsletter" action="{{ form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+          <input type="email" value="" placeholder="{{'general.newsletter_form.placeholder' | t}}" name="EMAIL" class="required email" id="mce-EMAIL">
+          <span><button class="newsletter-submit" name="subscribe" id="subscribe" type="submit">{{ 'general.newsletter_form.submit' | t }}</button></span>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

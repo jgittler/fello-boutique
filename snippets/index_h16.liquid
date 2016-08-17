@@ -1,0 +1,203 @@
+
+{% if settings.use_slider_hp16 %}
+<!-- Home slide -->
+<div class="slider-homepage">
+  {% include 'shortcode-slider' %}
+</div>
+<!-- ./Home slide -->
+{% endif %}
+
+
+{% if settings.use_shipping_text_home16 %}
+<!-- block text box -->
+<div class="margin-top-30">
+  <div class="container">
+    <div class="row section-block-text">
+      {% if settings.shipping_text_1_home16 != blank and settings.shipping_text_2_home16 != blank %}
+      {% assign col = 6%}
+      {% else %}
+      {% assign col = 12%}
+      {% endif %}
+      {% if settings.shipping_text_1_home16 != blank %}
+      <div class="col-sm-{{col}} item">
+        <div class="block-text">
+          {{ settings.shipping_text_1_home16 }}
+        </div>
+      </div>
+      {% endif %}
+      {% if settings.shipping_text_2_home16 != blank %}
+      <div class="col-sm-{{col}} item">
+        <div class="block-text" style="background-color: #9ec8b3;">
+          {{ settings.shipping_text_2_home16 }}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- ./block text box -->
+{% endif %}
+
+{% if settings.use_featured_product_home16 %}
+
+<!-- Block list product-->
+<div class="margin-top-20">
+  <div class="container">
+    <div class="section-title style6 text-center margin-bottom-40">
+      <h3>{{settings.title_featured_product_home16}}</h3>
+      <span class="sub-title">{{settings.stitle_featured_product_home16}}</span>
+    </div>
+    {% assign handleize_tab = settings.choose_featured_product_home16%}
+    {% if handleize_tab != "" %}
+    <ul id="tab-{{handleize_tab}}" class="product-list product-list-grid owl-carousel-mobile" data-nav="false" data-dots="false" data-margin="0" data-loop="true" data-items="1">
+      {% assign check_product_style_2 = 1 %}
+      {% for product in collections[handleize_tab].products limit: 12 %}
+      {% assign grid_item_width = "status2 style5 mobile-slide-item col-sm-3" %}
+      {% assign style = "home19" %}
+      {% include "product-style-5" %}
+      {% assign check_product_style_2 = check_product_style_2 | plus: 1 %}
+      {% endfor %}
+    </ul>
+    {% if check_product_style_2 > 8 %}
+    <a class="button-loadmore" href="javascript:void(0)"  title="{{handleize_tab}}" name="tab-{{handleize_tab}}">load more!</a>
+    {% endif %}
+    {% assign check_count_collection = check_count_collection | plus: 1  %}
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+{% if settings.use_banner_fullw_home16 %}
+<!-- Block list product-->
+<div class="block-paralax3">
+  <div class="container">
+    <div class="section-content text-center">
+      <h2 class="title">{{settings.title_banner_fullw_home16}}</h2>
+      <h3 class="sub-title text-primary">{{settings.stitle_banner_fullw_home16}}</h3>
+      <a class="button btn-primary small" href="{{settings.link_banner_fullw_home16}}">{{settings.titleb_banner_fullw_home16}}</a>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if settings.use_banner_group_home16 %}
+<!-- group banner -->
+<div class="margin-top-60">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <a class="banner-opacity margin-bottom-30" href="{{settings.one_link_banner_group_home16}}">
+          {% if settings.one_banner_group_home16 == blank %}
+          {{"35.gif"| asset_url | img_tag}}
+          {% else %}
+          {{settings.one_banner_group_home16 | img_tag}}
+          {% endif %}
+        </a>
+        <a class="banner-opacity margin-bottom-30" href="{{settings.two_link_banner_group_home16}}">
+          {% if settings.two_banner_group_home16 == blank %}
+          {{"35.gif"| asset_url | img_tag}}
+          {% else %}
+          {{settings.two_banner_group_home16 | img_tag}}
+          {% endif %}
+        </a>
+      </div>
+      <div class="col-sm-4">
+        <a class="banner-opacity margin-bottom-30" href="{{settings.three_link_banner_group_home16}}">
+          {% if settings.three_banner_group_home16 == blank %}
+          {{"37.gif"| asset_url | img_tag}}
+          {% else %}
+          {{settings.three_banner_group_home16 | img_tag}}
+          {% endif %}
+        </a>
+      </div>
+      <div class="col-sm-4">
+        <a class="banner-opacity margin-bottom-30" href="{{settings.four_link_banner_group_home16}}">
+          {% if settings.four_banner_group_home16 == blank %}
+          {{"35.gif"| asset_url | img_tag}}
+          {% else %}
+          {{settings.four_banner_group_home16 | img_tag}}
+          {% endif %}
+        </a>
+        <a class="banner-opacity margin-bottom-30" href="{{settings.five_link_banner_group_home16}}">
+          {% if settings.five_banner_group_home16 == blank %}
+          {{"35.gif"| asset_url | img_tag}}
+          {% else %}
+          {{settings.five_banner_group_home16 | img_tag}}
+          {% endif %}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./Group banner -->
+{% endif %}
+
+{% if settings.use_blocknewletter_home16 %}
+<!-- Block newletter -->
+<div class="margin-top-30">
+  <div class="container">
+    <div class="block-newletter style2">
+      <div class="head">
+        <div class="section-title">
+          <h3>{{settings.title_newletter_home16}}</h3>
+          <span class="sub-title">{{settings.sub_title_newletter_home16}}</span>
+        </div>
+      </div>
+      <div class="form">
+        {% if settings.newsletter_form_action != blank %}
+        {% assign form_action = settings.newsletter_form_action %}
+        {% else %}
+        {% assign form_action = '#' %}
+        {% endif %}
+        <form class="newletter" action="{{ form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+          <input class="email-text" type="text" name="newsletter" placeholder="{{'general.newsletter_form.placeholder' | t}}" value="">
+          <input type="submit" value="SIGNUP" class="button">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./Block newletter -->
+{% endif %}
+
+{% if settings.use_our_blog_home16 %}
+{% assign handle_name = settings.id_blog_home16 %}
+<!-- Blog -->
+<div class="margin-top-50">
+  <div class="container">
+    <div class="section-title style6 text-center margin-bottom-40">
+      <h3>{{settings.title_blog_home16}}</h3>
+      <span class="sub-title">{{settings.stitle_blog_home16}}</span>
+    </div>
+    <div class="lastest-blog style5 nav-center-center nav-style6 owl-carousel no-overflow"  data-nav="true" data-dots="false" data-loop="true" data-margin="30" data-responsive='{"0":{"items":1},"600":{"items":1},"1000":{"items":3}}'>
+      {% for article in blogs[handle_name].articles limit: 15 %}
+      <div class="item-blog">
+        <div class="thumb">
+          <a href="{{ article.url }}">
+          <img src="{{ article.image.src | img_url: 'medium' }}" srcset="{{ article.image.src | img_url: 'medium' }} 1x, {{ article.image.src | img_url: 'small' }} 2x" alt="{{ article.title }}">
+          </a>
+        </div>
+        <div class="info">
+          <div class="metas">
+            <span class="date" style="display: inline-block;">
+              <span class="day">{{ article.published_at | date: '%d' }}</span>
+              <span class="month">{{ article.published_at | date: '%b' | upcase }}</span><br>
+            </span>
+            <span>{{ article.author }}</span>
+          </div>
+          <h3 class="blog-title"><a href="{{ article.url }}">{{ article.title }}</a></h3>
+          <a class="readmore" href="{{ article.url }}">read more </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- ./Blog -->
+{% endif %}
+
+{% if settings.use_brand_home16 %}
+  <div class="container">
+    {% include 'shortcode' load: '[brand bottom="60"]'  %}
+  </div>
+{% endif %}

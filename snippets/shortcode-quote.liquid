@@ -1,0 +1,24 @@
+{% unless include %}
+{% capture image_title  %}{% include 'shortcode-render' render:'image_title' default: "logo.gif" %}{% endcapture %}
+{% capture text_quote  %}{% include 'shortcode-render' render:'text' default:''%}{% endcapture %}
+{% endunless%}
+
+{% unless magin_top %}
+	{% assign magin_top = "margin-top-30" %}
+{% endunless %}
+<div class="{{magin_top}}">
+  <div class="row">
+    <div class="col-sm-4" style="text-align: right;">
+      <img style="margin-right: 20px;" class=" margin-top-25" src="{% if image_title != "" %}{{image_title | file_url }}{% else %}{{'logo.gif' | asset_url}}{% endif %}" alt="logo">
+    </div>
+    <div class="col-sm-7">
+      <blockquote>
+        {% if text_quote != "" %}
+        	{{text_quote}}
+        {% else %}
+        	Boutique is a reflection of you! A sexy and confident woman that radiates through his daring wardrobe. We bring you the best of all things glam and sexy while keeping in mind that high quality doesn’t have to come at a high price.
+        {% endif %}
+      </blockquote>
+    </div>
+  </div>
+</div>
