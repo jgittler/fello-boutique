@@ -3,9 +3,10 @@
     <div class="main-content">
 
       {% if cart.item_count > 0 %}
-      <div class="page-title">
-        <h3>{{ 'cart.general.title' | t }}</h3>
-      </div>
+<!--<div class="page-title">
+<h3>{{ 'cart.general.title' | t }}</h3>  
+</div> -->
+      <h2 class="small-caps">Every Pair Changes A <span class="highlight">Life</span></h2>
       <div class="row">
         <form action="/cart" method="post" novalidate>
           <div class="col-sm-12 col-md-8">
@@ -76,7 +77,8 @@
           </div>
           <div class="col-sm-12 col-md-4">
             <div class="box-cart-total">
-              <h4 class="title">{{ settings.shipping_calculator_heading }}</h4>
+              <h4 class="small-caps"><strong>Free Shipping</strong> anywhere in the United States & Canada.</h4>              
+              <hr />
               <table>
                 <tbody>
                   <tr>
@@ -120,5 +122,4 @@
       {% endif %}
     </div>
   </div>
-  {% include 'shortcode-shipping-icon' %}
 </div>

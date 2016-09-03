@@ -19,6 +19,9 @@
 
 
 {% if banner_slide_style == "zoom-in" %}
+
+
+
 <div class="banner-text style4">
   <div class="image">
     <a href="{{banner_slide_link}}">
@@ -41,7 +44,11 @@
     {% endif %}
   </div>
 </div>
+
+
+
 {% else %}
+
 
   {% if banner_slide_image_title_icon == blank and banner_slide_title == blank and banner_slide_sub_title == blank %}
   <div class="banner-text">
@@ -54,6 +61,8 @@
     </a>
   </div>
   {% else %}
+    
+    
   <div class="banner-text style3">
     <a href="{{banner_slide_link}}">
       {% if banner_slide_image_title == blank %}

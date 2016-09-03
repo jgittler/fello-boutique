@@ -1,38 +1,43 @@
-    {% include 'google-fonts'%}
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Montserrat">
-    <link href='//fonts.googleapis.com/css?family=Playfair+Display:400italic,400,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-    
-    <link href='//fonts.googleapis.com/css?family=Roboto:300,100,100italic,300italic,400,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+  <script>
+    // https://github.com/filamentgroup/loadCSS
+    !function(e){"use strict"
+    var n=function(n,t,o){function i(e){return f.body?e():void setTimeout(function(){i(e)})}var d,r,a,l,f=e.document,s=f.createElement("link"),u=o||"all"
+    return t?d=t:(r=(f.body||f.getElementsByTagName("head")[0]).childNodes,d=r[r.length-1]),a=f.styleSheets,s.rel="stylesheet",s.href=n,s.media="only x",i(function(){d.parentNode.insertBefore(s,t?d:d.nextSibling)}),l=function(e){for(var n=s.href,t=a.length;t--;)if(a[t].href===n)return e()
+    setTimeout(function(){l(e)})},s.addEventListener&&s.addEventListener("load",function(){this.media=u}),s.onloadcssdefined=l,l(function(){s.media!==u&&(s.media=u)}),s}
+    "undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this)
+  </script>
+  <script>
+    loadCSS("{{ 'animate.css' | asset_url }}");
+    loadCSS("{{ 'sweetalert.css' | asset_url }}");
+    loadCSS("{{ 'jquery-ui.min.css' | asset_url }}");
+    loadCSS("{{ 'font-awesome.min.css' | asset_url }}");
+    loadCSS("{{ 'owl.carousel.css' | asset_url }}");
+    loadCSS("{{ 'chosen.css' | asset_url }}");
+    loadCSS("{{ 'lightbox.min.css' | asset_url }}");
+    loadCSS("{{ 'pe-icon-7-stroke.css' | asset_url }}");
+    loadCSS("{{ 'jquery.mCustomScrollbar.css' | asset_url }}");
+    loadCSS("{{ 'magnific-popup.css' | asset_url }}");
+    loadCSS("{{ 'timber.scss.css' | asset_url }}");
+    loadCSS("{{ 'mediaelementplayer.min.css' | asset_url }}");
+    loadCSS("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
+    loadCSS("https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.2/flexslider.css");
+    loadCSS("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+    loadCSS("https://fonts.googleapis.com/css?family=Montserrat:700,400");
+  </script>
 
-    {{ 'animate.css' | asset_url | stylesheet_tag }}
-    {{ 'sweetalert.css'  | asset_url | stylesheet_tag }} 
+    {% include 'google-fonts'%}
+<link href="//fonts.googleapis.com/css?family=.|Josefin+Sans:light,normal,bold" rel="stylesheet" type="text/css">    
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Montserrat">
+<link href='//fonts.googleapis.com/css?family=Playfair+Display:400italic,400,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
     {{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
-    {{ 'jquery-ui.min.css' | asset_url | stylesheet_tag }}
-    {{ 'font-awesome.min.css' | asset_url | stylesheet_tag }}
-    {{ 'owl.carousel.css' | asset_url | stylesheet_tag }}
-    {{ 'chosen.css' | asset_url | stylesheet_tag }}
-    {{ 'lightbox.min.css' | asset_url | stylesheet_tag }}
-    {{ 'pe-icon-7-stroke.css' | asset_url | stylesheet_tag }}
-    {{ 'jquery.mCustomScrollbar.css' | asset_url | stylesheet_tag }}
-    {{ 'magnific-popup.css' | asset_url | stylesheet_tag }}
     {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
-    {{ 'timber.scss.css' | asset_url | stylesheet_tag }}
     {{ 'style.css' | asset_url | stylesheet_tag }}
-    {{ 'mediaelementplayer.min.css' | asset_url | stylesheet_tag }}
-    
-    {{ "https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.2/flexslider.css" | stylesheet_tag  }}
-    
-
-    {{ 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' | stylesheet_tag }}
     {{ '//slider.flexible-theme.com/assets/css/settings.css'  | stylesheet_tag }}
+
  <!--[slider]-->
 		<!-- LOADING FONTS AND ICONS -->
-		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" property="stylesheet" type="text/css" media="all" /><link href="https://fonts.googleapis.com/css?family=Montserrat:700,400" rel="stylesheet" property="stylesheet" type="text/css" media="all" /><link href="https://fonts.googleapis.com/css?family=Playfair Display:italic&subset=cyrillic,latin,latin-ext" rel="stylesheet" property="stylesheet" type="text/css" media="all" />
-
-		
-		<style>.tp-caption.Fashion-BigDisplay,.Fashion-BigDisplay{color:rgba(0,0,0,1.00);font-size:60px;line-height:60px;font-weight:900;font-style:normal;font-family:Raleway;padding:0 0 0 0px;text-decoration:none;background-color:transparent;border-color:transparent;border-style:none;border-width:0px;border-radius:0 0 0 0px;letter-spacing:2px}</style>
+<style>.tp-caption.Fashion-BigDisplay,.Fashion-BigDisplay{color:rgba(0,0,0,1.00);font-size:60px;line-height:60px;font-weight:900;font-style:normal;font-family:Raleway;padding:0 0 0 0px;text-decoration:none;background-color:transparent;border-color:transparent;border-style:none;border-width:0px;border-radius:0 0 0 0px;letter-spacing:2px}</style>
 <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800,300,700);.tp-caption.roundedimage img{-webkit-border-radius:300px;  -moz-border-radius:300px;  border-radius:300px}.tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}.largeredbtn{font-family:"Raleway",sans-serif;font-weight:900;font-size:16px;line-height:60px;color:#fff !important;text-decoration:none;padding-left:40px;padding-right:80px;padding-top:22px;padding-bottom:22px;background:rgb(234,91,31); background:-moz-linear-gradient(top,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(234,91,31,1)),color-stop(100%,rgba(227,58,12,1))); background:-webkit-linear-gradient(top,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); background:-o-linear-gradient(top,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); background:-ms-linear-gradient(top,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); background:linear-gradient(to bottom,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea5b1f',endColorstr='#e33a0c',GradientType=0 )}.largeredbtn:hover{background:rgb(227,58,12); background:-moz-linear-gradient(top,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(227,58,12,1)),color-stop(100%,rgba(234,91,31,1))); background:-webkit-linear-gradient(top,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); background:-o-linear-gradient(top,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); background:-ms-linear-gradient(top,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); background:linear-gradient(to bottom,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#e33a0c',endColorstr='#ea5b1f',GradientType=0 )}.fullrounded img{-webkit-border-radius:400px;-moz-border-radius:400px;border-radius:400px}.tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}.largeredbtn{font-family:"Raleway",sans-serif;font-weight:900;font-size:16px;line-height:60px;color:#fff !important;text-decoration:none;padding-left:40px;padding-right:80px;padding-top:22px;padding-bottom:22px;background:rgb(234,91,31); background:-moz-linear-gradient(top,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(234,91,31,1)),color-stop(100%,rgba(227,58,12,1))); background:-webkit-linear-gradient(top,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); background:-o-linear-gradient(top,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); background:-ms-linear-gradient(top,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); background:linear-gradient(to bottom,rgba(234,91,31,1) 0%,rgba(227,58,12,1) 100%); filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea5b1f',endColorstr='#e33a0c',GradientType=0 )}.largeredbtn:hover{background:rgb(227,58,12); background:-moz-linear-gradient(top,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(227,58,12,1)),color-stop(100%,rgba(234,91,31,1))); background:-webkit-linear-gradient(top,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); background:-o-linear-gradient(top,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); background:-ms-linear-gradient(top,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); background:linear-gradient(to bottom,rgba(227,58,12,1) 0%,rgba(234,91,31,1) 100%); filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#e33a0c',endColorstr='#ea5b1f',GradientType=0 )}.fullrounded img{-webkit-border-radius:400px;-moz-border-radius:400px;border-radius:400px}</style>
 
 	<!--[/slider]-->

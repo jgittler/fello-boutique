@@ -28,6 +28,344 @@ Last change: 01/15/2016
 /*-------------------------------------------------------------------*/
 
 /*------------------
+ ADDED CUSTOM STYLES
+------------------*/
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Josefin Sans", "HelveticaNeue", "Helvetica Neue", sans-serif;
+}
+.v-center {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.h-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.highlight {
+  color: #1fa7d6 !important;
+}
+.dark-highlight {
+  color: #1073b7;
+}
+.full-h {
+  height: 100%;
+}
+.full-w {
+  width: 100%;
+}
+.top-pic {
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover !important;
+  padding-top: 20%;
+  padding-bottom: 20%;
+}
+.top-pic .text-center {
+  color: white;
+  margin-top: -10%;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.35);
+}
+.minor-v-pads {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+.minor-h-pads {
+  padding-right: 5%;
+  padding-left: 5%;
+}
+.minor-h-marg {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.no-pads {
+  padding: 0;
+}
+.no-margin {
+  margin: 0 !important;
+}
+.section-pads {
+  padding-top: 15%;
+  padding-bottom: 15%;
+}
+.justify {
+  text-align: justify;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.u-accent {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.small-caps {
+  font-variant: small-caps;
+}
+.white-bg img {
+  background-color: white;
+}
+.banner-border.primary {
+  cursor: pointer;
+}
+.kt-popup-newsletter .primary {
+  background-color: #1fa7d6 !important;
+}
+.btn-blue {
+  color: #fff;
+  background-color: #1fa7d6;
+  border-color: darken(#2e6da4, 20%);
+}
+.modal-content.with-escape {
+  background-color: black;
+}
+.modal .close {
+  float: right;
+  font-size: 35px;
+  font-weight: 400;
+  line-height: 0.8;
+  color: white;
+  text-shadow: 0 1px 0 #eee;
+  opacity: 1;
+  margin-right: 5px;
+}
+/* End Utilities */
+
+/* Start Footer */
+.footer .widget {
+  text-align: left !important;
+}
+.footer .col-md-2 .widget {
+  margin-top: 0px !important;
+}
+@media (min-width: 768px) {
+  .footer .col-md-2 .widget {
+    margin-top: 30px !important;
+  }
+}
+.footer h1, .footer h2, .footer h3, .footer h4, .footer h5, .footer h6 {
+  color: #1fa7d6;
+}
+.footer-bottom {
+  height: 30px !important;
+}
+/* End Footer */
+
+/* Start Navbar */
+.header.style3 .box-settings {
+  padding: 0 10px;
+  border-left: 1px solid #e8e8e8;
+}
+@media (min-width: 786px) { 
+  .header.style3 .box-settings {
+      padding: 0 15x;
+  }
+}
+@media (min-width: 992px) { 
+  .header.style3 .box-settings {
+      padding: 0 30px;
+  }
+}
+/* End Navbar */
+
+/* Start Collections Page Styles */
+.pro-add-to-cart hr {
+  border-color: rgba(31, 167, 214, 0.3);
+  margin: 10px -15px;
+}
+
+.product-info p {
+  margin-bottom: 0;
+}
+
+.product-item .compare.added, #product-single .product-details-right .compare.added {
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+  .product-item .compare.added, #product-single .product-details-right .compare.added {
+    display: block !important;
+  }
+}
+.collections-stripe {
+  background-color: #e9f6fb;
+}
+/* End Collections Page Styles */
+
+/* Start Fellosophy Page Styles */
+.fellosophy-pic {
+  background: url({{ "fello_and_vosh.jpg" | asset_url }});
+}
+#fellosophy .founded {
+  padding: 0;
+  text-align: center;
+  background-color: #e9f6fb;
+}
+@media (min-width: 768px) {
+  #fellosophy .founded p {
+    margin-bottom: 22px;
+  }
+}
+#fellosophy .founded p {
+ margin-bottom: 0;
+  margin-top: 2em;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+/* End Fellosophy Page Styles */
+
+/* Start Charity Page Styles */
+.charity-stats {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.charity-stats p {
+  margin-bottom: 0px;
+}
+
+@media (max-width: 768px) {
+  .charity-stats p {
+    margin-top: 0px;
+  }
+}
+
+.charity-stats hr {
+  border-color: rgba(31, 167, 214, 0.5);
+}
+
+#charity .tile {
+  padding: 0;
+  text-align: center;
+  background-color: #e9f6fb;
+}
+
+#charity .tile p {
+  margin-top: 2em;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.charity-pic {
+  background-image: url({{ "charity_top.jpg" | asset_url }});
+}
+/* End Charity Page Styles */
+
+/* Start Home Page Styles */
+.banner-pic {
+  padding-top: 5%;
+  padding-bottom: 25%;
+}
+.banner-pic h1, .banner-pic h2, .banner-pic h3 {
+  color: white;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.35);
+}
+.banner-pic h2, .banner-pic h3 {
+  font-weight: 900;
+}
+.banner-pic h1 {
+  font-size: 56px;
+}
+.banner-hp {
+  background: url({{ "vosh_fello_africa.jpg" | asset_url }});
+}
+.charity-hp {
+    position: relative;
+    background: white;
+    overflow: hidden;
+}
+.charity-hp:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.1;
+  	background-image: url({{ "charity_hp.jpg" | asset_url }});
+    background-repeat: no-repeat;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+.header.style2 hr {
+  border-color: rgba(31, 167, 214, 0.15);
+  margin-bottom: 35px;
+}
+.home-collection {
+  font-family: 'LaCompagnie';
+  color: #1fa7d6;
+  font-size: 54px;
+  text-transform: none;
+  font-weight: normal;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  line-height: normal;
+}
+
+.section-block-single-product2 hr.home-product {
+  margin-top: 45px;
+  margin-bottom: 0;
+}
+.banner-text.style3 .content-text:before {
+  background-color: transparent !important;
+}
+.banner-text.style3 .content-text:after {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100% !important;
+}
+
+.banner-text.style3 .banner-border img {
+  opacity: 0.8;
+}
+.banner-text.style3 .subtitle {
+  margin-bottom: 0 !important;
+}
+/* End Home Page Styles */
+
+/* Start Product Page */
+@media (max-width: 768px) {
+  .product-details-full {
+    padding-top: 20px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #product-single .product-details-right {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+img.mfp-img {
+  background-color: white;
+}
+/* End Product Page */
+
+/* Start Search */
+#search [class^="pe-7s-"], #search [class*=" pe-7s-"] {
+  font-size: 40px;
+}
+/* End Search */
+
+/*------------------
+ END CUSTOM STYLES
+------------------*/
+
+/*------------------
  FONTFACE 
 ------------------*/
 @font-face {
@@ -1678,7 +2016,7 @@ p.cartCost{
 .header.style3 .mini-cart .count{
     left: 15px;
     right: inherit;
-    top: -18px;
+    top: -15px;
 }
 .header.style3 .box-settings .icon{
     line-height: 40px;
@@ -4784,7 +5122,7 @@ FOOTER
     color: {{settings.note_color_footer}}; 
 }
 .footer .footer-bottom{
-    margin-top: 60px;
+    height: 60px;
 }
 .footer  .payment{
     padding: 40px 0;
@@ -4844,6 +5182,7 @@ FOOTER
     padding: 0;
     line-height: 40px;
     font-weight: bold;
+    border: 1px solid #ccc;
 }
 .footer .footer-sidebar{
     border-right-width:1px;
@@ -6908,14 +7247,14 @@ FOOTER
     color: {{settings.color_primary}};
 }
 .block-single-product .desc{
-    font-family: 'Roboto', sans-serif;
+    font-family: "Josefin Sans", "HelveticaNeue", "Helvetica Neue", sans-serif;
     font-size: 18px;
     font-weight: 300;
     margin-bottom: 60px;
     line-height: 30px;
 }
 .block-single-product.style2 .product-info{
-    padding-top: 50px;
+/*     padding-top: 50px; */
 }
 .block-single-product .desc ul{
     padding-left: 18px;
@@ -9626,7 +9965,7 @@ table{
     padding-bottom: 120px;
 }
 .section-block-single-product2{
-    padding: 75px 0;
+    padding: 25px 0;
     background-color: #ececeb;
 }
 .no-border-top{

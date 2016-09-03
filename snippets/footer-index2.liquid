@@ -24,51 +24,85 @@
   <div class="footer-top">
     <div class="container">
       <div class="row flex-flow">
-        {% if settings.use_footer_contact %}
-        <div class="col-xs-12 col-sm-12 {{footer_column_width}} footer-sidebar">
-          <div class="widget contact-info">
-            {% if settings.footer_small_title_contact != blank %}<span class="text-primary PlayfairDisplay">{{settings.footer_small_title_contact}}</span>{% endif %}
-            {% if settings.footer_widget_title_contact != blank %}<h3 class="widget-title">{{settings.footer_widget_title_contact}}</h3>{% endif %}
-            <div class="content">
-              {% if settings.footer_widget_address_contact != blank %}<p class="address">{{settings.footer_widget_address_contact}}</p>{% endif %}
-              {% if settings.footer_widget_phone_contact != blank %}<p class="phone"><i class="fa fa-phone"></i> {{settings.footer_widget_phone_contact}}</p>{% endif %}
-            </div>
-          </div>
-        </div>
-        {% endif %}
-        {% if settings.use_footer_menu1 %}
-        <div class="col-xs-12 col-sm-12 {{footer_column_width}} footer-sidebar">
-          <div class="widget our-service">
-            {% if settings.footer_small_title_services != blank %}<span class="text-primary PlayfairDisplay">{{settings.footer_small_title_services}}</span>{% endif %}
-            {% assign footer_handle1 = settings.footer_widget_handle_services %}
-            {% if settings.footer_widget_handle_services != blank %}
-            <h3 class="widget-title">{{ settings.footer_widget_title_services | upcase }}</h3>
-            <div class="content">
-              <ul>
-                {% for link in linklists[footer_handle1].links %}
-                <li><a href="{{link.url}}">{{link.title | capitalize }}</a></li>
-                {% endfor %}
-              </ul>
-            </div>
+        <div class="col-xs-12 col-sm-12 col-md-6">
+          {% if settings.use_footer_newsletter_form %}
+          <h5>Be the first to know about our deals!</h5>
+          <div class="widget widget_newletter">
+            {% if settings.newsletter_form_action != blank %}
+            {% assign form_action = settings.newsletter_form_action %}
+            {% else %}
+            {% assign form_action = '#' %}
             {% endif %}
+            <form class="newletter" action="{{ form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+              <input class="email-text" type="text" name="newsletter" placeholder="Your email..." value="">
+              <span><button class="button add_to_cart_button" name="subscribe" id="subscribe" type="submit">OK</button></span>
+            </form>
           </div>
+          <p>Send us your email if you would like to know anything about our products, charitable causes, or how to get involved.</p>
+          {% endif %}
         </div>
-        {% endif %}
-        {% if settings.use_footer_follow_us %}
-        <div class="col-xs-12 col-sm-12 {{footer_column_width}} footer-sidebar">
-          <div class="widget widget_social style11">
-            {% if settings.footer_small_title_follow != blank %}<span class="text-primary PlayfairDisplay">{{settings.footer_small_title_follow}}</span>{% endif %}
-            {% if settings.footer_widget_title_follow != blank %}<h3 class="widget-title">{{settings.footer_widget_title_follow}}</h3>{% endif %}
-            <div class="content">
-              {% include "social-links" %}
+        
+        {% if false %}
+          {% if settings.use_footer_contact %}
+          <div class="col-xs-12 col-sm-12 {{footer_column_width}} footer-sidebar">
+            <div class="widget contact-info">
+              {% if settings.footer_small_title_contact != blank %}<h3 class="text-primary PlayfairDisplay">{{settings.footer_small_title_contact}}</h3>{% endif %}
+              {% if settings.footer_widget_title_contact != blank %}<h3 class="widget-title">{{settings.footer_widget_title_contact}}</h3>{% endif %}
+              <div class="content">
+                {% if settings.footer_widget_address_contact != blank %}<p class="address">Santa Barbara, CA 93105</p>{% endif %}
+
+              </div>
             </div>
           </div>
-        </div>
+          {% endif %}
         {% endif %}
+
+                
+        {% if settings.use_footer_menu1 %}
+          <div class="col-xs-12 col-sm-12 col-md-2 col-md-offset-1">
+            <div class="widget our-service">
+              {% if settings.footer_small_title_services != blank %}<h3>{{settings.footer_small_title_services}}</h3>{% endif %}
+              {% assign footer_handle1 = settings.footer_widget_handle_services %}
+
+
+              <div class="content">
+                <ul>
+                  {% for link in linklists[footer_handle1].links %}
+                  <li><a href="{{link.url}}">{{link.title | capitalize }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        {% endif %}
+        
+        
+        {% if settings.use_footer_follow_us %}
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <div class="widget widget_social style11">
+              {% if settings.footer_small_title_follow != blank %}<h3>{{settings.footer_small_title_follow}}</h3>{% endif %}
+              {% if settings.footer_widget_title_follow != blank %}<h3 class="widget-title">{{settings.footer_widget_title_follow}}</h3>{% endif %}
+              <div class="content">
+                {% include "social-links" %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        
+
       </div>
+      
+      <hr />
+
+      <p class="no-margin">© 2016 Fello Eyewear &nbsp | &nbsp Santa Barbara, CA</p>
+      
     </div>
   </div>
+  
+  <!-- EMPTY FOOTER BOTTOM -->
   <div class="footer-bottom">
+    {% if false %}
     <div class="container">
       <div class="payment">
         <div class="head">
@@ -88,6 +122,11 @@
         </div>
       </div>
     </div>
+    {% endif %}
   </div>
+<!-- END FOOTER BOTTOM -->  
+
+  
+  
 </footer>
 <a href="#" class="scroll_top" title="Scroll to Top" style="display: block;"><i class="fa fa-arrow-up"></i></a>

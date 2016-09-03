@@ -58,3 +58,11 @@
   </div>
 </form>
 {% endif %}
+
+<form  class="box-search show-icon" action="/search" method="get">
+  <span class="icon"><span class="pe-7s-search"></span></span>
+  <div class="inner">
+    <input type="search" name="q" value="{{ search.terms | escape }}" class="search" placeholder="{{ 'general.search.placeholder' | t }}" required>
+    <span class="close-box pe-7s-close"></span>
+  </div>
+</form>

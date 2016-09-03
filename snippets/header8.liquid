@@ -9,25 +9,27 @@
     <div class="inner">
       <div class="main-menu-wapper">
         <div class="row">
-          <div class="col-md-12 col-lg-3 logo-wapper">
+          <div class="col-md-2 col-sm-2 col-lg-3 col-xs-3 logo-wapper">
             <div class="logo">
-              {% if settings.logo_use_image%}
+              {% if settings.logo_use_image %}
               <a href="/">{{'logo.png' | asset_url | img_tag}}</a>
               {% else %}
               <a href="/"><img src="{{'logo.gif' | asset_url}}" alt=""></a>
               {%endif%}
             </div>
           </div>
-          <div class="col-xs-2 col-sm-3 col-md-6 col-lg-6">
+          <div class="col-xs-2 col-sm-3 col-md-5 col-lg-5">
             {% include 'menu_import' %}
             <span class="mobile-navigation"><i class="fa fa-bars"></i></span>
           </div>
-          <div class="col-xs-10 col-sm-9 col-md-6 col-lg-3 control-wapper">
+          <div class="col-xs-7 col-sm-7 col-md-5 col-lg-4 control-wapper">
             <div class="box-control">
-              <form  class="box-search">
-                <input type="text" class="search" placeholder="Search here...">
+              <!-- Remove Search Bar -->
+              <!-- <form  class="box-search">
+                <input type="text" class="hidden-xs search" placeholder="Search here...">
                 <button class="button-search"><span class="pe-7s-search"></span></button>
-              </form>
+              </form> -->
+              <!-- End Remove Search Bar -->
               {% assign position ="top-menu" %}
               {% include "mini-cart" %}
               {% include"settings-box" %}
@@ -37,6 +39,9 @@
       </div>
     </div>
   </div>
+  
+<!-- REMOVE MAIN HEADER -->
+  {% if false %}
   <div class="main-header">
     <div class="container">
       <ul class="category-menu style2">
@@ -55,4 +60,8 @@
       </ul>
     </div>
   </div>
+  {% endif %}
+<!-- END MAIN HEADER -->
+  
+  
 </header>

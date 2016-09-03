@@ -17,20 +17,19 @@
 {% assign rows = settings.collections_rows %}
 {% assign total_products = products_per_row | times: rows %}
 
-{% if settings.enable_banner_content_collection %}
-  <div class="banner">
-    <div class="banner-content">
-      {{ '1.jpg' | asset_url | img_tag }}
-    </div>
-  </div>
-{% endif %}
+<h1 class="jumbotron text-center collections-stripe">Classic Quality Design</h1>
+
+<!-- <div id="ajax-load" class="col-12-xs text-center">
+  <img class="minor-h-marg" src="//cdn.shopify.com/s/files/1/1321/8937/t/20/assets/preview.gif" />
+</div> -->
+
 
 <div class="main-container left-slidebar">
   <div class="container">
     <div class="row">
-      <div class="main-content col-sm-8 col-md-9">
+      <div class="main-content col-xs-12">
         {% paginate collection.products by 9 %}
-          <div class="shop-top">
+          <div class="shop-top hidden">
             <div class="shop-top-left">
               <div class="breadcrumbs">
                   {% include "breadcrumb" %}
@@ -61,7 +60,10 @@
             {% endpaginate %}
       </div>
 
-      <div class="col-sm-4 col-md-3 sidebar">
+        
+<!-- remove categories widget and side bar -->
+{% if false %}
+    <div class="col-sm-4 col-md-3 sidebar">
       <div class="widget widget_product_categories">
         <h2 class="widget-title">{{ 'blogs.sidebar.categories' | t }}</h2>
         <ul class="product-categories">
@@ -71,12 +73,20 @@
             {% endif %}
           {% endfor %}
         </ul>
-    </div>
-        {% include 'collection-sidebar' %}
       </div>
     </div>
+
+{% endif %}
+<!-- end categories widget and side bar -->
+
+        
+    </div>
   </div>
-      {% assign margin_shipping_icon = "margin-top-0" %}
-      {% assign margin_shipping_icon = "margin-bottom-0" %}
-      {% include 'shortcode-shipping-icon' %} 
-  </div>
+</div>
+
+
+<script>
+//   $(document).ready() {function() {
+//       $("#ajax-loader").hide();
+//   });
+</script>

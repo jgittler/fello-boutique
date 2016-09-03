@@ -50,7 +50,7 @@
       </div>
       <div class="col-md-5 col-lg-5 col-sm-12 col-xs-12">
         <div class="product-details-right">
-          {% include 'breadcrumb-product' %}
+          <h4 class="small-caps"><strong>Free Shipping</strong> anywhere in the United States & Canada.</h4>
           <h3 class="product-name">{{ product.title | upcase }}</h3>
           <div class="rating">
             <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
@@ -122,14 +122,21 @@
     </div>
   </div>
 </div>
+
+<!-- Hide under tabs on the product show page -->
 <div class="container">
+  {% if false %}
     <div class="tab-details-product style2">
       <ul class="box-tabs nav-tab">
-        {% if product.description !="" %}
-          <li class="active"><a data-toggle="tab" href="#tab-1">{{settings.product_tab_title_1}}</a></li>
+        
+        {% if false %}
+          {% if product.description !="" %}
+            <li><a data-toggle="tab" href="#tab-1">{{settings.product_tab_title_1}}</a></li>
+          {% endif %}
         {% endif %}
+
         {% if settings.show_product_tab_2 %}
-          <li><a data-toggle="tab" href="#tab-2">{{settings.product_tab_title_2}}</a></li>
+          <li class="active"><a data-toggle="tab" href="#tab-2">{{settings.product_tab_title_2}}</a></li>
         {% endif %}
         {% if settings.show_product_tab_3 %}
           <li><a data-toggle="tab" href="#tab-3">{{settings.product_tab_title_3}}</a></li>
@@ -139,11 +146,15 @@
         {% endif %}
       </ul>
       <div class="tab-container">
-        {% if product.description !="" %}
-            <div id="tab-1" class="tab-panel active">{{ product.description }}</div>
+        
+        {% if false %}
+          {% if product.description !="" %}
+              <div id="tab-1" class="tab-panel">{{ product.description }}</div>
+          {% endif %}
         {% endif %}
+        
         {% if settings.product_tab_desc_2 !="" %}
-            <div id="tab-2" class="tab-panel">{{ settings.product_tab_desc_2 }}</div>
+            <div id="tab-2" class="tab-panel active">{{ settings.product_tab_desc_2 }}</div>
         {% endif %}
         {% if settings.product_tab_desc_3 !="" %}
             <div id="tab-3" class="tab-panel">{{ settings.product_tab_desc_3 }}</div>
@@ -156,9 +167,9 @@
         {% endif %}
       </div>  
     </div>
-  <div class="upsell-products">{% include 'upsell-products' %}</div> 
+  {% endif %}
 </div> <!--END CONTAINER-->  
-{% include "shortcode-shipping-icon" margin_shipping_icon : "margin-top-60 margin-bottom-30"%}
+<!-- End hide under tabs on the product show page -->
 
 <script>
   
@@ -169,6 +180,10 @@
   });
   //Shopify.Image.preload({{ product.images | json }}, 'grande');
 
+  $(document).ready(function() {
+    $(".product-single__thumbnail").removeClass("hidden");
+  });
+  
   {% if settings.display_subtotal and product.available %} 
   //update price when changing quantity
   function updatePricing() {

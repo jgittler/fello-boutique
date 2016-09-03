@@ -20,7 +20,7 @@
 {% endcomment %}
 {% assign respond_js_secret_key = shop.domain | md5 %}
 {% unless search.terms == respond_js_secret_key %}
-<div class="banner">
+<div class="banner hidden">
   <div class="banner-content">
     {% if settings.banner_header_search_page == blank %}
     {{ '1.jpg' | asset_url | img_tag }}
@@ -172,6 +172,4 @@
           {% endunless %}
       </div>
   </div>
-  {% assign margin_shipping_icon = "margin-top-30 margin-bottom-0" %}
-      {% include 'shortcode-shipping-icon' %} 
 </div>
