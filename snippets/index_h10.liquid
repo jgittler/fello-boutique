@@ -8,25 +8,6 @@
   {% endif %}
 {% endif %}
 
-<style>
-  .blue {
-    color: #1fa7d6;
-  }
-  .orange {
-    color: orange;
-  }
-  .maroon {
-    color: maroon;
-  }
-  .purple {
-    color: blueviolet;
-  }
-  .cta-btn {
-    background-color: rgba(31, 167, 214, .75);
-    color: white;
-  }
-</style>
-
 <div class="top-pic banner-hp banner-pic jumbotron col-xs-12 no-margin visible-lg">
   <div class="row">
     <div class="col-xs-9 col-xs-offset-1">
@@ -36,20 +17,20 @@
   </div>
   <div class="row hidden-xs hidden-sm">
     <div class="col-sm-4 col-xs-7 col-xs-offset-1">
-      <h2 class="hidden-xs">Fello <span class="orange">Patrons</span></h2>
-      <h3 class="visible-xs">Fello <span class="orange">Patrons</span></h3>
+      <h2 class="hidden-xs">Fello <span class="bright-green">Friends</span></h2>
+      <h3 class="visible-xs">Fello <span class="bright-green">Friends</span></h3>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-4 col-xs-7 col-xs-offset-1 hidden-xs hidden-sm">
-      <h2 class="hidden-xs">Fello <span class="purple">Travelers</span></h2>
-      <h3 class="visible-xs">Fello <span class="purple">Travelers</span></h3>
+      <h2 class="hidden-xs">Fello <span class="aqua">Travelers</span></h2>
+      <h3 class="visible-xs">Fello <span class="aqua">Travelers</span></h3>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-4 col-xs-7 col-xs-offset-1">
-      <h2 class="hidden-xs">Fello <span class="maroon">Friends</span></h2>
-      <h3 class="visible-xs">Fello <span class="maroon">Friends</span></h3>
+      <h2 class="hidden-xs">Fello <span class="purple">Patrons</span></h2>
+      <h3 class="visible-xs">Fello <span class="purple">Patrons</span></h3>
     </div>
   </div>
   <div class="row">
@@ -64,7 +45,7 @@
   </div>
 
   <div class="row">
-    <a href="/collections/all"><button class="cta-btn btn btn-lg col-xs-offset-1 col-sm-3 col-xs-6 hidden-xs">Shop Sunglasses & Give Back</button></a>
+    <a href="/collections/all"><button class="cta-btn btn btn-lg col-xs-offset-1 col-sm-3 col-xs-6 hidden-xs">Shop Sunglasses</button></a>
     <a href="/collections/all"><button class="cta-btn btn btn-sm col-xs-offset-1 col-sm-3 col-xs-6 visible-xs">Shop Sunglasses & Give Back</button></a>
   </div>
 </div>
@@ -84,60 +65,6 @@
   </div>
 </div>
 
-
-<!-- Start Home Page Banner -->
-<!--   <img class="col-xs-6 col-sm-3 no-pads" src="//cdn.shopify.com/s/files/1/1321/8937/t/20/assets/patient_smile_cut.jpg" alt="eye patient smiling">
-
-  <a href="/collections/all#collection-product">
-    <div class="col-xs-6 col-sm-3 banner-text style3 no-pads featured-item banner-border primary no-margin">
-
-      <img src="//cdn.shopify.com/s/files/1/1321/8937/t/20/assets/featured_konvoy.jpg" alt="tortoise konvoy">
-
-      <div class="content-text">
-        <div class="inner">
-          <h2 class="title">The Konvoy</h2>
-
-          <br />
-          <br />
-          <h3 class="subtitle">Shop Now</h3>
-        </div>
-      </div>
-
-    </div>
-  </a>
-
-  <a href="/collections/all#collection-product">
-    <div class="visible-xs col-xs-6 banner-text style3 no-pads featured-item banner-border primary no-margin">
-      <img src="//cdn.shopify.com/s/files/1/1321/8937/t/20/assets/featured_fantom.jpg" alt="tortoise fantom">
-      <div class="content-text">
-        <div class="inner">
-          <h2 class="title">The Fantom</h2>
-
-          <br />
-          <br />
-          <h3 class="subtitle">Shop Now</h3>
-        </div>
-      </div>
-    </div>
-  </a>
-
-  <img class="col-xs-6 col-sm-3 no-pads" src="//cdn.shopify.com/s/files/1/1321/8937/t/20/assets/patient_tool_cut.jpg" alt="evaluating a patient">
-
-  <a href="/collections/all#collection-product">
-    <div class="hidden-xs col-sm-3 banner-text style3 no-pads featured-item banner-border primary no-margin">
-      <img src="//cdn.shopify.com/s/files/1/1321/8937/t/20/assets/featured_fantom.jpg" alt="tortoise fantom">
-      <div class="content-text">
-        <div class="inner">
-          <h2 class="title">The Fantom</h2>
-
-          <br />
-          <br />
-          <h3 class="subtitle">Shop Now</h3>
-        </div>
-      </div>
-    </div>
-  </a> -->
-<!-- End Home Page Banner -->
 
 
 {% if settings.use_banner_carousel_home10 %}
@@ -267,14 +194,3 @@
     </a>
   {% endfor %}
 </div>
-
-<script>
-  $(document).ready(function() {
-    addEscape();
-  });
-  
-  function addEscape() {
-    $(".btn-modal").attr("data-backdrop", false);
-    $(".with-escape").prepend('<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>');
-  }
-</script>

@@ -19,11 +19,6 @@
 
 <h1 class="jumbotron text-center collections-stripe">Classic Quality Design</h1>
 
-<!-- <div id="ajax-load" class="col-12-xs text-center">
-  <img class="minor-h-marg" src="//cdn.shopify.com/s/files/1/1321/8937/t/20/assets/preview.gif" />
-</div> -->
-
-
 <div class="main-container left-slidebar">
   <div class="container">
     <div class="row">
@@ -48,7 +43,7 @@
           {% for product in collection.products %}
             {% assign grid_item_width = 'col-sm-6 col-md-4' %}
               {% include 'product-grid-item' %}
-              {% include 'product-list-item' %} 
+<!--               {% include 'product-list-item' %}  -->
             {% endfor %}
 
         </ul>
@@ -83,10 +78,3 @@
     </div>
   </div>
 </div>
-
-
-<script>
-//   $(document).ready() {function() {
-//       $("#ajax-loader").hide();
-//   });
-</script>

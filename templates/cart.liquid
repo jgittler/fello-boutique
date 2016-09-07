@@ -6,7 +6,7 @@
 <!--<div class="page-title">
 <h3>{{ 'cart.general.title' | t }}</h3>  
 </div> -->
-      <h2 class="small-caps">Every Pair Changes A <span class="highlight">Life</span></h2>
+      <h2 class="small-caps">Every Pair Changes A <span style="font-size: 31px;" class="highlight">Life</span></h2>
       <div class="row">
         <form action="/cart" method="post" novalidate>
           <div class="col-sm-12 col-md-8">
@@ -105,9 +105,9 @@
                 </tfoot>
               </table>
               {% if additional_checkout_buttons %}
-              <p>{{ content_for_additional_checkout_buttons }}</p>
+
               {% endif %}
-              <input type="submit" name="update" class="button medium update-cart" value="{{ 'cart.general.update' | t }}">
+              <a href="/collections/all" class="button medium">Continue Shopping</a>
               <input type="submit" name="checkout" class="button btn-primary medium checkout-button" value="{{ 'cart.general.proceed_to_checkout' | t }}">
 
             </div>
@@ -123,3 +123,36 @@
     </div>
   </div>
 </div>
+
+<script>
+  // get initial quanity for each
+  $("input.qty").data('oldVal', $("input.qty").val());
+
+  // bind event
+  $("input.qty").on('change', function() {
+    // get new quanitity
+    var q = $(this).val();
+
+    // get price of item
+    var price = parseInt($(this).parent().prev().html().slice(1));
+
+    // get cart total
+    var grandTotal = parseInt($($(".table-wrapper .price")[0]).html().slice(1));
+
+    // get old quantity 
+    var oldVal = $(this).data('oldVal');
+
+    // calculate
+    if ( q > oldVal) {
+      var newGrandTotal = grandTotal + price;
+    } else {
+      var newGrandTotal = grandTotal - price;
+    }
+
+    //store the newVal as the oldVal for the next change
+    $(this).data('oldVal', q)
+
+
+    $(".price").html("$" + newGrandTotal + ".00");
+  });
+</script>

@@ -33,6 +33,9 @@ Last change: 01/15/2016
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Josefin Sans", "HelveticaNeue", "Helvetica Neue", sans-serif;
 }
+hr.highlight {
+  border-color: rgba(31, 167, 214, 0.3);
+}
 .v-center {
   margin-top: auto;
   margin-bottom: auto;
@@ -131,13 +134,16 @@ Last change: 01/15/2016
 }
 .modal .close {
   float: right;
-  font-size: 35px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 0.8;
   color: white;
   text-shadow: 0 1px 0 #eee;
   opacity: 1;
   margin-right: 5px;
+}
+.blue-bg {
+  background-color: #e9f6fb;
 }
 /* End Utilities */
 
@@ -174,6 +180,14 @@ Last change: 01/15/2016
 @media (min-width: 992px) { 
   .header.style3 .box-settings {
       padding: 0 30px;
+  }
+}
+.header.style3 .main-menu > li > a {
+  font-size: 16px !important;
+}
+@media (max-width: 1200px) {
+  .header.style4 .top-header {
+    padding: 20px 30px 0px 30px !important;
   }
 }
 /* End Navbar */
@@ -262,6 +276,22 @@ Last change: 01/15/2016
 /* End Charity Page Styles */
 
 /* Start Home Page Styles */
+.blue {
+  color: #1fa7d6;
+}
+.aqua {
+  color: #00fbff;
+}
+.bright-green {
+  color: #76e476;
+}
+.purple {
+  color: #a545ff;
+}
+.cta-btn {
+  background-color: rgb(31, 167, 214);
+  color: white;
+}
 .banner-pic {
   padding-top: 5%;
   padding-bottom: 25%;
@@ -353,13 +383,64 @@ Last change: 01/15/2016
 img.mfp-img {
   background-color: white;
 }
+@media (max-width: 768px) {
+  .tab-details-product .tab-container {
+    border: none !important;
+  }
+}
+.tab-details-product .tab-container {
+  border-top: 1px solid #eaeaea;
+  border-bottom: none !important;
+}
 /* End Product Page */
-
+/* Start Care Page */
+.icon.highlight {
+  vertical-align: top;
+}
+.care-pic {
+  background: url({{ "customer_care.jpg" | asset_url }});
+}
+.care-stripe {
+  background-color: #e9f6fb;
+}
+.care-section.visible-xs {
+  border: none;
+}
+@media (min-width: 768px) {
+  .care-section .col-sm-6:first-of-type {
+    border-right: 1px solid #1fa7d6;
+  }
+}
+.care-section {
+  background-color: inherit;
+}
+/* End Care Page */
+/* Start Cart Page */
+.box-cart-total #subtotal td, .box-cart-total #subtotal span {
+  font-family: "Geneva", "Tahoma", "Verdana", sans-serif !important;
+}
+.care-section p {
+  font-family: "Josefin Sans", "HelveticaNeue", "Helvetica Neue", sans-serif;
+  line-height: 1.2;
+}
+/* End Start Page */
 /* Start Search */
 #search [class^="pe-7s-"], #search [class*=" pe-7s-"] {
   font-size: 40px;
 }
 /* End Search */
+/* Start Photo Credits */
+img.photo-cred {
+  width: 100px;
+  margin: 10px;
+}
+#photographer-credits .media {
+  float: left;
+}
+#photographer-credits .container {
+  margin: 50px 30px;
+}
+/* End Photo Credits */
 
 /*------------------
  END CUSTOM STYLES
@@ -7451,7 +7532,7 @@ FOOTER
     color: #999;
 }
 #product-single .product-details-right .short-descript{
-    font-family: 'Roboto';
+    font-family: "Josefin Sans", "HelveticaNeue", "Helvetica Neue", sans-serif;
     margin-bottom: 20px;
     border-top: 1px solid #eaeaea;
     border-bottom: 1px solid #eaeaea;
@@ -9044,7 +9125,7 @@ BLOG PAGE
 .block-text .text .txt-primary{
     font-family: {{ base_family }};
 }
-/* MObile box menu */
+/* Mobile box menu */
 .mobile-navigation{
     display: inline-block;
     font-size: 20px;
@@ -11646,13 +11727,12 @@ RESPONSIVE
     color: #909295;
     cursor: pointer;
     display: block;
-    height: 30px;
-    line-height: 28px;
+    height: 20px;
     position: absolute;
     right: 10px;
     text-align: center;
     top: 10px;
-    width: 30px;
+    width: 20px;
     z-index: 2;
     transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
