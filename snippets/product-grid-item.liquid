@@ -28,14 +28,15 @@
       		<a class="back-image" href="{{ product.url | within: collection }}">{{product.images[1].src |img_url: 'grande'| img_tag: product.title }}</a>
         {% endif %}
       {% endif %}
+
+
       <div class="gorup-button">
-        {% assign button = "" %}
-        {% include 'wishlist-product' %}
-        <a class="compare" data-pid="{{product.handle}}">
-          <i class="fa fa-exchange"></i>
-        </a>
+
         <a class="quick-view" href="{{ product.url | within: collection }}" data-pid="{{ product.id }}"><i class="fa fa-search"></i></a>
+
       </div>
+
+
     </div>
     <div class="product-info">
       <h3 class="product-name"><a href="{{ product.url | within: collection }}">{{ product.title }}</a></h3>

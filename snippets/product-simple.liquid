@@ -115,27 +115,39 @@
                 {% endif %}
               </div>
 
-              <div class="cart-form">
+            <div class="cart-form hidden-sm hidden-xs">
+
+
+              {% if product.available %}
+              <div class="quantity">
+                <span>{{ 'products.product.quantity' | t }}</span>
+                <input style="border: 1px solid #e5e5e5; width: 55px; font-size: 14px; min-width: auto;" type="number" id="Quantity" name="quantity" value="1" min="1" class="input-text qty text quantity-selector">
+              </div>
+              {% endif %}
+
+
+              <a id="AddToCart" class="button button-add-cart boutique__add-to-cart" data-pid="{{ product.variants.first.id }}"><span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span></a>
+
+            </div>
+
+            <div class="cart-form hidden-lg hidden-md">
+
+              <div class="row row-eq-height">
                 {% if product.available %}
-                <div class="quantity">
+                <div class="quantity v-center">
                   <span>{{ 'products.product.quantity' | t }}</span>
                   <input style="border: 1px solid #e5e5e5; width: 55px; font-size: 14px; min-width: auto;" type="number" id="Quantity" name="quantity" value="1" min="1" class="input-text qty text quantity-selector">
                 </div>
                 {% endif %}
-                {% if settings.use_wishlist %}
-                {% assign button = "button" %}
-                {% include 'wishlist-product' %}
-                {% endif %}
-                {% if settings.use_compare %}
-                <a class="button compare" data-pid="{{product.handle}}">
-                  <i class="fa fa-exchange"></i>
-                </a>
-                {% endif %}
 
-                <a id="AddToCart" class="button button-add-cart boutique__add-to-cart" data-pid="{{ product.variants.first.id }}"><span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span></a>
+
+                <a id="AddToCart" class="v-center button button-add-cart boutique__add-to-cart" data-pid="{{ product.variants.first.id }}"><span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span></a>
 
               </div>
-            </form>
+              
+            </div>
+            
+          </form>
           
         </div>
 
@@ -169,8 +181,8 @@
       <div class="tab-container">
         
 
-        <!-- Start SM-LG Screens -->
-        <div id="tab-1" class="hidden-xs tab-panel active">
+        <!-- Start MD-LG Screens -->
+        <div id="tab-1" class="hidden-xs hidden-sm tab-panel active">
           {% if product.title contains 'Fantom' %}
             <img src="{{ 'h_fantom_size_guide.jpg' | asset_url }}" />
           {% elsif product.title contains 'Konvoy' %}
@@ -179,10 +191,10 @@
             <img src="{{ 'h_heron_size_guide.jpg' | asset_url }}" />
           {% endif %}
         </div>
-        <!-- Start SM_LG Screens -->
+        <!-- Start MD-LG Screens -->
         
-        <!-- Start XS Screens -->
-        <div id="tab-1" class="visible-xs tab-panel active">
+        <!-- Start XS-SM Screens -->
+        <div id="tab-1" class="hidden-md hidden-lg tab-panel active">
           {% if product.title contains 'Fantom' %}
           <img src="{{ 'fantom_size_guide_small.jpg' | asset_url }}" />
           {% elsif product.title contains 'Konvoy' %}
@@ -191,7 +203,7 @@
           <img src="{{ 'heron_size_guide_small.jpg' | asset_url }}" />
           {% endif %}
         </div>
-        <!-- End XS Screens -->
+        <!-- End XS-SM Screens -->
 
         
         {% if false %}

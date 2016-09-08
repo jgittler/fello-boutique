@@ -36,6 +36,21 @@ Last change: 01/15/2016
 hr.highlight {
   border-color: rgba(31, 167, 214, 0.3);
 }
+.sharp {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+}
+.panel.sharp {
+  border-top: 2px solid #1fa7d6;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+}
+.panel.sharp .panel-footer {
+  border-top: 1px solid #e9f6fb;
+  background-color: transparent;
+}
 .v-center {
   margin-top: auto;
   margin-bottom: auto;
@@ -80,6 +95,10 @@ hr.highlight {
 .minor-v-pads {
   padding-top: 5%;
   padding-bottom: 5%;
+}
+.med-v-pads {
+  padding-top: 10%;
+  padding-bottom: 10%;
 }
 .minor-h-pads {
   padding-right: 5%;
@@ -145,6 +164,9 @@ hr.highlight {
 .blue-bg {
   background-color: #e9f6fb;
 }
+.blue {
+  color: #1fa7d6;
+}
 /* End Utilities */
 
 /* Start Footer */
@@ -197,22 +219,17 @@ hr.highlight {
   border-color: rgba(31, 167, 214, 0.3);
   margin: 10px -15px;
 }
-
 .product-info p {
   margin-bottom: 0;
 }
-
-.product-item .compare.added, #product-single .product-details-right .compare.added {
-  display: none !important;
-}
-
-@media (min-width: 768px) {
-  .product-item .compare.added, #product-single .product-details-right .compare.added {
-    display: block !important;
-  }
-}
 .collections-stripe {
   background-color: #e9f6fb;
+}
+.button.add-to-cart.boutique__add-to-cart {
+  background-color: #1fa7d6;
+}
+.button.add-to-cart.boutique__add-to-cart:hover {
+  color: #111111;
 }
 /* End Collections Page Styles */
 
@@ -276,9 +293,6 @@ hr.highlight {
 /* End Charity Page Styles */
 
 /* Start Home Page Styles */
-.blue {
-  color: #1fa7d6;
-}
 .aqua {
   color: #00fbff;
 }
@@ -286,11 +300,18 @@ hr.highlight {
   color: #76e476;
 }
 .purple {
-  color: #a545ff;
+  color: #4964ff;
+}
+.orange {
+  color: #ff6b33;
 }
 .cta-btn {
   background-color: rgb(31, 167, 214);
   color: white;
+}
+.jumbotron .cta-btn p, .jumbotron .cta-btn span {
+  font-weight: 700;
+  vertical-align: sub;
 }
 .banner-pic {
   padding-top: 5%;
@@ -391,6 +412,18 @@ img.mfp-img {
 .tab-details-product .tab-container {
   border-top: 1px solid #eaeaea;
   border-bottom: none !important;
+}
+.button.button-add-cart.boutique__add-to-cart {
+  background-color: #1fa7d6;
+  margin-top: 0px !important;
+}
+@media (min-width: 992px) {
+  .button.button-add-cart.boutique__add-to-cart {
+   	margin-top: 20px !important;
+  }
+}
+.button.button-add-cart.boutique__add-to-cart:hover {
+  color: #111111;
 }
 /* End Product Page */
 /* Start Care Page */
