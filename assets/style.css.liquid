@@ -100,6 +100,10 @@ hr.highlight {
   padding-top: 10%;
   padding-bottom: 10%;
 }
+.minor-v-marg {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
 .minor-h-pads {
   padding-right: 5%;
   padding-left: 5%;
@@ -196,12 +200,12 @@ hr.highlight {
 }
 @media (min-width: 786px) { 
   .header.style3 .box-settings {
-      padding: 0 15x;
+    padding: 0 15x;
   }
 }
 @media (min-width: 992px) { 
   .header.style3 .box-settings {
-      padding: 0 30px;
+    padding: 0 30px;
   }
 }
 .header.style3 .main-menu > li > a {
@@ -230,6 +234,9 @@ hr.highlight {
 }
 .button.add-to-cart.boutique__add-to-cart:hover {
   color: #111111;
+}
+#all .jumbotron {
+  margin-bottom: 0;
 }
 /* End Collections Page Styles */
 
@@ -299,41 +306,77 @@ hr.highlight {
 .bright-green {
   color: #76e476;
 }
-.purple {
-  color: #4964ff;
+.pink {
+  color: #f4a6e0;
 }
 .orange {
   color: #ff6b33;
 }
 .cta-btn {
-  background-color: rgb(31, 167, 214);
+  background-color: #1fa7d6;
   color: white;
 }
-.jumbotron .cta-btn p, .jumbotron .cta-btn span {
+/* .cta-btn:hover {
+  background-color: #1c8bb1;
+  color: white;
+} */
+.jumbotron .cta-btn p {
   font-weight: 700;
   vertical-align: sub;
+  font-size: 11px;
+  margin: 0;
+}
+@media(min-width: 768px) {
+  .jumbotron .cta-btn p {
+    font-size: 21px;
+    margin: 10px 0;
+  }
 }
 .banner-pic {
   padding-top: 5%;
   padding-bottom: 25%;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }
-.banner-pic h1, .banner-pic h2, .banner-pic h3 {
+.banner-pic h1, .banner-pic span.h2 {
   color: white;
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.35);
+  vertical-align: sub;
 }
-.banner-pic h2, .banner-pic h3 {
-  font-weight: 900;
+.banner-pic span.h2 {
+  font-weight: 700;
+}
+@media(max-width: 480px) {
+  .banner-pic span.h2 {
+    font-size: 1em;
+  }
 }
 .banner-pic h1 {
-  font-size: 56px;
+  font-size: 32px;
+  margin-bottom: 0px;
+  line-height: 0.8em;
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .banner-pic h1 {
+    font-size: 56px;
+    line-height: 1.3em;
+  }
 }
 .banner-hp {
-  background: url({{ "vosh_fello_africa.jpg" | asset_url }});
+  background: url({{ "vosh_fello_africa_thin.jpg" | asset_url }});
+}
+.banner-hp hr {
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 1%;
+  margin-bottom: 2%;
 }
 .charity-hp {
-    position: relative;
-    background: white;
-    overflow: hidden;
+  position: relative;
+  background: white;
+  overflow: hidden;
 }
 .charity-hp:before {
     content: ' ';
@@ -3255,7 +3298,7 @@ p.cartCost{
 .header.style15.ontop .main-menu{
     float: right;
 }
-.header.style16.ontop .logo,
+.header.style16.ontcollecop .logo,
 .header.style16.ontop .topbar{
     display: none;
 }

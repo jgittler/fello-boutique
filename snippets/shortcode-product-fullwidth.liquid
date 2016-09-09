@@ -31,12 +31,15 @@
       <!-- Start SM-LG Screens -->
       {% if product_full_width_style == "style2" %}
         <div class="product-image col-sm-5 hidden-xs">
-          <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+          <a href="{{ product.url | within: collection }}">
+            <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+          </a>
         </div>
       {% endif %}
+
       
       <div class="hidden-xs product-info col-sm-7 {% if product.title == second_pair %}text-right{% endif %}">
-        <h3 class="product-name"><a href="{{ product.url | within: collection }}">{{ product.title }}</a> </h3>
+        <h3 class="product-name"><a href="{{ product.url | within: collection }}">{{ product.title | split: ' ' | last }}</a> </h3>
         <div class="desc">
           {% if product.metafields.meta.description %}
           {{ product.metafields.meta.description }}
@@ -67,7 +70,9 @@
       
       {% if product_full_width_style != "style2" %}
         <div class="product-image col-sm-5 hidden-xs">
-          <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+          <a href="{{ product.url | within: collection }}">
+            <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+          </a>
         </div>
       {% endif %}
       <!-- End SM-LG Screens -->
@@ -75,18 +80,22 @@
       <!-- Start XS Screens -->
       {% if product_full_width_style == "style2" %}
         <div class="visible-xs product-image col-xs-12 text-center no-pads">
-          <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+          <a href="{{ product.url | within: collection }}">
+            <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+          </a>
         </div>
       {% endif %}
       
       {% if product_full_width_style != "style2" %}
         <div class="visible-xs product-image col-xs-12 text-center no-pads">
-          <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+          <a href="{{ product.url | within: collection }}">
+            <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+          </a>
         </div>
       {% endif %}
       
       <div class="visible-xs product-info col-xs-12 text-center">
-        <h3 class="product-name"><a href="{{ product.url | within: collection }}">{{ product.title }}</a> </h3>
+        <h3 class="product-name"><a href="{{ product.url | within: collection }}">{{ product.title | split: ' ' | last }}</a> </h3>
         <div class="desc">
           {% if product.metafields.meta.description %}
           {{ product.metafields.meta.description }}
