@@ -121,29 +121,44 @@
               {% if product.available %}
               <div class="quantity">
                 <span>{{ 'products.product.quantity' | t }}</span>
-                <input style="border: 1px solid #e5e5e5; width: 55px; font-size: 14px; min-width: auto;" type="number" id="Quantity" name="quantity" value="1" min="1" class="input-text qty text quantity-selector">
+                <input style="border: 1px solid #e5e5e5;
+                              font-size: 14px;
+                              max-width: 45%;
+                              min-width: auto;"
+                       type="number"
+                       id="Quantity"
+                       name="quantity"
+                       value="1"
+                       min="1"
+                       class="input-text qty text quantity-selector">
               </div>
               {% endif %}
 
 
-              <a id="AddToCart" class="button button-add-cart boutique__add-to-cart" data-pid="{{ product.variants.first.id }}"><span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span></a>
+              <a id="AddToCart" class="button button-add-cart full-w boutique__add-to-cart" data-pid="{{ product.variants.first.id }}"><span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span></a>
 
             </div>
 
             <div class="cart-form hidden-lg hidden-md">
 
-              <div class="row row-eq-height">
                 {% if product.available %}
-                <div class="quantity v-center">
+                <div class="quantity full-w">
                   <span>{{ 'products.product.quantity' | t }}</span>
-                  <input style="border: 1px solid #e5e5e5; width: 55px; font-size: 14px; min-width: auto;" type="number" id="Quantity" name="quantity" value="1" min="1" class="input-text qty text quantity-selector">
+                  <input style="border: 1px solid #e5e5e5;
+                                font-size: 14px;"
+                         type="number"
+                         id="Quantity"
+                         name="quantity"
+                         value="1"
+                         min="1"
+                         class="input-text qty text quantity-selector">
                 </div>
                 {% endif %}
 
+              <br />
 
-                <a id="AddToCart" class="v-center button button-add-cart boutique__add-to-cart" data-pid="{{ product.variants.first.id }}"><span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span></a>
+                <a id="AddToCart" class="v-center minor-v-marg full-w button button-add-cart boutique__add-to-cart" data-pid="{{ product.variants.first.id }}"><span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span></a>
 
-              </div>
               
             </div>
             
