@@ -610,16 +610,16 @@
      /* ---------------------------------------------
      Currency Choose
      --------------------------------------------- */
-      $(document).on('mouseover','.box-settings',function(){
-        var names = $('.currency-lists ul li.active a').attr('class');
-        var name_check = $('.currency-picker__wrapper .chosen-single span').first().text();
-        if(names != name_check ){
-          $('.currency-lists ul li').removeAttr("class");
-          $('.currency-lists ul li a.' + name_check + '').parent("li").attr("class","active");
-        }else{
-          $('.currency-lists ul li a.' + name_check + '').parent("li").attr("class","active");
-        }
-      });
+//       $(document).on('mouseover','.box-settings',function(){
+//         var names = $('.currency-lists ul li.active a').attr('class');
+//         var name_check = $('.currency-picker__wrapper .chosen-single span').first().text();
+//         if(names != name_check ){
+//           $('.currency-lists ul li').removeAttr("class");
+//           $('.currency-lists ul li a.' + name_check + '').parent("li").attr("class","active");
+//         }else{
+//           $('.currency-lists ul li a.' + name_check + '').parent("li").attr("class","active");
+//         }
+//       });
       $(document).on('click','.currency-lists ul li',function(e){
         $('.currency-lists ul li').removeAttr("class");
         $(this).attr("class","active");

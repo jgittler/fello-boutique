@@ -39,7 +39,9 @@
     };
 
     e(document).ready(function() {
-      obj.init();
+      sleep(5000).then(function() {
+        obj.init();
+      })
     });
 
   })(jQuery)
