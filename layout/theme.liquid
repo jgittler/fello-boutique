@@ -13,29 +13,13 @@
   
   <!-- Title and description ================================================== -->
   <title>
-    {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} | {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} | {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} | {{ shop.name }}{% endunless %}
+    {{ page_title | capitalize }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} | {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} | {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} | {{ shop.name }}{% endunless %}
   </title>
   
     {% include 'header-stylesheets' %}
     {% include 'header-scripts' %}
     {{ content_for_header }}
-<!-- Hits Analytics tracking code -->
-{% if shop.customer_accounts_enabled %}
-  {% if customer %}
-    <script type="text/javascript">
-        function hitsReady() {
-            if (typeof hits != 'undefined')
-                hits('user','identify', {'id' : '{{ customer.id }}'});
-            else
-                setTimeout(hitsReady,500);
-        }
-        window.attachEvent ? window.attachEvent('onload', hitsReady) : window.addEventListener('load', hitsReady, false);
-    </script>
-  {% endif %}
-{% endif %}
-<!-- end of Hits Analytics code -->
-
- </head>
+</head>
 <body class="home {% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" id="{{ page_title | handle }}">
   {% include 'header' %}
   
