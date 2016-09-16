@@ -108,6 +108,10 @@ hr.highlight {
   padding-right: 5%;
   padding-left: 5%;
 }
+.med-h-marg {
+  margin-left: 10%;
+  margin-right: 10%;
+}
 .minor-h-marg {
   margin-left: 5%;
   margin-right: 5%;
@@ -238,6 +242,13 @@ hr.highlight {
 #all .jumbotron {
   margin-bottom: 0;
 }
+/* firefox hack*/
+@media (min-width: 992px) {
+  #all .clear-for-ff {
+    clear: left;
+  }
+}
+/* end */
 /* End Collections Page Styles */
 
 /* Start Fellosophy Page Styles */
@@ -306,72 +317,106 @@ hr.highlight {
 .bright-green {
   color: #76e476;
 }
-.pink {
-  color: #f4a6e0;
+.purple {
+  color: #a23eff;
 }
 .orange {
   color: #ff6b33;
 }
+.video-text {
+  color: white;
+}
+.video-text .h2, .video-text h1 {
+  color: inherit;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.video-text .h2 {
+  font-weight: 600;
+  margin-bottom: 0;
+  display: inline-table;
+}
+.video-text hr {
+  margin: 5px 0px 10px 0px;
+}
+.video-placeholder {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  height: auto;
+  background-color: black;
+}
+@media (min-width: 992px) {
+  .video-text hr {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 992px) {
+  .video-text h1 {
+    font-size: 40px;
+    margin-bottom: 20%;
+    margin-top: 0;
+  }
+}
+@media (max-width: 480px) {
+  .video-text h1 {
+    font-size: 26px;
+    margin-bottom: 10%;
+    margin-top: 0px;
+  }
+}
+@media (min-width: 992px) {
+  .video-text h1 {
+    font-size: 58px;
+    margin-bottom: 40%;
+    margin-top: -50px;
+  }
+}
+@media (max-width: 992px) {
+  .video-text .h2 {
+    font-size: 22px;
+  }
+}
+@media (max-width: 480px) {
+  .video-text .h2 {
+    font-size: 12px;
+  }
+}
+@media (min-width: 992px) {
+  .video-text .h2 {
+    font-size: 28px;
+  }
+}
+.cta-btn .h2 {
+  margin: 0 0 5px 0;
+}
 .cta-btn {
-  background-color: #1fa7d6;
+  background-color: transparent;
   color: white;
+  border: 2px solid #1fa7d6;
+  padding: 5px 8px;
 }
-/* .cta-btn:hover {
-  background-color: #1c8bb1;
-  color: white;
-} */
-.jumbotron .cta-btn p {
-  font-weight: 700;
-  vertical-align: sub;
-  font-size: 11px;
-  margin: 0;
+.cta-btn:hover {
+  color: #1fa7d6 !important;
 }
-@media(min-width: 768px) {
-  .jumbotron .cta-btn p {
-    font-size: 21px;
-    margin: 10px 0;
+@media (min-width: 480px) {
+  .cta-btn .h2 {
+    margin: 5px 0 0 0;
+    font-weight: 400;
   }
 }
-.banner-pic {
-  padding-top: 5%;
-  padding-bottom: 25%;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-}
-.banner-pic h1, .banner-pic span.h2 {
-  color: white;
-  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.35);
-  vertical-align: sub;
-}
-.banner-pic span.h2 {
-  font-weight: 700;
-}
-@media(max-width: 480px) {
-  .banner-pic span.h2 {
-    font-size: 1em;
+@media (min-width: 992px) {
+  .cta-btn .h2 {
+    font-size: 32px;
+    padding: 10px 16px;
   }
-}
-.banner-pic h1 {
-  font-size: 32px;
-  margin-bottom: 0px;
-  line-height: 0.8em;
-  font-weight: 700;
 }
 @media (min-width: 768px) {
-  .banner-pic h1 {
-    font-size: 56px;
-    line-height: 1.3em;
+  .cta-btn {
+    padding: 20px 22px;
   }
-}
-.banner-hp {
-  background: url({{ "vosh_fello_africa_thin.jpg" | asset_url }});
-}
-.banner-hp hr {
-  margin-left: 20%;
-  margin-right: 20%;
-  margin-top: 1%;
-  margin-bottom: 2%;
 }
 .charity-hp {
   position: relative;
@@ -458,7 +503,6 @@ img.mfp-img {
 }
 .button.button-add-cart.boutique__add-to-cart {
   background-color: #1fa7d6;
-  margin-top: 0px !important;
 }
 @media (min-width: 992px) {
   .button.button-add-cart.boutique__add-to-cart {
@@ -508,7 +552,6 @@ img.mfp-img {
 /* Start Photo Credits */
 img.photo-cred {
   width: 100px;
-  margin: 10px;
 }
 #photographer-credits .media {
   float: left;
@@ -4956,12 +4999,13 @@ ICON
 }
 
 .element-icon.style2{
-    border: 1px dashed #bcbcbc;
-    padding: 48px 0;
-    text-align: center;
-    display: table;
-    width: 100%;
-    text-align: center;
+/*     border: 1px dashed #bcbcbc; */
+  border: none;
+  padding: 48px 0;
+  text-align: center;
+  display: table;
+  width: 100%;
+  text-align: center;
 }
 .element-icon.style2:before {
     content: "";
@@ -4983,17 +5027,11 @@ ICON
     bottom: -1px;
     right: -1px;
     z-index: 9;
-    border-left: 1px dashed {{settings.color_primary}};
-    border-right: 1px dashed {{settings.color_primary}};
     transform: scale(1, 0);
 }
 .element-icon.style2:hover:before, 
 .element-icon.style2:hover:after{
-    transform: scale(1);
-    -webkit-transition: all 0.5s ease-out 0s;
-    -moz-transition: all 0.5s ease-out 0s;
-    -o-transition: all 0.5s ease-out 0s;
-    transition: all 0.5s ease-out 0s;
+
 }
 .element-icon.style2:hover,
 .element-icon.style2:hover .title{
@@ -7407,7 +7445,7 @@ FOOTER
     font-family: "Josefin Sans", "HelveticaNeue", "Helvetica Neue", sans-serif;
     font-size: 18px;
     font-weight: 300;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     line-height: 30px;
 }
 .block-single-product.style2 .product-info{
