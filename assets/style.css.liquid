@@ -43,14 +43,6 @@ hr.highlight {
   -o-border-radius: 0;
   border-radius: 0;
 }
-.panel.sharp {
-  border-top: 2px solid #1fa7d6;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
-}
-.panel.sharp .panel-footer {
-  border-top: 1px solid #e9f6fb;
-  background-color: transparent;
-}
 .v-center {
   margin-top: auto;
   margin-bottom: auto;
@@ -317,6 +309,44 @@ hr.highlight {
 /* End Charity Page Styles */
 
 /* Start Home Page Styles */
+.pillar button.button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  line-height: 40px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+}
+.pillar button .icon {
+  font-weight: bold;
+  font-size: 35px;
+}
+.pillar .amb .panel-body h1, .pillar .amb .panel-body h4, .pillar .amb .panel-body p {
+  color: white;
+}
+.pillar .panel .panel-body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 15px;
+}
+.pillar .panel .pillar-cover {
+  height: 100%;
+  padding: 0 15px;
+}
+.pillar .panel.amb .pillar-cover:hover {
+  background-color: rgba(31, 167, 214, 0.5);
+}
+.pillar .panel-body.outline .pillar-cover {
+  border: 1px solid #1fa7d6;
+}
 .aqua {
   color: #00fbff;
 }
@@ -540,6 +570,14 @@ img.mfp-img {
 .care-section {
   background-color: inherit;
 }
+#customer-care .panel.sharp {
+  border-top: 2px solid #1fa7d6;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+}
+#customer-care .panel.sharp .panel-footer {
+  border-top: 1px solid #e9f6fb;
+  background-color: transparent;
+}
 /* End Care Page */
 /* Start Cart Page */
 .box-cart-total #subtotal td, .box-cart-total #subtotal span {
@@ -549,7 +587,7 @@ img.mfp-img {
   font-family: "Josefin Sans", "HelveticaNeue", "Helvetica Neue", sans-serif;
   line-height: 1.2;
 }
-/* End Start Page */
+/* End Cart Page */
 /* Start Search */
 #search [class^="pe-7s-"], #search [class*=" pe-7s-"] {
   font-size: 40px;
