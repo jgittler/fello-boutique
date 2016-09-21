@@ -36,7 +36,7 @@
 <!-- end of Hits Analytics code -->
 
  </head>
-<body class="home {% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" id="{{ page_title | handle }}">
+<body class="home {% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" id="{{ page_title | handle }}" style="padding-right: 0;">
   {% include 'header' %}
   
   {{ content_for_layout }}

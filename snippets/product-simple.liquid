@@ -21,22 +21,22 @@
 <div class="product-details-full">                            
   <div class="container">
     <div class="row" id="product-single">
-      <div class="col-md-7 col-lg-7 col-sm-12 col-xs-12">
+      <div class="col-md-9 col-lg-9 col-sm-12 col-xs-12">
         <div class="product-detail-image">
           <div class="thumbnails" id="ProductThumbs">
             {% if product.images.size > 1 %}
             {% assign check = 1 %}
               {% for image in product.images %}
-                <a data-url="{{ image.src | img_url: '1024x1024' }}" data-image-id="{{ image.id }}" href="{{ image.src | img_url: '1024x1024' }}" class="product-single__thumbnail{% if check == 1 %} active{% endif %}{% if check > 3 %} hidden{% endif %}">
+                <a data-url="{{ image.src | img_url: '1024x1024' }}" data-image-id="{{ image.id }}" href="{{ image.src | img_url: '1024x1024' }}" class="product-single__thumbnail{% if check == 1 %} active{% endif %}">
                   <img src="{{ image.src | img_url: 'medium' }}" alt="{{ image.alt | escape }}">
                 </a>
                 {% assign check = check | plus : 1 %}
               {% endfor %}
             {% endif %}
           </div>
-          <div class="main-image-wapper" id="ProductPhoto">
+          <div class="main-image-wapper text-center" id="ProductPhoto">
             {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
-            <img class="main-image" src="{{ featured_image | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg"{% if settings.product_image_zoom_type == 'zoom-in' %} data-zoom="{{ featured_image | img_url: '1024x1024' }}"{% endif %} data-image-id="{{ featured_image.id }}">
+            <img style="width: 105%;" class="main-image" src="{{ featured_image | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg"{% if settings.product_image_zoom_type == 'zoom-in' %} data-zoom="{{ featured_image | img_url: '1024x1024' }}"{% endif %} data-image-id="{{ featured_image.id }}">
             <button id="show_image_variant" class="{{ variant.id }}" style="display:none;">view more image<i class="fa fa-photo"></i></button>
           </div>
           {% if settings.product_image_zoom_type == 'lightbox' %}
@@ -48,12 +48,13 @@
           {% endif %}
         </div>
       </div>
-      <div class="col-md-5 col-lg-5 col-sm-12 col-xs-12">
+      <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
         <div class="product-details-right">
 
           {% if product.title contains "Collaboration" %}
           {% else %}
-          <h4 class="small-caps"><strong>Free Shipping</strong> anywhere in the United States & Canada.</h4>
+          <span class="h4 small-caps"><strong>Free Shipping</strong></span>
+          <span class="small-caps"><small>(US & Canada)</small></span>
           
           <hr />
           {% endif %}
@@ -71,17 +72,25 @@
             {% endif %}
           </span>
           
+          
           {% if product.title contains "Collaboration" %}
             <hr />
             {{ product.description | html }}
             <hr />
             {% else %}
-            {% if template != "index" %}
+
             <div id="size-link">
               <hr>
-              <h2><a href="#tab-1" title="size guide">Size Guide</a></h2>
+              <h2><a href="{{ product.url }}#tab-1" title="size guide">Size Guide</a></h2>
             </div>
-            {% endif %}
+          
+          
+          <script>
+            if (window.location.href.includes("products")) {
+              $("#size-link a").attr("href", "#tab-1");
+            }
+          </script>
+          
 
             <div class="short-descript">
               {% if product.metafields.meta.description %}
@@ -196,29 +205,15 @@
       <div class="tab-container">
         
 
-        <!-- Start MD-LG Screens -->
-        <div id="tab-1" class="hidden-xs hidden-sm tab-panel active">
+        <div id="tab-1" class="tab-panel active text-center">
           {% if product.title contains 'Fantom' %}
-            <img src="{{ 'h_fantom_size_guide.jpg' | asset_url }}" />
+          <img class="col-md-6 pull-none col-xs-12" src="{{ 'fantom_size_guide_small.jpg' | asset_url }}" />
           {% elsif product.title contains 'Konvoy' %}
-            <img src="{{ 'h_konvoy_size_guide.jpg' | asset_url }}" />
+          <img class="col-md-6 pull-none col-xs-12" src="{{ 'konvoy_size_guide_small.jpg' | asset_url }}" />
           {% elsif product.title contains 'Heron' %}
-            <img src="{{ 'h_heron_size_guide.jpg' | asset_url }}" />
+          <img class="col-md-6 pull-none col-xs-12" src="{{ 'heron_size_guide_small.jpg' | asset_url }}" />
           {% endif %}
         </div>
-        <!-- Start MD-LG Screens -->
-        
-        <!-- Start XS-SM Screens -->
-        <div id="tab-1" class="hidden-md hidden-lg tab-panel active">
-          {% if product.title contains 'Fantom' %}
-          <img src="{{ 'fantom_size_guide_small.jpg' | asset_url }}" />
-          {% elsif product.title contains 'Konvoy' %}
-          <img src="{{ 'konvoy_size_guide_small.jpg' | asset_url }}" />
-          {% elsif product.title contains 'Heron' %}
-          <img src="{{ 'heron_size_guide_small.jpg' | asset_url }}" />
-          {% endif %}
-        </div>
-        <!-- End XS-SM Screens -->
 
         
         {% if false %}

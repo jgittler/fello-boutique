@@ -40,6 +40,8 @@
           </div>
           <p>Send us your email if you would like to know anything about our products, charitable causes, or how to get involved.</p>
           {% endif %}
+          
+          <hr class="hidden-md hidden-lg" />
         </div>
         
         {% if false %}
@@ -59,8 +61,8 @@
 
                 
         {% if settings.use_footer_menu1 %}
-          <div class="col-xs-12 col-sm-12 col-md-2 col-md-offset-1">
-            <div class="widget our-service">
+          <div class="col-xs-6 col-md-2 col-md-offset-1">
+            <div class="our-service">
               {% if settings.footer_small_title_services != blank %}<h3>{{settings.footer_small_title_services}}</h3>{% endif %}
               {% assign footer_handle1 = settings.footer_widget_handle_services %}
 
@@ -79,8 +81,8 @@
         
         
         {% if settings.use_footer_follow_us %}
-          <div class="col-xs-12 col-sm-12 col-md-3">
-            <div class="widget widget_social style11">
+          <div class="col-xs-6 col-md-3">
+            <div class="widget_social style11">
               {% if settings.footer_small_title_follow != blank %}<h3>{{settings.footer_small_title_follow}}</h3>{% endif %}
               {% if settings.footer_widget_title_follow != blank %}<h3 class="widget-title">{{settings.footer_widget_title_follow}}</h3>{% endif %}
               <div class="content">

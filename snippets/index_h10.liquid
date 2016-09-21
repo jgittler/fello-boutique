@@ -11,7 +11,7 @@
 <div class="no-pads col-xs-12 no-margin">
 
 
-  <div class="text-center full-w video-text row-eq-height"
+  <div class="hidden-xs text-center full-w video-text text-drop-shadow row-eq-height"
        style="position: absolute;
               width: 100%;
               height: 100%;
@@ -43,8 +43,14 @@
 
   </div>
 
-  <div class="video-wrapper hidden">
-    <iframe width="100%"
+  <div class="video-wrapper no-pads hidden hidden-xs">
+
+    <video autoplay loop muted preload=auto style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; pointer-events: none; width: 100%; height: 100%;" id="bg-video">
+      <source src="https://res.cloudinary.com/hxeuqektg/video/upload/v1474267402/avosh_hp_double_fade_slomo_rirr2f.mp4" type="video/mp4">
+    </video>
+    
+
+<!--     <iframe width="100%"
             height="100%"
             src="https://www.youtube.com/embed/PfbROXMmw-s?autoplay=1;loop=1;playlist=PfbROXMmw-s;iv_load_policy=3;rel=0;hd=1;showinfo=0;controls=0"
             frameborder="0"
@@ -55,41 +61,125 @@
             style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; pointer-events: none;"
             id="bg-video"
             >
-    </iframe>
+    </iframe> -->
   </div>
   
-  <div class="video-placeholder">
+<!--   <div class="video-placeholder">
   </div>
-  
-  <img id="for-ios" class="full-w hidden" src="{{ 'vosh_fello_africa.jpg' | asset_url }}" alt="Vosh Clinic">
+   -->
+  <a href="/collections/all" title="shop" id="for-ios" class="hidden visible-xs">
+    <img class="full-w" src="{{ 'fello_eyewear_welcome.jpg' | asset_url }}" alt="Fello Eyewear">
+  </a>
 </div>
 
 
-  	{% include 'header2'  %} <!-- Best Sellers Header -->
+<div class="pillar">
+  <a class="full-w" href="#headerInstagram" title="shop instagram">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 amb panel sharp">
 
-{% assign check_even_int = 1| plus :0 %}
-{% for i in (1..10) %}
-  {% assign handle = "handle_product_fw_" | append: i | append: "_home10" %}
-  {% if settings[handle] != blank %}
+      <img src="{{ 'shop_instagram_1.jpg' | asset_url }}" alt="Shop Instagram">
+
+      <div class="panel-body text-center">
+
+        <div class="pillar-cover row-eq-height">
+
+          <div class="v-center full-w">
+
+            <h2 class="white">Shop<br />Instagram</h2>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </a>
+</div>
 
 
-  {% assign check_even_int = check_even_int | plus :1 %}
-  {% if check_even_int == 2 %}
-    {% assign product_full_width_style = "style2" %}
-  {% elsif check_even_int == 3 %}
-    {% assign check_even_int = 1 %}
-    {% assign product_full_width_style = "" %}
-  {% endif %}
+<div class="pillar">
+  <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 panel sharp">
 
-  {% assign include ="" %}
-  {% assign product_full_width_handle = settings[handle] %}
-    {% if i == 1 %}
-  	  {% include 'shortcode-product-fullwidth' with "break"  %}
-    {% elsif i == 2 %}
-  	  {% include 'shortcode-product-fullwidth' %}
-    {% endif %}
-  {% endif %}
-{% endfor %}
+    <img src="{{ 'white_pillar.jpg' | asset_url }}" alt="Fello Ambassador">
+
+    <div class="panel-body outline">
+
+      <div class="pillar-cover row-eq-height">
+
+        <div class="v-center full-w">
+          <div class="widget widget_newletter">
+
+            <h2 class="text-center highlight visible-lg">Be A Fello</h2>
+            <p class="visible-lg text-center"><strong>Get 10% off any purchase!</strong><br /><small> Learn about our products end charitable causes.</small></p>
+            <p class="hidden-lg text-center"><span class="highlight"><strong>Be A Fello</strong></span><br /><small> Get 10% off any purchase!</small></p>
+
+            <form style="position: relative;" class="newletter" action="{{ settings.newsletter_form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+              <input style="padding: 7px 15px;" class="email-text" type="text" name="newsletter" placeholder="Your email..." value="">
+              <span><button class="button add_to_cart_button" name="subscribe" id="subscribe" type="submit"><span class="icon pe-7s-angle-right"></span></button></span>
+            </form>
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="pillar">
+  <a class="full-w" href="/pages/collaborate" title="fello collaboration">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 panel amb sharp">
+
+      <img src="{{ 'fello_ambassadors.jpg' | asset_url }}" alt="Fello Ambassador">
+
+      <div class="panel-body text-center">
+
+        <div class="pillar-cover row-eq-height">
+
+          <div class="v-center full-w">
+
+            <h2 class="white">Collaborate</h2>
+
+            <!--           <h1 class="small-caps invisible visible-lg no-margin">Fello Ambassador</h1>
+<h4 class="small-caps invisible hidden-lg no-margin"><strong>Fello Ambassador</strong></h4> -->
+
+            <!--           <img class="minor-v-marg" style="width: 25%;" src="{{ 'fello_ambassador_white.png' | asset_url }}" alt="fello ambassador">    -->
+
+            <!--           <br /> -->
+            <!-- 
+<h4 class="invisible visible-lg no-margin">Get Paid to Spread the Love</h4>
+<p class="invisible hidden-lg no-margin"><small>Get Paid to Spread the Love</small></p> -->
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </a>
+</div>
+
+
+<div class="hidden-sm hidden-xs">
+  <h1 class="home-collection">Best Sellers</h1>
+</div>
+<div class="hidden-md hidden-lg clear">
+  <br class="minor-v-marg collapse-for-ff" />
+</div>
+
+
+{% assign product = all_products['tortoise-fantom'] %}
+{% assign pro_img = 'fantom_hp.png' %}
+{% include 'product-halfwidth' %}
+
+{% assign product = all_products['konvoy'] %}
+{% assign pro_img = 'konvoy_hp.png' %}
+{% include 'product-halfwidth' %}
+
 
 
 {% if settings.use_banner_carousel_home10 %}
@@ -122,7 +212,7 @@
 
       <div class="row row-eq-height hidden-xs">
         <div class="col-md-3 col-sm-6 col-md-offset-3 v-center">
-          <h1 class="highlight text-right">3028</h1>
+          <h1 class="highlight text-right">3031</h1>
         </div>
 
         <div class="col-md-3 col-sm-6 v-center">
@@ -130,70 +220,56 @@
         </div>
       </div>
       
-      <h1 class="visible-xs text-center"><span class="highlight">3028 </span>&nbsp Lives Changed</h1>
+      <h2 class="visible-xs text-center"><span class="highlight">3031 </span>Lives Changed</h2>
     </div>
 
 
   	{% include 'header2' with "Instagram" %}
 
 {% assign insta_products_top = "
-  Tortoise_Konvoy
-  Black_Konvoy 
-  Black_Fantom  
-  Tortoise_Fantom 
-  Ice_Blue_Heron
-  Dark_Green_Heron 
+  SI_Tortoise_Konvoy
+  SI_Black_Konvoy 
+  SI_Black_Fantom  
+  SI_Tortoise_Fantom 
+  SI_Ice_Blue_Heron
+  SI_Dark_Green_Heron 
 " | split: " " %}
 
 {% assign insta_products_bottom = "
-  Ice_Blue_Heron
-  Black_Fantom  
-  Dark_Green_Heron 
-  Tortoise_Fantom 
-  Black_Konvoy 
-  Tortoise_Konvoy 
+  SI_Ice_Blue_Heron
+  SI_Black_Fantom  
+  SI_Dark_Green_Heron 
+  SI_Tortoise_Fantom 
+  SI_Black_Konvoy 
+  SI_Tortoise_Konvoy 
 " | split: " " %}
 
 {% assign insta-classes = "banner-border primary col-xs-4 col-sm-2 no-pads quick-view" %}
 <div class="row no-margin">
   {% for product in insta_products_top %}
     {% assign product_handle = product | downcase | split: "_" | join: "-" %}
-    <!-- Can change when handles are changed -->
-    {% case product %}
-    {% when "Ice_Blue_Heron" %}
-      {% assign product_handle = "heron" %}
-    {% when "Black_Fantom" %}
-      {% assign product_handle = "fantom" %}
-    {% when "Black_Konvoy" %}
-      {% assign product_handle = "konvoy" %}
-    {% endcase %}
+
+
     {% assign product_obj = all_products[product_handle] %}
     <a class="{{ insta-classes }}" href="{{ product_obj.url }}" data-pid="{{ product_obj.id }}">
       {% assign img_parts = product | split: "_" %}
-      {% assign img_letter_1 = img_parts[0] | slice: 0 %}
-      {% assign img_letter_2 = img_parts[1] | slice: 0 %}
+      {% assign img_letter_1 = img_parts[1] | slice: 0 %}
+      {% assign img_letter_2 = img_parts[2] | slice: 0 %}
       {% assign img = img_letter_1 | append: img_letter_2 | append: "_1.jpg" %}
       <img src="{{ img | asset_url }}" alt="{{ product | split: "_" | join: " " }}">
     </a>
   {% endfor %}
 </div>
-<div class="row hidden-xs">
+<div class="row hidden-xs no-margin">
   {% for product in insta_products_bottom %}
     {% assign product_handle = product | downcase | split: "_" | join: "-" %}
-    <!-- Can change when handles are changed -->
-    {% case product %}
-    {% when "Ice_Blue_Heron" %}
-      {% assign product_handle = "heron" %}
-    {% when "Black_Fantom" %}
-      {% assign product_handle = "fantom" %}
-    {% when "Black_Konvoy" %}
-      {% assign product_handle = "konvoy" %}
-    {% endcase %}
+
+
     {% assign product_obj = all_products[product_handle] %}
     <a class="{{ insta-classes }}" href="{{ product_obj.url }}" data-pid="{{ product_obj.id }}">
       {% assign img_parts = product | split: "_" %}
-      {% assign img_letter_1 = img_parts[0] | slice: 0 %}
-      {% assign img_letter_2 = img_parts[1] | slice: 0 %}
+      {% assign img_letter_1 = img_parts[1] | slice: 0 %}
+      {% assign img_letter_2 = img_parts[2] | slice: 0 %}
       {% assign img = img_letter_1 | append: img_letter_2 | append: "_2.jpg" %}
       <img src="{{ img | asset_url }}" alt="{{ product | split: "_" | join: " " }}">
     </a>
@@ -214,13 +290,14 @@
     }
   });
 
-  $(".video-wrapper").ready(function() {
-    $("#bg-video").ready(function() {
-      sleep(500).then(function() {
-        $(".video-placeholder").remove();
-      });
-    });
-  });
+//   $(".video-wrapper").ready(function() {
+//     $("#bg-video").ready(function() {
+//       sleep(500).then(function() {
+//         console.log("HERE");
+//         $(".video-placeholder").remove();
+//       });
+//     });
+//   });
   
 /**
  * @author       Rob W <gwnRob@gmail.com>
