@@ -468,6 +468,8 @@
               $("#AddToCart").attr('data-pid',pid);
               $(document).on('click','.product-single__thumbnail' , function(event) {
                 var igid = $(this).attr('data-image-id');
+                var pic = $(this).attr("data-url");
+                $("#ProductPhotoImg").attr("src", pic);
                 $('#ProductPhotoImg').attr('data-image-id',igid)
               });
               

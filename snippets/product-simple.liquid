@@ -23,7 +23,7 @@
     <div class="row" id="product-single">
       <div class="col-md-9 col-lg-9 col-sm-12 col-xs-12">
         <div class="product-detail-image">
-          <div class="thumbnails" id="ProductThumbs">
+           <div class="thumbnails hidden-sm hidden-xs" id="ProductThumbs">
             {% if product.images.size > 1 %}
             {% assign check = 1 %}
               {% for image in product.images %}
@@ -34,6 +34,7 @@
               {% endfor %}
             {% endif %}
           </div>
+          
           <div class="main-image-wapper text-center" id="ProductPhoto">
             {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
             <img style="width: 105%;" class="main-image" src="{{ featured_image | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg"{% if settings.product_image_zoom_type == 'zoom-in' %} data-zoom="{{ featured_image | img_url: '1024x1024' }}"{% endif %} data-image-id="{{ featured_image.id }}">
@@ -48,6 +49,23 @@
           {% endif %}
         </div>
       </div>
+      
+
+      <div class="product-detail-image text-center hidden-lg hidden-md">
+        <div class="thumbnails pull-none full-w" id="ProductThumbs">
+          {% if product.images.size > 1 %}
+          {% assign check = 1 %}
+          {% for image in product.images %}
+          <a  class="h-under product-single__thumbnail{% if check == 1 %} active{% endif %}" data-url="{{ image.src | img_url: '1024x1024' }}" data-image-id="{{ image.id }}" href="{{ image.src | img_url: '1024x1024' }}">
+            <img src="{{ image.src | img_url: 'medium' }}" alt="{{ image.alt | escape }}">
+          </a>
+          {% assign check = check | plus : 1 %}
+          {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+      
+      
       <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
         <div class="product-details-right">
 
@@ -79,10 +97,15 @@
             <hr />
             {% else %}
 
-            <div id="size-link">
-              <hr>
-              <h2><a href="{{ product.url }}#tab-1" title="size guide">Size Guide</a></h2>
-            </div>
+          {% if product.price == 6900 %}
+          <br />
+          <br />
+          {% else %}
+          <div id="size-link">
+            <hr>
+            <h2><a href="{{ product.url }}#tab-1" title="size guide">Size Guide</a></h2>
+          </div>
+          {% endif %}
           
           
           <script>
@@ -164,7 +187,7 @@
                 </div>
                 {% endif %}
 
-              <br />
+
 
                 <a id="AddToCart" class="v-center minor-v-marg full-w button button-add-cart boutique__add-to-cart" data-pid="{{ product.variants.first.id }}"><span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span></a>
 
@@ -180,16 +203,15 @@
   </div>
 </div>
 
-{% if product.title contains "Collaboration" %}
+
+{% if product.title contains "Collaboration" or product.price == 6900 %}
 {% else %}
 <div class="container">
 
     <div class="tab-details-product style2">
       <ul class="box-tabs nav-tab">
         
-
-            <li class="active"><a data-toggle="tab" href="#tab-1">Size Guide</a></li>
-
+        <li class="active"><a data-toggle="tab" href="#tab-1">Size Guide</a></li>
 
 
         {% if false %}
@@ -235,6 +257,14 @@
 {% endif %}
 
 <script>
+  
+//   Hack for Mobile & Tab
+  $("#product-single .product-detail-image .thumbnails a").click(function() {
+    var pic = $(this).attr("data-url");
+    var id = $(this).attr("data-image-id");
+    $("#ProductPhotoImg").attr("src", pic);
+    $("#ProductPhotoImg").attr("data-image-id", id);
+  });
   
   $(document).on('mouseenter','.product-single__thumbnail', function() {
     $(document).on('click','.product-single__thumbnail', function() {

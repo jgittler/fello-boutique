@@ -19,7 +19,10 @@
       </div>
       <div class="col-md-5 col-lg-5 col-sm-12 col-xs-12">
         <div class="product-details-right">
-          {% include 'breadcrumb-product' %}
+          <span class="h4 small-caps"><strong>Free Shipping</strong></span>
+          <span class="small-caps"><small>(US & Canada)</small></span>
+          
+          <hr />
           <h3 class="product-name">{{ product.title | upcase }}</h3>
           <div class="rating">
             <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
@@ -33,6 +36,9 @@
             	{{ product.description | html }}
             {% endif %}
           </div>                                            
+          
+          {% include 'sold-out' %}
+          
           {% if settings.use_wishlist %}
           {% assign button = "button" %}
           {% include 'wishlist-product' %}
@@ -42,7 +48,7 @@
     </div>
   </div>
 </div>
-<div class="container">                        
+<!-- <div class="container">                        
 	 {% if product.metafields.meta.reviews %}
         <div class="tab-details-product padding-40-60">
           <ul class="box-tabs nav-tab">
@@ -79,14 +85,13 @@
         </div>      
       {% endif %}
   <div class="upsell-products">{% include 'upsell-products' %}</div> 
-</div> <!--END CONTAINER-->  
-<div class="box-list-reviews">
+</div> <!--END CONTAINER-->
+<!-- <div class="box-list-reviews">
   <div class="container">  
       <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
   </div>
 </div>
-{% assign margin_shipping_icon = "margin-top-60 margin-bottom-30" %}
-   {% include 'shortcode-shipping-icon' %}
+ -->
 
 <script type="text/javascript"> 
   jQuery(document).ready(function($){

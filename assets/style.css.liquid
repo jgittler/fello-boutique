@@ -67,10 +67,10 @@ hr.highlight {
   height: 100%;
 }
 .full-w {
-  width: 100%;
+  width: 100% !important;
 }
 .pull-none {
-  float: none;
+  float: none !important;
 }
 .top-pic {
   background-position: center;
@@ -229,7 +229,6 @@ hr.highlight {
   }
 }
 /* End Navbar */
-
 /* Start Collections Page Styles */
 .pro-add-to-cart hr {
   border-color: rgba(31, 167, 214, 0.3);
@@ -246,6 +245,12 @@ hr.highlight {
 }
 #all .jumbotron {
   margin-bottom: 0;
+}
+.shop-bamboo-banner {
+  background: url("{{ 'shop_bamboo_collections.jpg' | asset_url }}");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 70% 35%;
 }
 /* firefox hack*/
 @media (min-width: 992px) {
@@ -283,35 +288,32 @@ hr.highlight {
   margin-top: 5%;
   margin-bottom: 5%;
 }
-
 .charity-stats p {
   margin-bottom: 0px;
 }
-
 @media (max-width: 768px) {
   .charity-stats p {
     margin-top: 0px;
   }
 }
-
 .charity-stats hr {
   border-color: rgba(31, 167, 214, 0.5);
 }
-
 #charity .tile {
   padding: 0;
   text-align: center;
   background-color: #e9f6fb;
 }
-
 #charity .tile p {
   margin-top: 2em;
   padding-left: 5%;
   padding-right: 5%;
 }
-
 .charity-pic {
   background-image: url({{ "charity_top.jpg" | asset_url }});
+}
+.charity-stats .h1.highlight {
+  font-size: 48px;
 }
 /* End Charity Page Styles */
 
@@ -525,6 +527,9 @@ hr.highlight {
 .banner-text.style3 .subtitle {
   margin-bottom: 0 !important;
 }
+.mejs-overlay-error, .mejs-offscreen {
+  display: none;
+}
 /* firefox hack*/
 @media (max-width: 768px) {
   .collapse-for-ff {
@@ -535,6 +540,12 @@ hr.highlight {
 /* End Home Page Styles */
 
 /* Start Product Page */
+@media(max-width: 768px) {
+  #product-single .product-detail-image .thumbnails a.h-under {
+    width: 15%;
+    margin-top: 20px;
+  }
+}
 @media (max-width: 768px) {
   .product-details-full {
     padding-top: 20px !important;

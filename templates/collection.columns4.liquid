@@ -5,12 +5,16 @@
     </div>
   </div>
 {% endif %}
+
+
+<h1 class="jumbotron text-center shop-bamboo-banner white">Shop Bamboo</h1>
+
 <div class="main-container no-slidebar">
 	<div class="container">
 		<div class="row">
 			<div class="main-content col-sm-12">
 			{% paginate collection.products by 16 %}
-				<div class="shop-top">
+<!-- 				<div class="shop-top">
 					<div class="shop-top-left">
 						<div class="breadcrumbs">
 		                    {% include "breadcrumb" %}
@@ -23,12 +27,12 @@
 	                    </div>
 	                    {% include 'collection-views' %}
 					</div>
-				</div>
+				</div> -->
 				<ul class="product-list-grid desktop-columns-4 tablet-columns-3 mobile-columns-1 row flex-flow" id="collection-product">
 		          {% for product in collection.products %}
 		            {% assign grid_item_width = 'col-xs-12 col-sm-4 col-md-3' %}
 		              {% include 'product-grid-item' %}
-		              {% include 'product-list-item' %} 
+<!-- 		              {% include 'product-list-item' %}  -->
 		            {% endfor %}
 		        </ul>
 				{% if paginate.pages > 1 %}

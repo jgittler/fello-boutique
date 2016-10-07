@@ -43,30 +43,19 @@
 
   </div>
 
-  <div class="video-wrapper no-pads hidden hidden-xs">
-
-    <video autoplay loop muted preload=auto style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; pointer-events: none; width: 100%; height: 100%;" id="bg-video">
-      <source src="https://res.cloudinary.com/hxeuqektg/video/upload/v1474267402/avosh_hp_double_fade_slomo_rirr2f.mp4" type="video/mp4">
-    </video>
-    
-
-<!--     <iframe width="100%"
-            height="100%"
-            src="https://www.youtube.com/embed/PfbROXMmw-s?autoplay=1;loop=1;playlist=PfbROXMmw-s;iv_load_policy=3;rel=0;hd=1;showinfo=0;controls=0"
-            frameborder="0"
-            webkitallowfullscreen=""
-            mozallowfullscreen=""
-            allowfullscreen=""
-            allownetworking="internal"
-            style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; pointer-events: none;"
-            id="bg-video"
-            >
-    </iframe> -->
+  <div class="video-placeholder hidden-xs">
   </div>
   
-<!--   <div class="video-placeholder">
+<!--   <img class='full-w' src='{{ "vosh_poster.jpg" | asset_url }}'> -->
+
+  <div class="video-wrapper hidden-xs" style="height: 0; position: absolute; top: 0;">
+     
+    <video autoplay loop muted preload=auto style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; pointer-events: none; width: 100%; height: 100%;" id="bg-video">
+      <source src="https://d5kbzi6svqh1a.cloudfront.net/hp_video.mp4" type="video/mp4">
+    </video>
+    
   </div>
-   -->
+  
   <a href="/collections/all" title="shop" id="for-ios" class="hidden visible-xs">
     <img class="full-w" src="{{ 'fello_eyewear_welcome.jpg' | asset_url }}" alt="Fello Eyewear">
   </a>
@@ -74,10 +63,10 @@
 
 
 <div class="pillar">
-  <a class="full-w" href="#headerInstagram" title="shop instagram">
+  <a class="full-w" href="/collections/bamboo" title="shop instagram">
     <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 amb panel sharp">
 
-      <img src="{{ 'shop_instagram_1.jpg' | asset_url }}" alt="Shop Instagram">
+      <img src="{{ 'shop_bamboo.jpg' | asset_url }}" alt="Shop Bamboo">
 
       <div class="panel-body text-center">
 
@@ -85,7 +74,7 @@
 
           <div class="v-center full-w">
 
-            <h2 class="white">Shop<br />Instagram</h2>
+            <h2 class="white"><strong>SHOP BAMBOO</strong></h2>
 
           </div>
 
@@ -142,7 +131,7 @@
 
           <div class="v-center full-w">
 
-            <h2 class="white">Collaborate</h2>
+            <h2 class="white"><strong>COLLABORATE</strong></h2>
 
             <!--           <h1 class="small-caps invisible visible-lg no-margin">Fello Ambassador</h1>
 <h4 class="small-caps invisible hidden-lg no-margin"><strong>Fello Ambassador</strong></h4> -->
@@ -164,7 +153,7 @@
 </div>
 
 
-<div class="hidden-sm hidden-xs">
+<div class="hidden-sm hidden-xs col-md-12">
   <h1 class="home-collection">Best Sellers</h1>
 </div>
 <div class="hidden-md hidden-lg clear">
@@ -212,7 +201,7 @@
 
       <div class="row row-eq-height hidden-xs">
         <div class="col-md-3 col-sm-6 col-md-offset-3 v-center">
-          <h1 class="highlight text-right">3031</h1>
+          <h1 class="highlight text-right">3043</h1>
         </div>
 
         <div class="col-md-3 col-sm-6 v-center">
@@ -220,7 +209,7 @@
         </div>
       </div>
       
-      <h2 class="visible-xs text-center"><span class="highlight">3031 </span>Lives Changed</h2>
+      <h2 class="visible-xs text-center"><span class="highlight">3043 </span>Lives Changed</h2>
     </div>
 
 
