@@ -71,6 +71,9 @@
 
           {% if product.title contains "Collaboration" %}
           {% else %}
+          {% include 'breadcrumb-product' %}
+          <br />
+          
           <span class="h4 small-caps"><strong>Free Shipping</strong></span>
           <span class="small-caps"><small>(US & Canada)</small></span>
           
@@ -213,10 +216,8 @@
         
         <li class="active"><a data-toggle="tab" href="#tab-1">Size Guide</a></li>
 
+        <li><a data-toggle="tab" href="#tab-2">Find Your Face</a></li>
 
-        {% if false %}
-          <li><a data-toggle="tab" href="#tab-2">{{settings.product_tab_title_2}}</a></li>
-        {% endif %}
         {% if false %}
           <li><a data-toggle="tab" href="#tab-3">{{settings.product_tab_title_3}}</a></li>
         {% endif %}
@@ -236,11 +237,11 @@
           <img class="col-md-6 pull-none col-xs-12" src="{{ 'heron_size_guide_small.jpg' | asset_url }}" />
           {% endif %}
         </div>
-
         
-        {% if false %}
-            <div id="tab-2" class="tab-panel">{{ settings.product_tab_desc_2 }}</div>
-        {% endif %}
+        <div id="tab-2" class="tab-panel">
+          {% include 'product-find-your-face' %}
+        </div>
+
         {% if false %}
             <div id="tab-3" class="tab-panel">{{ settings.product_tab_desc_3 }}</div>
         {% endif %}

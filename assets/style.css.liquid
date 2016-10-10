@@ -587,7 +587,7 @@ img.mfp-img {
   vertical-align: top;
 }
 .care-pic {
-  background: url({{ "customer_care.jpg" | asset_url }});
+  background: url({{ "customer-care.jpg" | asset_url }});
 }
 .care-section.visible-xs {
   border: none;
@@ -602,20 +602,20 @@ img.mfp-img {
 }
 #customer-care .panel.sharp {
   border-top: 2px solid #1fa7d6;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+  box-shadow: none;
 }
 #customer-care .panel.sharp .panel-footer {
   border-top: 1px solid #e9f6fb;
   background-color: transparent;
 }
+.care-section p {
+  font-family: "Josefin Sans", "HelveticaNeue", "Helvetica Neue", sans-serif;
+  line-height: 2.2;
+}
 /* End Care Page */
 /* Start Cart Page */
 .box-cart-total #subtotal td, .box-cart-total #subtotal span {
   font-family: "Geneva", "Tahoma", "Verdana", sans-serif !important;
-}
-.care-section p {
-  font-family: "Josefin Sans", "HelveticaNeue", "Helvetica Neue", sans-serif;
-  line-height: 1.2;
 }
 /* End Cart Page */
 /* Start Search */
@@ -637,7 +637,199 @@ img.photo-cred {
 /* End Collab */
 
 /* End Collab */
+/* Start Find Your Face */
+#wizard .step {
+  margin-bottom: 5%;
+}
+#wizard .panel {
+  border: none;
+  border-bottom: 4px solid transparent;
+  box-shadow: none;
+}
+#wizard .panel:hover {
+  border-bottom: 4px solid #1fa7d6;
+}
+#wizard .step span.icon {
+ font-size: 130px;   
+}
+#selected li {
+  width: 20%;
+  height: 100%;
+}
+@media(min-width: 480px) {
+  #selected li:not(:first-child) {
+    border-left: 1px solid #1fa7d6;
+  }
+  #selected {
+    border-bottom: 1px solid #1fa7d6;
+    list-style-type: none;
+    height: 90px;
+  }
+  .btn-breadcrumb .btn:not(:last-child):after {
+    content: " ";
+  }
+  .btn-breadcrumb .btn:not(:last-child):before {
+    content: " ";
+  }
+  .btn-breadcrumb .btn {
+    padding: 6px 12px 6px 24px;
+  }
+  #wizard .results img {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    max-width: 20%;
+    margin: 20px;
+  }
+}
+@media(max-width: 480px) {
+  .step .pillar .panel {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  #selected li:not(:first-child) {
+    border-left: none;
+  }
+  #selected {
+    border-bottom: none;
+    list-style-type: none;
+    height: 90px;
+  }
+  .btn-breadcrumb .btn:not(:last-child):after {
+    content: none;
+  }
+  .btn-breadcrumb .btn:not(:last-child):before {
+    content: none;
+  }
+  .btn-breadcrumb .btn {
+    padding: 6px;
+  }
+  #wizard .results img {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
+    max-width: 90%;
+    margin: 15px;
+  }
+}
+#selected li span.icon {
+  font-size: 14px;
+}
+#selected li h1 {
+  font-size: 14px;
+}
+#selected .hold {
+  display: table;
+  margin: auto;
+}
+.step .step-message {
+  margin-top: 5%;
+}
+.step img {
+  max-width: 80%;
+  margin-bottom: 5%;
+}
+#selected img {
+  max-width: 20px;
+}
+.btn-breadcrumb .btn:not(:last-child):after {
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid white;
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  left: 100%;
+  z-index: 3;
+}
+.btn-breadcrumb .btn:not(:last-child):before {
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid rgb(173, 173, 173);
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 3;
+}
 
+/** The Spacing **/
+.btn-breadcrumb .btn:first-child {
+  padding:6px 6px 6px 10px;
+}
+.btn-breadcrumb .btn:last-child {
+  padding:6px 18px 6px 24px;
+}
+
+/** Default button **/
+.btn-breadcrumb .btn.btn-crumb:not(:last-child):after {
+  border-left: 10px solid #fff;
+}
+.btn-breadcrumb .btn.btn-crumb:not(:last-child):before {
+  border-left: 10px solid #ccc;
+}
+.btn-breadcrumb .btn.btn-crumb.current:not(:last-child):after {
+  border-left: 10px solid #1fa7d6;
+}
+.btn-breadcrumb .btn.btn-crumb.current:not(:last-child):before {
+  border-left: 10px solid #1fa7d6;
+}
+.btn-breadcrumb .btn.btn-crumb.not-allowed:hover:not(:last-child):after {
+  border-left: 10px solid #fff;
+}
+.btn-breadcrumb .btn.btn-crumb.not-allowed:hover:not(:last-child):before {
+  border-left: 10px solid #ccc;
+}
+.btn-breadcrumb .btn.btn-crumb:hover:not(:last-child):after {
+  border-left: 10px solid #1fa7d6;
+}
+.btn-breadcrumb .btn.btn-crumb:hover:not(:last-child):before {
+  border-left: 10px solid #1fa7d6;
+}
+/* custom */
+.btn-crumb {
+  color: #1fa7d6;
+  background-color: #fff;
+  border-color: #eeeeee;
+}
+.btn-crumb.not-allowed:hover {
+  background-color: #fff;
+  border-color: #eeeeee;
+}
+.btn-crumb.not-allowed:active {
+  background-color: #fff;
+  border-color: #eeeeee;
+  box-shadow: none;
+}
+.btn-crumb:hover {
+  background-color: #e9f6fb;
+  border-color: #1fa7d6;
+  color: #1fa7d6;
+}
+a.current {
+  background-color: #1fa7d6;
+  color: white;
+}
+a.current:hover {
+  background-color: #1fa7d6;
+  color: white;
+}
+.crumbs .not-allowed {
+  color:  gray;
+  cursor: default;
+}
+/* End Find Your Face */
 /*------------------
  END CUSTOM STYLES
 ------------------*/

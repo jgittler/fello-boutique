@@ -1,10 +1,233 @@
-<header class="section-header">
-  <h1 class="section-header__title">{{ page.title }}</h1>
-</header>
+<div class="container">
+  
+  <div id="wizard">
+    
+    <!-- Bread Crumbs -->
+    <div class="col-xs-12 pointer h3 crumbs text-center minor-v-marg">
+      <div class="btn-group btn-breadcrumb">
+        <a class="current btn btn-crumb" title="pick style">Style</a>
+        <a class="not-allowed btn btn-crumb" title="pick sex">Sex</a>
+        <a class="not-allowed btn btn-crumb" title="pick face shape">Face Shape</a>
+        <a class="not-allowed btn btn-crumb" title="pick hair color">Hair Color</a>
+        <a class="not-allowed btn btn-crumb hidden-xs" title="find your face">Faces</a>
+      </div>
+    </div>
+  
+    <!-- SELECTED LARGE SCREENS -->
+    <div class="col-xs-12 text-center">
+      <ul id="selected" class="list-inline">
+        <li class="current">
+          <h4 class="gray">Style</h4>
+          <span class="hold">
+            <span class="icon"></span>
+            <br />
+            <p></p>
+          </span>
+        </li>
+        <li class="not-allowed">
+          <h4 class="gray">Sex</h4>
+          <span class="hold">
+            <span class="icon"></span>
+            <br />
+            <p></p>
+          </span>
+        </li>
+        <li class="not-allowed">
+          <h4 class="gray">Shape</h4>
+          <span class="hold">
+            <span class="icon"></span>
+            <br />
+            <p></p>
+          </span>
+        </li>
+        <li class="not-allowed">
+          <h4 class="gray">Hair</h4>
+          <span class="hold">
+            <span class="icon"></span>
+            <br />
+            <p></p>
+          </span>
+        </li>
+      </ul>
+    </div>
+    
+    <!-- STYLE -->
+    <div class="pick-style step col-xs-12 text-center">
+      
+      <h2 class="step-message">Choose A Style</h2>
+      
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer med-v-pads" data-style="konvoy">
 
-{% comment %}
-  Regular page content goes here.
-{% endcomment %}
-<div class="rte">
-  {{ page.content }}
+          <img src="{{ 'style-konvoy.png' | file_url }}" alt="the konvoy">
+          <br />
+          <h1 class="highlight">Konvoy</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer med-v-pads" data-style="fantom">
+
+          <img src="{{ 'style-fantom.png' | file_url }}" alt="the fantom">
+          <br />
+          <h1 class="highlight">Fantom</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer med-v-pads" data-style="heron">
+
+          <img src="{{ 'style-heron.png' | file_url }}" alt="the heron">
+          <br />
+          <h1 class="highlight">Heron</h1>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SEX -->
+    <div class="pick-sex step col-xs-12 hidden text-center">
+            
+      <h2 class="step-message">Select One</h2>
+
+      <div class="pillar col-xs-12 col-sm-6">
+        <div class="panel sharp pointer med-v-pads" data-sex="female">
+
+          <span class="icon pe-7s-user-female"></span>
+          <br />
+          <h1 class="highlight">Female</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-6">
+        <div class="panel sharp pointer med-v-pads" data-sex="male">
+
+          <span class="icon pe-7s-user"></span>
+          <br />
+          <h1 class="highlight">Male</h1>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SHAPE -->
+    <div class="pick-shape step col-xs-12 text-center hidden">
+                  
+      <h2 class="step-message">What's Your Face Shape?</h2>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer med-v-pads" data-shape="oval">
+
+          <img src="{{ 'male-oval-face.png' | file_url }}" alt="male oval face" class="male">
+          <img src="{{ 'female-oval-face.png' | file_url }}" alt="female oval face" class="female hidden">
+          <br>
+          <h1 class="highlight">Oval</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer med-v-pads" data-shape="round">
+
+          <img src="{{ 'male-round-face.png' | file_url }}" alt="male round face" class="male">
+          <img src="{{ 'female-round-face.png' | file_url }}" alt="female round face" class="female hidden">
+          <br>
+          <h1 class="highlight">Round</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer med-v-pads" data-shape="square">
+
+          <img src="{{ 'male-square-face.png' | file_url }}" alt="male square face" class="male">
+          <img src="{{ 'female-square-face.png' | file_url }}" alt="female square face" class="female hidden">
+          <br>
+          <h1 class="highlight">Square</h1>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- HAIR -->
+    <div class="pick-hair step col-xs-12 text-center hidden">
+                  
+      <h2 class="step-message">What's Your Hair Color?</h2>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer med-v-pads" data-hair="blonde">
+
+          <img src="{{ 'male-oval-face-blonde.png' | file_url }}" alt="male oval blonde" class="male oval">
+          <img src="{{ 'male-square-face-blonde.png' | file_url }}" alt="male square blonde" class="male square hidden">
+          <img src="{{ 'male-round-face-blonde.png' | file_url }}" alt="male round blonde" class="male round hidden">
+          <img src="{{ 'female-oval-face-blonde.png' | file_url }}" alt="female oval blonde" class="hidden female oval">
+          <img src="{{ 'female-square-face-blonde.png' | file_url }}" alt="female square blonde" class="hidden female square">
+          <img src="{{ 'female-round-face-blonde.png' | file_url }}" alt="female round blonde" class="hidden female round">
+          <br>
+          <h1 class="highlight">Blonde</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer med-v-pads" data-hair="brown">
+
+          <img src="{{ 'male-oval-face-brown.png' | file_url }}" alt="male oval brown" class="male oval">
+          <img src="{{ 'male-square-face-brown.png' | file_url }}" alt="male square brown" class="male square hidden">
+          <img src="{{ 'male-round-face-brown.png' | file_url }}" alt="male round brown" class="male round hidden">
+          <img src="{{ 'female-oval-face-brown.png' | file_url }}" alt="female oval brown" class="hidden female oval">
+          <img src="{{ 'female-square-face-brown.png' | file_url }}" alt="female square brown" class="hidden female square">
+          <img src="{{ 'female-round-face-brown.png' | file_url }}" alt="female round brown" class="hidden female round">
+          <br>
+          <h1 class="highlight">Brown</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer med-v-pads" data-hair="black">
+
+          <img src="{{ 'male-oval-face-black.png' | file_url }}" alt="male oval black" class="male oval">
+          <img src="{{ 'male-square-face-black.png' | file_url }}" alt="male square black" class="male square hidden">
+          <img src="{{ 'male-round-face-black.png' | file_url }}" alt="male round black" class="male round hidden">
+          <img src="{{ 'female-oval-face-black.png' | file_url }}" alt="female oval black" class="hidden female oval">
+          <img src="{{ 'female-square-face-black.png' | file_url }}" alt="female square black" class="hidden female square">
+          <img src="{{ 'female-round-face-black.png' | file_url }}" alt="female round black" class="hidden female round">
+          <br>
+          <h1 class="highlight">Black</h1>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 results step container text-center hidden">
+      
+      <h2 class="step-message">Check Them Out | <div id="reset" class="btn btn-blue">Reset</div></h2>
+
+{% include 'find-your-face-counts' %}
+  {% for face in face_matrix %}
+    {% assign count = face | split: "-" | last %}
+    {% for i in (1..count) %}
+      {% assign full_path = face | split: "-" %}
+      {% assign path = full_path[0] | append: "-" | append: full_path[1] | append: "-" | append: full_path[2] | append: "-" | append: full_path[3] %}
+    
+      <img src="" data-src="{{ path | append: "-" | append: i | append: ".jpg" | file_url }}" data-filter="{{ path }}">
+      
+
+    {% endfor %}
+  {% endfor %}
+    </div>
+    
+
+    <!-- RESULTS -->
+  </div>
+
 </div>
+
+<div id="fit-filters" data-style="" class="hidden" data-sex="" data-shape="" data-hair="">
+</div>
+
+{{ 'find-your-face.js' | asset_url | script_tag  }}
