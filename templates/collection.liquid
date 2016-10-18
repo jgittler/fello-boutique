@@ -17,13 +17,13 @@
 {% assign rows = settings.collections_rows %}
 {% assign total_products = products_per_row | times: rows %}
 
-<h1 class="jumbotron text-center blue-bg">Classic Quality Design</h1>
+<h1 class="jumbotron text-center shop-classic-banner">Shop Classic</h1>
 
 <div class="main-container left-slidebar">
   <div class="container">
     <div class="row">
       <div class="main-content col-xs-12">
-        {% paginate collection.products by 9 %}
+        {% paginate collection.products by 18 %}
           <div class="shop-top hidden">
             <div class="shop-top-left">
               <div class="breadcrumbs">
@@ -42,8 +42,10 @@
         <ul class="product-list-grid desktop-columns-3 tablet-columns-2 mobile-columns-1 row" id="collection-product">
           {% for product in collection.products %}
             {% assign grid_item_width = 'col-sm-6 col-md-4' %}
+              {% if forloop.index == 7 %}
+<!--           <p class="h1 text-center blue minor-v-pads">Shop Bamboo</p> -->
+              {% endif %}
               {% include 'product-grid-item' %}
-
             {% endfor %}
 
         </ul>
