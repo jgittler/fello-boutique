@@ -149,3 +149,86 @@
   
 </footer>
 <!-- <a href="#" class="scroll_top" title="Scroll to Top" style="display: block;"><i class="fa fa-arrow-up"></i></a> -->
+<div id="recent-buy" class="col-sm-3 col-xs-6 well sharp no-margin" style="opacity: 0;">
+  <h5><strong><span class="name"></span></strong> in <strong><span class="city"></span></strong> just purchased:</h5>
+  <h3 class="small-caps model"></h3>
+  <img src="" alt="">
+</div>
+<script>
+  var names = [
+    "Haydee", "Hermila", "Laurine", "Ronald", "Jo", "Ezequiel", "Harriette", "Cristin", "Chad", "Jolynn", "Kum", "Cherish", "Felicitas", "Abbey", "Pamella", "Hyman", "Clarice", "Lois", "Eugena", "Ivey", "Karlyn", "Evonne", "Isabel", "Aurea", "Hollis", "Lashay", "Jamila", "Roselee", "Dimple", "George", "Everett", "Lakeshia", "Benton", "Bennie", "Yen", "Lien", "Laraine", "Eufemia", "Lucile", "Walker", "Clarinda", "Tammie", "Brendan", "Hillary", "Meggan", "Norma", "Federico", "Berniece", "Rochell", "Lawana",
+    "Alverta", "Herminia", "Rochell", "Jerald", "Johnsie", "Lashunda", "Elly", "Floyd", "Chandra", "Diedra", "Jenise", "Maureen", "Lanora", "Darryl", "Miranda", "Justa", "Lucrecia", "Renita", "Sophia", "Robert", "Carline", "Sarah", "Nu", "Bernadine", "Meg", "Leif", "Nicolas", "Libbie", "Blanca", "Azzie", "Teresa", "Mack", "Bebe", "Cherise", "Breana", "Milan", "Shandi", "Thomas", "Shantae", "Jesusita", "Christene", "Cristopher", "Irving", "Stephenie", "Eda", "Luna", "Garth", "Neville", "Theda", "Shara"
+  ];
+  var cities = ["New York",
+ "Los Angeles",
+ "Chicago",
+ "Houston",
+ "Phoenix",
+ "Philadelphia",
+ "San Antonio",
+ "Dallas",
+ "San Diego",
+ "San Jose",
+ "Detroit",
+ "San Francisco",
+ "Jacksonville",
+ "Indianapolis",
+ "Austin",
+ "Columbus",
+ "Fort Worth",
+ "Charlotte",
+ "Memphis",
+ "Baltimore",
+ "El Paso",
+ "Boston",
+ "Milwaukee",
+ "Denver",
+ "Seattle",
+ "Nashville",
+ "Washington",
+ "Las Vegas",
+ "Portland",
+ "Louisville",
+ "Oklahoma City",
+ "Tucson",
+ "Atlanta",
+ "Albuquerque",
+ "Fresno",
+ "Sacramento",
+ "Long Beach",
+ "Mesa",
+ "Kansas City",
+ "Omaha",
+ "Cleveland",
+ "Virginia Beach",
+ "Miami",
+ "Oakland",
+ "Raleigh",
+ "Tulsa",
+ "Minneapolis"
+];
+  var models = [{% for product in collections.all.products %}{% if product.available %}["{{ product.title }}", "{{ product.images[0].src | img_url }}"],{% endif %}{% endfor %}];
+  $(document).ready(function() {
+                {% if page_title contains 'All' or page_title contains 'Changing ' %}
+      sleep(7000).then(function() {
+        var $div = $("#recent-buy");
+        var model = models[Math.floor(Math.random()*models.length)];
+        $div.find(".model").html(model[0]);
+        $div.find("img").attr("src", model[1]);
+        $div.find("img").attr("alt", model[0]);
+        var name = names[Math.floor(Math.random()*names.length)];
+        $div.find(".name").html(name);
+        var city = cities[Math.floor(Math.random()*cities.length)];
+        $div.find(".city").html(city);
+        $("#recent-buy").animate({
+          opacity: .9
+        }, 2500);
+  sleep(4000).then(function() {
+    $div.animate({
+      opacity: 0
+    }, 2500);
+  });
+  });
+  {% endif %}
+  });
+</script>

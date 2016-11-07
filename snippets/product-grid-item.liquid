@@ -65,11 +65,16 @@
               <span class="adding-cart"></span>
         		{% endif %}
           {% endif %}
-        </div>
+      </div>
       {% else %}
+      <span class="pro-add-to-cart">
         <hr />
-		<a class="button btn-sold-out" onclick="location.href='{{ product.url | within: collection }}'">{{'products.product.sold_out' | t | upcase }}</a>
-      {% endif %}
+        <span class="price">
+          <ins>{{product.price | money }}</ins>
+        </span>
+        <a class="button btn-sold-out" onclick="location.href='{{ product.url | within: collection }}'">{{'products.product.sold_out' | t | upcase }}</a>
+        {% endif %}
+      </span>
     </div>
   </div>
 </li>
