@@ -229,7 +229,7 @@
 " | split: " " %}
 
 {% assign insta-classes = "banner-border primary col-xs-4 col-sm-2 no-pads quick-view" %}
-<div class="row no-margin">
+<!-- <div class="row no-margin">
   {% for product in insta_products_top %}
     {% assign product_handle = product | downcase | split: "_" | join: "-" %}
 
@@ -259,7 +259,12 @@
     </a>
   {% endfor %}
 </div>
+ -->
 
+<script 
+src='https://snapppt.com/widgets/widget_loader/5aae36b1-7142-4fe2-a099-0abc609ab375/grid.js'
+ class='snapppt-widget'>
+</script>
 {{ 'odometer.js' | asset_url | script_tag }}
 <script>
   window.odometerOptions = {
@@ -318,4 +323,9 @@
  *        (Function)      Function to call when the player is ready.
  * @param Array  args     (optional) List of arguments to pass to function func
  */
+</script>
+<script>
+  $("iframe").ready(function() {
+    $("iframe.snpt-embed-widget__solo head").append($('{{ "shop-insta.css" | asset_url | stylesheet_tag }}'));
+  });
 </script>
