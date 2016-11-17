@@ -1,0 +1,14 @@
+<a href="{{ href }}" title="{{ title }} Blog">
+  <div class="col-sm-6 col-md-4 minor-v-pads minor-h-pads">
+    <div class="thumbnail sharp no-pads">
+      <img src="{{ img_src | file_url }}" alt="{{ img_src }}">
+      <div class="caption">
+        <h3 class="blue small-caps">{{ title }}</h3>
+        <p class="dark-gray desc">{{ description }}</p>
+        <a href="{{ href }}" class="btn btn-primary sharp" role="button">
+          {{ btn_text }}
+        </a>
+      </div>
+    </div>
+  </div>
+</a>

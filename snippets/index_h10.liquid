@@ -199,7 +199,7 @@
       </div>
       
       <div class="row text-center count-wrap">
-        <h1 class="highlight my-numbers">Calculating...</h1>
+        <h1 class="odometer highlight">Calculating...</h1>
       </div>
       <div class="row text-center minor-v-marg">
         <h1 class="blue">Lives Changed</h1>
@@ -269,7 +269,7 @@ src='https://snapppt.com/widgets/widget_loader/5aae36b1-7142-4fe2-a099-0abc609ab
 <script>
   window.odometerOptions = {
     auto: true, // Don't automatically initialize everything with class 'odometer'
-    selector: '.my-numbers', // Change the selector used to automatically find things to be animated
+//     selector: '.my-numbers', // Change the selector used to automatically find things to be animated
     format: 'd', // Change how digit groups are formatted, and how many digits are shown after the decimal point
     duration: 2000, // Change how long the javascript expects the CSS animation to take
     theme: 'train-station', // Specify the theme (if you have more than one theme css file on the page)
@@ -277,14 +277,15 @@ src='https://snapppt.com/widgets/widget_loader/5aae36b1-7142-4fe2-a099-0abc609ab
     // use it when you're looking for something more subtle.
   };
 
-  $(window).scroll(function() {
-    var hT = $('.charity-hp').offset().top,
-        hH = $('.charity-hp').outerHeight(),
-        wH = $(window).height(),
-        wS = $(this).scrollTop();
-    if (wS > (hT+hH-wH-350)){
-      $('.odometer').html(3094);
-    }
+    $(document).ready(function() {
+//   $(window).scroll(function() {
+//     var hT = $('.charity-hp').offset().top,
+//         hH = $('.charity-hp').outerHeight(),
+//         wH = $(window).height(),
+//         wS = $(this).scrollTop();
+//     if (wS > (hT+hH-wH-350)){
+      $('.odometer').html(3121);
+//     }
   });
 </script>
 
@@ -323,9 +324,10 @@ src='https://snapppt.com/widgets/widget_loader/5aae36b1-7142-4fe2-a099-0abc609ab
  *        (Function)      Function to call when the player is ready.
  * @param Array  args     (optional) List of arguments to pass to function func
  */
-</script>
-<script>
   $("iframe").ready(function() {
-    $("iframe.snpt-embed-widget__solo head").append($('{{ "shop-insta.css" | asset_url | stylesheet_tag }}'));
+    sleep(5000).then(function() {
+      $(".snptwdgt__ftr").hide();
+      $(".snptcrd__ovrly").hide();
+    });
   });
 </script>

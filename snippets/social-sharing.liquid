@@ -30,23 +30,22 @@
 
   {% if product.featured_image or article.image %}
 
-    {% if settings.share_pinterest %}
+<!--     {% if settings.share_pinterest %}
       <a target="_blank" href="//pinterest.com/pin/create/button/?url={{ permalinkURL }}&amp;media=http:{% if template contains 'product' %}{{ product | img_url: '1024x1024' }}{% else %}{{ article | img_url: '1024x1024' }}{% endif %}&amp;description={{ shareTitle }}" >
         <i class="fa fa-pinterest"></i>
       </a>
-    {% endif %}
+    {% endif %} -->
 
-    {% if settings.share_fancy %}
+<!--     {% if settings.share_fancy %}
       <a target="_blank" href="//fancy.com/fancyit?ItemURL={{ permalinkURL }}&amp;Title={{ shareTitle }}&amp;Category=Other&amp;ImageURL={% if template contains 'product' %}{{ product | img_url: '1024x1024' }}{% else %}{{ article | img_url: '1024x1024' }}{% endif %}" >
         <i class="icon icon-fancy"></i>
       </a>
-    {% endif %}
+    {% endif %} -->
 
   {% endif %}
 
-  {% if settings.share_google %}
+<!--   {% if settings.share_google %}
     <a target="_blank" href="//plus.google.com/share?url={{ permalinkURL }}" >
-      <!-- Cannot get Google+ share count with JS yet -->
       <i class="fa fa-google-plus"></i>
     </a>
-  {% endif %}
+  {% endif %} -->

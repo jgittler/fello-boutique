@@ -1,9 +1,9 @@
 <!-- /templates/blog.liquid -->
 
 {% paginate blog.articles by 6 %}
-<div class="main-container wishlist list-blogs">
+<div class="main-container list-blogs">
   <div class="container">
-      <h3 class="page-title">{{ blog.title }}</h3>
+      <h1 class="page-title">{{ blog.title }}</h1>
       <div class="blog-grid butique-masonry">
           <div class="masonry-grid" data-layoutmode="masonry" data-cols="3">
             {% for article in blog.articles %}
@@ -28,7 +28,6 @@
         </div>
       {% endif %}
 
-      {% include 'shortcode-shipping-icon' %} 
   </div>
 </div>
 {% endpaginate %}

@@ -1,0 +1,24 @@
+<div class="col-sm-6 col-md-4 col-lg-3 minor-v-pads minor-h-pads no-margin">
+  <div class="thumbnail sharp">
+    <img src="{{ img_src | file_url }}" alt="...">
+    <div class="caption">
+      <h3 class="blue small-caps">{{ name }}</h3>
+      <p class="dark-gray">{{ bio }}</p>
+      <p>
+        {% for social in socials %}
+        {% case social %}
+        {% when 'facebook' %}
+        {% assign base_href = "https://www.facebook.com/" %}
+        {% when 'twitter' %}
+        {% assign base_href = "https://twitter.com/" %}
+        {% when 'instagram' %}
+        {% assign base_href = "https://www.instagram.com/" %}
+        {% endcase %}
+        <a href="{{ base_href | append: accounts[forloop.index0] }}" class="sharp">
+          <span class="fa fa-{{ social }}"></span>
+        </a>
+        {% endfor %}
+      </p>
+    </div>
+  </div>
+</div>
