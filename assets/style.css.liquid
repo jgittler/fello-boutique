@@ -241,6 +241,9 @@ hr.highlight {
 }
 /* End Navbar */
 /* Start Blogs */
+.blogger .fa {
+  font-size: 22px;
+}
 .blogs .thumbnail {
   border-color: #e9f6fb;
   border-width: 3px;
@@ -260,6 +263,27 @@ hr.highlight {
 }
 #fellos .thumbnail {
   border-color: #e9f6fb;
+}
+.photography-banner {
+  background: url("{{ 'photography-banner.jpg' | file_url }}");
+}
+.blogs-banner {
+  background: url("{{ 'blogs-banner.jpg' | file_url }}");
+}
+.sports-banner {
+  background: url("{{ 'sports-banner.jpg' | file_url }}");
+}
+.travel-banner {
+  background: url("{{ 'travel-banner.jpg' | file_url }}");
+}
+.blogs-banner-base {
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 0px !important;
+  font-weight: bolder;
+}
+.list-blogs {
+  padding-top: 0px !important;
 }
 /* End Blogs */
 /* Start Collections Page Styles */
@@ -287,6 +311,11 @@ hr.highlight {
 }
 .shop-classic-banner {
   background: url("{{ 'collection-classic.jpg' | asset_url }}");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.shop-all-banner {
+  background: url("{{ 'all-collections.jpg' | file_url }}");
   background-repeat: no-repeat;
   background-size: cover;
 }

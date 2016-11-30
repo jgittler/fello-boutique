@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="author-info-wrap">
-        <div class="avatar"><img class="avatar avatar-68 photo" src="//www.gravatar.com/avatar/{{ article.user.email | md5 }}?s=50" alt="{{article.author}}"></div>
+<!--         <div class="avatar"><img class="avatar avatar-68 photo" src="//www.gravatar.com/avatar/{{ article.user.email | md5 }}?s=50" alt="{{article.author}}"></div>
         <div class="content">
           <div class="author-name"><a href="#">Admin</a></div>
           <div class="text"><p>{{article.user.bio | strip_html }}</p></div>
@@ -65,7 +65,7 @@
                 </li>
               {% endfor %}           
         </ul>
-      </div>
+      </div> -->
 
       {% paginate article.comments by 5 %}
 
@@ -134,9 +134,8 @@
             </div>  
         </div>
       {% endpaginate %}
-      {% assign margin_shipping_icon = "margin-top-60" %}
-      {% assign container_shipping_icon = " " %}
-        {% include 'shortcode-shipping-icon' %}
-      
+        <br />
+        <br />
+        <br />
     </div>
   </div>
