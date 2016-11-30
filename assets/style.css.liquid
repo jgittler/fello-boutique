@@ -43,6 +43,13 @@ hr.highlight {
   -o-border-radius: 0;
   border-radius: 0;
 }
+.round {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+}
 .v-center {
   margin-top: auto;
   margin-bottom: auto;
@@ -241,6 +248,18 @@ hr.highlight {
 }
 /* End Navbar */
 /* Start Blogs */
+.blog-detail span {
+  line-height: 2.5em;
+  font-size: 16px;
+  color: #555555;
+}
+.blog-detail h1 {
+  color: black;
+}
+.blog-detail img, .blog-detail iframe {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
 .blogger .fa {
   font-size: 22px;
 }
@@ -266,6 +285,9 @@ hr.highlight {
 }
 .photography-banner {
   background: url("{{ 'photography-banner.jpg' | file_url }}");
+}
+.fashion-banner {
+  background: url("{{ 'fashion-banner.jpg' | file_url }}");
 }
 .blogs-banner {
   background: url("{{ 'blogs-banner.jpg' | file_url }}");
