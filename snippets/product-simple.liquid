@@ -214,9 +214,9 @@
     <div class="tab-details-product style2">
       <ul class="box-tabs nav-tab">
         
-        <li class="active"><a data-toggle="tab" href="#tab-1">Size Guide</a></li>
+        <li class="active"><a data-toggle="tab" href="#tab-1">Find Your Face</a></li>
 
-        <li><a data-toggle="tab" href="#tab-2">Find Your Face</a></li>
+        <li><a data-toggle="tab" href="#tab-2">Size Guide</a></li>
 
         {% if false %}
           <li><a data-toggle="tab" href="#tab-3">{{settings.product_tab_title_3}}</a></li>
@@ -227,8 +227,11 @@
       </ul>
       <div class="tab-container">
         
-
-        <div id="tab-1" class="tab-panel active text-center">
+        <div id="tab-1" class="tab-panel active">
+          {% include 'product-find-your-face' %}
+        </div>
+        
+        <div id="tab-2" class="tab-panel text-center">
           {% if product.title contains 'Fantom' %}
           <img class="col-md-6 pull-none col-xs-12" src="{{ 'fantom_size_guide_small.jpg' | asset_url }}" />
           {% elsif product.title contains 'Konvoy' %}
@@ -237,10 +240,7 @@
           <img class="col-md-6 pull-none col-xs-12" src="{{ 'heron_size_guide_small.jpg' | asset_url }}" />
           {% endif %}
         </div>
-        
-        <div id="tab-2" class="tab-panel">
-          {% include 'product-find-your-face' %}
-        </div>
+
 
         {% if false %}
             <div id="tab-3" class="tab-panel">{{ settings.product_tab_desc_3 }}</div>
