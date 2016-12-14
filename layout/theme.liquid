@@ -41,6 +41,15 @@
 
  </head>
 <body class="home {% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" id="{{ page_title | handle }}" style="padding-right: 0;">
+<!--  NOT MOBILE  -->
+  <div class="text-center site-banner full-w row-eq-height hidden-xs"><p>FREE RETURNS on all purchases. Order by Dec. 20<sup>th</sup> to receive by Christmas.</p></div>
+  
+<!--  MOBILE  -->
+  <div class="visible-xs text-center site-banner full-w row-eq-height">
+    <p>FREE RETURNS on all purchases.</p>
+    <p class="small white">Order by Dec. 20<sup>th</sup> to receive by Christmas.</p>
+  </div>
+  
   {% include 'header' %}
   
   {{ content_for_layout }}
