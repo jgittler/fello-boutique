@@ -1,10 +1,11 @@
-<h1 class="jumbotron text-center shop-classic-banner">Shop Classic</h1>
+<h1 class="jumbotron text-center shop-classic-banner hidden-xs">Shop Classic</h1>
+<h1 class="jumbotron text-center shop-classic-banner visible-xs" style="color: white;"><strong>Shop Classic</strong></h1>
 
 <div class="main-container no-slidebar">
 	<div class="container">
 		<div class="row">
 			<div class="main-content col-sm-12">
-			{% paginate collection.products by 6 %}
+			{% paginate collection.products by 9 %}
 <!-- 				<div class="shop-top">
 					<div class="shop-top-left">
 						<div class="breadcrumbs">

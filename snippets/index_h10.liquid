@@ -177,8 +177,29 @@
   </a>
 </div>
 
+<div class="clear">
+  <br class="minor-v-marg collapse-for-ff" />
+</div>
 
-<div class="hidden-sm hidden-xs col-md-12">
+<!-- Not Mobile -->
+<div class="hidden-xs text-center sale-section">
+  <h2><span class="small-caps">Ends Soon! Use Code:</span> <code>eoysale</code></h2>
+  <h1 class="home-collection">10% OFF ANY ORDER</h1>
+  <h2><strong><a href="/collections/all"><span class="small-caps">Shop Sale</span> &gt;</a></strong></h2>
+</div>
+
+<!-- Mobile -->
+<div class="visible-xs text-center sale-section">
+  <h4><span class="small-caps">Ends Soon! Use Code:</span> <code>eoysale</code></h4>
+  <h1 class="home-collection">10% OFF ANY ORDER</h1>
+  <h3><strong><a href="/collections/all"><span class="small-caps">Shop Sale</span> &gt;</a></strong></h3>
+</div>
+
+<div class="clear">
+  <br class="minor-v-marg collapse-for-ff" />
+</div>
+
+<!-- <div class="hidden-sm hidden-xs col-md-12">
   <h1 class="home-collection">Best Sellers</h1>
 </div>
 <div class="hidden-md hidden-lg clear">
@@ -192,7 +213,7 @@
 
 {% assign product = all_products['konvoy'] %}
 {% assign pro_img = 'konvoy_hp.png' %}
-{% include 'product-halfwidth' %}
+{% include 'product-halfwidth' %} -->
 
 
 {% if settings.use_banner_carousel_home10 %}
@@ -288,8 +309,7 @@
 
 <script 
 src='https://snapppt.com/widgets/widget_loader/5aae36b1-7142-4fe2-a099-0abc609ab375/grid.js'
- class='snapppt-widget' crossorigin='anonymous'>
-</script>
+ class='snapppt-widget'></script>
 {{ 'odometer.js' | asset_url | script_tag }}
 <script>
   window.odometerOptions = {
@@ -309,7 +329,7 @@ src='https://snapppt.com/widgets/widget_loader/5aae36b1-7142-4fe2-a099-0abc609ab
 //         wH = $(window).height(),
 //         wS = $(this).scrollTop();
 //     if (wS > (hT+hH-wH-350)){
-      $('.odometer').html(3167);
+      $('.odometer').html(3182);
 //     }
   });
 </script>

@@ -318,6 +318,17 @@ hr.highlight {
 }
 /* End Blogs */
 /* Start Collections Page Styles */
+.new-product {
+  position: absolute;
+  left: 5%;
+  top: 5%;
+}
+.sale-product {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  height: 50px;
+}
 .pro-add-to-cart hr {
   border-color: rgba(31, 167, 214, 0.3);
   margin: 10px -15px;
@@ -341,7 +352,7 @@ hr.highlight {
   background-position: 70% 35%;
 }
 .shop-classic-banner {
-  background: url("{{ 'collection-classic.jpg' | asset_url }}");
+  background: url("{{ 'classic-collection.jpg' | asset_url }}");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -416,6 +427,31 @@ hr.highlight {
 /* End Charity Page Styles */
 
 /* Start Home Page Styles */
+.sale-section {
+  clear: both;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.sale-section code {
+  padding: 3px;
+  font-size: 90%;
+  color: #1e1e1e;
+  background-color: #e9f6fb;
+  border-radius: 4px;
+}
+.sale-section h1.home-collection {
+  font-size: 90px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+.sale-section.visible-xs h1.home-collection {
+  font-size: 44px;
+  margin-bottom: 20px;
+  
+}
+.sale-section h2 {
+  font-size: 32px;
+}
 .pillar .panel {
   margin-top: 30px;
   max-width: 500px;

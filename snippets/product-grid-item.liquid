@@ -39,7 +39,17 @@
 
     </div>
     <div class="product-info">
-      <h3 class="product-name"><a href="{{ product.url | within: collection }}">{{ product.title }}</a></h3>
+      <h3 class="product-name">
+        <a href="{{ product.url | within: collection }}">
+          {{ product.title }}
+          {% if product.title contains "Lunar" %}
+          <span class="home-collection new-product">
+            New!
+          </span>
+          <img class="sale-product" src="{{ 'sales_ribbon.png' | asset_url }}" alt="On Sale">
+          {% endif %}
+        </a>
+      </h3>
       
       <p>Polarized</p>
       

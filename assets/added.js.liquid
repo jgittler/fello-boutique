@@ -12,7 +12,20 @@ Array.prototype.diff = function(a) {
   return this.filter(function(i) {return a.indexOf(i) < 0;});
 };
 
-
 $("#wizard .pillar").hover(function() {
   $(this).find("h1").toggleClass("highlight");
+});
+
+$("#AddToCart").click(function() {
+  console.log("START");
+  fbq("track", "AddToCart");
+  console.log("END");
+});
+
+$("input[name='checkout']").click(function() {
+  fbq("track", "InitiateCheckout");
+});
+
+$("a[href='/checkout']").click(function() {
+  fbq("track", "InitiateCheckout");
 });
