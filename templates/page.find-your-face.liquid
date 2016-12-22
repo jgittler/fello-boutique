@@ -213,9 +213,19 @@
     {% for i in (1..count) %}
       {% assign full_path = face | split: "-" %}
       {% assign path = full_path[0] | append: "-" | append: full_path[1] | append: "-" | append: full_path[2] | append: "-" | append: full_path[3] %}
-    
-      <img src="" data-src="{{ path | append: "-" | append: i | append: ".jpg" | file_url }}" data-filter="{{ path }}">
+      {% assign prod = face | split: "-" | first %}
+      {% case prod %}
+      {% when "fantom" %}
+      {% assign prod_num = 0 %}
+      {% when "konvoy" %}
+      {% assign prod_num = 5 %}
+      {% when "heron" %}
+      {% assign prod_num = 3 %}
+      {% endcase %}
       
+      <a href="{{ collections["classic"].products[prod_num].url }}" title="{{ prod }}">
+        <img src="" data-src="{{ path | append: "-" | append: i | append: ".jpg" | file_url }}" data-filter="{{ path }}">
+      </a>
 
     {% endfor %}
   {% endfor %}
