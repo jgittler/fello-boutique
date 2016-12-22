@@ -223,11 +223,11 @@
 
     var productStyle = '{{ product.title | split: " " | last | downcase }}';
 
-    if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
-      var combo = filters.join('-');
-    } else {
+//     if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+//       var combo = filters.join('-');
+//     } else {
       var combo = filters.reverse().join('-');
-    }
+//     }
     
     var filter = productStyle + '-' + combo;
 

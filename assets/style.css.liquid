@@ -799,9 +799,15 @@ img.photo-cred {
 
 /* End Collab */
 /* Start Find Your Face */
-#wizard .results img:hover {
-  opacity: 0.5;
+.overlay .shop-banner {
+  margin-top: 25%;
 }
+@media(min-width: 768px) {
+  .overlay .shop-banner {
+    margin-top: 8%;
+  }
+}
+
 #wizard .step {
   margin-bottom: 5%;
 }
@@ -835,14 +841,16 @@ img.photo-cred {
   .btn-breadcrumb .btn {
     padding: 6px 12px 6px 24px;
   }
-  #wizard .results img {
-    -webkit-border-radius: 50%;
+}
+@media(min-width: 768px) {
+  .template-product #wizard .results img {
+/*     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
-    border-radius: 50%;
-    max-width: 20%;
-    margin: 20px;
+    border-radius: 50%; */
+    width: 20%;
+    margin: 15px;
   }
 }
 @media(max-width: 480px) {
@@ -867,14 +875,16 @@ img.photo-cred {
   .btn-breadcrumb .btn {
     padding: 6px;
   }
-  #wizard .results img {
-    -webkit-border-radius: 0;
+}
+@media(max-width: 768px) {
+  #wizard .results img, #wizard .results .hovereffect {
+/*     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     -ms-border-radius: 0;
     -o-border-radius: 0;
-    border-radius: 0;
-    max-width: 90%;
-    margin: 15px;
+    border-radius: 0; */
+    width: 100%;
+    margin: 15px 0 0 0;
   }
 }
 #selected li span.icon {
@@ -891,7 +901,7 @@ img.photo-cred {
   margin-top: 3%;
   font-variant: small-caps;
 }
-.step img {
+.step .panel img {
   max-width: 50%;
   margin-bottom: 5%;
 }
@@ -2623,7 +2633,7 @@ p.cartCost{
     display: inline-block;
 }
 .header.style3 .mini-cart{
-    padding: 0 30px;
+    padding: 0 20px;
 }
 
 .header.style3 .mini-cart .cart-link{

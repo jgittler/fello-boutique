@@ -59,15 +59,11 @@ src="https://www.facebook.com/tr?id=156715738012257&ev=PageView&noscript=1"
 
  </head>
 <body class="home {% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" id="{{ page_title | handle }}" style="padding-right: 0;">
-<!--  NOT MOBILE  -->
-  <div class="text-center site-banner full-w row-eq-height hidden-xs">
-    <p><strong>FREE RETURNS</strong> on all purchases.</p>
+
+  <div class="text-center site-banner full-w row-eq-height">
+    <p class="v-center"><strong>FREE RETURNS</strong> on all purchases.</p>
   </div>
-  
-<!--  MOBILE  -->
-  <div class="visible-xs text-center site-banner full-w row-eq-height">
-    <p><strong>FREE RETURNS on all purchases.</strong></p>
-  </div>
+
   
   {% include 'header' %}
   

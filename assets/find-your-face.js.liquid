@@ -31,11 +31,12 @@ $(document).ready(function() {
       return data[key];
     });         
 
-    if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
-      var combo = filters.join('-');
-    } else {
+
+//     if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+//       var combo = filters.join('-');
+//     } else {
       var combo = filters.reverse().join('-');
-    }
+//     }
 
     var selected = $("img[data-filter=" + combo + "]");
 
@@ -44,8 +45,12 @@ $(document).ready(function() {
       $(selected[i]).attr("src", newSrc);
     }
 
-    $('img[src=""]').hide();
-    $('img:not([src=""])').show();
+    var hiddens = $('img[src=""]');
+    var showers = $('img:not([src=""])');
+    hiddens.parent(".hovereffect").hide();
+    hiddens.hide();
+    showers.parent(".hovereffect").show();
+    showers.show();
   }
 
   var disableCrumbs = function(crumbs) {
