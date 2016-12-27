@@ -178,7 +178,7 @@
     
       {% assign product_lower = product.title | downcase | split: " " | last %}
       {% if full_path contains product_lower %}
-      <img src="" data-src="{{ path | append: "-" | append: i | append: ".jpg" | file_url }}" data-filter="{{ path }}">
+      <img class="face-result" src="" data-src="{{ path | append: "-" | append: i | append: ".jpg" | file_url }}" data-filter="{{ path }}">
       {% endif %}
 
     {% endfor %}
@@ -223,11 +223,7 @@
 
     var productStyle = '{{ product.title | split: " " | last | downcase }}';
 
-//     if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
-//       var combo = filters.join('-');
-//     } else {
-      var combo = filters.reverse().join('-');
-//     }
+    var combo = filters.reverse().join('-');
     
     var filter = productStyle + '-' + combo;
 
@@ -428,4 +424,8 @@
   });
 
 });
+  
+  $("img.face-result").on("load", function() {
+    $(this).addClass("face-border");
+  });
 </script>

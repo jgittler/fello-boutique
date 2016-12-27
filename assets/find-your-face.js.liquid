@@ -20,8 +20,9 @@ $(document).ready(function() {
   var allCrumbs = Array($crumb1, $crumb2, $crumb3, $crumb4, $crumb5);
   var allSelects = Array($select1, $select2, $select3, $select4);
   var allSteps = Array($step1, $step2, $step3, $step4, $step5);
-  var allFilters = ["style", "sex", "shape", "hair"];
+  var allFilters = Array("style", "sex", "shape", "hair");
   var allImgs = $(".results img");
+  var allStyles = Array("fantom", "konvoy", "heron");
 
   var loadImgResults = function() {
 
@@ -31,25 +32,31 @@ $(document).ready(function() {
       return data[key];
     });         
 
+    var combo = filters.reverse().join('-');
 
-//     if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
-//       var combo = filters.join('-');
-//     } else {
-      var combo = filters.reverse().join('-');
-//     }
-
-    var selected = $("img[data-filter=" + combo + "]");
+    if (data["style"].length < 1) {
+      var selected = [];
+      for (i = 0; i < allStyles.length; i++) {
+        var selector = allStyles[i] + combo;
+        var selection = $("img[data-filter=" + selector + "]" + "," + "img[data-filter=" + allStyles[i] + "]");
+        for (e = 0; e < selection.length; e++) {
+          selected.push(selection[e]);
+        }
+      }
+    } else {
+      var selected = $("img[data-filter=" + combo + "]" + "," + "img[data-filter=" + data["style"] + "]");
+    }
 
     for (i = 0; i < selected.length; i++) {
       var newSrc = $(selected[i]).attr("data-src");
       $(selected[i]).attr("src", newSrc);
     }
-
+    
     var hiddens = $('img[src=""]');
     var showers = $('img:not([src=""])');
-    hiddens.parent(".hovereffect").hide();
+    hiddens.parent("a").parent(".hovereffect.shop-prod").hide();
     hiddens.hide();
-    showers.parent(".hovereffect").show();
+    showers.parent("a").parent(".hovereffect.shop-prod").show();
     showers.show();
   }
 
@@ -59,6 +66,15 @@ $(document).ready(function() {
     }
   }
 
+  function scrollToAnchor(id, speed){
+    var tag = $("#" + id);
+    var dist = tag.offset().top - 50;
+    $("html, body").animate({ scrollTop: dist }, speed);
+  }
+  $(".results .step-message span").click(function() {
+    scrollToAnchor("shop-results", 1700);
+  });
+ 
   var toStep = function(currentCrumb, nextCrumb, hideSteps, showStep, selected, clicked) {
 
     currentCrumb.removeClass("current");
@@ -71,10 +87,19 @@ $(document).ready(function() {
 
     showStep.removeClass("hidden");
     
-    if (clicked.length) {
+    if (clicked.length == 1) {
       selected.html(clicked.html());
       selected.css("visibility", "visible");
       selected.siblings().addClass("highlight");
+    } else if (clicked.length > 1) {
+      var htmlStr = "";
+      for (i = 0; i < clicked.length; i++) {
+        htmlStr += clicked[i].outerHTML;
+      }
+      var fullIcon = htmlStr + "<br />" + "<h1 class='hidden-xs' style='margin-top: 2px;'>All</h1>"
+      selected.html(fullIcon);
+      selected.css("visibility", "visible");
+      selected.find("h1").addClass("highlight");
     }
     
     if (currentCrumb.html() == $crumb5.html()) {
@@ -82,6 +107,8 @@ $(document).ready(function() {
         $(allImgs[i]).attr("src", "");
       }
     }
+    
+    scrollToAnchor("top-crumbs", 500);
   }
 
   var setFilter = function(filter) {
@@ -103,22 +130,24 @@ $(document).ready(function() {
   }
   
   var setColors = function(filter) {
-    filterSex(filter, '.pick-hair');
-    switch(filter['shape']) {
-      case 'square':
-        $(".pick-hair .square ." + filter['sex']).removeClass("hidden");
-        $(".pick-hair .oval").addClass("hidden");
-        $(".pick-hair .round").addClass("hidden");
+    filterSex(filter, '.pick-shape');
+    var wrapper = ".pick-shape";
+
+    switch(filter['hair']) {
+      case 'blonde':
+        $(wrapper + " .blonde." + filter['sex']).removeClass("hidden");
+        $(wrapper + " .brown").addClass("hidden");
+        $(wrapper + " .black").addClass("hidden");
         break;
-      case 'round':
-        $(".pick-hair .round ." + filter['sex']).removeClass("hidden");
-        $(".pick-hair .oval").addClass("hidden");
-        $(".pick-hair .square").addClass("hidden");
+      case 'brown':
+        $(wrapper + " .brown." + filter['sex']).removeClass("hidden");
+        $(wrapper + " .blonde").addClass("hidden");
+        $(wrapper + " .black").addClass("hidden");
         break;
-      case 'oval':
-        $(".pick-hair .oval ." + filter['sex']).removeClass("hidden");
-        $(".pick-hair .round").addClass("hidden");
-        $(".pick-hair .square").addClass("hidden");
+      case 'black':
+        $(wrapper + " .black." + filter['sex']).removeClass("hidden");
+        $(wrapper + " .brown").addClass("hidden");
+        $(wrapper + " .blonde").addClass("hidden");
         break;
     }
   }
@@ -156,7 +185,7 @@ $(document).ready(function() {
 
     } else if ($nextText == $crumb2.html()) {
 
-      var clearfilters = allFilters.diff(Array("style"));
+      var clearfilters = allFilters.diff(Array("sex"));
       var $showStep = $step2;
       var $selected = $select2;
       var $disCrumbs = Array($crumb3, $crumb4, $crumb5);
@@ -164,7 +193,7 @@ $(document).ready(function() {
 
     } else if ($nextText == $crumb3.html()) {
 
-      var clearfilters = allFilters.diff(Array("style", "sex"));
+      var clearfilters = allFilters.diff(Array("sex", "hair"));
       var $showStep = $step3;
       var $selected = $select3;
       var $disCrumbs = Array($crumb4, $crumb5);
@@ -172,7 +201,7 @@ $(document).ready(function() {
 
     } else if ($nextText == $crumb4.html()) {
 
-      var clearfilters = allFilters.diff(Array("style", "sex", "shape"));
+      var clearfilters = allFilters.diff(Array("sex", "hair", "shape"));
       var $showStep = $step4;
       var $selected = $select4;
       var $disCrumbs = Array($crumb5);
@@ -204,7 +233,7 @@ $(document).ready(function() {
     disableCrumbs($disCrumbs);
     clearSelected(unSelected);
   });
-
+  
   $("#wizard .step .panel").click(function() {
     var $currentStep = $(this).parent().parent();
     var $hideSteps = Array($currentStep);
@@ -219,6 +248,9 @@ $(document).ready(function() {
       var $nextCrumb = $crumb2;
 
       setFilter(filter);
+      filterSex(filterData, '.pick-hair');
+      
+      fbq('track', 'pick_sex');
 
     } else if ($currentStep.html() == $step2.html()) {
 
@@ -227,7 +259,9 @@ $(document).ready(function() {
       var $nextCrumb = $crumb3;
 
       setFilter(filter);
-      filterSex(filterData, '.pick-shape');
+      setColors(filterData);
+
+      fbq('track', 'pick_hair');
 
     } else if ($currentStep.html() == $step3.html()) {
 
@@ -236,7 +270,8 @@ $(document).ready(function() {
       var $nextCrumb = $crumb4;
 
       setFilter(filter);
-      setColors(filterData);
+      
+      fbq('track', 'pick_shape');
 
     } else if ($currentStep.html() == $step4.html()) {
 
@@ -246,9 +281,49 @@ $(document).ready(function() {
 
       setFilter(filter);
       loadImgResults();
+      
+      fbq('track', 'pick_style');
 
     }
 
     toStep($currentCrumb, $nextCrumb, $hideSteps, $showStep, $selected, $(this));
   });
+
+  $(".all-styles").click(function() {
+    var $currentStep = $(".pick-style");
+    var $hideSteps = Array($currentStep);
+    var $showStep = $currentStep.next();
+    var filter = [];
+
+    var $currentCrumb = $crumb4;
+    var $selected = $select4;
+    var $nextCrumb = $crumb5;
+    
+    var $clicked = $(".pick-style .panel img");
+
+    setFilter(filter);
+    loadImgResults();
+    
+    fbq('track', 'pick_style');
+
+    toStep($currentCrumb, $nextCrumb, $hideSteps, $showStep, $selected, $clicked);
+  });
+});
+
+
+function scrollToAnchor(id){
+  var tag = $("#" + id);
+  var dist = tag.offset().top - 50;
+  $("html, body").animate({ scrollTop: dist }, 1700);
+}
+$(".results .step-message span").click(function() {
+  scrollToAnchor("shop-results");
+});
+
+$(".shop-prod a").click(function() {
+  fbq('track', 'shop_product');
+});
+
+$("img.face-result").on("load", function() {
+  $(this).addClass("face-border");
 });
