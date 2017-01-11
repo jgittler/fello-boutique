@@ -60,16 +60,18 @@ src="https://www.facebook.com/tr?id=156715738012257&ev=PageView&noscript=1"
  </head>
 <body class="home {% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" id="{{ page_title | handle }}" style="padding-right: 0;">
 
+  {% unless handle contains 'pay-invoice' %}
   <div class="text-center site-banner full-w row-eq-height hidden-xs minor-h-pads">
-    <p class="v-center"><strong>FREE RETURNS</strong> on all purchases. Don't miss out on our New Year deals, <span style="border-bottom: 1px solid black;">all products are on sale</span>. Ends tonight!</p>
+    <p class="v-center"><strong>FREE RETURNS</strong> on all purchases. Don't miss out on our January Kickoff deals, <span style="border-bottom: 1px solid black;">all products are on sale</span>.</p>
   </div>
   
   <div class="text-center site-banner full-w row-eq-height visible-xs minor-h-pads">
     <small>
       <p class="v-center"><strong>FREE RETURNS</strong> on all purchases.</p>
-      <p class="v-center">New Year deals.<span style="border-bottom: 1px solid black;"> Ends tonight!</span></p>
+      <p class="v-center">January Kickoff Sale! <span style="border-bottom: 1px solid black;">10% off all products.</span></p>
     </small>
   </div>
+  {% endunless %}
 
   
   {% include 'header' %}
