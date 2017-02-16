@@ -77,8 +77,12 @@
           <span class="h4 small-caps"><strong>Free Shipping</strong></span>
           <span class="small-caps"><small>(US & Canada)</small></span>
           <br />
-          <p class="no-margin"><span class="small-caps">January Kickoff Sale! Use Code:</span> <code>anewyear</code></p>
-          <h6>10% OFF ANY ORDER<h/6>
+
+          {% if product.price > 7000 %}
+<!--           <br />
+          <p class="no-margin"><span class="small-caps">Use Code:</span> <code>cupid</code></p>
+          <h6>10% Off Classic Pairs<h/6> -->
+          {% endif %}
           
           <hr />
           {% endif %}
@@ -210,7 +214,7 @@
 </div>
 
 
-{% if product.title contains "Collaboration" or product.price == 5900 %}
+{% if product.title contains "Collaboration" or product.price < 7000 %}
 {% else %}
 <div class="container">
 
