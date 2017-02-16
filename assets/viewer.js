@@ -43,6 +43,14 @@ function transitionView(cssSelector, activatorHolder) {
   var $activator = $(activatorHolder).find('a');
   transition(cssSelector, $activator, showView, hideView)
   setActive(activatorHolder);
+  setCBLink($activator);
+}
+
+function setCBLink($activator) {
+  var cbData = Object.keys($activator.data()).indexOf('cb');
+  if (cbData > -1) {
+    $('#toggler > a').attr('href', 'http://' + $activator.data('cb') + '.felloeyewe.pay.clickbank.net');
+  }
 }
 
 function insertImg(img) {
@@ -116,14 +124,14 @@ $('#toggler li').on('click', function() {
 $(PRODUCT_VIEWS_SELECTORS).on('click', function() {
   toggleEnts({
     'display' : { '#gallery-holder' : 'block', '#toggler' : 'block' },
-    'height' : { '#viewer-container' : '500px' }
+    'height' : { '#viewer-container' : '540px', '#viewer' : 'auto' }
   });
 });
 
 $(GALLERY_SELECTORS).on('click', function() {
   toggleEnts({
     'display' : { '#toggler' : 'none', '#gallery-holder' : 'block' },
-    'height' : { '#viewer-container' : '720px' }
+    'height' : { '#viewer-container' : '720px', '#viewer' : '100%' }
   });
   if (!activePoster()) { showSide('first'); }
 });
@@ -131,14 +139,14 @@ $(GALLERY_SELECTORS).on('click', function() {
 $(SIZE_GUIDE_SELECTORS).on('click', function() {
   toggleEnts({
     'display' : { '#toggler' : 'none', '#gallery-holder' : 'none' },
-    'height' : { '#viewer-container' : 'auto' }
+    'height' : { '#viewer-container' : 'auto', '#viewer' : '100%' }
   });
 });
 
 $('#gallery-holder img').on('click', function() {
   toggleEnts({
     'display' : { '#toggler' : 'none', '#gallery-holder' : 'block' },
-    'height' : { '#viewer-container' : '720px' }
+    'height' : { '#viewer-container' : '720px', '#viewer' : '100%' }
   });
   insertImg(this);
   if (!activeGallery()) { newContext($('#views li[data-original-title="Gallery"]')); }
@@ -147,7 +155,7 @@ $('#gallery-holder img').on('click', function() {
 $(document).ready(function() {
   $('[data-toggle="popover"]').popover({
     'trigger' : 'hover',
-    'template' : '<div class="popover fade right in" role="tooltip" style="top: 156.5px; left: 50px; display: block;"><div class="arrow" style="top: 50%;"></div><h3 class="popover-title">Size Guide</h3></div>'
+    'template' : '<div class="popover sharp fade right in" role="tooltip" style="top: 156.5px; left: 50px; display: block;"><div class="arrow" style="top: 50%;"></div><h3 class="popover-title">Size Guide</h3></div>'
   });
 });
 
@@ -164,8 +172,7 @@ $('#gallery span').on('click', function() {
     showSide('first');
   } else {
     nextImg(moveTowards, currentId);
-  }
-});
+  } });
 
 $('.button-add-cart').on('mouseenter', function() {
   $(this).find('span').switchClass('blue', 'white', 100);

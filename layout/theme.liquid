@@ -60,7 +60,7 @@ src="https://www.facebook.com/tr?id=156715738012257&ev=PageView&noscript=1"
  </head>
 <body class="home {% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" id="{{ page_title | handle }}" style="padding-right: 0;">
 
-  {% unless handle contains 'pay-invoice' %}
+  {% unless handle contains 'pay-invoice' or handle contains 'cb' %}
   <div class="text-center site-banner full-w row-eq-height hidden-xs minor-h-pads">
     <p class="v-center"><strong>FREE RETURNS</strong> on all purchases. Don't miss out on our January Kickoff deals, <span style="border-bottom: 1px solid black;">all products are on sale</span>.</p>
   </div>

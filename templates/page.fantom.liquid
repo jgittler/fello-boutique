@@ -1,0 +1,4 @@
+{% assign cb_ids = 'FB1 FBWC FT1' | split: ' ' %}
+{% assign model_name = 'Fantom' %}
+{% assign collektion = collections['fantom-model'] %}
+{% include 'product-line-view' with collektion.products %}
