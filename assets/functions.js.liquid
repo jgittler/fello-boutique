@@ -778,4 +778,9 @@
         });
     });
 
+    $('button.close-box').on('click', function() {
+      $(this).parent('div').fadeOut();
+      $(this).parent('div').removeClass('visible-xs');
+      $('#header').css('margin-top', '0px');
+    });
 })(jQuery); // End of use strict
