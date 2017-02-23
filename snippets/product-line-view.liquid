@@ -1,6 +1,6 @@
 {{ 'viewer.scss' | asset_url | stylesheet_tag }}
 
-<div class="viewer-head visible-lg" id="{{model_name}}-wrap">
+<div class="viewer-head visible-lg visible-lgsh" id="{{model_name}}-wrap">
   <div id="{{ model_name | downcase }}-bg">
     <h1 class="text-center jumbotron no-margin line-title">
       Choose Your {{ model_name }}
@@ -17,8 +17,9 @@
               {% assign parts = collektion.products[forloop.index0].title | split: ' ' %}
               {% assign asize = parts | size %}
               <p>Buy {{ parts[0] }} {% if asize > 2 %}{{ parts[1] }}{% endif %}</p>
-              {% if forloop.index0 == 1 %}
-                <h4>Click a variant to puchase.</h4>
+              {% assign ids_size = cb_ids | size %}
+              {% if forloop.index0 == 1 and ids_size == 3 %}
+                <h4>Click a variant to purchase.</h4>
               {% endif %}
             </li>
           {% endfor %}
@@ -117,9 +118,9 @@
 
         <div id="toggler" class="full-w">
           <a href="http://{{ cb_ids[0] }}.felloeyewe.pay.clickbank.net" class="btn btn-lg sharp">
-            <h3>
+            <h4>
               purchase
-            </h3>
+            </h4>
           </a>
 
           <ul class="nav nav-pills" data-model="{{ model_name }}">
@@ -155,7 +156,7 @@
   </div>
 </div>
 
-<div class="hidden-lg text-center prod-pointers">
+<div class="hidden-lg hidden-lgsh text-center prod-pointers">
   {% for prod in product-line-view %}
     <div class="panel sharp panel-default col-xs-10 col-xs-offset-1 no-pads">
       <a href="{{ prod.url }}" title="{{ prod.title }}">

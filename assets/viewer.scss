@@ -69,10 +69,11 @@
   -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
   box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
 }
-#toggler > a h3 {
+#toggler > a h4 {
   position: relative;
   top: 1px;
   margin: auto;
+  font-weight: 600;
 }
 #viewer-container .empty {
   opacity: 0;
@@ -258,22 +259,6 @@ h1.jumbotron .dropdown ul.dropdown-menu li > a.FT1-pattern:hover,
 h1.jumbotron .dropdown ul.dropdown-menu li > a.FBWC-pattern:hover {
   background-color: rgba(0, 0, 0, 0.6);
 }
-.FB1-pattern {
-  background-color: rgba(0, 0, 0, 0.6);
-}
-.FB1-pattern:hover {
-  background-color: black;
-}
-.FBWC-pattern {
-  background-image: url("https://cdn.shopify.com/s/files/1/1321/8937/files/lunar-o.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.FT1-pattern {
-  background-image: url("https://cdn.shopify.com/s/files/1/1321/8937/files/t-shell-o.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
 .viewer-head .dropdown-menu p {
   margin: 8px -15px;
   font-size: 12px;
@@ -300,4 +285,42 @@ h1.jumbotron .dropdown ul.dropdown-menu li > a.FBWC-pattern:hover {
   margin: 20px -150px;
   border-top: 1px solid black;
   padding-top: 10px;
+}
+@media (min-width: 1000px) {
+  .visible-lgsh {
+    display: block !important
+  }
+}
+@media (min-width: 1000px) {
+  .hidden-lgsh {
+    display: none !important
+  }
+}
+.HB-pattern {
+  background-color: #70b7ea;
+}
+.HB-pattern:hover {
+  background-color: #4e98ce important;
+}
+.HG-pattern {
+  background-color: #516767;
+}
+.HG-pattern:hover {
+  background-color: #1a2626 !important;
+}
+.FB1-pattern, .KB1-pattern {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.FB1-pattern:hover, .KB1-pattern:hover {
+  background-color: black;
+}
+.FBWC-pattern, .KBW1-pattern {
+  background-image: url("https://cdn.shopify.com/s/files/1/1321/8937/files/lunar-o.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.FT1-pattern, .KT1-pattern {
+  background-image: url("https://cdn.shopify.com/s/files/1/1321/8937/files/t-shell-o.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
