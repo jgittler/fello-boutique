@@ -23,39 +23,39 @@
 <div class="main-container left-slidebar">
   <div class="container">
     <div class="row">
+
       <div class="main-content col-xs-12">
         {% paginate collection.products by 18 %}
-          <div class="shop-top hidden">
-            <div class="shop-top-left">
-              <div class="breadcrumbs">
-                  {% include "breadcrumb" %}
-              </div>
-            </div>
-            <div class="shop-top-right">
-              <span class="woocommerce-result-count"> Showing {{paginate.current_page}}&ndash;{{paginate.page_size }} of {{paginate.items}} results</span>
-              <div class="orderby-wapper">
-                  {% include 'collection-sorting' %}
-                </div>
-                {% include 'collection-views' %}
+        <div class="shop-top hidden">
+          <div class="shop-top-left">
+            <div class="breadcrumbs">
+              {% include "breadcrumb" %}
             </div>
           </div>
+          <div class="shop-top-right">
+            <span class="woocommerce-result-count"> Showing {{paginate.current_page}}&ndash;{{paginate.page_size }} of {{paginate.items}} results</span>
+            <div class="orderby-wapper">
+              {% include 'collection-sorting' %}
+            </div>
+            {% include 'collection-views' %}
+          </div>
+        </div>
 
         <ul class="product-list-grid desktop-columns-3 tablet-columns-2 mobile-columns-1 row" id="collection-product">
+
           {% for product in collection.products %}
             {% assign grid_item_width = 'col-sm-6 col-md-4' %}
-              {% if forloop.index == 7 %}
-<!--           <p class="h1 text-center blue minor-v-pads">Shop Bamboo</p> -->
-              {% endif %}
-              {% include 'product-grid-item' %}
-            {% endfor %}
+            {% include 'product-grid-item' %}
+          {% endfor %}
 
         </ul>
+
         {% if paginate.pages > 1 %}
-              <div class="navigation">
-                {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
-              </div>
-            {% endif %}
-            {% endpaginate %}
+          <div class="navigation">
+            {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+          </div>
+        {% endif %}
+        {% endpaginate %}
       </div>
 
         
