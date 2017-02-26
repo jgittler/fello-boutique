@@ -118,9 +118,9 @@
 
         <div id="toggler" class="full-w">
           <a href="http://{{ cb_ids[0] }}.felloeyewe.pay.clickbank.net" class="btn btn-lg sharp">
-            <h4>
-              purchase
-            </h4>
+            <h5>
+              purchase &middot {{ product-line-view[0].price | money }}
+            </h5>
           </a>
 
           <ul class="nav nav-pills" data-model="{{ model_name }}">
@@ -129,9 +129,9 @@
               {% assign parts = prod.title | split: ' ' %}
               {% assign asize = parts | size %}
               {% if forloop.first %}
-              <li class="active"><a class="sharp" data-cb='{{ cb_id }}' data-activate="{{ forloop.index }}">{% if asize > 2 %}{{ parts[1] }}{% else %}{{ parts[0] }}{% endif %}</a></li>
+              <li class="active"><a class="sharp" data-price="{{ prod.price | money }}" data-cb='{{ cb_id }}' data-activate="{{ forloop.index }}">{% if asize > 2 %}{{ parts[1] }}{% else %}{{ parts[0] }}{% endif %}</a></li>
               {% else %}
-              <li><a class="sharp" data-cb='{{ cb_id }}' data-activate="{{ forloop.index }}">{% if asize > 2 %}{{ parts[1] }}{% else %}{{ parts[0] }}{% endif %}</a></li>
+              <li><a class="sharp" data-price="{{ prod.price | money }}" data-cb='{{ cb_id }}' data-activate="{{ forloop.index }}">{% if asize > 2 %}{{ parts[1] }}{% else %}{{ parts[0] }}{% endif %}</a></li>
               {% endif %}
             {% endfor %}
           </ul>

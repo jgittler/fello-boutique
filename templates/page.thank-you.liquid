@@ -12,6 +12,9 @@
     line-height: 1.7;
     margin: 10px 50px;
   }
+  #cb-info {
+    padding-top: 10px;
+  }
 </style>
 
 <div class="jumbotron thank-you">
@@ -27,5 +30,6 @@
 
   {{ 'viewer.scss' | asset_url | stylesheet_tag }}
 
+  {% include 'cb-panels' %}
   {% include 'cb-contact' %}
   {% include 'cb-disclaimer' %}
