@@ -30,6 +30,9 @@ Last change: 01/15/2016
 /*------------------
  ADDED CUSTOM STYLES
 ------------------*/
+.logo img {
+  max-height: 65px;
+}
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Josefin Sans", "HelveticaNeue", "Helvetica Neue", sans-serif;
 }
@@ -332,6 +335,7 @@ hr.highlight {
   position: absolute;
   left: 5%;
   top: 5%;
+  font-family: 'Comic Sans MS' !important;
 }
 .sale-product {
   position: absolute;
@@ -450,9 +454,8 @@ hr.highlight {
   border-radius: 4px;
 }
 .sale-section h1.home-collection {
-  font-size: 90px;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  font-size: 60px;
+  margin: 20px 0px;
 }
 .sale-section.visible-xs h1.home-collection {
   font-size: 44px;
@@ -648,11 +651,11 @@ hr.highlight {
   margin-bottom: 35px;
 }
 .home-collection {
-  font-family: 'LaCompagnie';
+  font-family: 'Palatino';
   color: #1fa7d6;
   font-size: 54px;
   text-transform: none;
-  font-weight: normal;
+  font-weight: 200;
   margin-top: -10px;
   margin-bottom: -10px;
   line-height: normal;
@@ -1060,10 +1063,9 @@ a.current:hover {
 }
 
 @font-face {
-  font-family: 'LaCompagnie';
+  font-family: 'Georgia' !important;
   font-style: normal;
   font-weight: normal;
-  src: local('la-Compagnie-des-Ombres'), url('la-Compagnie-des-Ombres.ttf') format('opentype');
 }
 @font-face {
   font-family: "Flaticon";
@@ -7558,7 +7560,7 @@ FOOTER
     padding: 0;
 }
 .banner-text.style3 .sub-title{
-    font-family: 'LaCompagnie';
+    font-family: 'Georgia' !important;
     font-size: 60px;
     line-height: normal;
 }
@@ -7566,7 +7568,7 @@ FOOTER
     text-align: center;
 }
 .banner-text.style3 .title{
-    font-family: 'LaCompagnie';
+    font-family: 'Georgia' !important;
     color: {{settings.color_primary}};
     font-size: 48px;
     text-transform: none;
@@ -7661,7 +7663,7 @@ FOOTER
     transform: scale(1);
 }
 .banner-text.style4 .subtitle{
-    font-family: 'LaCompagnie';
+    font-family: 'Georgia' !important;
     font-size: 60px;
     line-height: normal;
     color: {{settings.color_primary}};
@@ -9259,7 +9261,7 @@ BLOG PAGE
     transition: all 0.5s ease-out 0s;
 }
 .block-banner-text .title{
-    font-family: 'LaCompagnie';
+    font-family: 'Georgia' !important;
     margin: 0;
     font-size: 48px;
     color: {{settings.color_primary}};
@@ -9403,7 +9405,7 @@ BLOG PAGE
     padding:75px 0;
 }
 .block-text-border .title{
-    font-family: 'LaCompagnie';
+    font-family: 'Georgia' !important;
     margin: 0;
     font-size: 48px;
     color: {{settings.color_primary}};
@@ -9498,7 +9500,7 @@ BLOG PAGE
 }
 .banner-masonry-item .title{
     margin: 0;
-    font-family: 'LaCompagnie';
+    font-family: 'Georgia' !important;
     font-size: 60px;
     color: {{settings.color_primary}};
     line-height: normal;
@@ -10363,7 +10365,7 @@ table{
 .block-kt-banner.style1 .title{
     font-size: 50px;
     color: #d1a95a;
-    font-family: 'LaCompagnie';
+    font-family: 'Georgia' !important;
     line-height: normal;
     margin: 0;
 }
@@ -10409,7 +10411,7 @@ table{
 .block-kt-banner.style2 .title{
     font-size: 60px;
     color: #d1a95a;
-    font-family: 'LaCompagnie';
+    font-family: 'Georgia' !important;
     line-height: normal;
     margin: 0;
 }
@@ -10439,7 +10441,7 @@ table{
 }
 .block-kt-banner.style3 .title{
     color: #fff;
-    font-family: 'LaCompagnie';
+    font-family: 'Georgia';
     font-size: 60px;
     margin: 0;
     line-height: 45px;
