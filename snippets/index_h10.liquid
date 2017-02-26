@@ -8,7 +8,7 @@
   {% endif %}
 {% endif %}
 
-<div class="no-pads col-xs-12 no-margin">
+<div id="home-banner" class="no-pads col-xs-12 no-margin">
 
 
   <div class="hidden-xs text-center full-w video-text text-drop-shadow row-eq-height"
@@ -21,40 +21,51 @@
 
     <div style="margin: auto;">
 
-      <h1>We Are All Fellos</h1>
+<!--       <h1>We Are All Fellos</h1> -->
+      
+      <h1>Vision Promotes Progress</h1>
 
-      <span class="h2">Fello Friends <span class="blue">&middot;</span> </span>
+<!--       <span class="h2">Fello Friends <span class="blue">&middot;</span> </span>
 
       <span class="h2">Fello Travelers <span class="blue">&middot;</span> </span>
 
       <span class="h2">Fello Patrons <span class="blue">&middot;</span> </span>
 
-      <span class="h2">Fello Humanity</span>
+      <span class="h2">Fello Humanity</span> -->
 
-      <hr class="minor-h-marg" />
+      <span class="h3">Lack of vision translates to failure at school, work and health. Those who cannot see are often mired in poverty.</span>
 
-      <a href="/collections/all">
+      <hr class="minor-h-marg highlight" />
+
+<!--       <a href="/collections/all">
         <button class="cta-btn sharp btn btn-lg">
           <p class="h2">SHOP SUNGLASSES</p>
         </button>
-      </a>
+      </a> -->
+
+      <button class="cta-btn sharp btn btn-lg">
+        <p class="h2">SHOP SUNGLASSES</p>
+        <br>
+        <span class="h6" style="font-weight: 900;">and change a life</span>
+      </button>
 
     </div>
 
   </div>
 
-  <div class="video-placeholder hidden-xs">
-  </div>
-  
-<!--   <img class='full-w' src='{{ "vosh_poster.jpg" | asset_url }}'> -->
 
-  <div class="video-wrapper hidden-xs" style="height: 0; position: absolute; top: 0;">
+  <img class="hidden-xs" src="{{ 'blurred-vision-angle.jpg' | file_url }}" alt="Fello Eyewear">
+
+<!--   <div class="video-placeholder hidden-xs">
+  </div> -->
+<!--   <img class='full-w' src='{{ "vosh_poster.jpg" | asset_url }}'> -->
+<!--   <div class="video-wrapper hidden-xs" style="height: 0; position: absolute; top: 0;">
      
     <video autoplay loop muted preload=auto style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; pointer-events: none; width: 100%; height: 100%;" id="bg-video">
       <source src="https://d5kbzi6svqh1a.cloudfront.net/hp_video.mp4" type="video/mp4">
     </video>
     
-  </div>
+  </div> -->
   
   <a href="/collections/all" title="shop" id="for-ios" class="hidden visible-xs">
     <img class="full-w" src="{{ 'fello_eyewear_welcome.jpg' | asset_url }}" alt="Fello Eyewear">
@@ -329,7 +340,7 @@ src='https://snapppt.com/widgets/widget_loader/5aae36b1-7142-4fe2-a099-0abc609ab
 //         wH = $(window).height(),
 //         wS = $(this).scrollTop();
 //     if (wS > (hT+hH-wH-350)){
-      $('.odometer').html(3279);
+      $('.odometer').html(3284);
 //     }
   });
 </script>
@@ -341,7 +352,7 @@ src='https://snapppt.com/widgets/widget_loader/5aae36b1-7142-4fe2-a099-0abc609ab
       $("#for-ios").removeClass("hidden");
       $("#video-wrapper").remove();
       $(".video-text h1").css("margin-bottom", 0);
-      $(".video-text .h2").css("margin-top", 0);
+      $(".video-text .h3").css("margin-top", 0);
       $(".video-text").css("background-color", "transparent");
     } else {
       $(".video-wrapper").removeClass("hidden");
