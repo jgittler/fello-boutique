@@ -22,18 +22,10 @@
   <div class="product-inner">
     <div class="product-thumb has-back-image white-bg">
       
-      {% if product.available %}
-        <a href="{{ product.url | within: collection }}"><img class="full-w" src="{{ product.featured_image.src | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}"></a>
-      {% else %}
-        <a><img class="full-w" src="{{ product.featured_image.src | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}"></a>
-      {% endif %}
+      <a href="{{ product.url | within: collection }}"><img class="full-w" src="{{ product.featured_image.src | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}"></a>
       {% if settings.use_second_img %}
         {% if product.images.size > 1 %}
-          {% if product.available %}
-            <a class="back-image" href="{{ product.url | within: collection }}">{{product.images[1].src |img_url: 'grande'| img_tag: product.title, 'full-w' }}</a>
-          {% else %}
-            <a class="back-image">{{product.images[1].src |img_url: 'grande'| img_tag: product.title, 'full-w' }}</a>
-          {% endif %}
+      		<a class="back-image" href="{{ product.url | within: collection }}">{{product.images[1].src |img_url: 'grande'| img_tag: product.title, 'full-w' }}</a>
         {% endif %}
       {% endif %}
 
@@ -92,8 +84,7 @@
         <span class="price">
           <ins>{{product.price | money }}</ins>
         </span>
-        <a class="button btn-sold-out">{{'products.product.sold_out' | t | upcase }}</a>
-        <!-- <a class="button btn&#45;sold&#45;out" onclick="location.href='{{ product.url | within: collection }}'">{{'products.product.sold_out' | t | upcase }}</a> -->
+        <a class="button btn-sold-out" onclick="location.href='{{ product.url | within: collection }}'">{{'products.product.sold_out' | t | upcase }}</a>
         {% endif %}
       </span>
     </div>

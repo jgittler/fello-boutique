@@ -49,9 +49,7 @@ function transitionView(cssSelector, activatorHolder) {
 function setCBLink($activator) {
   var cbData = Object.keys($activator.data()).indexOf('cb');
   if (cbData > -1) {
-    var $cbLink = $('#toggler > a');
-    $cbLink.attr('href', 'http://' + $activator.data('cb') + '.felloeyewe.pay.clickbank.net');
-    $cbLink.children().html('purchase &middot; ' + $activator.data('price'));
+    $('#toggler > a').attr('href', 'http://' + $activator.data('cb') + '.felloeyewe.pay.clickbank.net');
   }
 }
 
