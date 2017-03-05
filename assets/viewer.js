@@ -119,7 +119,7 @@ $('#views li').on('click', function() {
   newContext(this);
 });
 
-$('#toggler li').on('click', function() {
+$('#toggler li, .variation-circle').on('click', function() {
   transitionView(ACTIVE_VARIATION_SELECTOR, this);
 });
 
@@ -174,12 +174,5 @@ $('#gallery span').on('click', function() {
     showSide('first');
   } else {
     nextImg(moveTowards, currentId);
-  } });
-
-$('.button-add-cart').on('mouseenter', function() {
-  $(this).find('span').switchClass('blue', 'white', 100);
-});
-
-$('.button-add-cart').on('mouseleave', function() {
-  $(this).find('span').switchClass('white', 'blue', 100);
+  }
 });

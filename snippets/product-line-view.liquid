@@ -4,51 +4,21 @@
   <div id="{{ model_name | downcase }}-bg">
     <h1 class="text-center jumbotron no-margin line-title">
       Choose Your {{ model_name }}
-
-      <div class="dropdown">
-        <button class="sharp btn btn-default dropdown-toggle" type="button" id="variantDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          <span class="caret blue"></span>
-          <!-- <span class="icon pe&#45;7s&#45;cart"></span> -->
-        </button>
-        <ul class="dropdown-menu sharp" aria-labelledby="variantDrop">
-          {% for id in cb_ids %}
-            <li class="pe-7s-cart">
-              <a class="{{ id }}-pattern round" href="http://{{ id }}.felloeyewe.pay.clickbank.net"></a>
-              {% assign parts = collektion.products[forloop.index0].title | split: ' ' %}
-              {% assign asize = parts | size %}
-              <p>Buy {{ parts[0] }} {% if asize > 2 %}{{ parts[1] }}{% endif %}</p>
-              {% assign ids_size = cb_ids | size %}
-              {% if forloop.index0 == 1 and ids_size == 3 %}
-                <h4>Click a variant to purchase.</h4>
-              {% endif %}
-            </li>
-          {% endfor %}
-          <!-- <li role="separator" class="divider"></li> -->
-          <!-- <li><a href="#">Separated link</a></li> -->
-        </ul>
-      </div>
     </h1>
-    
+
+    <div class="full-w text-center">
+      <ul id="cb-quick-buy" class="nav nav-pills">
+        {% for prod in product-line-view %}
+          {% assign cb_id = cb_ids[forloop.index0] %}
+          <li class="round variation-circle">
+            <a class="{{ cb_id }}-pattern round" data-price="{{ prod.price | money }}" data-cb='{{ cb_id }}' data-activate="{{ forloop.index }}"></a>
+            <a href="http://{{ cb_id }}.felloeyewe.pay.clickbank.net">Buy</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
     <div id="viewer-container" class="med-h-marg">
-
-      <!--   <div id="add-specific" class="pull-left">
-        <div class="btn-group-vertical" role="group">
-          {% assign product1 = product-line-view | first %}
-          <a class="button button-add-cart full-w" data-id="{{ product1.variants.first.id }}">
-            {{ 'products.product.add_to_cart' | t }}
-          </a>
-        </div>
-      </div> -->
-
-      <!-- <div id="add&#45;specific"> -->
-      <!--   {% for product in product&#45;line&#45;view %} -->
-      <!--     <a class="button button&#45;add&#45;cart col&#45;xs&#45;{{ 12 | divided_by: collektion.all_products_count }}" href="http://{{ cb_ids[forloop.index0] }}.felloeyewe.pay.clickbank.net" target="cb"> -->
-      <!--       {% assign parts = product.title | split: ' ' %} -->
-      <!--       {% assign asize = parts | size %} -->
-      <!--       Click to Purchase a <strong>{{ parts[0] }} {% if asize > 2 %}{{ parts[1] }}{% endif %}</strong> {{ product.title | split: ' ' | last }}<span class="blue"> · </span>{{ product.price | money }} -->
-      <!--     </a> -->
-      <!--   {% endfor %} -->
-      <!-- </div> -->
 
       <div id="views" class="pull-right no-pads">
         <div class="sidebar-nav">

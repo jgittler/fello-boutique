@@ -194,9 +194,10 @@
   background-repeat: no-repeat;
   background-position-x: 20%;
 }
-div > .line-title {
+div > .jumbotron.line-title {
   background-color: transparent;
   font-weight: bolder;
+  padding-bottom: 10px;
 }
 h6#disclaimer {
   background-color: #d4d4d4;
@@ -237,56 +238,6 @@ h6#disclaimer {
 #size-guide {
   width: 75%;
 }
-.dropdown-menu > li > a:hover {
-  background-color: black;
-}
-h1.jumbotron .dropdown {
-  display: inline;
-}
-h1.jumbotron .dropdown ul.dropdown-menu {
-  right: 0;
-  left: initial;
-  min-width: 350px;
-  padding: 15px 30px 85px 30px;
-}
-h1.jumbotron .open > .dropdown-menu {
-  display: flex;
-}
-h1.jumbotron .dropdown ul.dropdown-menu li > a {
-  width: 100%;
-  height: 100%;
-}
-h1.jumbotron .dropdown ul.dropdown-menu li > a.FT1-pattern:hover,
-h1.jumbotron .dropdown ul.dropdown-menu li > a.FBWC-pattern:hover {
-  background-color: rgba(0, 0, 0, 0.6);
-}
-.viewer-head .dropdown-menu p {
-  margin: 8px -15px;
-  font-size: 12px;
-  text-align: center;
-  line-height: 1;
-  color: black !important;
-}
-.viewer-head li.pe-7s-cart:before {
-  position: absolute;
-  margin: 17px;
-  font-weight: 900;
-  cursor: pointer;
-}
-.viewer-head li.pe-7s-cart {
-  width: 50px;
-  height: 50px;
-  margin: auto;
-}
-.viewer-head li:hover {
-  color: white;
-}
-.viewer-head li h4 {
-  text-align: center;
-  margin: 20px -150px;
-  border-top: 1px solid black;
-  padding-top: 10px;
-}
 @media (min-width: 1000px) {
   .visible-lgsh {
     display: block !important
@@ -296,6 +247,29 @@ h1.jumbotron .dropdown ul.dropdown-menu li > a.FBWC-pattern:hover {
   .hidden-lgsh {
     display: none !important
   }
+}
+#cb-quick-buy {
+  margin: 0px auto 15px;
+  width: 200px;
+}
+#cb-quick-buy > li {
+  display: inline-block;
+  float: none;
+  width: 50px;
+  height: 50px;
+}
+#cb-quick-buy > li:first-of-type {
+  float: left;
+}
+#cb-quick-buy > li:last-of-type {
+  float: right;
+}
+#cb-quick-buy > li > a {
+  height: inherit;
+  width: inherit;
+}
+#cb-quick-buy.nav-pills > li > a {
+  border-radius: inherit;
 }
 .HB-pattern {
   background-color: #70b7ea;
