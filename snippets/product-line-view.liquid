@@ -10,9 +10,13 @@
       <ul id="cb-quick-buy" class="nav nav-pills">
         {% for prod in product-line-view %}
           {% assign cb_id = cb_ids[forloop.index0] %}
+          {% if forloop.first %}
+          <li class="round active variation-circle">
+          {% else %}
           <li class="round variation-circle">
+          {% endif %}
             <a class="{{ cb_id }}-pattern round" data-price="{{ prod.price | money }}" data-cb='{{ cb_id }}' data-activate="{{ forloop.index }}"></a>
-            <a href="http://{{ cb_id }}.felloeyewe.pay.clickbank.net">Buy</a>
+            <a class="small-caps" href="http://{{ cb_id }}.felloeyewe.pay.clickbank.net">buy</a>
           </li>
         {% endfor %}
       </ul>

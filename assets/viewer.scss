@@ -6,8 +6,7 @@
 }
 #viewer-container .navbar-default {
   background-color: transparent;
-  border: none;
-  border-left: 1px solid black;
+  border: none; border-left: 1px solid black;
 }
 #viewer-container {
   height: 540px;
@@ -65,9 +64,9 @@
 }
 #toggler > a:hover {
   background-color: #1fa7d6;
-  -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
-  -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
-  box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
 }
 #toggler > a h5 {
   position: relative;
@@ -76,12 +75,16 @@
   font-weight: 600;
   margin: auto;
 }
+@media (max-width: 1200px) {
+  #toggler > a h5 {
+    font-size: 12px;
+  }
+}
 #viewer-container .empty {
   opacity: 0;
   display: none;
 }
 #viewer {
-  // height: 100%;
   height: auto;
 }
 .view-holder {
@@ -251,6 +254,7 @@ h6#disclaimer {
 #cb-quick-buy {
   margin: 0px auto 15px;
   width: 200px;
+  height: 84px;
 }
 #cb-quick-buy > li {
   display: inline-block;
@@ -271,31 +275,67 @@ h6#disclaimer {
 #cb-quick-buy.nav-pills > li > a {
   border-radius: inherit;
 }
+#cb-quick-buy.nav-pills > li.active > a, #cb-quick-buy.nav-pills > li.active > a:focus, #cb-quick-buy.nav-pills > li.active > a:hover {
+  color: black;
+  background-color: inherit;
+  font-weight: bolder;
+}
+.nav li.variation-circle > a:focus, .nav li.variation-circle > a:hover {
+  background-color: transparent;
+}
+.variation-circle {
+  cursor: pointer;
+}
+.unclickable {
+  cursor: pointer;
+  pointer-events: none;
+}
 .HB-pattern {
-  background-color: #70b7ea;
+  background-color: rgba(78, 152, 206, 0.7) !important;
 }
 .HB-pattern:hover {
-  background-color: #4e98ce important;
+  background-color: rgba(78, 152, 206, 0.85) !important;
+}
+li.active .HB-pattern {
+  background-color: rgba(78, 152, 206, 1) !important;
 }
 .HG-pattern {
-  background-color: #516767;
+  background-color: rgba(26, 38, 38, 0.7) !important;
 }
 .HG-pattern:hover {
-  background-color: #1a2626 !important;
+  background-color: rgba(26, 38, 38, 0.85) !important;
 }
-.FB1-pattern, .KB1-pattern {
-  background-color: rgba(0, 0, 0, 0.6);
-}
-.FB1-pattern:hover, .KB1-pattern:hover {
-  background-color: black;
+li.active .HG-pattern {
+  background-color: rgba(26, 38, 38, 1) !important;
 }
 .FBWC-pattern, .KBW1-pattern {
   background-image: url("https://cdn.shopify.com/s/files/1/1321/8937/files/lunar-o.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
+li.active .FBWC-pattern, li.active .KBW1-pattern {
+  background-image: url("https://cdn.shopify.com/s/files/1/1321/8937/files/lunar-solid.jpg");
+}
 .FT1-pattern, .KT1-pattern {
   background-image: url("https://cdn.shopify.com/s/files/1/1321/8937/files/t-shell-o.png");
   background-size: cover;
   background-repeat: no-repeat;
+}
+li.active .FT1-pattern, li.active .KT1-pattern {
+  background-image: url("https://cdn.shopify.com/s/files/1/1321/8937/files/t-shell-solid.jpg");
+}
+.FBWC-pattern:hover, .KBW1-pattern:hover {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+.FT1-pattern:hover, .KT1-pattern:hover {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+.FB1-pattern, .KB1-pattern {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+li.active .FB1-pattern, li.active .KB1-pattern {
+  background-color: black !important;
+}
+.FB1-pattern:hover, .KB1-pattern:hover {
+  background-color: rgba(0, 0, 0, 0.85) !important;
 }
