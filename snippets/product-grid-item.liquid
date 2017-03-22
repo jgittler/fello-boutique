@@ -20,10 +20,10 @@
 
 <li class="product-item view-grid {{grid_item_width}} {% if product.title == 'Tortoise Fantom' %}clear-for-ff{% endif %}" style="display: list-item;">
   <div class="product-inner">
-    <div class="product-thumb has-back-image white-bg">
+    <div class="product-thumb has-back-image">
       
       {% if product.available %}
-        <a href="{{ product.url | within: collection }}"><img class="full-w" src="{{ product.featured_image.src | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}"></a>
+        <a href="{{ product.url | within: collection }}" class="top-image"><img class="full-w" src="{{ product.featured_image.src | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}"></a>
       {% else %}
         <a><img class="full-w" src="{{ product.featured_image.src | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}"></a>
       {% endif %}
