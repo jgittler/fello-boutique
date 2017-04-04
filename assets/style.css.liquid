@@ -484,6 +484,7 @@ hr.highlight {
 }
 #fello-eyewear-changing-the-world-one-pair-of-sunglasses-at-a-time .pillar .panel {
   max-width: 500px;
+  background-color: transparent;
 }
 .pillar button.button {
   position: absolute;
@@ -513,12 +514,20 @@ hr.highlight {
   bottom: 0;
   padding: 0 15px;
 }
+.pillar .panel .panel-body:hover {
+  background-color: rgba(31, 167, 214, 0.5);
+}
 .pillar .panel .pillar-cover {
   height: 100%;
   padding: 0 15px;
 }
-.pillar .panel.amb .pillar-cover:hover {
-  background-color: rgba(31, 167, 214, 0.5);
+.pillar .panel.amb {
+  box-shadow: none;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent;
+  padding: 0px;
+  margin: 0px;
 }
 .pillar .panel-body.outline .pillar-cover {
   border: 1px solid #1fa7d6;
