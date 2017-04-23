@@ -1,0 +1,347 @@
+(function(){
+       'use strict'; 
+    jQuery(document).ready(function($) {
+      function check_compare(value){
+              for (var i = 1; i <=8; i++) {
+                if (compare_list['p' + i] == value ) {
+                    return true
+                  break;
+                } 
+              }
+              return false;
+          }
+      function readMore(string, maxWords) {       
+              var strippedString = $("<p>" + string + "</p>").text().trim();      
+              var array = strippedString.split(" ");
+              var string = array.splice(0, maxWords).join(" ");
+
+              if(array.length > maxWords) {
+                string += "...";
+              }
+
+              return string ;
+            }
+      function roadtip(element) { 
+              var tipText = element.html();
+              element.bind('mouseover', function() {
+                if (jQuery('.roadtip').length == 0) {
+                  element.before('<span class="roadtip">' + tipText + '</span>');
+
+                  var tipWidth = jQuery('.roadtip').outerWidth();
+                  var tipPush = -(tipWidth / 2 - element.outerWidth() / 2);
+                  jQuery('.roadtip').css('margin-left', tipPush);
+                }
+              });
+              element.bind('mouseleave', function() { 
+                jQuery('.roadtip').remove();
+              });
+            }
+      function convert_currency(value,type){
+
+                try{
+                  var newCurrency = Currency.currentCurrency;
+                }catch(ex){
+                  var newCurrency = '{{shop.currency}}';
+                }
+                try{
+                  var oldCurrency = shopCurrency;
+                }catch(ex){
+                  var oldCurrency = '{{shop.currency}}';
+                }
+                if(isNaN(value)){
+                    value =  0.0; 
+                }
+ 
+                var cents = 0.0;
+                var oldFormat = Currency.moneyFormats['{{ settings.default_currency | default: shop.currency }}'][ Currency.format] || '{{amount}}';
+                var newFormat = Currency.moneyFormats[newCurrency][Currency.format] || '{{amount}}';
+                if(type == 'format'){
+                  return  Currency.formatMoney(value, newFormat);
+                }
+                if (oldFormat.indexOf('amount_no_decimals') !== -1) {
+                    cents = Currency.convert(parseInt(value, 10)*100, oldCurrency, newCurrency);
+                }
+                else if (oldCurrency === 'JOD' || oldCurrency == 'KWD' || oldCurrency == 'BHD') {
+                    cents = Currency.convert(parseInt(value, 10)/10, oldCurrency, newCurrency);
+                }
+                else { 
+                    cents = Currency.convert(parseInt(value, 10), oldCurrency, newCurrency);
+                }
+                if(type  == 'nosymbol'){
+                    return cents;
+                }
+                var my_data =  Currency.formatMoney(cents, newFormat);
+                return my_data;
+       
+      }
+      function get_symbol(value){
+          var str = value.split("");
+          var sym = '';
+          for(var i=0;i<str.length;i++){
+            if(isNaN(str[i])){
+                sym+=str[i];
+            }else{
+              return sym; 
+            }
+          }
+          return sym;
+      }
+      function get_price_only(price){
+       var  price_convert= price.toString();
+        var get_currencies = 0;
+         var $split = price_convert.split(';');
+                if($split.length > 1){
+                   get_currencies = (isNaN(parseInt( price_convert.substring(1,0)))) ?  $split[1]:  $split[0];
+                }else{
+                   get_currencies =price_convert.replace(/[^0-9.]/g, '');
+                }
+                get_currencies = $.trim(get_currencies); 
+                var check = get_currencies.substring(1,0);
+                if(isNaN((check))){
+                get_currencies =   get_currencies.replace(check,'');
+                }
+          return parseFloat(get_currencies);
+
+      }
+      {% assign max_price = settings.collection_max_price %}
+      {% assign max_price = max_price | plus: 0 %}
+      {% assign min_price = settings.collection_min_price %}
+      {% assign min_price = min_price | plus: 0 %}
+
+        var max_price_slide = convert_currency({{max_price}},'');
+        var get_currencies = convert_currency({{max_price}},'');
+        var min_price_slide = convert_currency({{min_price}},'');
+         
+        var $split = get_currencies.split(';');
+        if($split.length > 1){
+           get_currencies = (isNaN(parseInt( get_currencies.substring(1,0)))) ?  $split[0]+';':  $split[1]+';';
+
+        }else{
+           get_currencies = (isNaN(parseInt( get_currencies.substring(1,0)))) ? get_symbol( get_currencies):   get_currencies.substring(1,-1);
+        }
+
+      
+       $slider_filter = $('#slider-range').slider({
+            range: true,
+            min: get_price_only(min_price_slide),
+            max: get_price_only(max_price_slide),
+            values: [get_price_only(min_price_slide), get_price_only(max_price_slide)],
+            slide: function(event, ui) {
+                var max_price_slide = convert_currency({{settings.collection_max_price}},'');
+                var get_currencies = convert_currency({{settings.collection_max_price}},'');
+                var min_price_slide = convert_currency({{settings.collection_min_price}},'');
+                var $split = get_currencies.split(';');
+                if($split.length > 1){
+                   get_currencies = (isNaN(parseInt( get_currencies.substring(1,0)))) ?  $split[0]+';':  $split[1]+';';
+
+                }else{
+                   get_currencies = (isNaN(parseInt( get_currencies.substring(1,0)))) ? get_symbol( get_currencies):   get_currencies.substring(1,-1);
+                }
+                var max_pr = get_currencies + ' ' + ui.values[1];
+                var min_pr =  get_currencies +' ' + ui.values[0];
+
+                $(".amount-range-price .from span").html(min_pr);
+                $(".amount-range-price .to span").html(max_pr);
+            },
+            change: function(event, ui) {
+
+              var view_mode = ($(".show-grid").hasClass('active')) ? '.show-grid' : '.show-list';
+              $(".orderby").hide();
+                $("#loading").show(0);
+                var max_price = ui.values[1];
+                var min_price =ui.values[0];
+                 
+                var check = 1;
+                var sum_product   = 0;
+                var page = 0;
+                var count;
+                $("#collection-product").empty();
+                $(".woocommerce-result-count").empty();
+                $(".navigation").empty();
+                var html = '';
+                var view =$(".change-view.active").data('view');
+                var has_product = false;
+                 console.log(json_collection_filter.length);
+                $.each(json_collection_filter,function(index, elem) {
+                var current_price =  convert_currency(elem.price,'');
+                    current_price = get_price_only(current_price);
+                    if (current_price <= max_price && current_price >= min_price) {                          
+                      
+                      has_product = true;
+                      
+                      if (sum_product  % 9 === 0) {
+                        page++;
+                        var count = (sum_product / 9) + 1;
+                        $('.navigation').append('<li><a id= "count_'+count+'" class="paginate ' + count + '" >' + count + '</a></li>');
+
+                      }
+
+                      html = html + '<li class="product-item page_count_'+page+' list  view-list  row">';
+                      html = html + json_to_html(elem);
+
+                      html +='<li class="product-item page_count_'+page+' view-grid col-sm-6 col-md-4">';  
+                      html = html + json_to_html_grid(elem);                      
+
+                      sum_product++;
+                    } 
+                               
+                    check++;
+                });
+                  
+
+                if(! has_product){
+                  html +='<p class="text-center"> No products were found matching your selection.</p>';
+                }
+                //showing results
+                  var htmlresult ='';
+                    htmlresult += '<span class="woocommerce-result-count"> Results '+sum_product+' products  filter </span>';
+                    $(".woocommerce-result-count").append(htmlresult);
+
+                $("#collection-product").append(html);                
+
+                $(view_mode).trigger('click');
+
+                window.setTimeout(function() {
+                     $("#loading").hide(700);
+                }, 1000);
+
+                $("#count_1").trigger("click");
+            } 
+
+        });   
+        
+        function json_to_html(product){
+         // shop-products
+         var  is_sale = false;
+         
+         var $html = '';
+              // $html +='<li class="product-item list  view-list  row">';
+              $html +='<div class="product-thumb col-sm-4">';
+              $html +='<a href="'+product.handle+'">';
+              $html +='<img src="'+product.featured_image+'" alt="'+product.title+'">';
+              $html += '</a>'; 
+              $html +='</div>';
+
+              $html +=' <div class="product-info col-sm-8">';
+              $html +='<h3 class="product-name"><a href=\'/products/'+product.handle+'\'>'+product.title+'</a></h3> ';
+              $html +='<span class="price">';
+              $html +='<ins><span class="money" data-currency-'+Currency.currentCurrency+'="'+convert_currency(product.price,'xx')+'">'+convert_currency(product.price,'xx')+'</span></ins>';
+              if(convert_currency(product.compare_at_price,'nosymbol') > 0){
+                $html += '<del><span class="money" data-currency-'+Currency.currentCurrency+'="'+convert_currency(product.compare_at_price,'11')+'">'+convert_currency(product.compare_at_price,'11')+'</span></del>'; 
+              }
+              $html +='</span>';
+
+              $html +='<div class="available">';
+                if (product.available >= 1) {
+                  $html +='Available: <span>In Stock</span>';
+                }
+                else {
+                  $html +='Available: <span>Out of Stock</span>';
+                }
+              $html +='</div>';
+              $html +='<div class="short-descript">';
+              $html += '<p>'+  readMore(product.content, 30) +'</p>';
+              $html +='</div>';
+              $html +=' <div class="gorup-button">';
+              $html +='<div class="pro-add-to-cart">';
+              if (product.available == false){
+                  $html += '<a class="button" onclick="location.href=\'/products/'+product.handle+'\'">SOLD OUT</a>';
+                }else{
+
+              if((product.variants).length> 1){
+                  $html += '<a class="button select-option" onclick="location.href=\'/products/'+product.handle+'\'">Select Options</a>';
+                }else{
+                  $html += '<a class="button boutique__add-to-cart" data-pid="'+product.variants[0].id+'">ADD TO CART</a>';
+                  $html += '<span class="adding-cart"></span>';
+                }
+              }
+
+              $html +='</div>';
+              
+              $html += '<a class="quick-view" href=\'/products/'+product.handle+'\' data-pid="'+product.variants[0].id +'"><i class="fa fa-search"></i></a>';
+              
+              if(check_compare(product.handle)){
+                $html +='    <a class="compare added" href="" data-pid="'+product.handle+'"><i class="fa fa-exchange"></i></a>';
+              }else{
+                $html +='    <a class="compare" href="" data-pid="'+product.handle+'"><i class="fa fa-exchange"></i></a>';
+              }
+
+              if(is_customers){
+                if(jQuery.inArray(product.id, json_wishlist ) >= 0){
+                  $html +='<a class="view-added-wishlist " title="View my Wishlist" href="/collections/wishlist"><i class="fa fa-heart"></i></a>';
+                  }else{
+                      $html +='<a class="wishlist " title="Add to my wishlist" href="javascript:void(0)" data-form="'+product.id+'"> <i class="fa fa-heart"></i></a>';
+                      $html +='<a href="/collections/wishlist" class="added-wishlist"  data-toggle="tooltip" data-placement="top" ><i class="fa fa-heart"></i></a>';
+                  }
+                }else {
+                    $html += '<a class="wishlist-login"   href="javascript:void(0)" title="Login to use wishlist"><i class="fa fa-heart-o"></i></a>';
+                  }
+              
+              $html +=' </div>';
+              $html +=' </div>';
+              $html +='</li>';
+              //console.log(product);
+              return $html ;
+        }
+
+        function json_to_html_grid(product){
+          
+          var $html = '';
+          $html +='<div class="product-inner">';
+          $html +='<div class="product-thumb has-back-image">';
+          $html +='<a href="'+product.handle+'">';
+          $html += '<img src="'+product.featured_image+'" alt="'+product.title+'">';
+          $html += '</a>';
+          if(product.images.length > 1)
+            {
+              $html +='<a class="back-image" href="'+product.handle+'">';
+              $html +='<img src="'+product.images[1]+'" class="secondary_image" alt="'+product.title+'"/>';
+              $html += '</a>'; 
+            }
+          $html +='<div class="gorup-button">';
+          if(is_customers){
+              if(jQuery.inArray(product.id, json_wishlist ) >= 0){
+                $html +='<a class="view-added-wishlist " title="View my Wishlist" href="/collections/wishlist"><i class="fa fa-heart"></i></a>';
+                }else{
+                  
+                    $html +='<a class="wishlist " title="Add to my wishlist" href="javascript:void(0)" data-form="'+product.id+'"> <i class="fa fa-heart"></i></a>';
+                    $html +='<a href="/collections/wishlist" class="added-wishlist"  data-toggle="tooltip" data-placement="top" ><i class="fa fa-heart"></i></a>';
+                }
+              }else {
+                  $html += '<a class="wishlist-login"   href="javascript:void(0)" title="Login to use wishlist"><i class="fa fa-heart-o"></i></a>';
+                }
+          if(check_compare(product.handle)){
+                $html +='    <a class="compare added" href="" data-pid="'+product.handle+'"><i class="fa fa-exchange"></i></a>';
+              }else{
+                $html +='    <a class="compare" href="" data-pid="'+product.handle+'"><i class="fa fa-exchange"></i></a>';
+              }
+
+          $html +='<a class="quick-view" href=\'/products/'+product.handle+'\' data-pid="'+product.variants[0].id +'"><i class="fa fa-search"></i></a>';
+          $html +='</div>';
+          $html +='</div>';
+          $html +='<div class="product-info">';
+          $html += '<h3 class="product-name"><a href=\'/products/'+product.handle+'\'>'+product.title+'</a></h3>';
+          $html += '<span class="price">';
+          $html += '<span class="money" data-currency-'+Currency.currentCurrency+'="'+convert_currency(product.price,'xx')+'">'+convert_currency(product.price,'xx')+'</span>';
+          $html += '</span>';
+          $html += '<div class="pro-add-to-cart">';
+          if (product.available == false){
+              $html += '<a class="button" onclick="location.href=\'/products/'+product.handle+'\'">SOLD OUT</a>';
+            }else{
+
+          if((product.variants).length> 1){
+              $html += '<a class="button select-option" onclick="location.href=\'/products/'+product.handle+'\'">Select Options</a>';
+            }else{
+              $html += '<a class="button boutique__add-to-cart" data-pid="'+product.variants[0].id+'">ADD TO CART</a>';
+              $html += '<span class="adding-cart"></span>';
+            }
+          }
+          $html += '</div>';
+          $html += '</div>';
+          $html += '</div>';
+          $html += '</li>';
+          return $html ;
+        }
+      
+    });
+})(jQuery);

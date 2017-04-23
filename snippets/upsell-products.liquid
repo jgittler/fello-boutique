@@ -1,0 +1,43 @@
+{% unless data_responsive %}
+  {% assign data_responsive = '{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}' %}
+{% endunless %}
+{% if settings.upsell == blank %}
+  {% for product in collections.all.products %}
+    {% if product.compare_at_price > product.price %}
+      {% assign show = true %}
+    {% endif %}
+  {% endfor %}
+{% else %}
+{% assign upsell = settings.upsell %}
+{% endif %}
+
+{% if show == true %}
+<div class="section-title text-center"><h3>{{ 'products.general.upsell_products_title' | t }}</h3> </div>
+<ul class="owl-carousel" data-responsive='{{data_responsive}}' data-autoplay="true" data-loop="true" data-items="4" data-dots="false" data-nav="false" data-margin="30">
+  {% assign limit = 0 %}
+  {% for product in collections.all.products %}
+    {% if product.compare_at_price > product.price %}
+      {% assign grid_item_width = '' %}
+      	{% include 'product-grid-item' %}
+    {% assign limit = limit | plus: 1 %}
+    {% endif %}
+    {% if limit == 8 %}
+    	{% break %}
+    {% endif %}
+  {% endfor %}
+</ul>
+{% else %}
+
+<div class="section-title text-center"><h3>{{ 'products.general.upsell_products_title' | t }}</h3> </div>
+<ul class="owl-carousel" data-responsive='{{data_responsive}}' data-autoplay="true" data-loop="true" data-items="4" data-dots="false" data-nav="false" data-margin="30">
+  {% assign limit = 0 %}
+  {% for product in collections[upsell].products %}
+    {% assign grid_item_width = '' %}
+      {% include 'product-grid-item' %}
+    {% assign limit = limit | plus: 1 %}
+    {% if limit == 8 %}
+    	{% break %}
+    {% endif %}
+  {% endfor %}
+</ul>
+{% endif %}

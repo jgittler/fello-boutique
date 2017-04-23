@@ -1,0 +1,345 @@
+<h1 class="minor-h-pads text-center jumbotron section-header__title no-margin blue-bg">Find the perfect fit for you.</h1>
+
+<div class="container">
+  
+  <div id="wizard">
+    
+    <!-- Bread Crumbs -->
+    <div id="top-crumbs" class="col-xs-12 pointer h3 crumbs text-center minor-v-marg">
+      <div class="btn-group btn-breadcrumb">
+        <a class="current btn btn-crumb" title="pick sex">Sex</a>
+        <a class="not-allowed btn btn-crumb" title="pick hair color">Hair Color</a>
+        <a class="not-allowed btn btn-crumb" title="pick face shape">Face Shape</a>
+        <a class="not-allowed btn btn-crumb" title="pick style">Style</a>
+        <a class="not-allowed btn btn-crumb hidden-xs" title="find your face">Faces</a>
+      </div>
+    </div>
+  
+    <!-- SELECTED LARGE SCREENS -->
+    <div class="col-xs-12 text-center">
+      <ul id="selected" class="list-inline">
+        <li class="current">
+          <h4 class="gray">Sex</h4>
+          <span class="hold">
+            <span class="icon"></span>
+            <br />
+            <p></p>
+          </span>
+        </li>
+        <li class="not-allowed">
+          <h4 class="gray">Hair</h4>
+          <span class="hold">
+            <span class="icon"></span>
+            <br />
+            <p></p>
+          </span>
+        </li>
+        <li class="not-allowed">
+          <h4 class="gray">Shape</h4>
+          <span class="hold">
+            <span class="icon"></span>
+            <br />
+            <p></p>
+          </span>
+        </li>
+        <li class="not-allowed">
+          <h4 class="gray">Style</h4>
+          <span class="hold">
+            <span class="icon"></span>
+            <br />
+            <p></p>
+          </span>
+        </li>
+      </ul>
+    </div>
+    
+    <!-- SEX -->
+    <div class="pick-sex step col-xs-12 text-center">
+            
+      <h1 class="step-message">Select One</h1>
+
+      <div class="pillar col-xs-12 col-sm-6">
+        <div class="panel sharp pointer" data-sex="female">
+
+          <span class="icon pe-7s-user-female" style="color: pink;"></span>
+          <br />
+          <h1>Female</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-6">
+        <div class="panel sharp pointer" data-sex="male">
+
+          <span class="icon pe-7s-user" style="color: #005aff;"></span>
+          <br />
+          <h1>Male</h1>
+
+        </div>
+      </div>
+    </div>
+    
+    <!-- HAIR -->
+    <div class="pick-hair step col-xs-12 text-center hidden">
+                  
+      <h2 class="step-message">What's Your Hair Color?</h2>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer" data-hair="blonde">
+
+          <img src="{{ 'male-blonde-hair-heads.png' | file_url }}" alt="male blonde" class="male blonde">          
+          <img src="{{ 'female-blonde-hair-heads.png' | file_url }}" alt="female blonde" class="female blonde">
+
+          <br>
+          <h1>Blonde</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer" data-hair="brown">
+
+          <img src="{{ 'male-brown-hair-heads.png' | file_url }}" alt="male brown" class="male brown">
+          <img src="{{ 'female-brown-hair-heads.png' | file_url }}" alt="female brown" class="female brown">
+
+          <br>
+          <h1>Brown</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer" data-hair="black">
+
+          <img src="{{ 'male-black-hair-heads.png' | file_url }}" alt="male black" class="male black">
+          <img src="{{ 'female-black-hair-heads.png' | file_url }}" alt="female black" class="female black">
+
+          <br>
+          <h1>Black</h1>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SHAPE -->
+    <div class="pick-shape step col-xs-12 text-center hidden">
+                  
+      <h2 class="step-message">What's Your Face Shape?</h2>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer" data-shape="oval">
+
+          <img src="{{ 'male-oval-face-black.png' | file_url }}" alt="male oval black" class="hidden black male oval">
+          <img src="{{ 'male-oval-face-brown.png' | file_url }}" alt="male oval brown" class="hidden brown male oval">
+          <img src="{{ 'male-oval-face-blonde.png' | file_url }}" alt="male oval blonde" class="hidden blonde male oval">
+          <img src="{{ 'female-oval-face-black.png' | file_url }}" alt="female oval black" class="hidden black female oval">
+          <img src="{{ 'female-oval-face-brown.png' | file_url }}" alt="female oval brown" class="hidden brown female oval">
+          <img src="{{ 'female-oval-face-blonde.png' | file_url }}" alt="female oval blonde" class="hidden blonde female oval">
+
+          <br>
+          <h1>Oval</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer" data-shape="round">
+
+          <img src="{{ 'male-round-face-black.png' | file_url }}" alt="male round black" class="hidden black male round">
+          <img src="{{ 'male-round-face-brown.png' | file_url }}" alt="male round brown" class="hidden brown male round">
+          <img src="{{ 'male-round-face-blonde.png' | file_url }}" alt="male round blonde" class="hidden blonde male round">
+          <img src="{{ 'female-round-face-black.png' | file_url }}" alt="female round black" class="hidden black female round">
+          <img src="{{ 'female-round-face-brown.png' | file_url }}" alt="female round brown" class="hidden brown female round">
+          <img src="{{ 'female-round-face-blonde.png' | file_url }}" alt="female round blonde" class="hidden blonde female round">
+
+          <br>
+          <h1>Round</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer" data-shape="square">
+
+          <img src="{{ 'male-square-face-black.png' | file_url }}" alt="male square black" class="hidden black male square">
+          <img src="{{ 'male-square-face-brown.png' | file_url }}" alt="male square brown" class="hidden brown male square">
+          <img src="{{ 'male-square-face-blonde.png' | file_url }}" alt="male square blonde" class="hidden blonde male square">
+          <img src="{{ 'female-square-face-black.png' | file_url }}" alt="female square black" class="hidden black female square">
+          <img src="{{ 'female-square-face-brown.png' | file_url }}" alt="female square brown" class="hidden brown female square">
+          <img src="{{ 'female-square-face-blonde.png' | file_url }}" alt="female square blonde" class="hidden blonde female square">
+
+          <br>
+          <h1>Square</h1>
+
+        </div>
+      </div>
+    </div>
+    
+    <!-- STYLE -->
+    <div class="pick-style step col-xs-12 hidden text-center">
+      
+      <h2 class="step-message">Choose A Style <small>or</small> <span class="btn btn-blue all-styles"><strong>All of Them</strong></span></h2>
+      
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer" data-style="konvoy">
+
+          <img src="{{ 'style-konvoy.png' | file_url }}" alt="the konvoy">
+          <br />
+          <h1>Retro</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer" data-style="fantom">
+
+          <img src="{{ 'style-fantom.png' | file_url }}" alt="the fantom">
+          <br />
+          <h1>Modern</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer" data-style="heron">
+
+          <img src="{{ 'style-heron.png' | file_url }}" alt="the heron">
+          <br />
+          <h1>Classic</h1>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Faces -->
+    <div class="col-xs-12 results step container text-center hidden">
+      
+      <h2 class="step-message"><span>Purchase at the Bottom</span> | <div id="reset" class="btn btn-blue">Reset</div></h2>
+
+            <style>
+        .hovereffect {
+          width: 25%;
+          height: 100%;
+          overflow: hidden;
+          position: relative;
+          text-align: center;
+          cursor: default;
+          overflow: hidden;
+          margin: 15px;
+        }
+              
+        .shop-prod {
+          display: inline-block;
+        }
+
+        .hovereffect .overlay {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          overflow: hidden;
+          top: 0;
+          left: 0;
+          background-color: transparent;
+        }
+
+        .hovereffect img {
+          display: block;
+          position: relative;
+          -webkit-transition: all 0.4s ease-in;
+          transition: all 0.4s ease-in;
+        }
+
+        .hovereffect h2 {
+          text-transform: uppercase;
+          text-align: center;
+          font-weight: 900;
+          position: relative;
+          font-size: 15px;
+          padding: 10px;
+          background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .hovereffect a.info {
+          display: inline-block;
+          text-decoration: none;
+          padding: 7px 14px;
+          border: 1px solid #fff;
+          margin: 8px;
+          font-size: 10px;
+          background-color: transparent;
+        }
+
+        .hovereffect a.info:hover {
+          box-shadow: 0 0 5px #fff;
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hovereffect a.info, .hovereffect h2 {
+          opacity: 0.7;
+          filter: alpha(opacity=0);
+          color: #fff;
+          text-transform: uppercase;
+        }
+
+        .hovereffect:hover h2 {
+          opacity: 1;
+          filter: alpha(opacity=100);
+          -webkit-transform: scale(1);
+          -ms-transform: scale(1);
+          transform: scale(1);
+        }
+      </style>
+      
+      
+      <!-- RESULTS -->
+{% include 'find-your-face-counts' %}
+
+        {% for face in face_matrix %}
+        {% assign count = face | split: "-" | last %}
+        {% for i in (1..count) %}
+
+        {% assign full_path = face | split: "-" %}
+        {% assign path = full_path[0] | append: "-" | append: full_path[1] | append: "-" | append: full_path[2] | append: "-" | append: full_path[3] %}
+        {% assign prod = face | split: "-" | first %}
+
+        <img class="face-result" src="" data-src="{{ path | append: "-" | append: i | append: ".jpg" | file_url }}" data-filter="{{ path }}">
+
+        {% endfor %}
+        {% endfor %}
+
+      <div class="invisible" id="shop-results"></div>
+
+      <hr class="highlight">
+
+      <!-- SM-LG -->
+      <h1 class="hidden-xs">Check out our product pages to purchase.</h1>
+<!--       <h3 class="hidden-xs"><span class="small-caps"><strong>15%</strong> off any purchase, ends soon! Use discount code:</span> <code>foundit</code></h3> -->
+
+      <!-- XS -->
+      <h4 class="visible-xs">Check out our product pages to purchase.</h4>
+<!--       <h6 class="visible-xs"><span class="small-caps"><strong>15%</strong> off any purchase, ends soon! Use discount code:</span> <code>foundit</code></h6> -->
+      <hr class="highlight">
+
+      <div class="text-center full-w">
+        {% for product in collections["classic"].products %}
+        {% assign prod_filter = product.title | split: " " | last %}
+        <div class="hovereffect shop-prod">
+          <a href="{{ product.url }}" title="Shop {{ product.title }}">
+            <img class="prod-shot" src="" data-src="{{ product.featured_image.src | img_url: 'large' }}" data-filter="{{ prod_filter | downcase }}">
+            <div class="overlay">
+              <h2 class="shop-banner">Shop {{ product.title }}</h2>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div id="fit-filters" data-style="" class="hidden" data-sex="" data-shape="" data-hair="">
+</div>
+
+{{ 'find-your-face.js' | asset_url | script_tag  }}

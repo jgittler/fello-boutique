@@ -1,0 +1,20 @@
+<div itemscope itemtype="http://schema.org/Product">
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+  {% if product.available %}
+    {% if settings.product_style == 'simple' %}
+      {% include 'product-simple' %}
+    {% endif %}
+  	{% if settings.product_style == 'full_width'  %}
+      {% include 'product-fullwidth' %}
+    {% endif %}
+  	{% if settings.product_style == 'left_sidebar'  %}
+      {% include 'product-left-sidebar' %}
+    {% endif %}
+  	{% if settings.product_style == 'shop_to'  %}
+      {% include 'product-by-to' %}
+    {% endif %}
+  {% else %}
+    {% include 'product-outofstock' %}
+  {% endif %}
+</div>

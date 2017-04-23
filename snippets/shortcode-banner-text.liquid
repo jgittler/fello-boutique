@@ -1,0 +1,58 @@
+{% capture banner_text_col %}{% include 'shortcode-render' render:'col' default:'' %}{% endcapture %}
+{% capture banner_text_col_open %}{% include 'shortcode-render' render:'col_open' default:'' %}{% endcapture %}
+{% capture banner_text_col_close %}{% include 'shortcode-render' render:'col_close' default:'' %}{% endcapture %}
+{% capture banner_text_top %}{% include 'shortcode-render' render:'top' default:'' %}{% endcapture %}
+{% capture banner_text_bottom %}{% include 'shortcode-render' render:'bottom' default:'' %}{% endcapture %}
+{% capture banner_text_image %}{% include 'shortcode-render' render:'name_image' default:'' %}{% endcapture %}
+{% capture banner_text_link %}{% include 'shortcode-render' render:'link' default:'' %}{% endcapture %}
+{% capture banner_text_title %}{% include 'shortcode-render' render:'title' default:'' %}{% endcapture %}
+{% capture banner_text_sub_title %}{% include 'shortcode-render' render:'sub_title' default:'' %}{% endcapture %}
+{% capture banner_text_button %}{% include 'shortcode-render' render:'button' default:'' %}{% endcapture %}
+
+{% if banner_text_image == "" %}
+{% capture banner_text_images %}{{'11.gif' | asset_url | img_tag}}{% endcapture %}
+{% elsif banner_text_image == "12.gif" %}
+{% capture banner_text_images %}{{'12.gif' | asset_url | img_tag}}{% endcapture %}
+{% elsif banner_text_image == "14.gif" %}
+{% capture banner_text_images %}{{'14.gif' | asset_url | img_tag}}{% endcapture %}
+{% elsif banner_text_image == "15.gif" %}
+{% capture banner_text_images %}{{'15.gif' | asset_url | img_tag}}{% endcapture %}
+{% else %}
+{% capture banner_text_images %}{{banner_text_image | file_url | img_tag}}{% endcapture %}
+{% endif %}
+
+{% if banner_text_bottom != "" %}
+  {% capture banner_text_bottom %} margin-bottom-{{banner_text_bottom}} {% endcapture %}
+{% endif %}
+
+{% if banner_text_top != "" %}
+  {% capture banner_text_top %} margin-top-{{banner_text_top}} {% endcapture %}
+{% endif %}
+{% if banner_text_col != "" %}
+<div class="col-sm-{{banner_text_col}} {{banner_text_top}}">
+{% endif %}
+{% if banner_text_col_open != "" %}
+<div class="col-sm-{{banner_text_col_open}} {{banner_text_top}}">
+{% endif %}
+  <div class="banner-text {{banner_text_bottom}} {% if banner_text_title != "" %} {% if banner_text_sub_title == "" %}style2{%endif%}{%endif%}">
+    <div class="image">
+      <a class="banner-opacity" href="{{banner_text_link}}">{{banner_text_images}}</a>
+    </div>
+    <div class="content-text">
+      {% if banner_text_title != "" %}
+      	<h3 class="title">{{banner_text_title}}</h3>
+      {% endif %}
+      {% if banner_text_sub_title != "" %}
+      	<span class="sub-title">{{banner_text_sub_title}}</span>
+      {% endif %}
+      {% if banner_text_button != "" %}
+      	<a href="{{banner_text_link}}" class="button">{{banner_text_button}}</a>
+      {% endif %}
+    </div>
+  </div>
+{% if banner_text_col != "" %}
+</div>
+{% endif %}
+{% if banner_text_col_close == "close" %}
+</div>
+{% endif %}

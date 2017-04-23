@@ -1,0 +1,98 @@
+<!-- <h1 class="text-center jumbotron section-header__title no-margin blue-bg">Pay An Invoice</h1> -->
+
+<div id="pay-holder" class="bg-primary container">
+  <div id="pay-box">
+    <div class="jumbotron sharp col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 col-xs-10 col-xs-offset-1">
+      <h2 class="text-center">Enter a dollar amount.</h2>
+
+      <p class="msg text-center no-margin"></p>
+
+      <div class="input-group col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+        <span class="input-group-addon sharp bg-primary">$</span>
+        <input type="text" class="text-center form-control" aria-label="Amount (to the nearest dollar)" value="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+        <span class="input-group-addon sharp bg-primary">.00</span>
+      </div>
+
+      <hr class="highlight" />
+      <p class="minor-h-pads"><a id="pay" class="full-w btn btn-primary btn-lg sharp" role="button">Make A Payment</a></p>
+    </div>
+  </div>
+</div>
+
+<div id="prod" class="hidden" data-id="{{ all_products['payment'].variants.first.id }}"></div>
+
+<script>
+  function msg(msg, klass) {
+    var $el = $('.msg');
+    $el.addClass(klass);
+    $el.text(msg);
+    $el.css('visibility', 'visible');
+    sleep(1200).then(function() {
+      $el.animate({ opacity: 0 }, 2000, function() {
+        $el.text('');
+        $el.css('visibility', 'invisible');
+        $el.css('opacity', 1);
+        $el.removeClass(klass);
+      });
+    });
+  }
+
+  function isNum(val) {
+    return val.match(/^[0-9]+$/) ? true : false
+  }
+  
+  function addPayment(qty) {
+    var prodId = $('#prod').attr('data-id');
+    $.ajax({
+      url: 'https://www.felloeyewear.com/cart/add.js',
+      method: 'POST',
+      data: {
+        id : prodId,
+        quantity : qty
+      },
+      dataType: 'json'
+    });
+  }
+
+  $('#pay').on('click', function() {
+    var val = $('#pay-box input').val();
+    if (isNum(val)) {
+      addPayment(val);
+      msg('Thank You', 'text-success');
+      window.location.href = "/checkout";
+    } else {
+      msg('Must be a valid dollar amount', 'text-danger');
+    }
+  });
+</script>
+
+<style>
+  #pay-box, #pay-box input, #pay-box .msg {
+    height: 50px;
+  }
+  #pay-box input {
+    font-weight: bolder;
+    font-size: 110%;
+  }
+  #pay-box .msg {
+    visibility: invisible;
+  }
+  #pay-box {
+    margin-top: -5%;
+  }
+  .input-group-addon {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: white;
+    text-align: center;
+    background-color: #337ab7;
+    border: 1px solid #ccc;
+  }
+  #pay-holder {
+    margin: 15% 0 0 0;
+    padding-bottom: 10%;
+    width: 100%;
+  }
+</style>

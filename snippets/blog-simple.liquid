@@ -1,0 +1,29 @@
+<div class="rte grid-item masonry-item">         
+  <div class="blog-item">  
+      <div class="post-thumbnail">                               
+          <a class="banner-opacity" href="{{ article.url }}">
+          {% if article.image %}
+            <img src="{{ article.image.src | img_url: '1024x1024' }}" alt="{{ article.title }}">
+            {% endif %}
+          </a>
+      </div> 
+      <h3 class="blog-title"><a href="{{ article.url }}">{{ article.title }}</a></h3>
+      <div class="entry-meta">
+          <span class="post-date">{{ article.published_at | date: "%d %b %Y" }}</span>
+          
+          <span class="blog-comment"><i class="fa fa-comment"></i>
+          {% if blog.comments_enabled? %}
+            <span class="count-comment">{{article.comments_count}}</span>   
+            {% endif %}                            
+          </span>                                   
+      </div>
+      <div class="rte entry-summary blog-short-desc">
+          {% if article.excerpt.size > 0 %}
+          {% include  'shortcode' load:  article.excerpt %}
+          {% else %}
+          <p>{{ article.content | strip_html | truncatewords: 25 }}</p>
+          {% endif %}
+      </div><a class="readmore" href="{{ article.url }}">{{ 'blogs.article.read_more' | t }}</a>
+  </div>                                                            
+</div>       
+{% unless forloop.last %}{% endunless %}

@@ -1,0 +1,39 @@
+<h1 class="jumbotron text-center shop-classic-banner hidden-xs">Shop Classic</h1>
+<h1 class="jumbotron text-center shop-classic-banner visible-xs" style="color: white;"><strong>Shop Classic</strong></h1>
+
+<div class="main-container no-slidebar classic-collection-bg">
+	<div class="container">
+		<div class="row">
+			<div class="main-content col-sm-12">
+			{% paginate collection.products by 9 %}
+<!-- 				<div class="shop-top">
+					<div class="shop-top-left">
+						<div class="breadcrumbs">
+		                    {% include "breadcrumb" %}
+		                </div>
+					</div>
+					<div class="shop-top-right">
+						<span class="woocommerce-result-count">Showing {{paginate.current_page}}&ndash;{{paginate.page_size }} of {{paginate.items}} results</span>
+						<div class="orderby-wapper">
+	                    	 {% include 'collection-sorting' %}
+	                    </div>
+	                    {% include 'collection-views' %}
+					</div>
+				</div> -->
+				<ul class="product-list-grid desktop-columns-3 tablet-columns-3 mobile-columns-1 row flex-flow" id="collection-product">
+		          {% for product in collection.products %}
+		            {% assign grid_item_width = 'col-sm-4' %}
+		              {% include 'product-grid-item' %}
+		              {% include 'product-list-item' %} 
+		            {% endfor %}
+		        </ul>
+				{% if paginate.pages > 1 %}
+                    <div class="navigation">
+                    {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+                  </div>
+                {% endif %}
+             {% endpaginate %}
+			</div>
+		</div>
+	</div>
+</div>

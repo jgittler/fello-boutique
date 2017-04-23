@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="top-pic fellosophy-pic jumbotron col-xs-12">
+    <div class="col-xs-10 col-xs-offset-1 text-center">
+      <h1 class="text-drop-shadow">Our Fellosophy</h1>
+    </div>
+  </div>
+</div>
+
+
+<div class="container"> 
+
+  <h1 class="text-center">
+    <span class="highlight">We</span> Care About Quality. <span class="highlight">We</span> Care About <span class="dark-highlight">People</span>.
+  </h1>
+  <h5 class="text-center">
+    Today there are nearly 1 Billion people worldwide without access to basic eye care (eye exams, prescription lenses, eye drops, etc.). We aren’t okay with these numbers, and we know that you aren’t either.
+  </h5>
+  <img src="{{ 'fello_vision.png' | asset_url }}" alt="Fello and Vosh around the World" />
+</div>
+
+<!-- Start Founded / L-MD Screens -->
+<div class="row row-eq-height founded hidden-sm hidden-xs">
+  <div class="col-md-6 no-pads pull-left">
+     <img class="full-w" src="{{ 'fello_friends.jpg' | asset_url }}" alt="{{ 'Fello Friends' | escape }}" />
+  </div>
+  <div class="col-md-6 v-center no-pads">
+    <img src="{{ 'fello_circle.png' | asset_url }}" alt="{{ 'vosh international' | escape }}" style="width: 20%;"/>
+    <p>Since day 1 we set out to establish a company that values customers above all. We are dedicated to delivering quality eyewear that rivals more expensive, well known, brands.</p>
+  </div>
+</div>
+<!-- End Founded / L-MD Screens -->
+
+<!-- Start Founded / S-XS Screens -->
+<div class="row founded hidden-lg hidden-md">
+  <div class="col-xs-12 v-center minor-v-pads">
+    <img src="{{ 'fello_circle.png' | asset_url }}" alt="{{ 'vosh international' | escape }}" style="width: 20%;"/>
+    <p>Since day 1 we set out to establish a company that values customers above all. We are dedicated to delivering quality eyewear that rivals more expensive, well known, brands.</p>
+  </div>
+</div>
+<div class="row founded hidden-lg hidden-md no-pads">
+  <div class="col-xs-12">
+    <img class="full-w" src="{{ 'fello_friends.jpg' | asset_url }}" alt="{{ 'Fello Friends' | escape }}" />
+  </div>
+</div>
+<!-- End Founded / S-XS Screens -->
+
+{% comment %}
+  Regular page content goes here.
+{% endcomment %}
+<div class="rte">
+  {{ page.content }}
+</div>

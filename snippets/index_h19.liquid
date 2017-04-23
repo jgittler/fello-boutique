@@ -1,0 +1,202 @@
+{% if settings.use_slider_hp19 %}
+<!-- Home slide -->
+<div class="slider-homepage">
+  {% include 'shortcode-slider' %}
+</div>
+<!-- ./Home slide -->
+{% endif %}
+
+{% if settings.use_banner_home19%}
+<!-- Banner -->
+<div class="row margin-0">
+  <div class="col-sm-6 padding-0">
+    <a class="banner-border" href="{{settings.banner_sc2_1_link_home19}}"><img src="{{settings.banner_sc2_1_home19}}" alt=""></a>
+    <a class="banner-border" href="{{settings.banner_sc2_2_link_home19}}"><img src="{{settings.banner_sc2_2_home19}}" alt=""></a>
+  </div>
+  <div class="col-sm-6 padding-0">
+    <a class="banner-border" href="{{settings.banner_sc2_3_link_home19}}"><img src="{{settings.banner_sc2_3_home19}}" alt=""></a>
+  </div>
+</div>
+<!-- .Banner -->
+{% endif %}
+
+{% if settings.use_product_home19 %}
+<div class="margin-top-70">
+  <div class="container">
+    <div class="section-title style8 text-center margin-bottom-40">
+      {% assign collection_name = 'handleize_product_home19'  %}
+          {% assign handleize_tab = settings[collection_name]  %}
+      {% if handleize_tab != "" %}
+      	 <h3>{{collections[handleize_tab].title | escape }}</h3>
+      {% endif %}
+    </div>
+        {% assign collection_name = 'handleize_product_home19'  %}
+          {% assign handleize_tab = settings[collection_name]  %}
+          {% if handleize_tab != "" %}            
+              <ul id="tab-{{handleize_tab}}" class="lines-space-60 desktop-columns-3 tablet-columns-2 mobile-columns-1 row owl-carousel-mobile" data-nav="false" data-dots="false" data-margin="0" data-loop="true" data-items="1">
+              {% assign check_product_style_3 = 1 %}
+                {% for product in collections[handleize_tab].products limit: limit %}
+  				  {% assign grid_item_width_style4 = 'style8 mobile-slide-item' %}
+                  {% assign grid_item_width = " col-sm-6 col-md-4" %}
+                  {% include "product-style-3" %}
+                  {% assign check_product_style_3 = check_product_style_3 | plus: 1 %}
+                {% endfor %}
+              </ul>
+              {% if check_product_style_3 > 6 %}
+              <a class="button-loadmore" href="javascript:void(0)"  title="{{handleize_tab}}" name="tab-{{handleize_tab}}">load more!</a>
+              {% endif %}
+          {% endif %}
+    </div>
+</div>
+{% endif %}
+
+{% if settings.use_testimonials_home19 %}
+  {% assign style = "background" %}
+    {% include "shortcode-testimonial" %}
+{% endif %}
+
+{% if settings.use_group_product_home19 %}
+<div class="section-slide-group-product">
+  <div class="container">
+    <div class="row">
+       {% assign check_number = 0 %}
+        {% for i in (1..3) %}
+        {% assign collection_name = "handleize_product_" | append: i | append: "_s3_home19" %}
+          {% if settings[collection_name] != blank %}
+            {% if check_number == 0 %}
+            {% assign col = "12" %}
+            {% elsif check_number == 1 %}
+            {% assign col = "6" %}
+            {% elsif check_number == 2 %}
+            {% assign col = "4" %}
+            {% elsif check_number == 3 %}
+            {% assign col = "3" %}
+            {% endif %}
+            {% assign check_number = check_number | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+
+        {% for i in (1..3) %}
+        {% assign collection_name = "handleize_product_" | append: i | append: "_s3_home19" %}
+          {% if settings[collection_name] != blank %}
+
+            <div class="col-sm-12 col-sm-{{col}}">
+              <div class="section-title style9 text-left margin-top-80 margin-bottom-30">
+                  {% assign handleize_tab = settings[collection_name]  %}
+                    {% if handleize_tab != "" %}
+                    <h3>{{collections[handleize_tab].title | escape }}</h3>
+                  {% endif %}
+                </div>
+
+              {% assign collection_name = "handleize_product_" | append: i | append: "_s3_home19" %}
+                {% assign handleize_tab = settings[collection_name]  %}
+                {% if handleize_tab != "" %}             
+                    <ul class="owl-carousel nav-top-right nav-style8 owl-custom-nav-postion" data-autoplay="false" data-navigation="true" data-margin="30" data-slidespeed="500" data-autoheight="false" data-nav="true" data-dots="false" data-loop="true" data-autoplaytimeout="1000" data-autoplayhoverpause="true" data-responsive='{"0":{"items":"1"},"768":{"items":"2"},"992":{"items":"1"}}' data-navigation_margin="58">                            
+                    {% assign check_product_style_3 = "" %}
+                      {% for product in collections[handleize_tab].products limit: limit %}
+                          {% assign grid_item_width_style4 = 'style8' %}
+                              {% assign grid_item_width = "" %}
+                        {% include "product-style-3" %}
+                      {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if settings.use_quote_home19 %}
+	
+  <div class="container">
+    <span class="line margin-top-80"></span>
+    {% assign include = 'include' %}
+    {% assign image_title = settings.image_title %}
+    {% assign text_quote = settings.text_quote %}
+    {% assign magin_top = 'margin-top-70' %}
+    
+	{% include 'shortcode-quote' %}
+  </div>
+{% endif %}
+
+{% if settings.use_blocknewletter_home19 %}
+<div class="block-paralax5 bg-parallax">
+  <div class="container">
+    <div class="head">
+      <h3 class="title">{{settings.title_newletter_home19}}</h3>
+      <span class="sub-title">{{settings.sub_title_newletter_home19}}</span>
+    </div>
+    <div class="col-lg-offset-2 col-sm-12 col-lg-8">
+      <div class="block-newletter style3">
+        <div class="form">
+          <div class="desc">
+            	{{settings.form_desc_newletter_home19 | flile_url | img_tag}}
+              {% comment %}<span class="text-primary">Get <span class="big-text">50%</span> off</span>
+              <span>On your next purchase!</span>{% endcomment %}
+          </div>
+          <div class="newletter-wapper">
+            {% if settings.newsletter_form_action != blank %}
+              {% assign form_action = settings.newsletter_form_action %}
+            {% else %}
+              {% assign form_action = '#' %}
+            {% endif %}
+            <form class="newletter" action="{{ form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+              <input class="email-text" type="text" name="newsletter" placeholder="{{'general.newsletter_form.placeholder' | t}}" value="">
+             <input type="submit" value="SIGNUP" class="button">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+<div class="margin-top-70">
+  <div class="container">
+    {% if settings.use_our_blog_home19 %}
+    	<div class="section-title text-center"><h3>{{settings.title_blog_home19}}</h3></div>
+    	<div class="lastest-blog owl-carousel nav-center-center nav-style7" data-nav="true" data-dots="false" data-loop="true" data-margin="30" data-responsive='{"0":{"items":1},"600":{"items":1},"1000":{"items":2}}'>
+			{% assign handle_name = settings.id_blog_home19%}
+          {% if handle_name == blank %}
+          	{% assign handle_name = 'news' %}
+          {% endif %}
+          {% for article in blogs[handle_name].articles limit: 15 %}
+              <div class="item-blog">
+                <div class="left">
+                  <div class="blog-date">
+                    <span class="day">{{ article.published_at | date: '%d' }}</span>
+                    <span class="month">/{{ article.published_at | date: '%b' | upcase }}</span><br>
+                    <span class="year">{{ article.published_at | date: '%Y' }}</span>
+                  </div>
+                  <h3 class="blog-title"><a href="{{ article.url }}">{{ article.title| truncate: 20 }}</a></h3>
+                  <div class="meta">
+                    <span class="author">{{ article.author }}</span>
+                      {% assign title_counts = 'comment' %}
+                      {% if article.comments_count > 1 %}
+                        {% assign title_counts = 'comments' %}
+                      {% endif %}
+                    <span class="comment"><i class="fa fa-comment"></i> {{article.comments_count}} {{ title_counts }}</span>
+                  </div>
+                </div>
+                <div class="right">
+                {% if article.image %}
+                <a href="{{ article.url }}" class="banner-border"> 
+                  <img src="{{ article.image.src | img_url: 'medium' }}" srcset="{{ article.image.src | img_url: 'medium' }} 1x, {{ article.image.src | img_url: 'small' }} 2x" alt="{{ article.title }}">
+                </a>
+                {% endif %}
+                </div>
+              </div>
+          {% endfor %}
+		</div>
+    {% endif %}
+    <span class="line margin-top-70"></span>
+    
+    {% if settings.use_brand_home19 %}
+          {% include 'shortcode' load: '[brand bottom="60"]'  %}
+    {% endif %}
+  </div>
+</div>
+

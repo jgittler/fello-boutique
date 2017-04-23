@@ -1,0 +1,36 @@
+<!-- /templates/blog.liquid -->
+
+{% paginate blog.articles by 6 %}
+<div class="main-container list-blogs">
+{% assign title = blog.title %}
+{% include 'blog-header' %}
+<!--       <h1 class="page-title">{{ blog.title }}</h1> -->
+    <div class="container">
+
+  <div class="blog-grid butique-masonry">
+          <div class="masonry-grid" data-layoutmode="masonry" data-cols="3">
+            {% for article in blog.articles %}
+                {% case article.template_suffix %}
+                {% when 'video'%}
+                {% include 'blog-video' %}
+                {% when 'gallery' %}
+                {% include 'blog-gallery' %}
+                {% when 'audio' %}
+                {% include 'blog-audio' %}
+                {% when 'image' %}
+                {% include 'blog-image' %}
+                {% else %}
+                {% include 'blog-simple' %}
+                {% endcase %}
+              {% endfor %}                
+          </div>
+      </div>
+      {% if paginate.pages > 1 %}
+        <div class="pagination">
+          {{ paginate | default_pagination | replace: '&laquo; Previous', 'Previous' | replace: 'Next &raquo;', 'Next' }}
+        </div>
+      {% endif %}
+
+</div>
+</div>
+{% endpaginate %}

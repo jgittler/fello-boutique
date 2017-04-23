@@ -1,0 +1,35 @@
+<style>
+  .jumbotron.thank-you {
+    width: 60%;
+    float:none;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: transparent;
+    text-align: center;
+  }
+  .jumbotron.thank-you h4 {
+    text-align: left;
+    line-height: 1.7;
+    margin: 10px 50px;
+  }
+  #cb-info {
+    padding-top: 10px;
+  }
+</style>
+
+<div class="jumbotron thank-you">
+  <h1 class="minor-v-margs">Thank You!</h1>
+
+  <hr class="highlight">
+
+  <h4>
+    Your credit card / bank statement will show a charge by ClickBank or CLKBANK*COM,
+    rather than a reference to Fello.
+  </h4>
+</div>
+
+  {{ 'viewer.scss' | asset_url | stylesheet_tag }}
+
+  {% include 'cb-panels' %}
+  {% include 'cb-contact' %}
+  {% include 'cb-disclaimer' %}

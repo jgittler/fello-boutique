@@ -1,0 +1,7 @@
+.snptwdgt__ftr {
+  display: none;
+}
+.snptwdgt-card .snptwdgt-card__button:hover {
+  border-color: #1fa7d6;
+  background-color: transparent;
+}

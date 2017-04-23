@@ -1,0 +1,51 @@
+<div id="box-mobile-menu" class="box-mobile-menu full-height full-width">
+	<div class="box-inner">
+		<span class="close-menu"><span class="icon pe-7s-close"></span></span>
+	</div>
+</div>
+<div id="header-ontop" class="is-sticky"></div>
+<header id="header" class="header style2 style16 style17">
+	<div class="container">
+		<div class="topbar">
+			<ul class="boutique-nav topbar-menu left">
+        {% if settings.footer_widget_phone_contact != blank %}<li{% if settings.turnoff_phone_header %} class="hidden-xs"{% endif %}><a href="#"><i class="fa fa-phone"></i>Call Us: {{settings.footer_widget_phone_contact}}</a></li>{% endif %}
+        {% if settings.footer_widget_email_contact != blank %}<li{% if settings.turnoff_email_header %} class="hidden-xs"{% endif %}><a href="#"><i class="fa fa-envelope"></i>{{settings.footer_widget_email_contact}}</a></li>{% endif %}
+            </ul>
+			<div class="social-topbar">
+				<label>Contacts us :</label>
+              	{% if settings.social_facebook_link != blank %}<a href="{{ settings.social_facebook_link }}" ><i class="fa fa-facebook"></i></a>{% endif %}
+              	{% if settings.social_twitter_link != blank %}<a href="{{ settings.social_twitter_link }}"><i class="fa fa-twitter"></i></a>{% endif %}
+				{% if settings.social_google_plus_link != blank %}<a href="{{ settings.social_google_plus_link }}" ><i class="fa fa-google-plus"></i></a>{% endif %}
+  				{% if settings.social_instagram_link != blank %}<a href="{{ settings.social_instagram_link }}"><i class="fa fa-instagram"></i></a>{% endif %}
+				{% if settings.social_pinterest_link != blank %}<a href="{{ settings.social_pinterest_link }}"><i class="fa fa-pinterest"></i></a>{% endif %}
+			</div>
+		</div>
+		<div class="main-header">
+			<div class="logo">
+              {% if settings.logo_use_image%}
+                  <a href="/">{{'logo.png' | asset_url | img_tag}}</a>
+              {% else %}
+                  <a href="/"><img src="{{'logo.gif' | asset_url}}" alt=""></a>
+              {%endif%}
+            </div>
+			<div class="main-menu-wapper">
+				<div class="row">
+					<div class="col-xs-2 col-sm-9 col-md-10 col-lg-11">
+						{% include 'menu_import' %}
+						<span class="mobile-navigation"><i class="fa fa-bars"></i></span>
+					</div>
+					<div class="col-xs-10 col-sm-3 col-md-2 col-lg-1">
+						<div class="box-control">
+							{% assign search_style = "icon" %}
+                            	{% include 'search-bar' %}
+
+                            {% assign position ="menu" %}
+                            	{% include "mini-cart" %}
+							{% include"settings-box" %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>

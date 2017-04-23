@@ -1,0 +1,119 @@
+
+{% assign sold_out = true %}
+{% assign sold_out_text = 'products.product.sold_out' | t %}
+{% if product.available %}
+{% assign sold_out = false %}
+{% endif %}
+
+<div class="product-details-full">                            
+  <div class="container">
+    <div class="row" id="product-single">
+      <div class="col-md-7 col-lg-7 col-sm-12 col-xs-12">
+        <div class="product-detail-image">
+          <div class="main-image-wapper">
+            <span class="outof-stock">{{sold_out_text}}</span>
+            {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
+            <img class="main-image" src="{{ featured_image | img_url: '1024x1024' }}" alt="{{ featured_image.alt | escape }}">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 col-lg-5 col-sm-12 col-xs-12">
+        <div class="product-details-right">
+          <span class="h4 small-caps"><strong>Free Shipping</strong></span>
+          <span class="small-caps"><small>(US & Canada)</small></span>
+          
+          <hr />
+          <h3 class="product-name">{{ product.title | upcase }}</h3>
+          <div class="rating">
+            <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+          </div>
+          <span class="out-of-stock">Out Of Stock</span>
+
+          <div class="short-descript">
+            {% if product.metafields.meta.description %}
+            	{{ product.metafields.meta.description | html }}
+            {%else%}
+            	{{ product.description | html }}
+            {% endif %}
+          </div>                                            
+          
+          {% include 'sold-out' %}
+          
+          {% if settings.use_wishlist %}
+          {% assign button = "button" %}
+          {% include 'wishlist-product' %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="container">                        
+	 {% if product.metafields.meta.reviews %}
+        <div class="tab-details-product padding-40-60">
+          <ul class="box-tabs nav-tab">
+            {% if product.description !="" %}
+              <li class="active"><a data-toggle="tab" href="#tab-1">{{settings.product_tab_title_1}}</a></li>
+            {% endif %}
+            {% if settings.show_product_tab_2 %}
+              <li><a data-toggle="tab" href="#tab-2">{{settings.product_tab_title_2}}</a></li>
+            {% endif %}
+            {% if settings.show_product_tab_3 %}
+              <li><a data-toggle="tab" href="#tab-3">{{settings.product_tab_title_3}}</a></li>
+            {% endif %}
+            {% if settings.show_product_tab_5 %}
+              <li><a data-toggle="tab" href="#tab-4">{{settings.product_tab_title_5}}</a></li>
+            {% endif %}
+          </ul>
+          <div class="tab-container">
+           {% if product.description !="" %}
+                <div id="tab-1" class="tab-panel active">{{ product.description }}</div>
+            {% endif %}
+            {% if settings.product_tab_desc_2 !="" %}
+                <div id="tab-2" class="tab-panel">{{ settings.product_tab_desc_2 }}</div>
+            {% endif %}
+            {% if settings.product_tab_desc_3 !="" %}
+                <div id="tab-3" class="tab-panel">{{ settings.product_tab_desc_3 }}</div>
+            {% endif %}
+            {% if settings.show_product_tab_5 %}
+                <div id="tab-4" class="tab-panel">{{ product.metafields.meta.reviews }}
+                  <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}
+                  </div>
+                </div>          
+            {% endif %}
+          </div> 
+        </div>      
+      {% endif %}
+  <div class="upsell-products">{% include 'upsell-products' %}</div> 
+</div> <!--END CONTAINER-->
+<!-- <div class="box-list-reviews">
+  <div class="container">  
+      <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+  </div>
+</div>
+ -->
+
+<script type="text/javascript"> 
+  jQuery(document).ready(function($){
+    var text1 = 0;
+    var text2 = 0;
+    $( ".short-descript" ).each(function( index ) {
+      var text11 = $( this ).text().length;
+      if( text11 > 0 ){
+        text1 = text11;
+      }
+    });
+    $( "#tab-2" ).each(function( index ) {
+      var text22 = $( this ).text().length;
+      if( text22 > 0 ){
+        text2 = text22;
+      }
+    });
+    if((text1 > 0) && (text2 == 0)){
+      $(".tab-details-product").remove();
+      $(".upsell-products").css('margin-top','50px');
+    }else{
+      $(".tab-details-product").css('display','block');
+    };
+  });
+</script>

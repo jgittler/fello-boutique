@@ -1,0 +1,71 @@
+ <!-- /templates/blog.liquid -->
+{% comment %}
+
+  Loop through a defined number of articles with the 'paginate' tag.
+  Don't forget to close the tag after your loop.
+
+{% endcomment %} 
+
+{% paginate blog.articles by 5 %}
+
+
+
+{% comment %}
+  This template is also used for listing out articles of a specific tag.
+  You can change layouts or styles by checking if current_tags is true.
+{% endcomment %}
+<div class="main-container page-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        {% include 'breadcrum_blog' %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-9 col-sm-12">
+        <div class="page-content blog-page grid-layout row">
+      {% comment %}
+        Loop through each article in your blog. This is limited to what you set for pagination above.
+
+        For more info on article liquid tags:
+          - http://docs.shopify.com/themes/liquid-variables/article
+      {% endcomment %}
+      <div id="shufflegrid">
+        {% for article in blog.articles %}
+          <div class="col-xs-12 col-md-6 shuffle-item filtered  {% cycle 'odd','even' %}">
+           {% case article.template_suffix %}
+            {% when 'video'%}
+                {% include 'blog-video' %}
+             {% when 'gallery' %}
+               {% include 'blog-gallery' %}
+             {% when 'audio' %}
+                {% include 'blog-audio' %}
+              {% when 'image' %}
+                  {% include 'blog-image' %}
+              {% else %}
+               {% include 'blog-simple' %}
+
+           {% endcase %}
+            </div>
+        {% endfor %}
+        </div>
+        {% if paginate.pages > 1 %}
+          
+          <div class="pagination">
+            {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="col-md-3 col-sm-12">
+      <div class="blog-search blog-left">
+         {% include 'search-bar' %}
+      </div>
+      {% include 'blog-sidebar' %}
+    </div>
+    </div>
+
+  </div>
+</div>
+{% endpaginate %}

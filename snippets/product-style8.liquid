@@ -1,0 +1,52 @@
+{% assign on_sale = false %}
+{% assign sale_text = 'products.product.sale' | t %}
+{% if product.compare_at_price > product.price %}
+{% assign on_sale = true %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% assign sold_out_text = 'products.product.sold_out' | t %}
+{% if product.available %}
+{% assign sold_out = false %}
+{% endif %}
+<li class="product-item style7">
+  <div class="product-inner">
+    <div class="product-thumb has-back-image">
+      <a href="{{ product.url | within: collection }}"><img src="{{ product.featured_image.src | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}"></a>
+      {% if settings.use_second_img %}
+      {% if product.images.size > 1 %}
+      <a class="back-image" href="{{ product.url | within: collection }}">{{product.images[1].src |img_url: 'grande'| img_tag: product.title }}</a>
+      {% endif %}
+      {% endif %}		
+      <div class="gorup-button">
+        {% if sold_out == false %}
+        {% if product.variants.size > 1 %}
+        <a class="button add_to_cart_button" onclick="location.href='{{ product.url | within: collection }}'">{{'products.product.select_option' | t | upcase }}</a>
+        {% else %}
+        {% if product.variants.first.available %}
+        <a class="button add_to_cart_button boutique__add-to-cart" data-pid="{{ product.variants.first.id }}">{{'products.product.add_to_cart' | t | upcase }}</a>
+        {% endif %}
+        {% endif %}
+        {% else %}
+        <a class="button add_to_cart_button" onclick="location.href='{{ product.url | within: collection }}'">{{'products.product.sold_out' | t | upcase }}</a>
+        {% endif %}
+        <a class="compare" data-pid="{{product.handle}}">
+          <i class="fa fa-exchange"></i>
+        </a>
+        {% include 'wishlist-product' %}
+      </div>	
+      <a class="quick-view" href="{{ product.url | within: collection }}" data-pid="{{ product.id }}"><i class="fa fa-search"></i></a>							
+    </div>
+    <div class="product-info">
+      <h3 class="product-name"><a href="{{ product.url | within: collection }}">{{ product.title }}</a></h3>
+      <span class="price">
+        {% if on_sale %}
+        <ins>{{product.price | money }}</ins>
+        <del>{{product.compare_at_price | money }}</del>
+        {% else %}
+        <ins>{{product.price | money }}</ins>
+        {% endif %}
+      </span>
+    </div>
+  </div>
+</li>

@@ -1,0 +1,170 @@
+<div class="container">
+  <div class="row left-slidebar">
+    <div class="col-sm-8 col-md-9 main-content">
+      {% if settings.featured_collection_home6 != blank %}
+      <div class="block-featured-product margin-top-60">
+        {% assign featured_collection_home6_handle = settings.featured_collection_home6 %}
+        {% for collection in collections %}
+          {% if featured_collection_home6_handle == collection.handle %}
+          	{% assign featured_collection_home6_handle_title = collection.title %}
+          	{% assign featured_collection_home6_handle_checked = collection.handle %}
+          {% endif %}
+        {% endfor %}
+        <div class="section-title style3 ">
+          <h3>
+            {% if settings.title_featured_collection_home6 == blank %}
+            	{{featured_collection_home6_handle_title}}
+            {% else %}
+            	{{settings.title_featured_collection_home6}}
+            {% endif %}
+          </h3>
+        </div>
+        <ul class="tab-list owl-carousel nav-style5" data-nav="true" data-autoplay="false" data-dots="false" data-loop="true" data-margin="30" data-responsive='{"0":{"items":1},"600":{"items":2},"1000":{"items":3}}'>
+          {% for product in collections[featured_collection_home6_handle_checked].products %}
+            {% assign grid_item_width = "" %}
+            {% include 'product-grid-item' %}
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      
+      {% if settings.use_shipping_text_home6 %}
+      <div class="text-border margin-top-40">
+        <p>{{settings.shipping_text_box}}</p>
+      </div>
+      {% endif %}
+      
+      {% if settings.new_arrivals_home6 != blank %}
+      <div class="block-featured-product margin-top-60">
+        {% assign new_arrivals_home6_handle = settings.new_arrivals_home6 %}
+        {% for collection in collections %}
+          {% if new_arrivals_home6_handle == collection.handle %}
+          	{% assign new_arrivals_home6_handle_title = collection.title %}
+          	{% assign new_arrivals_home6_handle_checked = collection.handle %}
+          {% endif %}
+        {% endfor %}
+        <div class="section-title style3 ">
+          <h3>
+           {% if settings.title_new_arrivals_home6 == blank %}
+            	{{new_arrivals_home6_handle_title}}
+            {% else %}
+            	{{settings.title_new_arrivals_home6}}
+            {% endif %}
+          </h3>
+        </div>
+        <div class="product-list-grid nav-style5 row owl-carousel" data-nav="true" data-autoplay="false" data-dots="false" data-loop="true" data-margin="30" data-responsive='{"0":{"items":1},"600":{"items":2},"1000":{"items":3}}'>
+		  {% assign check_row = 1 %}
+          {% for product in collections[new_arrivals_home6_handle_checked].products %}
+            {% if check_row == 1 %}
+              <ul class="product-list-grid">
+            {% endif %} 
+                {% assign grid_item_width = "" %}
+                {% include 'product-grid-item' %}
+            {% if  check_row  >=  2  or forloop.last %}
+              </ul>
+            {% assign check_row = 0 %}
+            {% endif %}
+            {% assign check_row = check_row | plus : 1 %}
+          {% endfor %}
+          
+        </div>
+
+      </div>
+      {% endif %}
+    </div>
+    <div class="col-sm-4 col-md-3">
+      {% if settings.use_categories_left_home6 %}
+      	<div class="block-category-carousel margin-top-60">
+        <h3 class="title">{{settings.cat_title}}</h3>
+        <span class="sub-title">{{settings.cat_sub_title}}</span>
+        <div class="block-inner owl-carousel" data-nav="false" data-dots="true" data-items="1" data-loop="false" data-autoplay="true">
+			{% assign check_row_catt = 1 %}
+            {% for i in (1..12) %}
+              {% assign catt_icon = 'catt_icon' | append: i | append: '.png' %}
+              {% assign catt_collection = 'catt_collection' | append: i %}
+          	  
+              {% if settings[catt_collection] != blank %}
+              {% if check_row_catt == 1 %}
+                <ul class="list-cat">
+              {% endif %} 
+                <li>
+                  <a href="/collections/{{settings[catt_collection]}}">
+                    <img src="{{catt_icon | asset_url}}" alt="{{settings[catt_collection]}}">
+                    {{settings[catt_collection] | capitalize | replace: '-', ' ' }}
+                  </a>
+                </li>
+          	  {% if  check_row_catt  >=  4  or forloop.last %}
+              </ul>
+              {% assign check_row_catt = 0 %}
+              {% endif %}
+              {% assign check_row_catt = check_row_catt | plus : 1 %}
+          
+              {% endif %}
+            {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+      
+      {% if settings.use_newsletter_left_home6 %}
+      	{% include 'shortcode' load: '[sidebar-newsletter title="" text=""]'  %}
+      {% endif %}
+      
+      {% if settings.image_banner_left_home6 %}
+      <div class="margin-top-30">
+        <a class="banner-opacity" href="{{settings.image_banner_link_left_home6}}"><img src="{{settings.image_banner_left_home6}}" alt=""></a>
+      </div>
+      {% endif %}
+    </div>
+  </div> 
+  <hr class="margin-top-30">
+  {% if settings.use_brand_home6 %}
+  	{% include 'shortcode' load: '[brand]'  %}
+  {% endif %}
+</div>
+{% if settings.use_our_blog_home6 %}
+  <div class="margin-top-60 section-lasttest-blog full">
+	<div class="container">
+		<div class="section-title text-center"><h3>{{settings.title_blog_home6}}</h3></div>
+		<div class="lastest-blog owl-carousel nav-center-center nav-style7" data-nav="true" data-dots="false" data-loop="true" data-margin="30" data-responsive='{"0":{"items":1},"600":{"items":1},"1000":{"items":2}}'>
+			{% assign handle_name = settings.id_blog_home6%}
+          {% if handle_name == blank %}
+          	{% assign handle_name = 'news' %}
+          {% endif %}
+          {% for article in blogs[handle_name].articles limit: 15 %}
+              <div class="item-blog">
+                <div class="left">
+                  <div class="blog-date">
+                    <span class="day">{{ article.published_at | date: '%d' }}</span>
+                    <span class="month">/{{ article.published_at | date: '%b' | upcase }}</span><br>
+                    <span class="year">{{ article.published_at | date: '%Y' }}</span>
+                  </div>
+                  <h3 class="blog-title"><a href="{{ article.url }}">{{ article.title| truncate: 20 }}</a></h3>
+                  <div class="meta">
+                    <span class="author">{{ article.author }}</span>
+                      {% assign title_counts = 'comment' %}
+                      {% if article.comments_count > 1 %}
+                        {% assign title_counts = 'comments' %}
+                      {% endif %}
+                    <span class="comment"><i class="fa fa-comment"></i> {{article.comments_count}} {{ title_counts }}</span>
+                  </div>
+                </div>
+                <div class="right">
+                {% if article.image %}
+                <a href="{{ article.url }}" class="banner-border"> 
+                  <img src="{{ article.image.src | img_url: 'medium' }}" srcset="{{ article.image.src | img_url: 'medium' }} 1x, {{ article.image.src | img_url: 'small' }} 2x" alt="{{ article.title }}">
+                </a>
+                {% endif %}
+                </div>
+              </div>
+          {% endfor %}
+		</div>
+	</div>
+</div>
+{% endif %}
+
+{% if settings.use_shipping_icon_home6 %}
+  <div class="container">
+  {% assign margin_shipping_icon = "margin-top-60 margin-bottom-30" %}
+  {% include 'shortcode-shipping-icon' %}
+  </div>
+{% endif %}

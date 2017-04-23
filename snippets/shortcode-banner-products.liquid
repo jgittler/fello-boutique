@@ -1,0 +1,185 @@
+{% capture style_class %}{% include 'shortcode-render' render:'style' default:'banner-left' %}{% endcapture %}
+{% capture image_title  %}{% include 'shortcode-render' render:'image_title' default: "" %}{% endcapture %}
+{% capture handleize_tab  %}{% include 'shortcode-render' render:'collection' default:''%}{% endcapture %}
+{% if handleize_tab == "" %}
+	{% assign goto_collection = "goto-collection" %}
+{% else %}
+  {% assign handleize_tab = handleize_tab | strip %}
+  {% assign handleize_tab_checked = "" %}
+
+  {% for collection in collections %}
+    {% if handleize_tab == collection.handle %}
+    	{% assign handleize_tab_checked = handleize_tab %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if handleize_tab_checked =="" %}
+    {% assign no_collection = "no-collection" %}
+	{% assign goto_collection = "goto-collection" %}
+{% endif %}
+
+
+{% if style_class == "banner-left" %}
+<div class="margin-top-40">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 margin-bottom-30">
+      {% if image_title == blank %}
+      <a class="banner-opacity" href="#">{{'banner_product_1.gif' | asset_url | img_tag}}</a>
+      {% else %}
+      <a class="banner-opacity" href="#">{{image_title | file_url | img_tag}}</a>
+      {% endif %}
+    </div>
+    <div class="col-sm-12 col-md-6 {{goto_collection}}">
+      <div class="row">
+        {% if handleize_tab == blank %}
+        <div class="boutique-help">
+          <span class="boutique-helper-icon"></span>
+          <h3>Almost there...</h3>
+          <p>You have no products in your Frontpage collection. This placeholder will appear until you <a href="/admin/collections?tutorial=Frontpage">add a product to this collection</a>.</p>
+          <p><a class="button" href="/admin/collections?tutorial=Frontpage">Add a Product</a></p>
+        </div>
+          {% for i in (1..4) %}
+			<div class="col-sm-6">
+              <a href="#" class="banner-product">
+                {{'Products.gif' | asset_url | img_tag}}
+                <h3 class="text">Boutique Shopify Theme<br/>- KiTi -</h3>
+                <span class="price">{{ '2222' | money }}</span>
+              </a>
+            </div>
+          {% endfor %}
+        {% else %}
+          {% if no_collection == "no-collection" %}
+        	<div class="boutique-help">
+              <span class="boutique-helper-icon"></span>
+              <h3>Almost there...</h3>
+              <p>You have no products in your Frontpage collection. This placeholder will appear until you <a href="/admin/collections?tutorial=Frontpage">add a product to this collection</a>.</p>
+              <p><a class="button" href="/admin/collections?tutorial=Frontpage">Add a Product</a></p>
+            </div>
+            {% for i in (1..4) %}
+            <div class="col-sm-6">
+              <a href="#" class="banner-product">
+                {{'Products.gif' | asset_url | img_tag}}
+                <h3 class="text">Boutique Shopify Theme<br/>- KiTi -</h3>
+                <span class="price">{{ '2222' | money }}</span>
+              </a>
+            </div>
+            {% endfor %}
+          {% else %}
+            {% for product in collections[handleize_tab].products limit:4 %}
+            {% if collections[handleize_tab].products.size == 3 %}
+              {% if forloop.first == true %}
+                <div class="col-sm-12">
+                  <a href="{{ product.url | within: collection }}" class="banner-product fix">
+                    <div class="banner-product_item" style="width:570px;height:395px; background-image:url({{ product.featured_image.src | img_url: '1024x1024' }})"></div>
+                    <h3 class="text">{{ product.title }}</h3>
+                    <span class="price">{{product.price | money }}</span>
+                  </a>
+                </div>
+              {% else %}
+                <div class="col-sm-6">
+                  <a href="{{ product.url | within: collection }}" class="banner-product">
+                    <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+                    <h3 class="text">{{ product.title }}</h3>
+                    <span class="price">{{product.price | money }}</span>
+                  </a>
+                </div>
+              {% endif %}
+            {% else %}
+              <div class="col-sm-6">
+                <a href="{{ product.url | within: collection }}" class="banner-product">
+                  <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+                  <h3 class="text">{{ product.title }}</h3>
+                  <span class="price">{{product.price | money }}</span>
+                </a>
+              </div>
+        	{% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="margin-top-50">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 {{goto_collection}}">
+      <div class="row">
+        {% if handleize_tab == blank %}
+        <div class="boutique-help">
+          <span class="boutique-helper-icon"></span>
+          <h3>Almost there...</h3>
+          <p>You have no products in your Frontpage collection. This placeholder will appear until you <a href="/admin/collections?tutorial=Frontpage">add a product to this collection</a>.</p>
+          <p><a class="button" href="/admin/collections?tutorial=Frontpage">Add a Product</a></p>
+        </div>
+          {% for i in (1..4) %}
+			<div class="col-sm-6">
+              <a href="#" class="banner-product">
+                {{'Products.gif' | asset_url | img_tag}}
+                <h3 class="text">Boutique Shopify Theme<br/>- KiTi -</h3>
+                <span class="price">{{ '2222' | money }}</span>
+              </a>
+            </div>
+          {% endfor %}
+        {% else %}
+          {% if no_collection == "no-collection" %}
+        	<div class="boutique-help">
+              <span class="boutique-helper-icon"></span>
+              <h3>Almost there...</h3>
+              <p>You have no products in your Frontpage collection. This placeholder will appear until you <a href="/admin/collections?tutorial=Frontpage">add a product to this collection</a>.</p>
+              <p><a class="button" href="/admin/collections?tutorial=Frontpage">Add a Product</a></p>
+            </div>
+            {% for i in (1..4) %}
+            <div class="col-sm-6">
+              <a href="#" class="banner-product">
+                {{'Products.gif' | asset_url | img_tag}}
+                <h3 class="text">Boutique Shopify Theme<br/>- KiTi -</h3>
+                <span class="price">{{ '2222' | money }}</span>
+              </a>
+            </div>
+            {% endfor %}
+          {% else %}
+            {% for product in collections[handleize_tab].products limit:4 %}
+            {% if collections[handleize_tab].products.size == 3 %}
+              {% if forloop.first == true %}
+                <div class="col-sm-12">
+                  <a href="{{ product.url | within: collection }}" class="banner-product fix">
+                    <div class="banner-product_item" style="width:570px;height:395px; background-image:url({{ product.featured_image.src | img_url: '1024x1024' }})"></div>
+                    <h3 class="text">{{ product.title }}</h3>
+                    <span class="price">{{product.price | money }}</span>
+                  </a>
+                </div>
+              {% else %}
+                <div class="col-sm-6">
+                  <a href="{{ product.url | within: collection }}" class="banner-product">
+                    <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+                    <h3 class="text">{{ product.title }}</h3>
+                    <span class="price">{{product.price | money }}</span>
+                  </a>
+                </div>
+              {% endif %}
+            {% else %}
+              <div class="col-sm-6">
+                <a href="{{ product.url | within: collection }}" class="banner-product">
+                  <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+                  <h3 class="text">{{ product.title }}</h3>
+                  <span class="price">{{product.price | money }}</span>
+                </a>
+              </div>
+        	{% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      {% if image_title == blank %}
+      <a class="banner-opacity" href="#">{{'3.gif' | asset_url | img_tag}}</a>
+      {% else %}
+      <a class="banner-opacity" href="#">{{image_title | file_url | img_tag}}</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}

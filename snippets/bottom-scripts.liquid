@@ -1,0 +1,160 @@
+  {% include 'google-fonts' %}
+
+  {{ 'jquery.products.min.js' | asset_url | script_tag }}
+  {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
+  {{ 'bootstrap.min.js' | asset_url | script_tag }}
+  {{ 'owl.carousel.min.js' | asset_url | script_tag }}
+  {{ 'chosen.jquery.min.js' | asset_url | script_tag }}
+  {{ 'Modernizr.js' | asset_url | script_tag }}
+  {{ 'jquery-ui.min.js' | asset_url | script_tag }}
+  {{ 'lightbox.min.js' | asset_url | script_tag }}
+  {{ 'masonry.pkgd.min.js' | asset_url | script_tag }}
+  {{ 'imagesloaded.pkgd.min.js' | asset_url | script_tag }}
+  {{ 'isotope.pkgd.min.js' | asset_url | script_tag }}
+  {{ 'jquery.mCustomScrollbar.concat.min.js' | asset_url | script_tag }}
+  {{ 'jquery.parallax-1.1.3.js' | asset_url | script_tag }}
+  {{ 'jquery.magnific-popup.min.js' | asset_url | script_tag }}
+  {{ 'masonry.js' | asset_url | script_tag }}
+  {{ 'sweetalert.min.js' | asset_url | script_tag  }}
+
+  {{ 'social-buttons.js' | asset_url | script_tag  }}
+  {{ 'jquery.plugin.js' | asset_url | script_tag  }}
+  {{ 'fastclick.min.js' | asset_url | script_tag  }}
+  {{ 'jquery.countdown.js' | asset_url | script_tag  }}
+  {{ 'jquery.flexslider.min.js' | asset_url | script_tag  }}
+  {{ 'jquery.zoom.min.js' | asset_url | script_tag  }}
+  {{ 'respond.min.js' | asset_url | script_tag  }}
+  {{ 'timber.js' | asset_url | script_tag  }}
+  {{ 'theme.js' | asset_url | script_tag  }}
+  {{ 'lookbook.js' | asset_url | script_tag  }}
+
+  {{ 'boutique.js' | asset_url | script_tag }}
+  {{ 'functions.js' | asset_url | script_tag }}
+  {{ 'script.js' | asset_url | script_tag }}
+  {{ 'mediaelement-and-player.min.js' | asset_url | script_tag }}
+  {{ 'mediaelementplayer.min.js' | asset_url | script_tag }}
+  {{ 'added.js' | asset_url | script_tag }}
+	
+	<script>
+    {% if resetPassword %}
+    $(function() {
+      timber.resetPasswordSuccess();
+    });
+    {% endif %}
+  </script>
+
+  {% if settings.ajax_cart_method == "drawer" %}
+  {{ 'handlebars.min.js' | asset_url | script_tag }}
+  {% include 'ajax-cart-template' %}
+  {{ 'ajax-cart.js' | asset_url | script_tag }}
+  {% if template contains 'collection' %}
+  {{ 'filter.js' | asset_url | script_tag }}
+  {% endif %}
+  {% endif %}
+
+
+
+{% if settings.show_shipping_calculator %}
+    <script>
+      jQuery(function ($) {
+          var namesd = $('.currency-lists ul li.active a').attr('class');
+        $("#wrapper-response").bind("DOMNodeInserted",function(){
+          $('.box-settings .select-currency .currency-list ul li').first().trigger('click');
+          if($("#wrapper-response").find('#shipping-rates').length == 0)
+            return false;
+
+          var shopCurrency = '{{ shop.currency }}'; // Main Currency
+          var shippingValueTotal = 0; // Default value Shipping
+          var defaultCurrencySign = $('#grandtotal .money').attr("data-currency-"+shopCurrency.toLowerCase()).charAt(0); // sign of the a currencies
+
+          //check shipping TAX
+          if($("#wrapper-response #shipping-rates .money").length >= 1) {
+            if($("#wrapper-response #shipping-rates .money").length > 1) {
+              var str = "{{ 'cart.general.shipping_variants' | t }}";
+              if(str == "") {
+                $("#tax").hide();
+                return false;
+              }
+              $("#tax .money").text(str);
+              $("#tax").show();
+              return false;
+            }
+            var content = $("#wrapper-response .money").clone();
+            $("#tax .money").replaceWith(content);
+            $("#tax").show();
+            var shippingValueTotal = parseFloat($("#wrapper-response .money").text().replace(/[^0-9\.]/g,'')); //get Tax price
+          }
+          else {
+            $("#tax").hide();
+          }
+
+          //get Tax price
+          var tofindpoint = $('#subtotal .money').attr("data-currency-"+shopCurrency.toLowerCase()).replace(/[^0-9\.]/g,'');
+          var defaultValueSubtotal = parseFloat(tofindpoint);
+          //full price
+          var grandtotal = defaultValueSubtotal + shippingValueTotal;
+          //format to this 1,000,000.00 or 1,000,000
+          grandtotal = format(grandtotal, tofindpoint);
+          //for #grandtotal element
+          var dataCurrencyDefault = defaultCurrencySign+grandtotal;
+          //create full price with shipping
+          jQuery('#grandtotal .money').replaceWith('<span class="money" data-currency-'+shopCurrency.toLowerCase()+'="'+dataCurrencyDefault+'">'+dataCurrencyDefault+'</span>');
+
+          function format(n, k) {
+            var sum = '';
+            var group1 = 1000000000;
+            var group2 = 1000000;
+            var group3 = 1000;
+            var sep = "."; // Default to period as decimal separator
+            var decimals = 2; // Default to 2 decimals
+            var isDecimal = k.toString(10).indexOf(".")==-1;
+
+            var num = Math.floor(n);
+            var x = Math.floor(num / group1);
+            if(x > 0) {
+              x = decimalWithZero(sum, x);			 
+              sum = x + ",";
+              num -= x * group1;
+            }
+            x = Math.floor(num / group2);
+            if(x > 0 || sum != '') {
+              x = decimalWithZero(sum, x);
+              sum += x + ",";
+              num -= x * group2;
+            }
+            x = Math.floor(num / group3);
+            if(x > 0 || sum != '') {
+              x = decimalWithZero(sum, x);
+              sum += x + ",";
+              num -= x * group3;
+            }
+
+            x = decimalWithZero(sum, num);
+            sum += x;
+            n = n.toFixed(decimals).split(sep)[1];
+
+            if(isDecimal) {
+              return sum;
+            }
+            else {
+              return sum + sep + n;
+            }
+          }
+          function decimalWithZero(sum, x) {
+            if(sum != ''){
+              var y = '000' + x;
+              y = y.substr(y.length - 3);
+              return y;
+            }
+            return x;
+          }
+          $('.box-settings').trigger('mouseover');
+          $('.currency-lists ul li a.' + namesd + '').parent("li").trigger('click');
+        });
+      });
+  </script>
+  {% endif %}
+  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-570385e7ef799f3f"></script>
+
+<script async defer data-pin-hover="true" data-pin-tall="true" data-pin-save="true" src="//assets.pinterest.com/js/pinit.js"></script>

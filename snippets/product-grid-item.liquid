@@ -1,0 +1,96 @@
+{% unless grid_item_width %}
+  {% assign grid_item_width = 'large--one-third medium-down--one-half' %}
+{% endunless %}
+
+{% unless current_collection == blank %}
+  {% assign current_collection = collection %}
+{% endunless %}
+
+{% assign on_sale = false %}
+{% assign sale_text = 'products.product.sale' | t %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% assign sold_out_text = 'products.product.sold_out' | t %}
+{% if product.available %}
+  {% assign sold_out = false %}
+{% endif %}
+
+<li class="product-item view-grid {{grid_item_width}} {% if product.title == 'Tortoise Fantom' %}clear-for-ff{% endif %}" style="display: list-item;">
+  <div class="product-inner">
+    <div class="product-thumb has-back-image">
+      
+      {% if product.available %}
+        <a href="{{ product.url | within: collection }}" class="top-image"><img class="full-w" src="{{ product.featured_image.src | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}"></a>
+      {% else %}
+        <a><img class="full-w" src="{{ product.featured_image.src | img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}"></a>
+      {% endif %}
+      {% if settings.use_second_img %}
+        {% if product.images.size > 1 %}
+          {% if product.available %}
+            <a class="back-image" href="{{ product.url | within: collection }}">{{product.images[1].src |img_url: 'grande'| img_tag: product.title, 'full-w' }}</a>
+          {% else %}
+            <a class="back-image">{{product.images[1].src |img_url: 'grande'| img_tag: product.title, 'full-w' }}</a>
+          {% endif %}
+        {% endif %}
+      {% endif %}
+
+
+      <div class="gorup-button">
+
+        <a class="quick-view" href="{{ product.url | within: collection }}" data-pid="{{ product.id }}"><i class="fa fa-search"></i></a>
+
+      </div>
+
+
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">
+        <a href="{{ product.url | within: collection }}">
+          {{ product.title }}
+<!--           {% if product.available %}
+          <img class="sale-product" src="{{ 'sales_ribbon.png' | asset_url }}" alt="On Sale">
+          {% endif %} -->
+        </a>
+      </h3>
+      
+      <p>Polarized</p>
+      
+      {% if sold_out == false %}
+        <div class="pro-add-to-cart">
+          {% if product.variants.size > 1 %}
+        		<a class="button select-option" onclick="location.href='{{ product.url | within: collection }}'">{{'products.product.select_option' | t | upcase }}</a>
+          {% else %}
+        		{% if product.variants.first.available %}
+
+	           <hr />
+          
+                <span class="price">
+                  {% if on_sale %}
+                    <ins>{{product.price | money }}</ins>
+                    <del>{{product.compare_at_price | money }}</del>
+                  {% else %}
+                    <ins>{{product.price | money }}</ins>
+                  {% endif %}
+                </span>
+
+          		<a class="button add-to-cart boutique__add-to-cart" data-pid="{{ product.variants.first.id }}">{{'products.product.add_to_cart' | t | upcase }}</a>
+              <span class="adding-cart"></span>
+        		{% endif %}
+          {% endif %}
+      </div>
+      {% else %}
+      <span class="pro-add-to-cart">
+        <hr />
+        <span class="price">
+          <ins>{{product.price | money }}</ins>
+        </span>
+        <a class="button btn-sold-out">{{'products.product.sold_out' | t | upcase }}</a>
+        <!-- <a class="button btn&#45;sold&#45;out" onclick="location.href='{{ product.url | within: collection }}'">{{'products.product.sold_out' | t | upcase }}</a> -->
+        {% endif %}
+      </span>
+    </div>
+  </div>
+</li>

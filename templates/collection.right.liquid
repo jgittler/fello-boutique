@@ -1,0 +1,73 @@
+<script>
+  var json_collection_filter =  {{collection.products | json }};
+  var json_wishlist = [];
+  {% if customer %}
+  {% for tag in customer.tags %}
+     {% assign tag_rmx =   tag | remove: 'x'  %}
+     {% assign check_size =  tag.size | minus: tag_rmx.size  %}
+     {% assign check_mod =   check_size | modulo: 2  %}
+     {% if check_mod == 0  %}
+        json_wishlist.push({{tag_rmx}});
+     {% endif %}
+  {% endfor %}
+{% endif %}
+</script>
+
+{% if settings.enable_banner_content_collection %}
+	<div class="banner">
+		<div class="banner-content">
+			{{ '1.jpg' | asset_url | img_tag }}
+		</div>
+	</div>
+{% endif %}
+<div class="main-container right-slidebar">
+	<div class="container">
+		<div class="row">
+			<div class="main-content col-sm-8 col-md-9">
+				{% paginate collection.products by 9 %}
+				<div class="shop-top">
+					<div class="shop-top-left">
+						<div class="breadcrumbs">
+		                    {% include "breadcrumb" %}
+		                </div>
+					</div>
+					<div class="shop-top-right">
+						<span class="woocommerce-result-count"> Showing {{paginate.current_page}}&ndash;{{paginate.page_size }} of {{paginate.items}} results</span>
+						<div class="orderby-wapper">
+	                    	{% include 'collection-sorting' %}
+	                    </div>
+	                    {% include 'collection-views' %}
+					</div>
+				</div>
+				<ul class="product-list-grid desktop-columns-3 tablet-columns-2 mobile-columns-1 row" id="collection-product">
+		          {% for product in collection.products %}
+		            {% assign grid_item_width = 'col-sm-6 col-md-4' %}
+		              {% include 'product-grid-item' %}
+		              {% include 'product-list-item' %} 
+		            {% endfor %}
+
+		        </ul>
+				{% if paginate.pages > 1 %}
+		          <div class="navigation">
+		            {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+		          </div>
+		        {% endif %}
+		        {% endpaginate %}
+			</div>
+
+			<div class="col-sm-4 col-md-3 sidebar">
+				<div class="widget widget_product_categories">
+			    <h2 class="widget-title">{{ 'blogs.sidebar.categories' | t }}</h2>
+			    <ul class="product-categories">
+			    	{% paginate collections by 12 %}
+			    		{% for line_collection in collections  %}
+			    			<li class="{% if collection.handle == line_collection.handle %} current-cat {% endif %}"><a href="{{line_collection.url}}?view=right">{{line_collection.title}} <span class="count">({{line_collection.products_count}})</span></a></li>
+			    		{% endfor %}
+			        {% endpaginate %}
+			    </ul>
+			</div>
+				{% include 'collection-sidebar' %}
+            </div>
+		</div>
+	</div>
+</div>

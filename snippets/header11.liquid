@@ -1,0 +1,87 @@
+<div id="box-mobile-menu" class="box-mobile-menu full-height full-width">
+  <div class="box-inner">
+    <span class="close-menu"><span class="icon pe-7s-close"></span></span>
+  </div>
+</div>
+<!-- Header -->
+<header id="header" class="header sidebar header13 {% unless template contains "index" %} closed {% endunless %}">
+  <span class="close-header-sidebar"><span class="icon pe-7s-close"></span></span>
+  <span class="open-header-sidebar"><i class="fa fa-angle-double-right"></i></span>
+  <div class="header-top sidebar-menu">
+    <div class="logo">
+      {% if settings.logo_use_image%}
+      <a href="/">{{'logo.png' | asset_url | img_tag}}</a>
+      {% else %}
+      <a href="/"><img src="{{'logo.gif' | asset_url}}" alt=""></a>
+      {%endif%}
+    </div>
+    <div class="box-control">
+      {% assign search_style = "icon" %}
+      {% include 'search-bar' %}
+      {% assign position ="top-menu" %}
+      {% assign hidden = "hidden" %}
+      {% include "mini-cart" %}		
+    </div>
+    <ul class="boutique-nav header-bottom-sidebar-menu">
+      {% if shop.customer_accounts_enabled %}
+        <li class="menu-item-has-children">
+          <a href="/account"><i class="fa fa-lock"></i> Account</a>
+          <ul class="sub-menu">
+            {% assign menu_settings_dropdown = settings.menu_settings_dropdown %}
+            {% for link in linklists[menu_settings_dropdown].links %}
+            <li><a href="{{link.url}}"><span>{{link.title }}</span></a></li>
+            {% endfor %}
+              {% if customer %}
+                <li><a href="/account/logout"><span>{{"layout.customer.log_out"|t}}</span></a></li>
+              {% else %}
+                <li><a href="/account/login"><span>{{"layout.customer.log_in"|t}}</span></a></li>
+              {% endif %}
+          </ul>
+        </li>
+      {% endif %}
+        {% include "currency-picker" %}
+        <li class="menu-item-has-children currency-lists">
+          <a class="currency_display">{{settings.default_currency}}</a>
+          <ul class="sub-menu dropdown-select-menu">
+            {% assign money = settings.default_currency | downcase %}
+            {% assign moneyss = settings.supported_currencies | split: ' ' %}
+            {% for moneys in moneyss %}
+              <li {% if moneys == money %}class="active"{% endif %}>
+                <a class="currency-select" name="{{moneys | upcase }}">{{moneys | upcase }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+    </ul>
+    <ul class="boutique-nav main-menu menu-sidebar">   
+    {% for link in linklists.main-menu.links %} 
+    {% assign child_list_handle = link.title | handle %}
+      {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}                                   
+      <li class="{% if link.active %}active{% endif %} menu-item-has-children">
+        <a href="{{ link.url }}">{{ link.title }}</a>
+        <ul class="sub-menu">
+          {% for child_link in linklists[child_list_handle].links %}
+          {% assign grand_child_list_handle = child_link.title | handle %}
+          <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% else %}                             
+      <li class="{% if link.active %}active{% endif %}"><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    <div class="line-header"></div>
+    <div class="social style13">
+      <a href="#"><i class="fa fa-facebook"></i></a>
+      <a href="#"><i class="fa fa-twitter"></i></a>
+      <a href="#"><i class="fa fa-google-plus"></i></a>
+      <a href="#"><i class="fa fa-instagram"></i></a>
+      <a href="#"><i class="fa fa-pinterest"></i></a>
+    </div>
+    <div class="sidebar-footer">
+      <div class="coppyright">2016 BOUTIQUE. ALL RIGHTS RESERVED</div>
+    </div>
+  </div>	
+</header>
+<!-- ./Header -->

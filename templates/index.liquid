@@ -1,0 +1,185 @@
+{% assign import_style_homepage = settings.import_content_homepage | plus: 0%}
+
+{% case import_style_homepage %}
+  {% when 0 %}
+  {% when 1 %}
+
+    <div class="container">
+      {% if settings.use_slider_hp1 %}
+      <!-- Home slide -->
+      <div class="slider-homepage">
+        {% include 'shortcode-slider' %}
+      </div>
+      <!-- ./Home slide -->
+      {% endif %}
+      {% include 'render-layout' register_section: 'sc_home1'  %}
+    </div>
+
+  {% when 2 %}
+
+    <div class="container">
+      {% if settings.use_slider_hp2 %}
+      <!-- Home slide -->
+      <div class="slider-homepage">
+        {% include 'shortcode-slider' %}
+      </div>
+      <!-- ./Home slide -->
+      {% endif %}
+      {% include 'render-layout' register_section: 'sc_home2'  %}
+    </div>
+
+  {% when 3 %}
+
+    {% if settings.use_slider_hp3 %}
+    <!-- Home slide -->
+    <div class="slider-homepage">
+      {% include 'shortcode-slider' %}
+    </div>
+    <!-- ./Home slide -->
+    {% endif %}
+    <div class="container">
+      {% include 'render-layout' register_section: 'sc_home3'  %}
+    </div>
+
+  {% when 4 %}
+
+    {% if settings.use_slider_hp4 %}
+    <!-- Home slide -->
+    <div class="slider-homepage">
+      {% include 'shortcode-slider' %}
+    </div>
+    <!-- ./Home slide -->
+    {% endif %}
+    <div class="container">
+      {% include 'render-layout' register_section: 'sc_home4'  %}
+    </div>
+
+  {% when 5 %}
+
+    {% if settings.use_slider_hp5 %}
+    <!-- Home slide -->
+    <div class="slider-homepage">
+      {% include 'shortcode-slider' %}
+    </div>
+    <!-- ./Home slide -->
+    {% endif %}
+    <div class="container">
+      {% include 'render-layout' register_section: 'sc_home5'  %}
+    </div>
+
+  {% when 6 %}
+
+    {% if settings.use_slider_hp6 %}
+    <!-- Home slide -->
+    <div class="slider-homepage">
+      {% include 'shortcode-slider' %}
+    </div>
+    <!-- ./Home slide -->
+    {% endif %}
+      {% include 'index_h6'%}
+      {% comment %}
+      <div class="container">
+        <div class="row left-slidebar">
+          <div class="col-sm-8 col-md-9 main-content">
+            {% include 'render-layout' register_section: 'sc_home6'  %}
+          </div>
+          <div class="col-sm-4 col-md-3">
+          </div>
+        </div>
+      </div>
+      {% endcomment %}
+
+  {% when 7 %}
+ 	{% include 'index_h7'%}
+
+  {% when 8 %}
+
+    {% if settings.use_slider_hp8 %}
+    <!-- Home slide -->
+    <div class="slider-homepage">
+      {% include 'shortcode-slider' %}
+    </div>
+    <!-- ./Home slide -->
+    {% endif %}
+
+
+    {% if settings.use_categories_right_home8 %}
+    <div class="header-categoy-menu">
+	<span class="close-header-sidebar"><span class="icon pe-7s-close"></span></span>
+	<span class="open-header-sidebar"><i class="fa fa-angle-double-left"></i></span>
+      <div class="inner">
+        <div class="block-category-carousel">
+          <h3 class="title">{{settings.cat_title}}</h3>
+          <span class="sub-title">{{settings.cat_sub_title}}</span>
+          <div class="block-inner owl-carousel nav-center-center nav-style2" data-nav="true" data-dots="true" data-items="1" data-loop="false" data-autoplay="true">
+            {% assign check_row_catt = 1 %}
+            {% for i in (1..12) %}
+            {% assign catt_icon = 'catt_icon' | append: i | append: '.png' %}
+            {% assign catt_collection = 'catt_collection' | append: i %}
+			
+              {% if settings[catt_collection] != blank %}
+                {% if check_row_catt == 1 %}
+                <ul class="list-cat">
+                  {% endif %} 
+                  <li>
+                    <a href="/collections/{{settings[catt_collection]}}">
+                      <img src="{{catt_icon | asset_url}}" alt="{{settings[catt_collection]}}">
+                      {{settings[catt_collection] | capitalize | replace: '-', ' ' }}
+                    </a>
+                  </li>
+                  {% if  check_row_catt  >=  4  or forloop.last %}
+                </ul>
+                {% assign check_row_catt = 0 %}
+                {% endif %}
+                {% assign check_row_catt = check_row_catt | plus : 1 %}              
+               {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endif %}
+
+    <div class="container">
+      {% include 'render-layout' register_section: 'sc_home8' %}
+    </div>
+
+  {% when 9 %}
+ 	{% include 'index_h9'%}
+
+  {% when 10 %}
+ 	{% include 'index_h10'%}
+
+  {% when 11 %}
+ 	{% include 'index_h11'%}
+
+  {% when 12 %}
+    <div class="container">
+ 	{% include 'index_h12'%}
+    </div>
+
+  {% when 13 %}
+ 	{% include 'index_h13'%}
+
+  {% when 14 %}
+ 	{% include 'index_h14'%}
+	
+  {% when 15 %}
+ 	{% include 'index_h15'%}
+	
+  {% when 16 %}
+ 	{% include 'index_h16'%}
+
+  {% when 17 %}
+	{% include 'index_h17' %}
+
+  {% when 18 %}
+	{% include 'index_h18' %}
+	
+  {% when 19 %}
+      {% include 'index_h19'%}
+
+  {% when 20 %}
+      {% include 'index_h20'%}
+{% endcase %}

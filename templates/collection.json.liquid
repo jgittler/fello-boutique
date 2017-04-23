@@ -1,0 +1,8 @@
+{% layout none %}
+{% paginate collection.products by 9 %}
+<ul class="nav-center-center owl-loaded owl-carousel nav-style7" data-nav="true" data-dots="false" data-loop="false" data-autoplay="true" data-margin="30" data-responsive='{"0":{"items":1,"nav":false},"600":{"items":3,"nav":false},"1000":{"items":4}}'>
+{% for product in  collection.products %}
+  {% include 'product-style8' %}
+{% endfor %}
+</ul>
+{% endpaginate %}

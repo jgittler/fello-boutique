@@ -1,0 +1,106 @@
+
+{% assign num_footer_columns = 0 %}
+{% if settings.use_footer_contact %}
+  {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+{% endif %}
+{% if settings.use_footer_menu1 %}
+  {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+{% endif %}
+{% if settings.use_footer_flick %}
+  {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+{% endif %}
+{% if settings.use_footer_follow_us %}
+  {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+{% endif %}
+
+{% case num_footer_columns %}
+  {% when 0 %}
+  {% when 1 %}
+    {% assign footer_column_width = 'col-md-12' %}
+  {% when 2 %}
+    {% assign footer_column_width = 'col-md-6' %}
+  {% when 3 %}
+    {% assign footer_column_width = 'col-md-4' %}
+  {% when 4 %}
+    {% assign footer_column_width = 'col-md-3' %}
+{% endcase %}
+
+<footer class="footer style2 style6">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3">
+          <div class="widget widget_text">
+            <div class="logo text-center margin-bottom-25">
+              <a href="/"><img alt="" src="{{'footer_logo.png' | asset_url}}"></a>
+            </div>
+            {% if settings.footer_description != blank %}<p class="text-center">{{settings.footer_description}}</p>{% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        {% if settings.use_footer_contact %}
+        <div class="col-sm-12 {{footer_column_width}}">
+          <div class="widget contact-info">
+            {% if settings.footer_widget_title_contact != blank %}<h3 class="widget-title">{{settings.footer_widget_title_contact}}</h3>{% endif %}
+            <div class="content">
+              {% if settings.footer_widget_address_contact != blank %}<p class="address"><strong>{{"layout.footer.address_label" | t }}</strong> <span>{{settings.footer_widget_address_contact}}</span></p>{% endif %}
+              {% if settings.footer_widget_phone_contact != blank %}<p><strong>{{"layout.footer.phone_label" | t }}</strong> <span>{{settings.footer_widget_phone_contact}}</span></p>{% endif %}
+              {% if settings.footer_widget_email_contact != blank %}<p class="mail"><strong>{{"layout.footer.email_label" | t }}</strong> <span>{{settings.footer_widget_email_contact}}</span></p>{% endif %}
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% if settings.use_footer_menu1 %}
+        <div class="col-sm-12 {{footer_column_width}}">
+          <div class="widget our-service">
+            {% assign footer_handle2 = settings.footer_widget_handle_infomation %}
+            {% if settings.footer_widget_handle_infomation != blank %}
+            <h3 class="widget-title">{{ settings.footer_widget_title_infomation | upcase }}</h3>
+            <div class="content">
+              <ul>
+                {% for link in linklists[footer_handle2].links %}
+                <li><a href="{{link.url}}">{{link.title | capitalize }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+        {% if settings.use_footer_follow_us %}
+        <div class="col-sm-12 {{footer_column_width}}">
+          <div class="widget widget_social">	
+            <div class="content">						
+              {% if settings.footer_widget_title_follow %}<h3 class="widget-title">{{settings.footer_widget_title_follow}}</h3>{% endif %}
+              <div class="content">
+                {% include "social-links" %}
+              </div>
+            </div>
+          </div>
+          <div class="widget widget_text">
+            <div class="payment">
+              {% if settings.footer_widget_title_payments %}<h3 class="widget-title">{{settings.footer_widget_title_payments}}</h3>{% endif %}
+              <div class="content">
+                <img src="{{'payments_image_1.png' | asset_url }}" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% if settings.use_footer_flick %}
+        <div class="col-sm-12 {{footer_column_width}}">
+          <div class="widget fick_photo">							
+            {% if settings.footer_widget_title_flick %}<h3 class="widget-title">{{settings.footer_widget_title_flick}}</h3>{% endif %}
+            {% include 'instagram' %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="payment"><span>Copyrights @ 2016 All Rights Reserved by RoadThemes</span> <a href="#"> RoadThemes</a></div>
+  </div>
+</footer>
+<a href="#" class="scroll_top" title="Scroll to Top" style="display: block;"><i class="fa fa-arrow-up"></i></a>

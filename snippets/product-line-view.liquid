@@ -1,0 +1,163 @@
+{{ 'viewer.scss' | asset_url | stylesheet_tag }}
+
+<div class="viewer-head visible-lg visible-lgsh" id="{{model_name}}-wrap">
+  <div id="{{ model_name | downcase }}-bg">
+    <h1 class="text-center jumbotron no-margin line-title">
+      Choose Your {{ model_name }}
+    </h1>
+
+    <div class="full-w text-center">
+      <ul id="cb-quick-buy" class="nav nav-pills">
+        {% for prod in product-line-view %}
+          {% assign cb_id = cb_ids[forloop.index0] %}
+          {% if forloop.first %}
+          <li class="round active variation-circle">
+          {% else %}
+          <li class="round variation-circle">
+          {% endif %}
+            <a class="{{ cb_id }}-pattern round" data-price="{{ prod.price | money }}" data-cb='{{ cb_id }}' data-activate="{{ forloop.index }}"></a>
+            <a class="small-caps" href="http://{{ cb_id }}.felloeyewe.pay.clickbank.net">buy</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div id="viewer-container" class="med-h-marg">
+
+      <div id="views" class="pull-right no-pads">
+        <div class="sidebar-nav">
+          <div class="navbar navbar-default sharp" role="navigation">
+
+            <ul class="nav navbar-nav">
+              <li class="active" data-toggle="popover" data-placement="right" title="Front View">
+                <a data-activate='1'>
+                  <span class="icon"><img src="{{ 'front-view-icon.png' | file_url }}"></span>
+                </a>
+              </li>
+              <li data-toggle="popover" data-placement="right" title="Side View"><a  data-activate='2'>
+                  <span class="icon"><img src="{{ 'side-view-icon.png' | file_url }}"></span>
+                </a>
+              </li>
+              <li data-toggle="popover" data-placement="right" title="Gallery">
+                <a data-activate='3'>
+                  <span class="icon"><img src="{{ 'gallery-view-icon.png' | file_url }}"></span>
+                </a>
+              </li>
+              <li data-toggle="popover" data-placement="right" title="Size Guide">
+                <a data-activate='4'>
+                  <span class="icon"><img src="{{ 'size-view-icon.png' | file_url }}"></span>
+                </a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="viewer" class="med-h-pads">
+        <div id="front" class="active view-holder" data-target="1">
+          {% for prod in product-line-view %}
+            {% assign img_url = prod.featured_image.src | img_url: '1024x1024' %}
+            {% if forloop.first %}
+              <img data-target="{{ forloop.index }}" class="active" src="{{ img_url }}">
+            {% else %}
+              <img data-target="{{ forloop.index }}" class="empty" src="{{ img_url }}">
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div id="side" class="empty view-holder" data-target="2">
+          {% for prod in product-line-view %}
+            {% assign img_url = prod.images[1].src | img_url: '1024x1024' %}
+            {% if forloop.first %}
+              <img data-target="{{ forloop.index }}" class="active" src="{{ img_url }}">
+            {% else %}
+              <img data-target="{{ forloop.index }}" class="empty" src="{{ img_url }}">
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div id="gallery" class="empty view-holder text-center" data-target="3">
+          <span class="pull-left icon pe-7s-left-arrow" data-move-towards="first"></span>
+          <div class="poster-frame">
+            <img src="" data-target="" title="Fantoms">
+            <p>{{ model_name | append: "s" }}</p>
+          </div>
+          <span class="pull-right icon pe-7s-right-arrow" data-move-towards="last"></span>
+        </div>
+
+        <div id="size-guide" class="text-center empty view-holder" data-target="4">
+          <img class="" src="{{ model_name | downcase | append: '_size_guide_small_t.png' | file_url }}" />
+        </div>
+
+        <div id="toggler" class="full-w">
+          <a href="http://{{ cb_ids[0] }}.felloeyewe.pay.clickbank.net" class="btn btn-lg sharp">
+            <h5>
+              purchase &middot {{ product-line-view[0].price | money }}
+            </h5>
+          </a>
+
+          <ul class="nav nav-pills" data-model="{{ model_name }}">
+            {% for prod in product-line-view %}
+              {% assign cb_id = cb_ids[forloop.index0] %}
+              {% assign parts = prod.title | split: ' ' %}
+              {% assign asize = parts | size %}
+              {% if forloop.first %}
+              <li class="active"><a class="sharp" data-price="{{ prod.price | money }}" data-cb='{{ cb_id }}' data-activate="{{ forloop.index }}">{% if asize > 2 %}{{ parts[1] }}{% else %}{{ parts[0] }}{% endif %}</a></li>
+              {% else %}
+              <li><a class="sharp" data-price="{{ prod.price | money }}" data-cb='{{ cb_id }}' data-activate="{{ forloop.index }}">{% if asize > 2 %}{{ parts[1] }}{% else %}{{ parts[0] }}{% endif %}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <div id="gallery-holder" class="text-center">
+        <div class="shadow" style="left: 0;"></div>
+        <div class="full-h">
+          {% include 'find-your-face-counts' %}
+          {% for face in face_matrix %}
+            {% assign lowered_model = model_name | downcase %}
+            {% if face contains lowered_model %}
+              <img src="{{ face | append: '.jpg' | file_url }}" data-activate="{{ forloop.index }}">
+            {% endif %}
+          {% endfor %}        
+        </div>
+        <div class="shadow" style="right: 0;"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="hidden-lg hidden-lgsh text-center prod-pointers">
+  {% for prod in product-line-view %}
+    <div class="panel sharp panel-default col-xs-10 col-xs-offset-1 no-pads">
+      <a href="{{ prod.url }}" title="{{ prod.title }}">
+        <div class="panel-body">
+          View {{ prod.title }}
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</div>
+
+<hr class="highlight">
+
+{% include 'cb-panels' %}
+{% include 'cb-contact' %}
+{% include 'cb-disclaimer' %}
+
+{{ 'viewer.js' | asset_url | script_tag }}
+
+<script src='//cbtb.clickbank.net/?vendor=felloeyewe&position=bottom_right&theme=black'></script>
+<script>
+	(function() {
+		var define = window.define;
+		window.define = function(package) {
+			if (package.HandlebarsEnvironment) {
+				window.Handlebars = package;
+			}
+			define.apply(this, arguments);
+		}; })();
+</script> 

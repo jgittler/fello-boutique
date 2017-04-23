@@ -1,0 +1,21 @@
+{% unless collection_item_width %}
+  {% assign collection_item_width = '' %}
+{% endunless %}
+
+{% unless collection_item_img_size %}
+  {% assign collection_item_img_size = 'grande' %}
+{% endunless %}
+<div class="collection-boutique">
+  <div class="collection-image">
+    <a href="{{ collections[featured].url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}" >
+      {% if collections[featured].image %}
+          {{ collections[featured].image.src | img_url: collection_item_img_size | img_tag: collection_title }}
+        {% else %}
+          {{ collections[featured].products.first.featured_image | img_url: collection_item_img_size | img_tag: collection_title }}
+        {% endif %}
+    </a>
+  </div>
+  <div class="heading-collection">
+    <h3><a href="{{ collections[featured].url }}">{{ collections[featured].title }}</a></h3>
+  </div>
+</div>

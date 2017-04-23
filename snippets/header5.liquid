@@ -1,0 +1,40 @@
+<div id="box-mobile-menu" class="box-mobile-menu full-height full-width">
+  <div class="box-inner">
+    <span class="close-menu"><span class="icon pe-7s-close"></span></span>
+  </div>
+</div>
+<div id="header-ontop" class="is-sticky"></div>
+<header id="header" class="header style5">
+  <div class="top-header">
+    <div class="container">
+      <div class="logo">
+        {% if settings.logo_use_image%}
+        <a href="/">{{'logo.png' | asset_url | img_tag}}</a>
+        {% else %}
+        <a href="/"><img src="{{'logo.gif' | asset_url}}" alt=""></a>
+        {%endif%}
+      </div>
+    </div>
+  </div>
+  <div class="main-header">
+    <div class="container">
+      <div class="main-menu-wapper">
+        <div class="row">
+          <div class="col-xs-2 col-sm-8 col-md-7">
+            <span class="mobile-navigation"><i class="fa fa-bars"></i></span>
+            {% include 'menu_import' %}
+          </div>
+          <div class="col-xs-10 col-sm-4 col-md-5">
+            <div class="box-control">
+              {% assign search_style = "show-input2" %}
+              {% include 'search-bar' %}
+              {% assign position ="top-menu" %}
+              {% include "mini-cart" %}
+              {% include"settings-box" %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

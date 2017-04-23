@@ -1,0 +1,78 @@
+{% capture bn_gr_image_title1 %}{% include 'shortcode-render' render:'title1' default:'' %}{% endcapture %}
+{% capture bn_gr_link1 %}{% include 'shortcode-render' render:'link1' default:'#' %}{% endcapture %}
+{% capture bn_gr_image_title2 %}{% include 'shortcode-render' render:'title2' default:'' %}{% endcapture %}
+{% capture bn_gr_link2 %}{% include 'shortcode-render' render:'link2' default:'#' %}{% endcapture %}
+{% capture bn_gr_image_title3 %}{% include 'shortcode-render' render:'title3' default:'' %}{% endcapture %}
+{% capture bn_gr_link3 %}{% include 'shortcode-render' render:'link3' default:'#' %}{% endcapture %}
+{% capture bn_gr_style %}{% include 'shortcode-render' render:'style' default:'no-margin' %}{% endcapture %}
+
+{% if bn_gr_style == "no-margin" %}
+<div class="group-banner margin-top-10">
+  <div class="row margin-0">
+    <div class="col-sm-12 col-md-6 padding-0 margin-top-30">
+      <a class="banner-opacity" href="{{bn_gr_link1}}">
+        {% if bn_gr_image_title1 == blank %}
+        {{'5.gif' | asset_url | img_tag}}
+        {% else %}
+        {{bn_gr_image_title1 | file_url | img_tag}}
+        {% endif %}
+      </a>
+    </div>
+    <div class="col-sm-12 col-md-6 padding-0">
+      <div class="row margin-0">
+        <div class="col-sm-6 padding-0 margin-top-30">
+          <a class="banner-opacity" href="{{bn_gr_link2}}">
+            {% if bn_gr_image_title2 == blank %}
+            {{'6.gif' | asset_url | img_tag}}
+            {% else %}
+            {{bn_gr_image_title2 | file_url | img_tag}}
+            {% endif %}
+          </a>
+        </div>
+        <div class="col-sm-6 padding-0 margin-top-30">
+          <a class="banner-opacity" href="{{bn_gr_link3}}">
+            {% if bn_gr_image_title3 == blank %}
+            {{'6.gif' | asset_url | img_tag}}
+            {% else %}
+            {{bn_gr_image_title3 | file_url | img_tag}}
+            {% endif %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% if bn_gr_style == "divide-col" %}
+<div class="margin-top-10">
+  <div class="row">
+    <div class="col-sm-4 margin-top-30">
+      <a class="banner-opacity" href="{{bn_gr_link1}}">
+        {% if bn_gr_image_title1 == blank %}
+        {{'8.gif' | asset_url | img_tag}}
+        {% else %}
+        {{bn_gr_image_title1 | file_url | img_tag}}
+        {% endif %}
+      </a>
+    </div>
+    <div class="col-sm-4 margin-top-30">
+      <a class="banner-opacity" href="{{bn_gr_link2}}">
+        {% if bn_gr_image_title2 == blank %}
+        {{'8.gif' | asset_url | img_tag}}
+        {% else %}
+        {{bn_gr_image_title2 | file_url | img_tag}}
+        {% endif %}
+      </a>
+    </div>
+    <div class="col-sm-4 margin-top-30">
+      <a class="banner-opacity" href="{{bn_gr_link3}}">
+        {% if bn_gr_image_title3 == blank %}
+        {{'8.gif' | asset_url | img_tag}}
+        {% else %}
+        {{bn_gr_image_title3 | file_url | img_tag}}
+        {% endif %}
+      </a>
+    </div>
+  </div>
+</div>
+{% endif %}

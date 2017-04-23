@@ -1,0 +1,19 @@
+{% if settings.use_footer_flick %}
+{{ 'instafeed.min.js' | asset_url | script_tag }}
+<ul id="instafeed" class="fick-photo"></ul>
+{% assign instafeed_img = '{{image}}' %}
+{% assign instafeed_link = '{{link}}' %}
+<script>
+  jQuery(document).ready(function(){
+    var feed = new Instafeed({
+      get: 'user',
+      userId: '{{settings.user-id}}',
+      accessToken: '{{settings.accessToken}}',
+      sortBy: 'most-recent',
+      limit: {{settings.limit}},
+      template: '<li><a href="{{instafeed_link}}"><img width="70" src="{{instafeed_img}}" /></a><li>'
+    });
+    feed.run();
+  });
+</script>
+{% endif %}

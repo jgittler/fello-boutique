@@ -1,0 +1,39 @@
+<div class="newsletter-sold-out">
+  {% if settings.mailchimp_link != blank %}
+    <form action="{{ settings.mailchimp_link }}" method="post" name="mc-embedded-subscribe-form" class="contact-form" target="_blank">
+      {% comment %}
+        <input type="text" value="" name="FNAME" placeholder="{{ 'general.newsletter_form.subscriber_first_name' | t }}">
+        <input type="text" value="" name="LNAME" placeholder="{{ 'general.newsletter_form.subscriber_last_name' | t }}">
+      {% endcomment %}
+      <input type="email" value="" name="EMAIL" class="sold-out-form contact_email" placeholder="Email me when available...">
+      <input style="
+         width: inherit;
+      " type="submit" value="Send" class=" sold-old-button action_button sign_up" name="subscribe" />
+    </form>
+  
+  {% else %}    
+    {% form 'customer' %}
+       {% if form.posted_successfully? %}
+         <p><em>{{ 'general.newsletter_form.success_text' | t }}</em></p>
+       {% elsif form.errors %}
+         {% for field in form.errors %}
+           <p><em>{{ field }} - {{ form.errors.messages[field] }}</em></p>
+         {% endfor %}
+       {% endif %}
+     {% if template contains "password" %}
+       <input type="hidden" name="contact[tags]" value="prospect,password page"/>
+       {% else %}
+       <input type="hidden" name="contact[tags]" value="prospect,newsletter"/>
+       <input type="hidden" name="contact[first_name]" value="first_name" />
+       <input type="hidden" name="contact[last_name]" value="last_name" />
+       {% endif %}
+       <input type="email" class="sold-out-form contact_email" name="contact[email]" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" placeholder="Email me when available..." />
+
+  <p></p>
+  
+  <input style="
+         width: inherit;
+       " type='submit' class="action_button sign_up" value="Send" />
+     {% endform %}
+  {% endif %}
+</div>

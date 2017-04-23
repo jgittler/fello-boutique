@@ -1,0 +1,112 @@
+<ul class="boutique-nav main-menu clone-main-menu">
+  {% if settings.use_mega_menu_kiti == false %}
+  	{% assign menu = settings.main_menu_mega %}
+    {% for link in linklists[menu].links %} 
+    {% assign child_list_handle = link.title | handle %}
+      {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+        <li class="{% if link.active %}active{% endif %} menu-item-has-children item-megamenu">
+              <a href="{{ link.url }}">{{ link.title }}</a>
+                  {% if linklists[child_list_handle].links.size > 14  %}
+                    <div style="width:500px;" class="sub-menu megamenu">
+                      <div class="row">
+                          <div class="col-sm-4">
+                            <div class="mega-custom-menu">
+                              <ul>
+                                {% for child_link in linklists[child_list_handle].links limit:7 %}
+                                {% assign grand_child_list_handle = child_link.title | handle %}
+                                <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+                                {% endfor %}
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="mega-custom-menu">
+                              <ul>
+                                {% assign index = 1 %}
+                                {% for child_link in linklists[child_list_handle].links limit:14 %}
+                                {% assign grand_child_list_handle = child_link.title | handle %}
+                                {% if index > 7 %}
+                                  <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+                                {% endif %}
+                                {% assign index = index | plus : 1 %}
+                                {% endfor %}
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="mega-custom-menu">
+                              <ul>
+                                {% assign index = 1 %}
+                                {% for child_link in linklists[child_list_handle].links %}
+                                {% assign grand_child_list_handle = child_link.title | handle %}
+                                {% if index > 14 %}
+                                <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+                                {% endif %}
+                                {% assign index = index | plus : 1 %}
+                                {% endfor %}
+                              </ul>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  {% elsif linklists[child_list_handle].links.size > 7  %}
+                    <div style="width:500px;" class="sub-menu megamenu">
+                      <div class="row">
+                          <div class="col-sm-6">
+                            <div class="mega-custom-menu">
+                              <ul>
+                                {% for child_link in linklists[child_list_handle].links limit:7 %}
+                                {% assign grand_child_list_handle = child_link.title | handle %}
+                                <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+                                {% endfor %}
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="mega-custom-menu">
+                              <ul>
+                                {% assign index = 1 %}
+                                {% for child_link in linklists[child_list_handle].links limit:14 %}
+                                {% assign grand_child_list_handle = child_link.title | handle %}
+                                {% if index > 7 %}
+                                  <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+                                {% endif %}
+                                {% assign index = index | plus : 1 %}
+                                {% endfor %}
+                              </ul>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  {% else %}
+                    <span class="arow"></span>
+                    <ul class="sub-menu">
+                      {% for child_link in linklists[child_list_handle].links limit:7 %}
+                      	{% assign grand_child_list_handle = child_link.title | handle %}
+                        {% if linklists[grand_child_list_handle] and linklists[grand_child_list_handle].links.size > 0 %}
+                          <li class="menu-item-hass-children">
+                            <a href="{{ child_link.url }}">{{ child_link.title }}</a><span class="fa fa-angle-right"></span>
+                            <ul class="level-3">
+                              {% for grand_child_link in linklists[grand_child_list_handle].links %}
+                              <li><a href="{{ grand_child_link.url }}">{{ grand_child_link.title }}</a></li>
+                              {% endfor %}
+                            </ul>
+                          </li>
+                        {% else %}
+                          <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+            </li>
+      {% else %}
+        <li class="{% if link.active %}active{% endif %}">
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {% endif %}
+    {% assign position = position | plus :1 %}
+    {% endfor %}
+  {% else %}
+  {% include 'render-layout' register_section: 'sc_mega_menu_level_1'  %}
+  {% endif %}
+</ul>

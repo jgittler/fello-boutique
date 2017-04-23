@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+  <meta name="google-site-verification" content="lzP9LNU4PdxL3utC6GN-FgiDN4zwz9KshqqxBYALdXY" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    {% if settings.favicon_enable %}
+  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
+  {% endif %}
+  
+  <!-- Title and description ================================================== -->
+  <title>
+    {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} | {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} | {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} | {{ shop.name }}{% endunless %}
+  </title>
+  
+    {% include 'header-stylesheets' %}
+    {% include 'header-scripts' %}
+    {{ content_for_header }}
+  
+  
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '156715738012257');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent'); 
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=156715738012257&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+ 
+
+ <!-- Hits Analytics tracking code -->
+{% if shop.customer_accounts_enabled %}
+  {% if customer %}
+    <script type="text/javascript">
+        function hitsReady() {
+            if (typeof hits != 'undefined')
+                hits('user','identify', {'id' : '{{ customer.id }}'});
+            else
+                setTimeout(hitsReady,500);
+        }
+        window.attachEvent ? window.attachEvent('onload', hitsReady) : window.addEventListener('load', hitsReady, false);
+    </script>
+  {% endif %}
+{% endif %}
+<!-- end of Hits Analytics code -->
+
+ </head>
+<body class="home {% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" id="{{ page_title | handle }}" style="padding-right: 0;">
+
+  {% unless handle contains 'pay-invoice' or handle contains 'cb' or handle contains 'thank-you' %}
+  <div class="text-center site-banner full-w row-eq-height hidden-xs minor-h-pads">
+    <p class="v-center"><strong>FREE RETURNS</strong> on all purchases.
+      Get ready for Spring, <span style="border-bottom: 1px solid black;">10% off all classic product lines</span>.
+      <small>use code:</small> <code class="blue" style="background-color: rgb(116, 216, 171);"><strong>sprng</strong></code>
+    </p>
+    <button class="close-box" type="button" data-dismiss="modal" aria-hidden="true">×</button>
+  </div>
+  
+  <div class="text-center site-banner full-w row-eq-height visible-xs minor-h-pads">
+    <small>
+      <p class="v-center"><strong>FREE RETURNS</strong> on all purchases.</p>
+      <p class="v-center"><small><span style="border-bottom: 1px solid black;">10% off classics.</span> <small>use code:</small> <code class="blue" style="background-color: rgb(116, 216, 171);"><strong>sprng</strong></code></small></p>
+    </small>
+    <button type="button" class="close-box" data-dismiss="modal" aria-hidden="true" style="float: right; margin-top: -40px;">×</button>
+  </div>
+  {% endunless %}
+
+  
+  {% include 'header' %}
+  
+  {{ content_for_layout }}
+  
+  {% include 'footer-index' %}
+  <!-- Large modal Compare -->
+    <div id="loading">
+      {{ 'lightbox/v204/loading.gif' | global_asset_url |img_tag}}
+    </div>
+  <div class="modal fade bs-example-modal-lg" id="moda-compare" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" id="compare-modal">
+        <div class="modal-header">
+
+          <h4 class="modal-title">COMPARE PRODUCTS</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-hover">
+            <thead>
+              <tr class="th-compare">
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="table-compare">
+
+            </tbody>
+
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'popup-newsletter' %}
+  {% include 'modal-quickview' %}
+  {% include 'currencies' %}
+  {% include 'bottom-scripts' %}
+</body>
+</html>

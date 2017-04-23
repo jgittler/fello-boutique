@@ -1,0 +1,194 @@
+
+{% if settings.use_slider_hp14 %}
+<!-- Home slide -->
+<div class="slider-homepage">
+  {% include 'shortcode-slider' %}
+</div>
+<!-- ./Home slide -->
+{% endif %}
+
+{% if settings.use_banner_carousel_home14 %}
+<!-- Block banner -->
+<div class="margin-top-80">
+  <div class="container">
+    <div class="row">
+    {% capture banner_description_style %}des__middle-left{% endcapture %}
+    {% capture banner_description_title %}{{settings.banner_description_title_sc1_home14}}{% endcapture %}
+    {% capture banner_description_sub_title %}{{settings.banner_description_stitle_sc1_home14}}{% endcapture %}
+    {% capture banner_description_status %}{{settings.banner_description_status_sc1_home14}}{% endcapture %}
+    {% capture banner_description_description %}{{settings.banner_description_description_sc1_home14}}{% endcapture %}
+    {% capture banner_description_link %}{{settings.banner_description_link_sc1_home14}}{% endcapture %}
+    {% capture banner_description_title_link %}{{settings.banner_description_link_title_sc1_home14}}{% endcapture %}
+    {% capture banner_description_image_title %}{{settings.banner_description_image_sc1_home14}}{% endcapture %}
+    {% capture banner_description_col %}9{% endcapture %}
+    {% assign include ="" %}
+    {% include 'shortcode-banner-description' %}
+      
+    {% capture banner_description_style %}des__top-left{% endcapture %}
+    {% capture banner_description_title %}{{settings.banner_description_title_sc21_home14}}{% endcapture %}
+    {% capture banner_description_sub_title %}{{settings.banner_description_stitle_sc21_home14}}{% endcapture %}
+    {% capture banner_description_link %}{{settings.banner_description_link_sc21_home14}}{% endcapture %}
+    {% capture banner_description_image_title %}{{settings.banner_description_image_sc21_home14}}{% endcapture %}
+    {% capture banner_description_col %}3{% endcapture %}
+    {% assign include ="" %}
+    {% include 'shortcode-banner-description' %}
+    </div>
+  </div>
+</div>
+<!-- ./Block banner -->
+{% endif %}
+
+{% if settings.use_product_tab_home14 %}
+<!-- Tab product -->
+<div class="margin-top-50">
+  <div class="container">
+    <div class="tab-product style2 tab-owl-fade-effect">
+      <ul class="box-tabs nav-tab">
+        {% if text_head_sc2_home14 !="" %}
+        <li class="text-head">{{settings.text_head_sc2_home14}}</li>
+        {% endif %}
+        {% assign check_count_collection = 0  %}
+        {% for i in (1..3) %}
+        {% assign collection_name = 'handleize_tab_' | append: i | append: "_s2_home14"  %}
+        {% assign handleize_tab = settings[collection_name]  %}
+        {% if handleize_tab != "" %}
+        {% if check_count_collection == 0 %}
+              {% capture animate %}class="active"><a data-animated='fadeInUp'{% endcapture %}
+          {% elsif check_count_collection == 1 %}
+              {% capture animate %}class="trick"><a data-animated='slideInLeft'{% endcapture %}
+          {% elsif check_count_collection == 2 %}
+              {% capture animate %}><a data-animated='zoomInUp'{% endcapture %}
+        {% endif %}
+            <li {{animate}} data-toggle="tab" href="#tab-product-{{handleize_tab}}">{{collections[handleize_tab].title | escape }}</a></li>
+            {% assign check_count_collection = check_count_collection | plus: 1  %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+      <div class="tab-content">
+        <div class="tab-container">
+          {% assign check_count_collection = 0  %}
+          {% for i in (1..3) %}
+          {% assign collection_name = 'handleize_tab_' | append: i | append: "_s2_home14"  %}
+          {% assign handleize_tab = settings[collection_name]  %}
+          {% if handleize_tab != "" %}
+          <div id="tab-product-{{handleize_tab}}" class="tab-panel {% if check_count_collection == 1 %}active{% endif %}">
+            <ul class="product-list owl-carousel" data-nav="false" data-dots="false" data-margin="30" data-loop="true" data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
+              {% for product in collections[handleize_tab].products limit: limit %}
+              
+              {% include "product-style-5" %}
+              {% assign check_product_style_2 = check_product_style_2 | plus: 1 %}
+              {% endfor %}
+            </ul>
+          </div>
+          {% assign check_count_collection = check_count_collection | plus: 1  %}
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./Tab product -->
+{% endif %}
+
+{% assign style = "2" %}
+{% include 'shortcode-shipping-icon' %}
+
+<!-- Block banner -->
+<div class="margin-top-80">
+  <div class="container">    
+    <div class="row">
+      
+    {% capture banner_description_style %}des__top-right{% endcapture %}
+    {% capture banner_description_title %}{{settings.banner_description_title_sc23_home14}}{% endcapture %}
+    {% capture banner_description_sub_title %}{{settings.banner_description_stitle_sc23_home14}}{% endcapture %}
+    {% capture banner_description_link %}{{settings.banner_description_link_sc23_home14}}{% endcapture %}
+    {% capture banner_description_image_title %}{{settings.banner_description_image_sc23_home14}}{% endcapture %}
+    {% capture banner_description_col %}3{% endcapture %}
+    {% assign include ="" %}
+    {% include 'shortcode-banner-description' %}
+      
+    {% capture banner_description_style %}des__middle-right{% endcapture %}
+    {% capture banner_description_title %}{{settings.banner_description_title_sc3_home14}}{% endcapture %}
+    {% capture banner_description_sub_title %}{{settings.banner_description_stitle_sc3_home14}}{% endcapture %}
+    {% capture banner_description_status %}{{settings.banner_description_status_sc3_home14}}{% endcapture %}
+    {% capture banner_description_description %}{{settings.banner_description_description_sc3_home14}}{% endcapture %}
+    {% capture banner_description_link %}{{settings.banner_description_link_sc3_home14}}{% endcapture %}
+    {% capture banner_description_title_link %}{{settings.banner_description_link_title_sc3_home14}}{% endcapture %}
+    {% capture banner_description_image_title %}{{settings.banner_description_image_sc3_home14}}{% endcapture %}
+    {% capture banner_description_col %}9{% endcapture %}
+    {% assign include ="" %}
+    {% include 'shortcode-banner-description' %}
+  </div>
+</div>
+<!-- ./Block banner -->
+
+{% if settings.use_product_tab2_home14 %}
+<!-- Tab product -->
+<div class="margin-top-50">
+  <div class="container">
+    <div class="tab-product style2 tab-owl-fade-effect">
+      <ul class="box-tabs nav-tab">
+        {% if text_head_sc2_home14 !="" %}
+        <li class="text-head">{{settings.text_head_sc4_home14}}</li>
+        {% endif %}
+        {% assign check_count_collection = 0  %}
+        {% for i in (1..3) %}
+        {% assign collection_name = 'handleize_tab_' | append: i | append: "_s4_home14"  %}
+        {% assign handleize_tab = settings[collection_name]  %}
+        {% if handleize_tab != "" %}
+        {% if check_count_collection == 0 %}
+              {% capture animate %}class="active"><a data-animated='fadeInUp'{% endcapture %}
+          {% elsif check_count_collection == 1 %}
+              {% capture animate %}class="trick"><a data-animated='slideInLeft'{% endcapture %}
+          {% elsif check_count_collection == 2 %}
+              {% capture animate %}><a data-animated='zoomInUp'{% endcapture %}
+        {% endif %}
+            <li {{animate}} data-toggle="tab" href="#tab2-product-{{handleize_tab}}">{{collections[handleize_tab].title | escape }}</a></li>
+            {% assign check_count_collection = check_count_collection | plus: 1  %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+      <div class="tab-content">
+        <div class="tab-container">
+          {% assign check_count_collection = 0  %}
+          {% for i in (1..3) %}
+          {% assign collection_name = 'handleize_tab_' | append: i | append: "_s4_home14"  %}
+          {% assign handleize_tab = settings[collection_name]  %}
+          {% if handleize_tab != "" %}
+          <div id="tab2-product-{{handleize_tab}}" class="tab-panel {% if check_count_collection == 1 %}active{% endif %}">
+            <ul class="product-list owl-carousel" data-nav="false" data-dots="false" data-margin="30" data-loop="true" data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
+              {% for product in collections[handleize_tab].products limit: limit %}
+              {% include "product-style-5" %}
+              {% assign check_product_style_2 = check_product_style_2 | plus: 1 %}
+              {% endfor %}
+            </ul>
+          </div>
+          {% assign check_count_collection = check_count_collection | plus: 1  %}
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./Tab product -->
+{% endif %}
+
+{% if settings.use_testimonial_home14 %}
+{% assign style = "background" %}
+{% include "shortcode-testimonial" %}
+{% endif %}
+
+{% if settings.use_blog_home14 %}
+<!-- Blog -->
+{% assign include ="include" %}
+{% assign handle_name = settings.id_blog_home14 %}
+{% assign number_post_title = settings.title_blog_home14 %}
+{% assign number_post_dt = "3" %}
+{% assign number_post_tb = "2" %}
+{% assign margin_blog_post = "margin-top-95" %}
+{% assign style = "text-head" %}
+{% include "shortcode-blog" %}
+<!-- ./Blog -->
+{% endif %}

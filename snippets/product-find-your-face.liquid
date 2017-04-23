@@ -1,0 +1,431 @@
+<div id="wizard">
+    
+    <!-- Bread Crumbs -->
+    <div class="col-xs-12 pointer h3 crumbs text-center minor-v-marg">
+      <div class="btn-group btn-breadcrumb">
+        <a class="current btn btn-crumb" title="pick style">Style</a>
+        <a class="not-allowed btn btn-crumb" title="pick face shape">Face Shape</a>
+        <a class="not-allowed btn btn-crumb" title="pick hair color">Hair Color</a>
+        <a class="not-allowed btn btn-crumb hidden-xs" title="find your face">Faces</a>
+      </div>
+    </div>
+    
+  
+    <!-- SELECTED -->
+    <div class="col-xs-12 text-center">      
+      <ul id="selected" class="list-inline">
+        <li>
+          <h4 class="hidden-xs gray highlight">Sex</h4>
+          <h6 class="visible-xs gray highlight">Sex</h6>
+          <span class="hold">
+            <span class="icon"></span>
+            <br />
+            <p></p>
+          </span>
+        </li>
+        <li>
+          <h4 class="hidden-xs gray highlight">Face Shape</h4>
+          <h6 class="visible-xs gray highlight">Face Shape</h6>
+          <span class="hold">
+            <span class="icon"></span>
+            <br />
+            <p></p>
+          </span>
+        </li>
+        <li>
+          <h4 class="hidden-xs gray highlight">Hair Color</h4>
+          <h6 class="visible-xs gray highlight">Hair Color</h6>
+          <span class="hold">
+            <span class="icon"></span>
+            <br />
+            <p></p>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- SEX -->
+    <div class="pick-sex step col-xs-12 text-center">
+            
+      <h2 class="hidden-xs step-message">Select One</h2>
+      <h4 class="visible-xs step-message">Select One</h4>
+
+      <div class="pillar col-xs-12 col-sm-6">
+        <div class="panel sharp pointer" data-sex="female">
+
+          <span class="icon pe-7s-user-female"></span>
+          <br>
+          <h1>Female</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-6">
+        <div class="panel sharp pointer" data-sex="male">
+
+          <span class="icon pe-7s-user"></span>
+          <br>
+          <h1>Male</h1>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SHAPE -->
+    <div class="pick-shape step col-xs-12 text-center hidden">
+                  
+      <h2 class="step-message hidden-xs">What's Your Face Shape?</h2>
+      <h4 class="visible-xs step-message">What's Your Face Shape?</h4>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer" data-shape="oval">
+
+          <img src="{{ 'male-oval-face.png' | file_url }}" alt="male oval face" class="male">
+          <img src="{{ 'female-oval-face.png' | file_url }}" alt="female oval face" class="female hidden">
+          <br>
+          <h1>Oval</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer" data-shape="round">
+
+          <img src="{{ 'male-round-face.png' | file_url }}" alt="male round face" class="male">
+          <img src="{{ 'female-round-face.png' | file_url }}" alt="female round face" class="female hidden">
+          <br>
+          <h1>Round</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer" data-shape="square">
+
+          <img src="{{ 'male-square-face.png' | file_url }}" alt="male square face" class="male">
+          <img src="{{ 'female-square-face.png' | file_url }}" alt="female square face" class="female hidden">
+          <br>
+          <h1>Square</h1>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- HAIR -->
+    <div class="pick-hair step col-xs-12 text-center hidden">
+                  
+      <h2 class="step-message hidden-xs">What's Your Hair Color?</h2>
+      <h4 class="visible-xs step-message">What's Your Hair Color?</h4>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer" data-hair="blonde">
+
+          <img src="{{ 'male-oval-face-blonde.png' | file_url }}" alt="male oval blonde" class="male oval">
+          <img src="{{ 'male-square-face-blonde.png' | file_url }}" alt="male square blonde" class="male square hidden">
+          <img src="{{ 'male-round-face-blonde.png' | file_url }}" alt="male round blonde" class="male round hidden">
+          <img src="{{ 'female-oval-face-blonde.png' | file_url }}" alt="female oval blonde" class="hidden female oval">
+          <img src="{{ 'female-square-face-blonde.png' | file_url }}" alt="female square blonde" class="hidden female square">
+          <img src="{{ 'female-round-face-blonde.png' | file_url }}" alt="female round blonde" class="hidden female round">
+          <br>
+          <h1>Blonde</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer" data-hair="brown">
+
+          <img src="{{ 'male-oval-face-brown.png' | file_url }}" alt="male oval brown" class="male oval">
+          <img src="{{ 'male-square-face-brown.png' | file_url }}" alt="male square brown" class="male square hidden">
+          <img src="{{ 'male-round-face-brown.png' | file_url }}" alt="male round brown" class="male round hidden">
+          <img src="{{ 'female-oval-face-brown.png' | file_url }}" alt="female oval brown" class="hidden female oval">
+          <img src="{{ 'female-square-face-brown.png' | file_url }}" alt="female square brown" class="hidden female square">
+          <img src="{{ 'female-round-face-brown.png' | file_url }}" alt="female round brown" class="hidden female round">
+          <br>
+          <h1>Brown</h1>
+
+        </div>
+      </div>
+
+      <div class="pillar col-xs-12 col-sm-4">
+        <div class="panel sharp pointer" data-hair="black">
+
+          <img src="{{ 'male-oval-face-black.png' | file_url }}" alt="male oval black" class="male oval">
+          <img src="{{ 'male-square-face-black.png' | file_url }}" alt="male square black" class="male square hidden">
+          <img src="{{ 'male-round-face-black.png' | file_url }}" alt="male round black" class="male round hidden">
+          <img src="{{ 'female-oval-face-black.png' | file_url }}" alt="female oval black" class="hidden female oval">
+          <img src="{{ 'female-square-face-black.png' | file_url }}" alt="female square black" class="hidden female square">
+          <img src="{{ 'female-round-face-black.png' | file_url }}" alt="female round black" class="hidden female round">
+          <br>
+          <h1>Black</h1>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- RESULTS -->
+    <div class="col-xs-12 results step container text-center hidden">
+      
+      <h2 class="step-message">Check Them Out | <div id="reset" class="btn btn-blue">Reset</div></h2>
+      
+{% include 'find-your-face-counts' %}
+  {% for face in face_matrix %}
+    {% assign count = face | split: "-" | last %}
+    {% for i in (1..count) %}
+      {% assign full_path = face | split: "-" %}
+      {% assign path = full_path[0] | append: "-" | append: full_path[1] | append: "-" | append: full_path[2] | append: "-" | append: full_path[3] %}
+    
+      {% assign product_lower = product.title | downcase | split: " " | last %}
+      {% if full_path contains product_lower %}
+      <img class="face-result" src="" data-src="{{ path | append: "-" | append: i | append: ".jpg" | file_url }}" data-filter="{{ path }}">
+      {% endif %}
+
+    {% endfor %}
+  {% endfor %}
+    </div>
+
+  </div>
+
+<div id="fit-filters" class="hidden" data-sex="" data-shape="" data-hair="">
+</div>
+
+<script>
+  $(document).ready(function() {
+
+  var $crumb1 = $("#wizard .crumbs a:eq(0)");
+  var $crumb2 = $("#wizard .crumbs a:eq(1)");
+  var $crumb3 = $("#wizard .crumbs a:eq(2)");
+  var $crumb4 = $("#wizard .crumbs a:eq(3)");
+
+  var $step1 = $("#wizard .step:eq(0)");
+  var $step2 = $("#wizard .step:eq(1)");
+  var $step3 = $("#wizard .step:eq(2)");
+  var $step4 = $("#wizard .step:eq(3)");
+  
+  var $select1 = $("#selected li .hold:eq(0)");
+  var $select2 = $("#selected li .hold:eq(1)");
+  var $select3 = $("#selected li .hold:eq(2)");
+
+  var allCrumbs = Array($crumb1, $crumb2, $crumb3, $crumb4);
+  var allSelects = Array($select1, $select2, $select3);
+  var allSteps = Array($step1, $step2, $step3, $step4);
+  var allFilters = ["sex", "shape", "hair"];
+  var allImgs = $(".results img");
+
+  var loadImgResults = function() {
+
+    var data = $("#fit-filters").data();
+
+    var filters = Object.keys(data).map(function(key) {
+      return data[key];
+    });
+
+    var productStyle = '{{ product.title | split: " " | last | downcase }}';
+
+    var combo = filters.reverse().join('-');
+    
+    var filter = productStyle + '-' + combo;
+
+    console.log(combo);
+    
+    var selected = $("img[data-filter=" + filter + "]");
+
+    for (i = 0; i < selected.length; i++) {
+      var newSrc = $(selected[i]).attr("data-src");
+      $(selected[i]).attr("src", newSrc);
+    }
+
+    $('img[src=""]').hide();
+    $('img:not([src=""])').show();
+  }
+
+  var disableCrumbs = function(crumbs) {
+    for (i = 0; i < crumbs.length; i++) {
+      $(crumbs[i]).addClass("not-allowed");
+    }
+  }
+
+  var toStep = function(currentCrumb, nextCrumb, hideSteps, showStep, selected, clicked) {
+
+    currentCrumb.removeClass("current");
+    nextCrumb.addClass("current");
+    nextCrumb.removeClass("not-allowed");
+
+    for (i = 0; i < hideSteps.length; i++) {
+      $(hideSteps[i]).addClass("hidden");
+    }
+
+    showStep.removeClass("hidden");
+    
+    if (clicked.length) {
+      selected.html(clicked.html());
+      selected.css("visibility", "visible");
+      selected.siblings().addClass("highlight");
+    }
+    
+    if (currentCrumb.html() == $crumb4.html()) {
+      for (i = 0; i < allImgs.length; i++) {
+        $(allImgs[i]).attr("src", "");
+      }
+    }
+  }
+
+  var setFilter = function(filter) {
+    var type = Object.keys(filter)[0];
+    $("#fit-filters").data(type, filter[type]);
+  }
+  
+  var filterSex = function(filter, wrapper) {
+    switch(filter['sex']) {
+      case 'male':
+        $(wrapper + ' .male').removeClass("hidden");
+        $(wrapper + ' .female').addClass("hidden");
+        break;
+      case 'female':
+        $(wrapper + ' .male').addClass("hidden");
+        $(wrapper + ' .female').removeClass("hidden");
+        break;
+    }
+  }
+  
+  var setColors = function(filter) {
+    filterSex(filter, '.pick-hair');
+    switch(filter['shape']) {
+      case 'square':
+        $(".pick-hair .square ." + filter['sex']).removeClass("hidden");
+        $(".pick-hair .oval").addClass("hidden");
+        $(".pick-hair .round").addClass("hidden");
+        break;
+      case 'round':
+        $(".pick-hair .round ." + filter['sex']).removeClass("hidden");
+        $(".pick-hair .oval").addClass("hidden");
+        $(".pick-hair .square").addClass("hidden");
+        break;
+      case 'oval':
+        $(".pick-hair .oval ." + filter['sex']).removeClass("hidden");
+        $(".pick-hair .round").addClass("hidden");
+        $(".pick-hair .square").addClass("hidden");
+        break;
+    }
+  }
+
+  var clearFilters = function(filters) {
+    for (i = 0; i < filters.length; i++) {
+      $("#fit-filters").data(filters[i], "");
+    }
+  }
+
+  var clearSelected = function(unSelected) {
+    for (i = 0; i < unSelected.length; i++) {
+      $(unSelected[i]).css("visibility", "hidden");
+      $(unSelected[i]).siblings().removeClass("highlight");
+    }
+  }
+
+  $("#wizard .crumbs a").click(function() {
+
+    if ($(this).hasClass("not-allowed")) return;
+    if ($(this).hasClass("current")) return;
+
+    var $nextText = $(this).html();
+
+    var $currentCrumb = $(".crumbs").find(".current");
+    var $nextCrumb = $(this);
+
+    if ($nextText == $crumb1.html()) {
+
+      var clearfilters = allFilters;
+      var $showStep = $step1;
+      var $selected = $select1;
+      var $disCrumbs = Array($crumb2, $crumb3, $crumb4);
+      var unSelected = Array($select1, $select2, $select3);
+
+    } else if ($nextText == $crumb2.html()) {
+
+      var clearfilters = allFilters.diff(Array("sex"));
+      var $showStep = $step2;
+      var $selected = $select2;
+      var $disCrumbs = Array($crumb3, $crumb4);
+      var unSelected = Array($select2, $select3);
+
+    } else if ($nextText == $crumb3.html()) {
+
+      var clearfilters = allFilters.diff(Array("sex", "shape"));
+      var $showStep = $step3;
+      var $selected = $select3;
+      var $disCrumbs = Array($crumb4);
+      var unSelected = Array($select3);
+
+    }
+    
+    var $hideSteps = allSteps.diff(Array($showStep));
+
+    toStep($currentCrumb, $nextCrumb, $hideSteps, $showStep, $selected, []);
+    clearFilters(clearfilters);
+    disableCrumbs($disCrumbs);
+    clearSelected(unSelected);
+  });
+  
+  $("#reset").click(function() {
+    var $currentCrumb = $(".crumbs").find(".current");
+    var $nextCrumb = $(this);
+
+    var clearfilters = allFilters;
+    var $showStep = $step1;
+    var $selected = $select1;
+    var $disCrumbs = Array($crumb2, $crumb3, $crumb4);
+    var unSelected = Array($select1, $select2, $select3);
+    var $hideSteps = allSteps.diff(Array($showStep));
+
+    toStep($currentCrumb, $nextCrumb, $hideSteps, $showStep, $selected, []);
+    clearFilters(clearfilters);
+    disableCrumbs($disCrumbs);
+    clearSelected(unSelected);
+  });
+
+  $("#wizard .step .panel").click(function() {
+    var $currentStep = $(this).parent().parent();
+    var $hideSteps = Array($currentStep);
+    var $showStep = $currentStep.next();
+    var filter = $(this).data();
+    var filterData = $("#fit-filters").data();
+
+    if ($currentStep.html() == $step1.html()) {
+
+      var $currentCrumb = $crumb1;
+      var $selected = $select1;
+      var $nextCrumb = $crumb2;
+
+      setFilter(filter);
+      filterSex(filterData, '.pick-shape');
+
+    } else if ($currentStep.html() == $step2.html()) {
+
+      var $currentCrumb = $crumb2;
+      var $selected = $select2;
+      var $nextCrumb = $crumb3;
+
+      setFilter(filter);
+      setColors(filterData);
+
+    } else if ($currentStep.html() == $step3.html()) {
+
+      var $currentCrumb = $crumb3;
+      var $selected = $select3;
+      var $nextCrumb = $crumb4;
+
+      setFilter(filter);
+      loadImgResults();
+
+    }
+
+    toStep($currentCrumb, $nextCrumb, $hideSteps, $showStep, $selected, $(this));
+  });
+
+});
+  
+  $("img.face-result").on("load", function() {
+    $(this).addClass("face-border");
+  });
+</script>

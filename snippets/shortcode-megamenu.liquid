@@ -1,0 +1,209 @@
+{% capture handleize_menu %}{% include 'shortcode-render' render:'handle' default:''%}{% endcapture %}
+{% capture width_mega_menu %}{% include 'shortcode-render' render:'width' default:'820' %}{% endcapture %}
+{% capture dropdown_start %}{% include 'shortcode-render' render:'dropdown_start' default:'start' %}{% endcapture %}
+{% capture dropdown_end %}{% include 'shortcode-render' render:'dropdown_end' default:'end' %}{% endcapture %}
+{% capture label %}{% include 'shortcode-render' render:'label' default:'' %}{% endcapture %}
+{% capture style_class %}{% include 'shortcode-render' render:'style' default:'' %}{% endcapture %}
+{% capture image_title %}{% include 'shortcode-render' render:'image_title' default: "" %}{% endcapture %}
+
+{% assign main_nav_mega = settings.main_menu_mega %}
+{% for handle in linklists[main_nav_mega].links %}
+  {% if handleize_menu == handle.handle %}
+
+  {% assign link = handle.url %}
+
+    {% assign title = handle.title %}
+    
+    {% assign child_list_handle = handle.title | handle %}
+  {% endif %}
+{% endfor %}
+
+<!-- Width Dropdown -->
+{% if width_mega_menu =="100%" %}
+  {% assign width_mega_menu = "100%" %}
+{% else %}
+  {% if width_mega_menu =="" %}
+    {% assign width_mega_menu = "820" %}
+  {% else %}
+    {% assign width_mega_menu = width_mega_menu | plus :0 | append: "px" %}
+  {% endif %}
+{% endif %}
+
+
+{% if style_class == "" %}
+{% for link in linklists.main-menu.links %} 
+{% assign child_list_handles = link.title | handle %}
+{% if child_list_handle == child_list_handles %}
+{% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+
+<li class="{% if link.active %}active{% endif %} menu-item-has-children item-megamenu">
+  <a href="{{ link.url }}">{{ link.title }}</a>
+  {% if label != "" %}
+  <span class="label">{{label}}</span>
+  {% endif %}
+  
+  {% if linklists[child_list_handle].links.size > 14  %}
+  <div style="width:500px;" class="sub-menu megamenu">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="mega-custom-menu">
+          <ul>
+            {% for child_link in linklists[child_list_handle].links limit:7 %}
+            {% assign grand_child_list_handle = child_link.title | handle %}
+            <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="mega-custom-menu">
+          <ul>
+            {% assign index = 1 %}
+            {% for child_link in linklists[child_list_handle].links limit:14 %}
+            {% assign grand_child_list_handle = child_link.title | handle %}
+            {% if index > 7 %}
+            <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+            {% endif %}
+            {% assign index = index | plus : 1 %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="mega-custom-menu">
+          <ul>
+            {% assign index = 1 %}
+            {% for child_link in linklists[child_list_handle].links %}
+            {% assign grand_child_list_handle = child_link.title | handle %}
+            {% if index > 14 %}
+            <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+            {% endif %}
+            {% assign index = index | plus : 1 %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% elsif linklists[child_list_handle].links.size > 7  %}
+  <div style="width:500px;" class="sub-menu megamenu">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="mega-custom-menu">
+          <ul>
+            {% for child_link in linklists[child_list_handle].links limit:7 %}
+            {% assign grand_child_list_handle = child_link.title | handle %}
+            <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="mega-custom-menu">
+          <ul>
+            {% assign index = 1 %}
+            {% for child_link in linklists[child_list_handle].links limit:14 %}
+            {% assign grand_child_list_handle = child_link.title | handle %}
+            {% if index > 7 %}
+            <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+            {% endif %}
+            {% assign index = index | plus : 1 %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <span class="arow"></span>
+  <ul class="sub-menu">
+    {% for child_link in linklists[child_list_handle].links limit:7 %}
+      {% assign grand_child_list_handle = child_link.title | handle %}
+      {% if linklists[grand_child_list_handle] and linklists[grand_child_list_handle].links.size > 0 %}
+        <li class="menu-item-hass-children">
+          <a href="{{ child_link.url }}">{{ child_link.title }}</a><span class="fa fa-angle-right"></span>
+          <ul class="level-3">
+            {% for grand_child_link in linklists[grand_child_list_handle].links %}
+            <li><a href="{{ grand_child_link.url }}">{{ grand_child_link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% else %}
+        <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  {% endif %}
+</li>
+{% else %}
+  <li class="{% if link.active %}active{% endif %}">
+    <a href="{{ link.url }}">{{ link.title }}</a>
+  </li>
+{% endif %}
+{% endif %}
+{% assign position = position | plus :1 %}
+{% endfor %}
+{% endif %}
+
+{% if style_class == "background_image" %}
+  <li class="menu-item-has-children item-megamenu">
+    <a href="{{link}}">{{title}}</a>
+    {% if label != "" %}
+    <span class="label">{{label}}</span>
+    {% endif %}
+
+      <div style="width:{{width_mega_menu}}; background-image:url('{% if image_title =="" %}{{'bg-megamenu.gif' | asset_url}}{%else%}{{image_title | file_url}}{%endif%}');" class="sub-menu megamenu megamenu-bg" >
+      <div class="row">
+        {% for child_link in linklists[child_list_handle].links %}
+        {% assign grand_child_list_handle = child_link.title | handle %}
+        {% if linklists[grand_child_list_handle] and linklists[grand_child_list_handle].links.size > 0 %}
+        <div class="col-sm-3">
+          <div class="mega-custom-menu">
+            <h2 class="title">{{ child_link.title }}</h2>
+            {% if linklists[grand_child_list_handle] and linklists[grand_child_list_handle].links.size > 0 %}
+            <ul>
+              {% for grand_child_link in linklists[grand_child_list_handle].links %}
+              <li><a href="{{ grand_child_link.url }}">{{ grand_child_link.title }}</a></li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </li>
+{% endif %}
+
+{% if style_class == "blog" %}
+  <li class="menu-item-has-children item-megamenu">
+    <a href="{{link}}">{{title}}</a>
+    {% if label != "" %}
+    <span class="label">{{label}}</span>
+    {% endif %}
+
+    <div style="width:{{width_mega_menu}};" class="sub-menu megamenu">
+      <div class="row">
+    {% assign style_class = "blog"  %}
+    {% include 'render-layout' register_section: 'sc_mega_menu_level_2_positon_1'  %}
+      </div>
+    </div>
+  </li>
+{% endif %}
+
+{% if style_class == "features" %}
+  <li class="menu-item-has-children item-megamenu">
+    <a href="{{link}}">{{title}}</a>
+    {% if label != "" %}
+    <span class="label">{{label}}</span>
+    {% endif %}
+
+    <div style="width:{{width_mega_menu}};" class="sub-menu megamenu">
+      <div class="row">
+        {% assign style_class = "features"  %}
+        {% include 'render-layout' register_section: 'sc_mega_menu_level_2_positon_6'  %}
+      </div>
+    </div>
+  </li>
+{% endif %}

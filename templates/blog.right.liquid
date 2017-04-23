@@ -1,0 +1,54 @@
+<!-- /templates/blog.liquid -->
+{% comment %}
+
+Loop through a defined number of articles with the 'paginate' tag.
+Don't forget to close the tag after your loop.
+
+{% endcomment %} 
+
+{% paginate blog.articles by 5 %}
+
+{% comment %}
+This template is also used for listing out articles of a specific tag.
+You can change layouts or styles by checking if current_tags is true.
+{% endcomment %}
+<div class="main-container page-wrapper blog-news-pages" id="blog-left-pages">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-9 col-sm-8"> 
+          <h3 class="page-title title-lr">{{ blog.title }}</h3>
+            <div class="blog-grid butique-masonry">
+              <div class="masonry-grid" data-layoutmode="masonry" data-cols="2">
+                {% for article in blog.articles %}
+                    {% case article.template_suffix %}
+                    {% when 'video'%}
+                    {% include 'blog-video' %}
+                    {% when 'gallery' %}
+                    {% include 'blog-gallery' %}
+                    {% when 'audio' %}
+                    {% include 'blog-audio' %}
+                    {% when 'image' %}
+                    {% include 'blog-image' %}
+                    {% else %}
+                    {% include 'blog-simple' %}
+                    {% endcase %}
+                  {% endfor %}                
+              </div>
+          </div>
+          {% if paginate.pages > 1 %}
+            <div class="navigation pagination">
+              <div class="nav-links">
+            {{ paginate | default_pagination | replace: '&laquo; Previous' | replace: 'Next &raquo;'}}
+          </div>
+            </div>
+          {% endif %}
+          </div>
+
+      <div class="col-md-3 col-sm-4" id="secondary-blog-left">
+        <div class="sidebar-border left">
+          {% include 'blog-sidebar' %}
+        </div>
+      </div>
+  </div>
+</div>
+{% endpaginate %}

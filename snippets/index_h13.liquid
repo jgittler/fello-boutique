@@ -1,0 +1,109 @@
+
+{% if settings.use_slider_hp13 %}
+<!-- Home slide -->
+<div class="slider-homepage">
+  {% include 'shortcode-slider' %}
+</div>
+<!-- ./Home slide -->
+{% endif %}
+
+<div class="container">
+{% if settings.use_banner_home13 %}
+  <div class="margin-top-30">
+    <div class="row">
+      <div class="col-sm-5">
+        <a class="banner-border" href="{{settings.banner_sc2_1_link_home13}}"><img src="{{settings.banner_sc2_1_home13}}" alt=""></a>
+      </div>
+      <div class="col-sm-4">
+        <div class="banner-text style2">
+          <div class="image">
+            <a class="banner-opacity" href="{{settings.banner_sc2_2_link_home13}}"><img src="{{settings.banner_sc2_2_home13}}" alt=""></a>
+          </div>
+          <div class="content-text">
+            <h3 class="title">{{settings.banner_sc2_2_title_home13}}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="banner-text style2">
+          <div class="image">
+            <a class="banner-opacity" href="{{settings.banner_sc2_3_link_home13}}"><img src="{{settings.banner_sc2_3_home13}}" alt=""></a>
+          </div>
+          <div class="content-text">
+            <h3 class="title">{{settings.banner_sc2_3_title_home13}}</h3>
+          </div>
+        </div>
+        <div class="banner-text style2">
+          <div class="image ">
+            <a class="banner-opacity" href="{{settings.banner_sc2_4_link_home13}}"><img src="{{settings.banner_sc2_4_home13}}" alt=""></a>
+          </div>
+          <div class="content-text">
+            <h3 class="title">{{settings.banner_sc2_4_title_home13}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+{% if settings.use_shipping_text_home13 %}
+  {% assign include = "" %}
+  {% assign style = "section" %}
+  {% assign margin_shipping_text = "" %}
+    {% include 'shortcode-shipping-text' %}
+{% endif %}
+
+{% if settings.use_product_tab_home13 %}
+  <div class="margin-top-55">
+    <div class="section-title text-center margin-bottom-30"><h3>{{settings.use_product_tab_title_home13}}</h3></div>
+    <ul class="owl-carousel" data-nav="false" data-autoplay="false" data-dots="false" data-loop="true" data-margin="30" data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
+      {% assign limit = 0 %}
+      {% assign handleize_tab = settings.handleize_tab_1_s3_home13 %}
+      {% for product in collections[handleize_tab].products %}
+        {% assign grid_item_width = '' %}
+        {% if product.compare_at_price > product.price %}
+          {% assign sale_box ="no" %}
+          {% include "product-style-2" %}{% assign limit = limit | plus: 1 %}
+        {% endif %}
+        {% if limit == 12 %}{% break %}{% endif %}
+      {% endfor %}
+    </ul>	
+  </div>
+{% endif %}
+  
+  <span class="line margin-top-50"></span>
+  
+  {% if settings.use_categories_home13 %}
+    {% assign margin_cattegories = "margin-top-40" %}
+    {% include 'shortcode-cattegories' %}
+  {% endif %}
+  
+  <span class="line margin-top-40"></span>
+  {% if settings.use_product_tab_sc5_home13 %}
+  <div class="margin-top-50">
+    <div class="section-title text-center margin-bottom-30"><h3>{{settings.use_product_tab_sc5_title_home13}}</h3></div>
+    <ul class="owl-carousel" data-nav="false" data-autoplay="false" data-dots="false" data-loop="true" data-margin="30" data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
+      {% assign limit = 0 %}
+      {% assign handleize_tab = settings.handleize_tab_1_s5_home13 %}
+      {% for product in collections[handleize_tab].products %}
+        {% assign grid_item_width = '' %}
+          {% assign sale_box ="no" %}
+          {% include "product-style-2" %}{% assign limit = limit | plus: 1 %}
+        {% if limit == 12 %}{% break %}{% endif %}
+      {% endfor %}
+    </ul>	
+  </div>
+{% endif %}
+  <span class="line margin-top-70"></span>
+    
+{% if settings.use_product_tab_home13 %}
+  <div class="container">
+    {% include 'shortcode' load: '[brand top="50"]'  %}
+  </div>
+{% endif %}
+  
+
+{% if settings.use_newsletter_sc_home13 %}
+{% assign margin_newsletter_sc = "margin-top-60 margin-bottom-50" %}
+    {% include 'shortcode' load: '[section-newsletter]'  %}
+{% endif %}
+</div>

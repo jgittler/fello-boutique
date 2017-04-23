@@ -1,0 +1,44 @@
+{% assign ourteam_subtitle = settings.our_team_subtitle %}
+{% assign team_title = settings.team_title %}
+{% assign total_team =  10 %}
+{% assign handle_team_use   = 'team_use_' %}
+{% assign handle_team_image ='team_'  %}
+{% assign handle_team_name = 'member_name_'  %}
+{% assign handle_team_position = 'position_'  %}
+
+<!-- Team -->
+<div class="section-team margin-top-80">
+  <div class="container">
+    <div class="section-title text-center style7">
+      <span class="sub-title">{{ourteam_subtitle | strip_html }}</span>
+      <h3>{{team_title | strip_html }}</h3>
+    </div>
+    <div  id="{% include 'shortcode-render' render:'id' default:'our-team' %}" >
+      <div class="teams owl-carousel nav-center-center nav-style7" data-loop="true" data-nav="true" data-dots="false" data-margin="30" data-responsive='{"0":{"items":1},"600":{"items":2},"1000":{"items":3}}'>
+        {% assign count_team = 1 %}
+        {% for i in (1..total_team)  %}
+        {% assign collection_handle = handle_team_use| append: i  %}
+          {% assign collection_image  =  handle_team_image | append: i | append: '.png'%}      
+          {% assign collection_team_name  =  handle_team_name | append: i %}
+          {% assign collection_position = handle_team_position| append: i  %}
+        {% if settings[collection_handle]%}
+        <div class="team  {% if count_team == 1 %}first{% endif %}">
+          
+          
+          <div class="avatar">
+            {{  collection_image | asset_url | img_tag:settings[team_name]}}
+          </div>
+          <div class="info">
+            <h3 class="name">{{ settings[collection_team_name] | strip_html }}</h3>
+            <span class="position">{{ settings[collection_position] | strip_html }}</span>
+          </div>
+          {% assign count_team = count_team | plus: 1  %}
+          
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./Team -->

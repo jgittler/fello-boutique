@@ -1,0 +1,140 @@
+{% unless include %}
+{% capture product_full_width_handle %}{% include 'shortcode-render' render:'product_handle' default:'' %}{% endcapture %}
+{% endunless %}
+
+{% for product in collections.all.products %}
+{% if product_full_width_handle == product.handle %}
+
+{% unless current_collection == blank %}
+{% assign current_collection = collection %}
+{% endunless %}
+
+{% assign on_sale = false %}
+{% assign sale_text = 'products.product.sale' | t %}
+{% if product.compare_at_price > product.price %}
+{% assign on_sale = true %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% assign sold_out_text = 'products.product.sold_out' | t %}
+{% if product.available %}
+{% assign sold_out = false %}
+{% endif %}
+
+{% assign second_pair = "Black Konvoy" %}
+
+<!-- Section single product-->
+<div class="section-block-single-product2">
+  <div class="container">
+    <div class="block-single-product {{product_full_width_style}} row">
+
+      <!-- Start SM-LG Screens -->
+      {% if product_full_width_style == "style2" %}
+        <div class="product-image col-sm-5 hidden-xs">
+          <a href="{{ product.url | within: collection }}">
+            <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+          </a>
+        </div>
+      {% endif %}
+
+      
+      <div class="hidden-xs product-info col-sm-7 {% if product.title == second_pair %}text-right{% endif %}">
+        <h3 class="product-name"><a href="{{ product.url | within: collection }}">{{ product.title | split: ' ' | last }}</a> </h3>
+        <div class="desc">
+          {% if product.metafields.meta.description %}
+          {{ product.metafields.meta.description }}
+          {%else%}
+          {{ product.description  | truncatewords: 80 }}
+          {% endif %}
+        </div>
+        <span class="price">
+          {% if on_sale %}
+          <ins id="ProductPrice">{{product.price | money }}</ins>
+          <del id="ComparePrice">{{product.compare_at_price | money }}</del>
+          {% else %}
+          <ins id="ProductPrice">{{product.price | money }}</ins>
+          {% endif %}
+        </span>
+        {% if sold_out == false %}
+          {% if product.variants.size > 1 %}
+            <a class="addtocart" onclick="location.href='{{ product.url | within: collection }}'">+{{'products.product.select_option' | t | upcase }}</a>
+          {% else %}
+            {% if product.variants.first.available %}
+              <a class="addtocart boutique__add-to-cart" data-pid="{{ product.variants.first.id }}"><span class="pe-7s-cart"></span>+{{'products.product.add_to_cart' | t | upcase }}</a>
+           {% endif %}
+          {% endif %}
+        {% else %}
+          <a class="addtocart" onclick="location.href='{{ product.url | within: collection }}'">+{{'products.product.sold_out' | t | upcase }}</a>
+        {% endif %}
+      </div>
+      
+      {% if product_full_width_style != "style2" %}
+        <div class="product-image col-sm-5 hidden-xs">
+          <a href="{{ product.url | within: collection }}">
+            <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+          </a>
+        </div>
+      {% endif %}
+      <!-- End SM-LG Screens -->
+      
+      <!-- Start XS Screens -->
+      {% if product_full_width_style == "style2" %}
+        <div class="visible-xs product-image col-xs-12 text-center no-pads">
+          <a href="{{ product.url | within: collection }}">
+            <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+          </a>
+        </div>
+      {% endif %}
+      
+      {% if product_full_width_style != "style2" %}
+        <div class="visible-xs product-image col-xs-12 text-center no-pads">
+          <a href="{{ product.url | within: collection }}">
+            <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+          </a>
+        </div>
+      {% endif %}
+      
+      <div class="visible-xs product-info col-xs-12 text-center">
+        <h3 class="product-name"><a href="{{ product.url | within: collection }}">{{ product.title | split: ' ' | last }}</a> </h3>
+        <div class="desc">
+          {% if product.metafields.meta.description %}
+          {{ product.metafields.meta.description }}
+          {%else%}
+          {{ product.description  | truncatewords: 80 }}
+          {% endif %}
+        </div>
+        <span class="price">
+          {% if on_sale %}
+          <ins id="ProductPrice">{{product.price | money }}</ins>
+          <del id="ComparePrice">{{product.compare_at_price | money }}</del>
+          {% else %}
+          <ins id="ProductPrice">{{product.price | money }}</ins>
+          {% endif %}
+        </span>
+        {% if sold_out == false %}
+          {% if product.variants.size > 1 %}
+            <a class="addtocart" onclick="location.href='{{ product.url | within: collection }}'">+{{'products.product.select_option' | t | upcase }}</a>
+          {% else %}
+            {% if product.variants.first.available %}
+              <a class="addtocart boutique__add-to-cart" data-pid="{{ product.variants.first.id }}"><span class="pe-7s-cart"></span>+{{'products.product.add_to_cart' | t | upcase }}</a>
+           {% endif %}
+          {% endif %}
+        {% else %}
+          <a class="addtocart" onclick="location.href='{{ product.url | within: collection }}'">+{{'products.product.sold_out' | t | upcase }}</a>
+        {% endif %}
+      </div>
+      <!-- End XS Screens -->
+      
+    </div>
+  </div>
+  
+    {% if shortcode-product-fullwidth == "break" %}
+      <hr class="hidden-xs home-product" />
+    {% endif %}
+  
+</div>
+
+
+<!--End Section single product-->
+{% endif %}
+{% endfor %}

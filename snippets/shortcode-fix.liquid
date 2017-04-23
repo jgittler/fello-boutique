@@ -1,0 +1,24 @@
+{% capture sec_open %}{% include 'shortcode-render' render:'sec_open' default:'' %}{% endcapture %}
+{% capture sec_close %}{% include 'shortcode-render' render:'sec_close' default:'' %}{% endcapture %}
+{% capture row_open %}{% include 'shortcode-render' render:'row_open' default:'' %}{% endcapture %}
+{% capture row_close %}{% include 'shortcode-render' render:'row_close' default:'' %}{% endcapture %}
+{% capture col_open %}{% include 'shortcode-render' render:'col_open' default:'' %}{% endcapture %}
+{% capture col_close %}{% include 'shortcode-render' render:'col_close' default:'' %}{% endcapture %}
+{% capture fix_style %}{% include 'shortcode-render' render:'style' default:'' %}{% endcapture %}
+
+
+{% if sec_open == "open" and fix_style == "" %}
+<div class="container">
+{% endif %}
+
+{% if sec_close == "close" %}
+</div>
+{% endif %}
+
+{% if row_open == "open" %}
+<div class="row">
+{% endif %}
+
+{% if row_close == "close" %}
+</div>
+{% endif %}

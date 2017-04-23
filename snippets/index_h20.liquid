@@ -1,0 +1,187 @@
+{% if settings.use_slider_hp20 %}
+<!-- Home slide -->
+<div class="slider-homepage">
+  {% include 'shortcode-slider' %}
+</div>
+<!-- ./Home slide -->
+{% endif %}
+
+{% if settings.use_categories20 %}
+<div class="margin-top-50">
+  <div class="container">
+    <ul class="category-menu style3">
+      {% for i in (1..4) %}
+          {% assign catt_icon = 'catt_icon' | append: i | append: '.png' %}
+          {% assign catt_collection = 'catt_collection' | append: i %}
+            {% if settings[catt_collection] != blank %}
+              {% if cattegories_style == "left" %}
+                <li>
+                  <a href="/collections/{{handleize_tab}}">
+                    <span class="icon"><img src="{{catt_icon | asset_url}}" alt="{{settings[catt_collection]}}"></span>
+                    {{settings[catt_collection] | capitalize | replace: '-', ' ' }}
+                  </a>
+                </li>
+              {% else %}
+                <li>
+                  <a href="/collections/{{settings[catt_collection]}}">
+                    <img src="{{catt_icon | asset_url}}" alt="{{settings[catt_collection]}}">
+                    {{settings[catt_collection] | capitalize | replace: '-', ' ' }}
+                  </a>
+                </li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endif %}
+
+{% if settings.use_block_banner20 %}
+<div class="margin-top-100">
+  <div class="container">
+    <div class="block-banner20">
+      <span class="top-left"></span>
+      <span class="top-right"></span>
+      <span class="bottom-left"></span>
+      <span class="bottom-right"></span>
+      <div class="inner">
+        <div class="row">
+            {% assign check_number = 0 %}
+              {% for i in (1..4) %}
+              {% assign banner_sc2 = "banner_sc2_" | append: i | append: "_home20" %}
+                {% if settings[banner_sc2] != blank %}
+                  {% if check_number == 0 %}
+                  {% assign col = "12" %}
+                  {% elsif check_number == 1 %}
+                  {% assign col = "6" %}
+                  {% elsif check_number == 2 %}
+                  {% assign col = "4" %}
+                  {% elsif check_number == 3 %}
+                  {% assign col = "3" %}
+                  {% endif %}
+                  {% assign check_number = check_number | plus: 1 %}
+                {% endif %}
+              {% endfor %}
+
+              {% for i in (1..4) %}
+              {% assign banner_sc2 = "banner_sc2_" | append: i | append: "_home20" %}
+              {% assign banner_sc2_link = "banner_sc2_" | append: i | append: "_link_home20" %}
+                {% if settings[banner_sc2] != blank %}
+          
+                  <div class="col-sm-{{col}}">
+                    <div class = "banner-item {% if i == 2 %} center {% endif %}">                      
+                      <a {% if i != 2 %}class="banner-border"{% endif %} href="{{settings[banner_sc2_link]}}">
+                        <img src="{{ settings[banner_sc2]}}" alt="">
+                      </a>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if settings.use_product_tab_home20 %}
+<div class="margin-top-120">
+  <div class="container">
+    <div class="tab-product style4">
+      <ul class="box-tabs nav-tab tab-owl-fade-effect">
+        {% assign check_count_collection = 0  %}
+        {% for i in (1..6) %}
+        {% assign collection_name = 'handleize_tab_' | append: i | append: "_s3_home20"  %}
+        {% assign handleize_tab = settings[collection_name]  %}
+          {% if handleize_tab != "" %}
+        {% if check_count_collection == 0 %}
+              {% capture animate %}class="active"><a data-animated='fadeInUp'{% endcapture %}
+          {% elsif check_count_collection == 1 %}
+              {% capture animate %}><a data-animated='slideInLeft'{% endcapture %}
+          {% elsif check_count_collection == 2 %}
+              {% capture animate %}><a data-animated='slideInRight'{% endcapture %}
+          {% elsif check_count_collection == 3 %}
+              {% capture animate %}><a data-animated='zoomInUp'{% endcapture %}
+          {% else %}
+              {% capture animate %}><a data-animated='fadeInDown'{% endcapture %}
+        {% endif %}
+            <li {{animate}} data-toggle="tab" href="#tab-{{handleize_tab}}">{{collections[handleize_tab].title | escape }}</a></li>
+            {% assign check_count_collection = check_count_collection | plus: 1  %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+      <div class="tab-content">
+        <div class="tab-container">
+          {% assign check_count_collection = 0 | plus: 0 %}
+        {% for i in (1..6) %}
+        {% assign collection_name = 'handleize_tab_' | append: i | append: "_s3_home20"  %}
+          {% assign handleize_tab = settings[collection_name]  %}
+          {% if handleize_tab != "" %}
+            <div id="tab-{{handleize_tab}}" class="tab-panel {% if check_count_collection == 0 %}active{% endif %}">
+              <ul class="owl-carousel no-overflow product-owl-no-overflow nav-style5" data-nav="true" data-autoplay="false" data-dots="false" data-loop="true" data-margin="0" data-responsive='{"0":{"items":1},"600":{"items":2},"1000":{"items":3}}'>
+              {% assign check_product_style6 = 1 %}
+                {% for product in collections[handleize_tab].products limit: limit %}
+                  {% include "product-style6" %}
+                  {% assign check_product_style6 = check_product_style6 | plus: 1 %}
+                {% endfor %}
+              </ul>
+            </div>
+            {% assign check_count_collection = check_count_collection | plus: 1  %}
+          {% endif %}
+        {% endfor %}
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if settings.use_video_about_home20 %}
+<div class="margin-top-50">
+  <div class="container">
+    <div class="section-title style10 text-center margin-bottom-40">
+      <h3>{{settings.section_title_video_home20}}</h3>
+      <div class="sub-title">{{settings.section_subtitle_video_home20}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-2 col-sm-12 col-md-8">
+        <div class="video  style2 video-lightbox">
+          {% if settings.video_about_bg_home20 == blank %}
+          	<img src="{{'background_video.gif' | asset_url}}" alt="">
+          	{% else %}
+          		{{ settings.video_about_bg_home20 | flile_url | img_tag }}
+          {% endif %}
+          
+          {% if settings.link_videoid_home20 == blank %}
+              {% assign videoid = "134060140" %}
+          {% endif %}
+          
+          {% if settings.link_videosite_home20 == blank %}
+              {% assign videosite = "vimeo" %}
+          {% endif %}
+          <a href="#" class="link-lightbox button-play" data-videoid="{{settings.link_videoid_home20}}" data-videosite="{{settings.link_videosite_home20}}"></a>
+        </div>
+        <div class="montserratLight margin-top-30 text-center">
+          <p>{{settings.description_video_home20}}</p>
+          
+          {% if settings.signature_video_home20 == blank %}
+          		<img src="{{'signature.gif' | asset_url}}" alt="">
+          	{% else %}
+          		{{ settings.signature_video_home20 | flile_url | img_tag }}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+<div class="container">
+  <span class="line margin-top-50"></span>
+</div>
+<!-- Brand -->
+  {% if settings.use_brand_home20 %}
+    <div class="container">
+    	{% include 'shortcode' load: '[brand bottom="60"]'  %}
+    </div>
+  {% endif %}
+<!-- Brand -->

@@ -1,0 +1,17 @@
+
+
+
+
+
+<div class="col-xs-12 col-sm-6 med-h-pads">
+
+  <div class="product-image full-w">
+    <h3 class="product-name no-margin text-center"><a href="{{ product.url | within: collection }}">{{ product.title | split: ' ' | last | upcase }}</a> </h3>
+    <a href="{{ product.url | within: collection }}">
+      <img class="text-center" src="{{ pro_img | asset_url }}" alt="{{ product.featured_image.alt | escape }}">
+    </a>
+  </div>
+
+</div>
+
+

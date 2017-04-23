@@ -1,0 +1,105 @@
+
+ <!-- Filter price -->
+<div class="widget widget_price_filter">
+    <h2 class="widget-title">{{ 'cart.label.price' | t }}</h2>
+    <form method="get" action="#">
+        <div class="price_slider_wrapper">
+            <div class="amount-range-price">{{ 'cart.label.price' | t }}: <span class="from">{{settings.collection_min_price | money }}</span> — <span class="to">{{settings.collection_max_price | money }}</span></div>
+            <div id="slider-range" class="price_slider"></div>
+            {% comment %}<button class="button">Filter Now</button>{% endcomment %}
+        </div>
+    </form>
+</div>
+<!-- ./Filter price -->
+ <!-- By color -->
+{% if settings.enable_use_filter_color %}
+  <div class="widget widget_fillter_color">
+    <h2 class="widget-title">{{ settings.filter_color_title | strip_html }}</h2>
+      <div class="inner">
+          {% assign list_color = settings.filter_color_name | split: ',' %}
+            {% assign this_tag =  '' %}
+             {% for color in list_color %}
+                {% assign custom_tag = color | strip | downcase %}
+                {% assign check = false %}
+                {% for ct in current_tags %}
+                 {% assign ct_down  =   ct | strip | downcase %}
+                  {% if ct_down == custom_tag %}
+                    {% assign check = true %}
+                    {% assign this_tag =  ct %}
+                      {% break %}
+                  {% endif %}
+                {% endfor %}
+
+        
+            {% if check %}
+                <div class="filter-color-style chosen">
+                <input type="checkbox" name="kt-filter" id="color-choose-{{forloop.index}}" value="{{color}}" checked="checked">
+                       {% assign color_handle = color | handleize  %}
+                       {% assign class_name  = '<a class="' | append: color_handle  | append: '" style="background:' | append: color | downcase | append: '"' %}
+                     <label for=""><span class="active">
+                      {{ color | link_to_remove_tag: color  | replace: '<a',class_name}}</span>
+                     </label>
+                </div>
+            {% else %}
+              <div class="filter-color-style">
+                <input type="checkbox" name="kt-filter" id="color-choose-{{forloop.index}}" value="{{color}}" >
+                {% assign color_handle = color | handleize  %}
+                    {% assign class_name  = '<a class="bg-color-' | append:  color_handle | append: '" style="background:' | append: color | downcase | append: '"' %}
+                   <label for=""><span class="">{{ color | link_to_add_tag: color  | replace: '<a', class_name}}</span></label>
+              </div>
+            {% endif %}
+          {% endfor %}
+      </div>    
+  </div>
+{% endif %}
+
+ <!-- ./By color -->
+<!-- Filter size-->
+{% if settings.enable_use_filter_size %}
+    <div class="widget widget_fillter_size">
+        <h2 class="widget-title">{{ settings.filter_size_title | strip_html }}</h2>
+        <div class="inner">
+             {% assign list_size = settings.filter_size_name | split: ',' %}
+               {% assign this_tag =  '' %}
+                  {% for size in list_size %}
+                    {% assign custom_tag = size | strip | downcase %}
+                    {% assign check = false %}
+                    {% for ct in current_tags %}
+                      {% assign ct_down  =   ct | strip | downcase  %}
+                      {% if ct_down   ==  custom_tag %}
+                        {% assign check = true %}
+                        {% assign this_tag =  ct %}
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
+                    {% if check %}                  
+                    <div class="advanced-filter active active-filter" data-group="{{ settings.filter_size_title }}" data-handle="{{ size | handleize }}">
+                       <span class="status-filter checked"><span class="filter-checkbox"></span></span>
+                      {{ custom_tag | link_to_remove_tag: size }}
+                     
+                    </div>
+                  {% else %}
+                   
+                    <div class="advanced-filter" data-group="{{ settings.filter_size_title }}" data-handle="{{ size | handleize }}">
+                      <span class="status-filter no-check"><span class="filter-checkbox"></span></span>
+                      
+                      {{ custom_tag | link_to_add_tag: size }}
+                    </div>
+                  {% endif %}
+                {% endfor %}
+        </div>
+    </div>
+{% endif %}
+<!-- ./Filter size-->
+{% include 'recent-product-sidebar' %}
+
+<!-- Product tags -->
+<div class="widget widget_product_tag_cloud style2">
+    <h2 class="widget-title">POPULAR TAGS</h2>
+    <div class="tagcloud">
+        {% for tag  in  collection.tags limit: 10 %}
+                {{ tag | link_to_tag: tag }}
+        {% endfor %}
+    </div>
+</div>
+<!-- ./Product tags -->

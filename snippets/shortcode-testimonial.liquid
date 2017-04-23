@@ -1,0 +1,108 @@
+{% unless style %}
+{% capture style %}{% include 'shortcode-render' render:'style' default:'' %}{% endcapture %}
+{% endunless %}
+
+{% if style == "parallax" %}
+<div class="block-paralax2 bg-parallax">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-5">
+        <div class="section-title style5 margin-top-230">
+          <h3><span class="text-head">T</span><span>Testimonials</span></h3>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-7">
+        <div class="testimonials testimonials-owl-3 margin-top-110">
+          <div class="testimonial-owl">
+            {% for i in (1..5) %}
+            {% assign handle_use   = 'testimonial_box_use' | append : i  %}
+            {% if settings[handle_use] %}
+            {% assign testimonial_box_name = 'testimonial_box_name'  | append : i  %}
+            {% assign testimonial_box_content = 'testimonial_box_content' | append : i  %}
+            {% assign testimonial_box_use = 'testimonial_box_use' | append : i | append: ".png"  %}
+            <div class="testimonial">
+              <div class="avatar">
+                <img src="{{testimonial_box_use | asset_url}}" alt="" />
+              </div>
+              <div class="inner">
+                <p class="text-in">{{settings[testimonial_box_content]}}</p>
+                <h6>{{ settings[testimonial_box_name] }}</h6>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+          </div>
+          <div data-animated="fadeIn" class="testimonial-info"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% elsif style == "background" %}
+
+<div class="block-paralax4">
+  <div class="container">
+    <div class="head">
+      <h3 class="title">{{settings.testimonial_title  | strip_html }}</h3>
+      <span class="sub-title">{{settings.sub_testimonial_des  | strip_html }}</span>
+    </div>
+    <div class="row">
+      <div class="col-lg-offset-2 col-sm-12 col-lg-8">
+        <div class="testimonials style2 owl-carousel nav-style2 nav-center-center" data-autoplay="true" data-items="1" data-nav="true" data-dots="false">
+          {% for i in (1..5) %}
+          {% assign handle_use   = 'testimonial_box_use' | append : i  %}
+          {% if settings[handle_use] %}
+          {% assign testimonial_box_name = 'testimonial_box_name'  | append : i  %}
+          {% assign testimonial_box_content = 'testimonial_box_content' | append : i  %}
+          {% assign testimonial_box_position = 'testimonial_box_position' | append : i  %}
+          {% assign testimonial_box_use = 'testimonial_box_use' | append : i | append: ".png"  %}
+          <div class="testimonial">
+            <div class="avatar">
+              <img src="{{testimonial_box_use | asset_url}}" alt="" />
+            </div>
+            <div class="inner">
+               <p class="text-in">{{settings[testimonial_box_content]}}</p>
+                <h6>{{ settings[testimonial_box_name] }}</h6>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% else %}
+
+
+
+<div class="section-testimonials margin-top-40">
+  <div class="container">
+    <div class="section-title text-center style7">
+      <span class="sub-title">{{settings.sub_testimonial_title  | strip_html }}</span>
+      <h3>{{settings.testimonial_title  | strip_html }}</h3>
+    </div>
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <div class="testimonials owl-carousel nav-center-center nav-style7" data-autoplay="true" data-loop="true" data-nav="false" data-dots="true" data-margin="30" data-responsive='{"0":{"items":1},"600":{"items":1},"1000":{"items":1}}'>
+          {% for i in (1..5) %}
+          {% assign handle_use   = 'testimonial_box_use' | append : i  %}
+          {% if settings[handle_use] %}
+          {% assign testimonial_box_name = 'testimonial_box_name'  | append : i  %}
+          {% assign testimonial_box_content = 'testimonial_box_content' | append : i  %}
+          {% assign testimonial_box_position = 'testimonial_box_position' | append : i  %}
+          <div class="testimonial">
+            <div class="text">{{settings[testimonial_box_content]}}</div>
+            <h3 class="name">{{ settings[testimonial_box_name] }}</h3>
+            <span class="position">{{ settings[testimonial_box_position] }}</span>
+          </div>
+
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

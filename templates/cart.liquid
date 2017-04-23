@@ -1,0 +1,158 @@
+<div class="main-container no-sidebar">
+  <div class="container">
+    <div class="main-content">
+
+      {% if cart.item_count > 0 %}
+<!--<div class="page-title">
+<h3>{{ 'cart.general.title' | t }}</h3>  
+</div> -->
+      <h2 class="small-caps">Every Pair Changes A <span style="font-size: 31px;" class="highlight">Life</span></h2>
+      <div class="row">
+        <form action="/cart" method="post" novalidate>
+          <div class="col-sm-12 col-md-8">
+            <table class="shop_table cart">
+              <thead>
+                <tr> 
+                  <th colspan="2" class="product-name">{{ 'cart.label.product' | t }}</th>
+                  <th class="product-price">{{ 'cart.label.price' | t }}</th>
+                  <th class="product-quantity">{{ 'cart.label.quantity' | t }}</th>
+                  <th class="product-subtotal">{{ 'cart.label.total' | t }}</th>
+                  <th class="product-remove">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+            {% for item in cart.items %}
+                <tr>
+                  <td class="product-thumbnail" data-label="{{ 'customer.order.product' | t }}">
+                    <img src="{{ item | img_url: 'small' }}" alt="{{ item.title | escape }}">
+                  </td>
+                <td class="product-name">
+                    <a href="{{ item.url }}"> {{ item.product.title }} </a>
+
+                    {% unless item.variant.title contains 'Default' %}
+                    <br>
+                    <small>{{ item.variant.title }}</small>
+                    {% endunless %}
+
+                    {% if settings.cart_vendor_enable %}
+                    <p>{{ item.vendor }}</p>
+                    {% endif %}
+
+                    {% assign property_size = item.properties | size %}
+                    {% if property_size > 0 %}
+                    {% for p in item.properties %}
+                    {% unless p.last == blank %}
+                    {{ p.first }}:                              
+                    {% if p.last contains '/uploads/' %}
+                    <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                    {% else %}
+                    {{ p.last }}
+                    {% endif %}
+
+                    <br>
+                    {% endunless %}
+                    {% endfor %}
+                    {% endif %}
+                  </td>
+                  <td data-label="{{ 'cart.label.price' | t }}">{{ item.price | money }}</td>
+
+                  <td data-label="{{ 'cart.label.quantity' | t }}" class="text-center">
+                    <input type="number" class="qty" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0">
+                  </td>
+
+                  <td data-label="{{ 'cart.label.total' | t }}" class="text-center total-cart">{{ item.line_price | money }}</td>
+                  <td class="product-remove"><a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" ><i class="fa fa-close"></i></a></td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+
+            {% if settings.cart_notes %}
+            <div class="box-coupon">
+              <div class="coupon">
+                <p><label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label></p>
+                <textarea name="note" class="input-text" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+              </div>
+            </div>{% endif %}
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <div class="box-cart-total">
+              <h4 class="small-caps"><strong>Free Shipping</strong> anywhere in the United States & Canada.</h4>              
+              <hr />
+              <table>
+                <tbody>
+                  <tr>
+                    {% if settings.show_shipping_calculator %}
+                      {% unless cart.item_count == 0 %}
+                        {% include 'shipping-rates-calculator' %}
+                      {% endunless %}
+                    {% endif %}
+                  </tr>
+                  <tr id="subtotal"{% if settings.shipping_calculator == false %} style="display:none"{% endif %}>
+                    <td>{{ 'cart.general.subtotal' | t }}</td>
+                    <td class="text-right"><span class="price">{{ cart.total_price | money }}</span></td>
+                  </tr>
+                  <tr id="tax" style="display:none">
+                    <th class="text-left">{{ 'cart.general.shipping_total' | t }}</th>
+                    <td class="text-right">{{ 0 | money }}</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr id="grandtotal" class="order-total">
+                    <th>{{ 'cart.general.total' | t }}</th>
+                    <td class="text-right"><span class="price">{{ cart.total_price | money }}</span></td>
+                  </tr>
+                </tfoot>
+              </table>
+              {% if additional_checkout_buttons %}
+
+              {% endif %}
+              <a href="/collections/all" class="button medium">Continue Shopping</a>
+              <input type="submit" name="checkout" class="button btn-primary medium checkout-button" value="{{ 'cart.general.proceed_to_checkout' | t }}">
+
+            </div>
+          </div>
+      </form>
+      </div>
+      {% else %}
+
+      <h2>{{ 'cart.general.title' | t }}</h2>
+      <p>{{ 'cart.general.empty' | t }}</p>
+      <a href="/" class="button">{{ 'cart.general.continue_shopping' | t }}</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  // get initial quanity for each
+  $("input.qty").data('oldVal', $("input.qty").val());
+
+  // bind event
+  $("input.qty").on('change', function() {
+    // get new quanitity
+    var q = $(this).val();
+
+    // get price of item
+    var price = parseInt($(this).parent().prev().html().slice(1));
+
+    // get cart total
+    var grandTotal = parseInt($($(".table-wrapper .price")[0]).html().slice(1));
+
+    // get old quantity 
+    var oldVal = $(this).data('oldVal');
+
+    // calculate
+    if ( q > oldVal) {
+      var newGrandTotal = grandTotal + price;
+    } else {
+      var newGrandTotal = grandTotal - price;
+    }
+
+    //store the newVal as the oldVal for the next change
+    $(this).data('oldVal', q)
+
+
+    $("#subtotal .price, #grandtotal .price").html("$" + newGrandTotal + ".00");
+  });
+</script>

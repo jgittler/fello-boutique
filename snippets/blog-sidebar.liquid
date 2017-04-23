@@ -1,0 +1,38 @@
+  <div id="widget-area" class="widget-area">
+    <div id="categories-2" class="widget widget_categories">
+      {% if blog.all_tags.size > 0 %}
+        <h2 class="widget-title">{{ 'blogs.sidebar.categories' | t }}</h2>
+        <ul>
+          {% for tag in blog.all_tags %}
+            {% if current_tags contains tag %}
+              <li class="cat-item">{{ tag }}</li>
+            {% else %}
+              <li>{{ tag | link_to_tag: tag }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    <div id="recent-posts-2" class="widget widget_recent_entries widget_categories"> 
+      <h2 class="widget-title">{{ 'blogs.sidebar.recent_articles' | t }}</h2>
+       <ul>
+        {% for article in blog.articles limit:6 %}
+          <li>
+            <a href="{{ article.url }}">{{ article.title | truncatewords: 5 }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div id="tag_cloud-4" class="widget widget_tag_cloud">
+      {% if blog.all_tags.size > 0 %}
+        <h2 class="widget-title">{{ 'blogs.sidebar.tags' | t }}</h2>
+        <div class="tagcloud">
+          {% for tag in blog.all_tags %}
+             {{tag | link_to_tag: tag}}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div><!-- .widget-area -->
+
+

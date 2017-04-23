@@ -1,0 +1,26 @@
+{% comment %}
+  Loop through each collection, except 'frontpage'
+{% endcomment %}
+<div class="main-container">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<header class="header-collection">
+				  <h1 class="header-collection_title">{{ 'collections.general.title' | t }}</h1>
+				</header>
+			</div>
+			<div class="our-collections">
+			  {% for collection in collections %}
+			    {% unless collection.handle == 'frontpage' %}
+			      {% assign collection_item_width = 'medium-down--one-half large--one-third' %}
+			      	{% assign featured = collection.handle %}
+				      <div class="col-md-3 col-sm-6 col-xs-12">
+				      	{% include 'collection-grid-item' %}
+				      </div>
+			    {% endunless %}
+			  {% endfor %}
+			</div>
+		</div>
+	</div>	
+	{% include 'shortcode-shipping-icon' %} 
+</div>

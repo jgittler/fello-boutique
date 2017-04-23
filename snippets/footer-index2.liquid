@@ -1,0 +1,234 @@
+
+{% assign num_footer_columns = 0 %}
+{% if settings.use_footer_contact %}
+  {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+{% endif %}
+{% if settings.use_footer_menu1 %}
+  {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+{% endif %}
+{% if settings.use_footer_follow_us %}
+  {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+{% endif %}
+
+{% case num_footer_columns %}
+  {% when 0 %}
+  {% when 1 %}
+    {% assign footer_column_width = 'col-md-12' %}
+  {% when 2 %}
+    {% assign footer_column_width = 'col-md-6' %}
+  {% when 3 %}
+    {% assign footer_column_width = 'col-md-4' %}
+{% endcase %}
+
+<footer class="footer style2">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row flex-flow">
+        <div class="col-xs-12 col-sm-12 col-md-6">
+          {% if settings.use_footer_newsletter_form %}
+          <h5>Be the first to know about our deals!</h5>
+          <div class="widget widget_newletter">
+            {% if settings.newsletter_form_action != blank %}
+            {% assign form_action = settings.newsletter_form_action %}
+            {% else %}
+            {% assign form_action = '#' %}
+            {% endif %}
+            <form class="newletter" action="{{ form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+              <input class="email-text" type="text" name="newsletter" placeholder="Your email..." value="">
+              <span><button class="button add_to_cart_button" name="subscribe" id="subscribe" type="submit">OK</button></span>
+            </form>
+          </div>
+          <p>Send us your email if you would like to know anything about our products, charitable causes, or how to get involved.</p>
+          {% endif %}
+          
+          <hr class="hidden-md hidden-lg" />
+        </div>
+        
+        {% if false %}
+          {% if settings.use_footer_contact %}
+          <div class="col-xs-12 col-sm-12 {{footer_column_width}} footer-sidebar">
+            <div class="widget contact-info">
+              {% if settings.footer_small_title_contact != blank %}<h3 class="text-primary PlayfairDisplay">{{settings.footer_small_title_contact}}</h3>{% endif %}
+              {% if settings.footer_widget_title_contact != blank %}<h3 class="widget-title">{{settings.footer_widget_title_contact}}</h3>{% endif %}
+              <div class="content">
+                {% if settings.footer_widget_address_contact != blank %}<p class="address">Santa Barbara, CA 93105</p>{% endif %}
+
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        {% endif %}
+
+                
+        {% if settings.use_footer_menu1 %}
+          <div class="col-xs-6 col-md-2 col-md-offset-1">
+            <div class="our-service">
+              {% if settings.footer_small_title_services != blank %}<h3>{{settings.footer_small_title_services}}</h3>{% endif %}
+              {% assign footer_handle1 = settings.footer_widget_handle_services %}
+
+
+              <div class="content">
+                <ul>
+                  {% for link in linklists[footer_handle1].links %}
+                  <li><a href="{{link.url}}">{{link.title | capitalize }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        {% endif %}
+        
+        
+        {% if settings.use_footer_follow_us %}
+          <div class="col-xs-6 col-md-3">
+            <div class="widget_social style11">
+              {% if settings.footer_small_title_follow != blank %}<h3>{{settings.footer_small_title_follow}}</h3>{% endif %}
+              {% if settings.footer_widget_title_follow != blank %}<h3 class="widget-title">{{settings.footer_widget_title_follow}}</h3>{% endif %}
+              <div class="content">
+                {% include "social-links" %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        
+
+      </div>
+      
+      <hr />
+
+      <p class="no-margin pull-left">© 2016 Fello Eyewear &nbsp | &nbsp Santa Barbara, CA</p>
+
+      <p class="no-margin pull-right hidden-xs">
+        <a href="/pages/photographer-credits" title="Photo Credits">
+          VOSH Retreat Photos
+        </a> by
+        <a href="jeffreycowan.com" title="Jeff Cowan Editor | Documentary Filmmaker">
+          Jeff Cowan
+        </a>
+      </p>
+      <p class="no-margin pull-left visible-xs">
+        <a href="/pages/photographer-credits" title="Photo Credits">
+          VOSH Retreat Photos
+        </a> by
+        <a href="jeffreycowan.com" title="Jeff Cowan Editor | Documentary Filmmaker">
+          Jeff Cowan
+        </a>
+      </p>
+
+    </div>
+  </div>
+  
+  <!-- EMPTY FOOTER BOTTOM -->
+  <div class="footer-bottom">
+    {% if false %}
+    <div class="container">
+      <div class="payment">
+        <div class="head">
+          {% if settings.footer_small_title_payment != blank %}<span>{{settings.footer_small_title_payment}}</span>{% endif %}
+          {% if settings.footer_widget_title_payment != blank %}<span class="PlayfairDisplay">{{settings.footer_widget_title_payment}}</span>{% endif %}
+        </div>
+        <div class="list">
+          {% for i in (1..8) %}
+          {% assign link = "payment_link_" %}
+          {% assign image = "payment_image_" | append : i %}
+          {% assign link = link | append : i %}
+          {% assign image = image | append : ".png"%}
+          {% if settings[link] != blank %}
+          	<a href="{{settings[link]}}" class="item"><img src="{{image | asset_url}}" alt=""></a>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+<!-- END FOOTER BOTTOM -->  
+
+  
+  
+</footer>
+<!-- <a href="#" class="scroll_top" title="Scroll to Top" style="display: block;"><i class="fa fa-arrow-up"></i></a> -->
+<div id="recent-buy" class="col-sm-3 col-xs-6 well sharp no-margin" style="opacity: 0;">
+  <h5><strong><span class="name"></span></strong> in <strong><span class="city"></span></strong> recently purchased:</h5>
+  <h3 class="small-caps model"></h3>
+  <img src="" alt="">
+</div>
+<script>
+  var names = [
+    "Haydee", "Anthony", "Lauren", "Ronald", "Joe", "Elliot", "Harry", "Cristine", "Chad", "Jolie", "Mary", "Charlie", "Jane", "Abbey", "Pamella", "Harry", "Carmen", "Lois", "Eugene", "Ivey", "Martin", "Evette", "Isabel", "Audrey", "Holly", "Linda", "James", "Rose", "Courtney", "George", "Everett", "Randy", "Ben", "Bennie", "Wayne", "Tom", "Max", "Brett", "Jordan", "Walker", "Clare", "Tammie", "Brendan", "Mason", "Meggan", "Norma", "Fred", "Bernard", "Nancy", "Ford",
+    "Alex", "Dane", "Rachel", "Joe", "John", "Amy", "Elly", "Floyd", "Carla", "Dom", "Denise", "Maureen", "Laura", "Darryl", "Miranda", "Justin", "Tony", "Ray", "Sophia", "Robert", "Carline", "Sarah", "Marry", "Tom", "Megan", "Larry", "Nicolas", "Jim", "Bianca", "Ashton", "Alison", "Mack", "Bailey", "Carlos", "Breana", "Miles", "Sheryl", "Thomas", "Andrea", "Jerry", "Christene", "Cristopher", "Irving", "Stephenie", "Eve", "Luna", "Garth", "Neville", "Steve", "Sarah"
+  ];
+  var cities = ["New York",
+ "Los Angeles",
+ "Chicago",
+ "Houston",
+ "Phoenix",
+ "Philadelphia",
+ "San Antonio",
+ "Dallas",
+ "San Diego",
+ "San Jose",
+ "Detroit",
+ "San Francisco",
+ "Jacksonville",
+ "Indianapolis",
+ "Austin",
+ "Columbus",
+ "Fort Worth",
+ "Charlotte",
+ "Memphis",
+ "Baltimore",
+ "El Paso",
+ "Boston",
+ "Milwaukee",
+ "Denver",
+ "Seattle",
+ "Nashville",
+ "Washington",
+ "Las Vegas",
+ "Portland",
+ "Louisville",
+ "Oklahoma City",
+ "Tucson",
+ "Atlanta",
+ "Albuquerque",
+ "Fresno",
+ "Sacramento",
+ "Long Beach",
+ "Mesa",
+ "Kansas City",
+ "Omaha",
+ "Cleveland",
+ "Virginia Beach",
+ "Miami",
+ "Oakland",
+ "Raleigh",
+ "Tulsa",
+ "Minneapolis"
+];
+  var models = [{% for product in collections.all.products %}{% if product.available %}["{{ product.title }}", "{{ product.images[0].src | img_url }}"],{% endif %}{% endfor %}];
+  $(document).ready(function() {
+                {% if page_title contains 'All' or page_title contains 'Changing ' %}
+      sleep(8000).then(function() {
+        var $div = $("#recent-buy");
+        var model = models[Math.floor(Math.random()*models.length)];
+        $div.find(".model").html(model[0]);
+        $div.find("img").attr("src", model[1]);
+        $div.find("img").attr("alt", model[0]);
+        var name = names[Math.floor(Math.random()*names.length)];
+        $div.find(".name").html(name);
+        var city = cities[Math.floor(Math.random()*cities.length)];
+        $div.find(".city").html(city);
+        $("#recent-buy").animate({
+          opacity: .9
+        }, 2500);
+  sleep(4000).then(function() {
+    $div.animate({
+      opacity: 0
+    }, 2500);
+  });
+  });
+  {% endif %}
+  });
+</script>

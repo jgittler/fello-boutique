@@ -1,0 +1,85 @@
+{% if settings.use_slider_hp9 %}
+<!-- Home slide -->
+<div class="slider-homepage">
+  {% include 'shortcode-slider' %}
+</div>
+<!-- ./Home slide -->
+{% endif %}
+
+{% if settings.use_shipping_icon_home9 %}
+<div class="container">
+  
+  {% assign margin_shipping_icon_9 = "margin-top-40" %}
+  {% include 'shortcode-shipping-icon' %}
+</div>
+{% endif %}
+<div class="container">
+
+  {% if settings.use_bn_cll_s2_home9 %}
+    {% assign margin_bn_cll = "margin-top-30" %}
+    {% assign bn_cll_title = settings.bn_cll_title_s2_home9 %}
+    {% assign bn_cll_des = settings.bn_cll_des_s2_home9 %}
+    {% assign bn_cll_title_link = settings.bn_cll_title_link_s2_home9 %}
+    {% assign bn_cll__style = "" %}
+    {% assign bn_cll__link = settings.bn_cll__link_s2_home9 %}
+    {% assign image_title = settings.image_title_s2_home9 %}
+    {% assign handleize_tab = settings.handleize_tab_s2_home9 %}
+    {% assign include="" %}
+  
+    {% assign banner_opacity_9 = "banner-opacity" %}
+    {% include 'shortcode-banner-collection' %}
+  {% endif %}
+
+  {% if settings.use_categories_home9 %}
+    {% assign margin_cattegories = "margin-top-50" %}
+    {% include 'shortcode-cattegories' %}
+  {% endif %}
+
+  {% if settings.use_bn_cll_s4_home9 %}
+    {% assign margin_bn_cll = "margin-top-50" %}
+    {% assign bn_cll_title = settings.bn_cll_title_s4_home9 %}
+    {% assign bn_cll_des = settings.bn_cll_des_s4_home9 %}
+    {% assign bn_cll_title_link = settings.bn_cll_title_link_s4_home9 %}
+    {% assign bn_cll__style = "right" %}
+    {% assign bn_cll__link = settings.bn_cll__link_s4_home9 %}
+    {% assign image_title = settings.image_title_s4_home9 %}
+    {% assign handleize_tab = settings.handleize_tab_s4_home9 %}
+    {% assign include="" %}
+    {% include 'shortcode-banner-collection' %}
+  {% endif %}
+  
+  {% if settings.use_brand_home9 %}
+  	{% include 'shortcode' load: '[brand bottom="0"]'  %}
+  {% endif %}
+
+  {% if settings.use_bn_cll_s6_home9 %}
+    {% assign margin_bn_cll = "margin-top-60" %}
+    {% assign bn_cll_title = settings.bn_cll_title_s6_home9 %}
+    {% assign bn_cll_des = settings.bn_cll_des_s6_home9 %}
+    {% assign bn_cll_title_link = settings.bn_cll_title_link_s6_home9 %}
+    {% assign bn_cll__style = "" %}
+    {% assign bn_cll__link = settings.bn_cll__link_s6_home9 %}
+    {% assign image_title = settings.image_title_s6_home9 %}
+    {% assign handleize_tab = settings.handleize_tab_s6_home9 %}
+    {% assign include="" %}
+    {% include 'shortcode-banner-collection' %}
+  {% endif %}
+  
+  {% if settings.use_our_blog_home9 %}
+    {% assign handle_name = settings.id_blog_home9 %}
+    {% assign number_post_title = settings.title_blog_home9 %}
+    {% assign include = "" %}
+  {% assign margin_blog_post = "margin-top-60" %}
+      {% capture number_post_dt %}2{% endcapture %}
+      {% capture number_post_tb %}1{% endcapture %}
+      {% capture number_post_mb %}1{% endcapture %}
+{% include 'shortcode-blog' %}
+  {% endif %}
+  
+  {% if settings.use_shipping_text_home9 %}
+    {% assign include = "" %}
+	{% assign style = "section" %}
+	{% assign margin_shipping_text = "margin-bottom-60" %}
+    {% include 'shortcode-shipping-text' %}
+  {% endif %}
+</div>

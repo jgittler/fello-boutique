@@ -1,0 +1,146 @@
+{% assign number_of_comments = article.comments_count %}
+
+{% if comment and comment.created_at %}
+{% assign number_of_comments = article.comments_count | plus: 1 %}
+{% endif %}
+<div class="main-container">
+    <div class="container">
+      <div class="blog-detail">
+        <article class="blog-item" itemscope itemtype="http://schema.org/Article">
+          <h1 class="blog-title">{{ article.title }}</h1>
+          <div class="entry-meta">
+            <span class="post-date">{{ article.published_at | date: "%d %b %Y" }}</span>
+            <span class="blog-comment"><i class="fa fa-comment"></i>
+              {% if blog.comments_enabled? %}
+                <span class="count-comment">{{article.comments_count}}</span>   
+              {% endif %}                            
+            </span>                                   
+           </div>
+          <div class="post-thumbnail">                               
+            {% assign excerpt_start =  article.excerpt | split: '[end]' %}
+            {% assign end_excerpt =  excerpt_start[0]  | split: '[start]'  %}
+            <div class="player">
+              {% include  'shortcode' load: end_excerpt[1] %}  
+            </div>
+          </div>
+          <div class="blog-short-desc">
+             {% include  'shortcode' load: article.content %}    
+          </div>
+        </article>
+      </div>
+      <div class="comment-social">  
+        {% if blog.comments_enabled? %}
+            <h4>{{ 'blogs.comments.comments_with_count' | t: count: number_of_comments }}</h4>   
+        {% endif %}                       
+        <div class="social">
+              <span>Share</span>
+              {% include 'social-sharing' %}
+        </div>
+      </div>
+      <div class="author-info-wrap">
+        <div class="avatar"><img class="avatar avatar-68 photo" src="//www.gravatar.com/avatar/{{ article.user.email | md5 }}?s=50" alt="{{article.author}}"></div>
+        <div class="content">
+          <div class="author-name"><a href="#">Admin</a></div>
+          <div class="text"><p>{{article.user.bio | strip_html }}</p></div>
+        </div>
+      </div>
+      <div class="related-wrap">
+        <h4 class="related-title"> {{ 'blogs.article.title_recent_post' | t }}</h4>                             
+           <ul class="blog-related row">
+             {% for article in blogs[blog.handle].articles  limit:3 %}
+                <li class="blog-item col-sm-4">  
+                  <div class="post-thumbnail">
+                    <a class="banner-opacity" href="{{ article.url }}">
+                      {% if article.image %}
+                        <img src="{{ article.image.src | img_url: '1024x1024' }}" alt="{{ article.title }}">
+                      {% endif %}
+                    </a>
+                  </div> 
+                  <h3 class="blog-title"><a href="{{ article.url }}">{{ article.title }}</a></h3>
+                  <div class="entry-meta">
+                    <span class="post-date">{{ article.published_at | date: "%d %b %Y" }}</span>
+                    <span class="blog-comment"><i class="fa fa-comment"></i>
+                      {% if blog.comments_enabled? %}
+                        <span class="count-comment">{{article.comments_count}}</span>   
+                      {% endif %}                            
+                    </span>                                   
+                  </div>
+                </li>
+              {% endfor %}           
+        </ul>
+      </div>
+
+      {% paginate article.comments by 5 %}
+
+        <div id="comments">
+            {% if blog.comments_enabled? %}
+                  <h4 class="comment-list-title">{{ 'blogs.comments.comments_with_count' | t: count: number_of_comments }}</h4>
+              {% endif %}
+
+              {% if comment and comment.created_at %}
+                    <p class="note form-success">
+                    {% if blog.moderated? %}
+                      {{ 'blogs.comments.success_moderated' | t }}
+                    {% else %}
+                      {{ 'blogs.comments.success' | t }}
+                    {% endif %}
+                </p>
+                {% endif %}
+
+                {% if number_of_comments > 0 %}
+                  <ul class="comment-list">
+                    <li class="comment even parent">
+                      {% if comment and comment.created_at %}
+                        <div id="{{ comment.id }}" class="comment-item first{% if article.comments_count == 0 %} last{% endif %}">
+                          {% include 'comment' %}
+                        </div>
+                      {% endif %}
+                    </li><!-- #comment-## -->
+                    {% comment %}
+                    Showing the rest of the comments.
+                    {% endcomment %}
+                      {% for comment in article.comments %}
+                        <li id="{{ comment.id }}" class="comment{% unless number_of_comments > article.comments_count %}{% if forloop.first %} first{% endif %}{% endunless %}{% if forloop.last %} last {% endif %}">
+                          {% include 'comment' %}
+                        </li>
+                        {% unless forloop.last %}
+
+                        {% endunless %}
+                      {% endfor %}
+                  </ul>
+            {% if paginate.pages > 1 %}
+                    <hr>
+                    <div class="pagination">
+                      {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+                    </div>
+                  {% endif %}
+                {% endif %}                           
+            
+            <div class="comment-form-reply">
+              <h3 class="comment-reply-title">{{ 'blogs.comments.title' | t }}</h3>
+              {% form 'new_comment', article %}
+                  
+                  {{ form.errors | default_errors }}
+                      <input type="text" name="comment[author]" id="CommentAuthor" class="input-full{% if form.errors contains 'author' %} error{% endif %}" placeholder="{{ 'blogs.comments.name' | t }}" value="{{ form.author }}" autocapitalize="words">
+                      
+                      <input type="text" name="comment[email]" id="CommentEmail" class="input-full{% if form.errors contains 'email' %} error{% endif %}" placeholder="{{ 'blogs.comments.email' | t }}" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+                      
+                      <textarea name="comment[body]" id="CommentBody" class="comment-form-comment {% if form.errors contains 'body' %} error{% endif %}" placeholder="{{ 'blogs.comments.message' | t }}">{{ form.body }}</textarea>                         
+                      
+                      <div class="clear"></div>
+                    {% if blog.moderated? %}
+                        <p>{{ 'blogs.comments.moderated' | t }}</p>
+                      {% endif %}  
+                      <input type="submit" name="button" id="submit" class="submit style2" value="{{ 'blogs.comments.post' | t }}">
+                      <input class="button" type="hidden" name="comment_parent" id="comment_parent" value="0">
+                {% endform %}
+            </div>  
+        </div>
+      {% endpaginate %}
+
+      {% assign margin_shipping_icon = "margin-top-60" %}
+      {% assign container_shipping_icon = "" %}
+      {% include 'shortcode-shipping-icon' %}  
+     
+    </div>
+  </div>
