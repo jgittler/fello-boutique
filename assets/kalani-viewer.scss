@@ -1,0 +1,274 @@
+#views li {
+  cursor: pointer;
+}
+#views .navbar-default .navbar-nav > .active > a {
+  background-color: rgba(74, 64, 64, 0.5);
+}
+#viewer-container .navbar-default {
+  background-color: transparent;
+  border: none;
+  border-left: 1px solid #1fa7d6;
+}
+#viewer-container {
+  height: 1200px;
+  border-top: 1px solid #1fa7d6;
+  margin-bottom: 0px;
+  position: relative;
+}
+#viewer-container .navbar-nav > li {
+  float: none;
+  border-bottom: 1px solid rgba(31, 167, 214, 0.4);
+}
+.navbar-nav > li > a {
+  width: 50px;
+}
+#toggler li a {
+  cursor: pointer;
+  font-weight: bolder;
+}
+#toggler {
+  height: 15%;
+  margin-top: -50px;
+}
+#toggler .nav-pills {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  border-top: 1px solid rgba(51, 49, 49, 0.2);
+  border-bottom: 1px solid rgba(51, 49, 49, 0.2);
+}
+#toggler .nav-pills li {
+  width: 95px;
+  text-align: center;
+}
+#toggler .nav-pills li.active a {
+  color: #1fa7d6;
+  background-color: transparent;
+  font-weight: bolder;
+  border-bottom: 3px solid #1fa7d6;
+}
+#toggler .nav-pills > li > a:hover {
+  color: #1fa7d6;
+  background-color: transparent;
+  border-bottom: 3px solid #1fa7d6;
+}
+#toggler > a {
+  display: block;
+  border: 2px solid #1fa7d6;
+  margin: auto;
+  text-align: center;
+  width: 18%;
+  cursor: pointer;
+  position: relative;
+  bottom: 25px;
+  background-color: #e9f6fb;
+  font-variant: small-caps;
+}
+#toggler > a:hover {
+  background-color: #1fa7d6;
+  -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+#toggler > a h5 {
+  position: relative;
+  top: 1px;
+  margin: auto;
+  font-weight: 600;
+  margin: auto;
+}
+@media (max-width: 1200px) {
+  #toggler > a h5 {
+    font-size: 12px;
+  }
+}
+#viewer-container .empty {
+  opacity: 0;
+  display: none;
+}
+#viewer {
+  height: auto;
+}
+.view-holder {
+  height: 85%;
+  margin: auto;
+}
+#gallery .icon {
+  height: 100%;
+  display: flex;
+  font-size: 50px;
+  padding-top: 10px;
+  color: #1fa7d6;
+}
+#gallery {
+  padding-top: 60px;
+}
+#gallery .poster-frame {
+  width: auto;
+  display: inline-table;
+  padding: 20px;
+  padding-bottom: 10px;
+  background-color: white;
+  font-family: "Marker Felt", sans-serif;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .25);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, .25);
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, .25);
+}
+#gallery .poster-frame p {
+ position: absolute;
+ left: 48%;
+ margin: 20px 0 0 0;
+ font-size: 16px;
+}
+#gallery span {
+  cursor: pointer;
+}
+#gallery .icon:before {
+  margin: auto;
+}
+#gallery img {
+  height: 100%;
+}
+#gallery img {
+  height: 100%;
+}
+#gallery-holder .shadow {
+  box-shadow: inset 12px 0 15px -4px rgba(30, 30, 30, 0.8);
+  height: 100%;
+  width: 10px;
+  position: absolute;
+  top: 0;
+  z-index: 100;
+}
+#gallery-holder > div::-webkit-scrollbar {
+  height: 5px;
+}
+#gallery-holder > div::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+#gallery-holder > div::-webkit-scrollbar-thumb {
+  background-color: #1fa7d6;
+  outline: 1px solid #e1e1e1;
+}
+#gallery-holder {
+  position: relative;
+  width: 100%;
+  height: 80px;
+  border-top: 1px solid #e7e7e7;
+  margin-top: 30px;
+}
+#gallery-holder img {
+  height: 100%;
+  cursor: pointer;
+}
+#gallery-holder > div {
+  height: 100%;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+.popover {
+  background-color: black;
+  white-space: nowrap;
+}
+.popover-title {
+  background-color: inherit;
+  color: white;
+  border: none;
+}
+#viewer-container .button-add-cart:nth-of-type(2) {
+  border-left: 1px solid #1fa7d6 !important;
+  border-right: 1px solid #1fa7d6 !important;
+}
+#viewer-container .button-add-cart {
+  text-transform: none !important;
+  padding-top: 12px;
+  font-size: 16px;
+}
+#viewer-container .button-add-cart:focus {
+  color: white;
+}
+#viewer-container .button-add-cart span {
+  font-weight: 900;
+}
+#kalani-bg {
+  background-image: url('https://cdn.shopify.com/s/files/1/1321/8937/files/kalani-bg-lg-fad-hg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: 120%;
+}
+#kalani-bg {
+  height: 1300px;
+}
+div > .jumbotron.line-title {
+  background-color: transparent;
+  font-weight: bolder;
+  padding-bottom: 10px;
+}
+.blue.contact {
+  text-align: center;
+  padding: 50px 30px;
+  margin: 0 150px 70px 150px;
+  background-color: #e9f6fb;
+  line-height: 1.7;
+}
+.blue.contact a {
+  font-weight: bolder;
+}
+#cb-info.hidden-lg .panel, #cb-info.hidden-lg h1 {
+  float: none;
+  margin: auto;
+}
+#cb-info.hidden-lg .panel {
+  margin-bottom: 50px;
+}
+#cb-info.hidden-lg h1 {
+  margin-bottom: 20px;
+}
+.hidden-lg.prod-pointers .panel:first-of-type {
+  margin-top: 5%;
+}
+.hidden-lg.prod-pointers .panel .panel-body:hover {
+  background-color: #e9f6fb;
+}
+#size-guide {
+  width: 75%;
+}
+@media (min-width: 1000px) {
+  .visible-lgsh {
+    display: block !important
+  }
+}
+@media (min-width: 1000px) {
+  .hidden-lgsh {
+    display: none !important
+  }
+}
+// KALANI
+#toggler a#AddToCart:hover {
+  background-color: #1fa7d6;
+  -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+#toggler a#AddToCart h5 {
+  position: relative;
+  top: 1px;
+  margin: auto;
+  font-weight: 600;
+  margin: auto;
+}
+@media (max-width: 1500px) {
+  #toggler a#AddToCart h5 {
+    font-size: 14px;
+  }
+}
+@media (max-width: 1400px) {
+  #toggler a#AddToCart h5 {
+    font-size: 12px;
+  }
+}
+@media (max-width: 1200px) {
+  #toggler a#AddToCart h5 {
+    font-size: 10px;
+  }
+}

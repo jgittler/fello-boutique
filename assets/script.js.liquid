@@ -576,7 +576,9 @@
 
             $this.next(".adding-cart").removeClass('fa-2x fa fa-spinner fa-pulse');
             
+            if(!($this).parent().is("#add-specific")){
             $this.removeClass("boutique__add-to-cart").addClass('added-cart').text("View Cart").attr("href","/cart");
+            }
             
             $this.next().removeClass("adding-cart");
 

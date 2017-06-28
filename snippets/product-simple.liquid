@@ -27,8 +27,15 @@
             {% if product.images.size > 1 %}
             {% assign check = 1 %}
               {% for image in product.images %}
-                <a data-url="{{ image.src | img_url: '1024x1024' }}" data-image-id="{{ image.id }}" href="{{ image.src | img_url: '1024x1024' }}" class="product-single__thumbnail{% if check == 1 %} active{% endif %}">
-                  <img src="{{ image.src | img_url: 'medium' }}" alt="{{ image.alt | escape }}">
+                <a data-url="{{ image.src | img_url: '1024x1024' }}"
+                   data-image-id="{{ image.id }}"
+                   href="{{ image.src | img_url: '1024x1024' }}"
+                   class="product-single__thumbnail{% if check == 1 %} active{% endif %}"
+                >
+                <img src="{{ image.src | img_url: 'medium' }}"
+                     alt="{{ image.alt | escape }}"
+                     style="{% if product.title contains 'Kalani' and forloop.index0 < 4 %}padding: 37px 0px;{% endif %}"
+                >
                 </a>
                 {% assign check = check | plus : 1 %}
               {% endfor %}
@@ -36,8 +43,11 @@
           </div>
           
           <div class="main-image-wapper text-center" id="ProductPhoto">
+            {% if product.title contains 'Kalani' %}
+              <img src="{{ 'kalani-header.jpg' | file_url }}" alt="The Kalani">
+            {% endif %}
             {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
-            <img style="width: 105%;" class="main-image" src="{{ featured_image | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg"{% if settings.product_image_zoom_type == 'zoom-in' %} data-zoom="{{ featured_image | img_url: '1024x1024' }}"{% endif %} data-image-id="{{ featured_image.id }}">
+            <img style="width: 105%; margin-top: 10px;" class="main-image" src="{{ featured_image | img_url: 'grande' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg"{% if settings.product_image_zoom_type == 'zoom-in' %} data-zoom="{{ featured_image | img_url: '1024x1024' }}"{% endif %} data-image-id="{{ featured_image.id }}">
             <button id="show_image_variant" class="{{ variant.id }}" style="display:none;">view more image<i class="fa fa-photo"></i></button>
           </div>
           {% if settings.product_image_zoom_type == 'lightbox' %}
@@ -56,9 +66,17 @@
           {% if product.images.size > 1 %}
           {% assign check = 1 %}
           {% for image in product.images %}
-          <a  class="h-under product-single__thumbnail{% if check == 1 %} active{% endif %}" data-url="{{ image.src | img_url: '1024x1024' }}" data-image-id="{{ image.id }}" href="{{ image.src | img_url: '1024x1024' }}">
-            <img src="{{ image.src | img_url: 'medium' }}" alt="{{ image.alt | escape }}">
+            <a class="h-under product-single__thumbnail{% if check == 1 %} active{% endif %}"
+               data-url="{{ image.src | img_url: '1024x1024' }}"
+               data-image-id="{{ image.id }}"
+               href="{{ image.src | img_url: '1024x1024' }}"
+               style="{% if forloop.index0 > 3 %}margin-top: 5px;{% endif %}"
+            >
+            <img src="{{ image.src | img_url: 'medium' }}"
+                 alt="{{ image.alt | escape }}"
+            >
           </a>
+          {% if forloop.index0 == 3 %}<hr class="highlight" />{% endif %}
           {% assign check = check | plus : 1 %}
           {% endfor %}
           {% endif %}
@@ -71,20 +89,24 @@
 
           {% if product.title contains "Collaboration" %}
           {% else %}
-          {% include 'breadcrumb-product' %}
-          <br />
-          
-          <span class="h4 small-caps"><strong>Free Shipping</strong></span>
-          <span class="small-caps"><small>(US & Canada)</small></span>
-          <br />
+            {% include 'breadcrumb-product' %}
 
-          {% if product.price > 7000 %}
-          <br />
-          <p class="no-margin"><span class="small-caps">Use Code:</span> <code>summertime</code></p>
-          <h6>10% Off Classic Pairs<h/6>
-          {% endif %}
-          
-          <hr />
+            {% unless product.title contains 'Kalani' %}
+              <br />
+              <span class="h4 small-caps"><strong>Free Shipping</strong></span>
+              <span class="small-caps"><small>(US & Canada)</small></span>
+            {% endunless %}
+            <br />
+
+            {% if product.price > 7000 or product.title contains 'Kalani' %}
+              {% unless product.title contains 'Kalani' %}
+                <br />
+                <p class="no-margin"><span class="small-caps">Use Code:</span> <code>summertime</code></p>
+                <h6>10% Off Classic Pairs</h6>
+                <hr />
+              {% endunless %}
+            {% endif %}
+
           {% endif %}
 
           <h3 class="product-name">{{ product.title | upcase }}</h3>
@@ -107,7 +129,7 @@
             <hr />
             {% else %}
 
-          {% if product.price == 5900 %}
+          {% if product.price == 5900 or product.title contains 'Kalani' %}
           <br />
           <br />
           {% else %}
@@ -125,13 +147,15 @@
           </script>
           
 
+          {% unless product.title contains 'Kalani' %}
             <div class="short-descript">
               {% if product.metafields.meta.description %}
-              {{ product.metafields.meta.description | html }}
+                {{ product.metafields.meta.description | html }}
               {%else%}
-              {{ product.description | html }}
+                {{ product.description | html }}
               {% endif %}
             </div>  
+          {% endunless %}
           {% endif %}
 
           <form action="/cart/add" method="post" enctype="multipart/form-data" id="add-to-cart-form">
@@ -177,7 +201,11 @@
               {% endif %}
 
 
-              <a id="AddToCart" class="button button-add-cart full-w boutique__add-to-cart" data-pid="{{ product.variants.first.id }}"><span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span></a>
+              <a id="AddToCart" class="button button-add-cart full-w boutique__add-to-cart" data-pid="{{ product.variants.first.id }}">
+                <span id="AddToCartText">
+                  {{ 'products.product.add_to_cart' | t }}
+                </span>
+              </a>
 
             </div>
 
@@ -199,8 +227,15 @@
 
 
 
-                <a id="AddToCart" class="v-center minor-v-marg full-w button button-add-cart boutique__add-to-cart" data-pid="{{ product.variants.first.id }}"><span id="AddToCartText">{{ 'products.product.add_to_cart' | t }}</span></a>
-
+                <a id="AddToCart"
+                  class="v-center minor-v-marg full-w button button-add-cart boutique__add-to-cart"
+                  data-pid="{{ product.variants.first.id }}"
+                  style="position: fixed; margin: 0px; bottom: 0; z-index: 100; margin-left: -45px;"
+                  >
+                  <span id="AddToCartText">
+                    {{ 'products.product.add_to_cart' | t }}
+                  </span>
+                </a>
               
             </div>
             
@@ -221,7 +256,7 @@
     <div class="tab-details-product style2">
       <ul class="box-tabs nav-tab">
         
-        {% unless product.title contains "Lunar" %}
+        {% unless product.title contains "Lunar" or product.title contains 'Kalani' %}
         <li class="active"><a data-toggle="tab" href="#tab-1">Find Your Face</a></li>
         {% endunless %}
 
@@ -235,19 +270,21 @@
         {% endif %}
       </ul>
       <div class="tab-container">
-        {% unless product.title contains "Lunar" %}
+        {% unless product.title contains "Lunar" or product.title contains 'Kalani' %}
         <div id="tab-1" class="tab-panel active">
           {% include 'product-find-your-face' %}
         </div>
         {% endunless %}
        
-        <div id="tab-2" class="{% if product.title contains "Lunar" %}active{% endif %} tab-panel text-center">
+        <div id="tab-2" class="{% if product.title contains "Lunar" or product.title contains 'Kalani' %}active{% endif %} tab-panel text-center">
           {% if product.title contains 'Fantom' %}
           <img class="col-md-6 pull-none col-xs-12" src="{{ 'fantom_size_guide_small.jpg' | asset_url }}" />
           {% elsif product.title contains 'Konvoy' %}
           <img class="col-md-6 pull-none col-xs-12" src="{{ 'konvoy_size_guide_small.jpg' | asset_url }}" />
           {% elsif product.title contains 'Heron' %}
           <img class="col-md-6 pull-none col-xs-12" src="{{ 'heron_size_guide_small.jpg' | asset_url }}" />
+          {% elsif product.title contains 'Kalani' %}
+          <img class="col-md-6 pull-none col-xs-12" src="{{ 'kalani_size_guide_small_t.png' | file_url }}" />
           {% endif %}
         </div>
 
@@ -457,5 +494,13 @@ jQuery(function($) {
  
 });
   
-  
+</script>
+<script>
+  $("#AddToCart").on('click', function() {
+    if (window.location.href.indexOf('the-kalani') > -1) {
+      sleep(500).then(function() {
+        window.location = "/checkout";
+      });
+    }
+  });
 </script>

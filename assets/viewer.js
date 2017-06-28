@@ -128,7 +128,8 @@ $('#toggler li, .variation-circle').on('click', function() {
 $(PRODUCT_VIEWS_SELECTORS).on('click', function() {
   toggleEnts({
     'display' : { '#gallery-holder' : 'block', '#toggler' : 'block' },
-    'height' : { '#viewer-container' : '540px', '#viewer' : 'auto' }
+    // 'height' : { '#viewer-container' : '540px', '#viewer' : 'auto' }
+    'height' : { '#viewer' : 'auto' }
   });
   $('#cb-quick-buy li').removeClass('unclickable');
 });
