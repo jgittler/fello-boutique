@@ -6,8 +6,7 @@
   <li data-image-id="{{image_variant | split: "]" | first | remove_first: "[" }}" class="gallery_variant__item" data-mfp-src="{{ variant_multi_image_item | remove: "http:" | remove: "https:"}}"></li>
   {% endfor %}
 </ul>
-{% endfor %}
-{% assign on_sale = false %}
+{% endfor %} {% assign on_sale = false %}
 {% assign sale_text = 'products.product.sale' | t %}
 {% if product.compare_at_price > product.price %}
   {% assign on_sale = true %}
@@ -157,8 +156,15 @@
             </div>  
           {% endunless %}
           {% endif %}
+          <style>
+            .single-option-selector {
+              border: 2px solid black;
+              text-align: center;
+              padding: 5px 0px 5px 10px;
+            }
+          </style>
 
-          <form action="/cart/add" method="post" enctype="multipart/form-data" id="add-to-cart-form">
+          <form action="/cart/add" method="post" enctype="multipart/form-data" class="hidden-sm hidden-xs" id="add-to-cart-form">
 
               <div id="product-variants">
                 {% assign variantCount = product.variants | size %}
@@ -181,25 +187,7 @@
                 {% endif %}
               </div>
 
-            <div class="cart-form hidden-sm hidden-xs">
-
-
-              {% if product.available %}
-              <div class="quantity">
-                <span>{{ 'products.product.quantity' | t }}</span>
-                <input style="border: 1px solid #e5e5e5;
-                              font-size: 14px;
-                              max-width: 45%;
-                              min-width: auto;"
-                       type="number"
-                       id="Quantity"
-                       name="quantity"
-                       value="1"
-                       min="1"
-                       class="input-text qty text quantity-selector">
-              </div>
-              {% endif %}
-
+            <div class="cart-form">
 
               <a id="AddToCart" class="button button-add-cart full-w boutique__add-to-cart" data-pid="{{ product.variants.first.id }}">
                 <span id="AddToCartText">
@@ -211,26 +199,9 @@
 
             <div class="cart-form hidden-lg hidden-md">
 
-                {% if product.available %}
-                <div class="quantity full-w">
-                  <span>{{ 'products.product.quantity' | t }}</span>
-                  <input style="border: 1px solid #e5e5e5;
-                                font-size: 14px;"
-                         type="number"
-                         id="Quantity"
-                         name="quantity"
-                         value="1"
-                         min="1"
-                         class="input-text qty text quantity-selector">
-                </div>
-                {% endif %}
-
-
-
                 <a id="AddToCart"
                   class="v-center minor-v-marg full-w button button-add-cart boutique__add-to-cart"
                   data-pid="{{ product.variants.first.id }}"
-                  style="position: fixed; margin: 0px; bottom: 0; z-index: 100; margin-left: -45px;"
                   >
                   <span id="AddToCartText">
                     {{ 'products.product.add_to_cart' | t }}
@@ -246,6 +217,87 @@
       </div>
     </div>
   </div>
+
+  <form
+    action="/cart/add"
+    method="post"
+    enctype="multipart/form-data"
+    class="hidden-lg hidden-md full-w"
+    id="add-to-cart-form"
+    style="position: fixed; bottom: 0; z-index: 100; background-color: white; border-top: 1px solid #1fa7d6;"
+  >
+
+  <style>
+    .chosen-container.chosen-container-single {
+      border: 1px solid #1fa7d6;
+    }
+  </style>
+
+    <div id="product-variants" class="minor-v-marg" style="text-align: center; font-weight: bolder;">
+      {% assign variantCount = product.variants | size %}
+      {% if product.available %} 
+        {% if variantCount > 1 %}	
+          <div class="hidden-xs">
+            <select id="product-selectors" name="id" class="hidden">
+              {% for variant in product.variants %}
+                <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="visible-xs">
+            <h5 class="blue">Choose A Color</h5>
+
+            <div id="mob-pink" class="round" style="margin: 10px; display: inline-block; background-color: pink; height: 40px; width: 40px; border: 1px solid black;">
+            </div>
+
+            <div id="mob-gold" class="round" style="margin: 10px; display: inline-block; background-color: gold; height: 40px; width: 40px;">
+            </div>
+          </div>
+
+          <script>
+            $("#mob-gold").on('click', function() {
+              $("#product-selectors").val("45737780679");
+              $(this).css('border', '1px solid black');
+              $("#mob-pink").css('border', 'none');
+              $(".main-image").attr("src", "//cdn.shopify.com/s/files/1/1321/8937/products/kg1-front_1024x1024.png?v=1499283920")
+            });
+
+            $("#mob-pink").on('click', function() {
+              $("#product-selectors").val("44471103111");
+              $(this).css('border', '1px solid black');
+              $("#mob-gold").css('border', 'none');
+              $(".main-image").attr("src", "//cdn.shopify.com/s/files/1/1321/8937/products/kp1-front-2_a84d64a2-0383-4b7d-883c-27c13ffb0be1_1024x1024.png?v=1499283920");
+            });
+          </script>
+
+          {% if settings.use_color_swatch %}
+            {% for option in product.options %}
+              {% include 'swatch' with option %}
+            {% endfor %}
+          {% endif %}
+        {% else %}
+          <input type="hidden" name="id" value="{{ product.variants[0].id }}" />
+        {% endif %}
+      {% endif %}
+    </div>
+
+    <div class="cart-form">
+
+      <a id="AddToCart"
+        class="v-center no-margin full-w button button-add-cart boutique__add-to-cart"
+        data-pid="{{ product.variants.first.id }}"
+        style="padding: 5%;"
+        >
+        <span id="AddToCartText">
+          {{ 'products.product.add_to_cart' | t }}
+        </span>
+      </a>
+
+    </div>
+
+  </form>
+
 </div>
 
 
@@ -284,7 +336,7 @@
           {% elsif product.title contains 'Heron' %}
           <img class="col-md-6 pull-none col-xs-12" src="{{ 'heron_size_guide_small.jpg' | asset_url }}" />
           {% elsif product.title contains 'Kalani' %}
-          <img class="col-md-6 pull-none col-xs-12" src="{{ 'kalani_size_guide_small_t.png' | file_url }}" />
+          <img class="col-md-6 pull-none col-xs-12" src="{{ 'kalani_size_guide_small_p.png' | file_url }}" />
           {% endif %}
         </div>
 
@@ -494,13 +546,4 @@ jQuery(function($) {
  
 });
   
-</script>
-<script>
-  $("#AddToCart").on('click', function() {
-    if (window.location.href.indexOf('the-kalani') > -1) {
-      sleep(500).then(function() {
-        window.location = "/checkout";
-      });
-    }
-  });
 </script>
