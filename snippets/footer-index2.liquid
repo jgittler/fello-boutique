@@ -209,7 +209,14 @@
 ];
   var models = [{% for product in collections.all.products %}{% if product.available %}["{{ product.title }}", "{{ product.images[0].src | img_url }}"],{% endif %}{% endfor %}];
   $(document).ready(function() {
-                {% if page_title contains 'All' or page_title contains 'Changing ' %}
+                {% if page_title contains 'All' or page_title contains 'Changing ' or page_title contains 'Kalani' %}
+      {% if page_title contains 'Kalani' %}
+        models = [["{{ all_products['kalani-pink'].title }}", "{{ all_products['kalani-pink'].images[0].src | img_url }}"], ["{{ all_products['kalani-gold'].title }}", "{{ all_products['kalani-gold'].images[0].src | img_url }}"]];
+        names = [
+          "Haydee", "Lauren", "Cristine", "Jolie", "Mary", "Charlie", "Jane", "Abbey", "Pamella", "Carmen", "Lois", "Ivey", "Evette", "Isabel", "Audrey", "Holly", "Linda", "Jamie", "Rose", "Courtney", "Randi", "Jordan", "Clare", "Tammie", "Meggan", "Norma", "Nancy",
+          "Alex", "Rachel", "Alexa", "Amy", "Elly", "Carla", "Denise", "Maureen", "Laura", "Dani", "Miranda", "Toni", "Sophia", "Carline", "Sarah", "Marry", "Katherine", "Megan", "Nicki", "Bianca", "Ashton", "Alison", "Bailey", "Breana", "Milly", "Sheryl", "Andrea", "Christene", "Jaidin", "Stephenie", "Eve", "Luna", "Stevie", "Sarah"
+        ];
+      {% endif %}
       sleep(8000).then(function() {
         var $div = $("#recent-buy");
         var model = models[Math.floor(Math.random()*models.length)];
@@ -223,7 +230,7 @@
         $("#recent-buy").animate({
           opacity: .9
         }, 2500);
-  sleep(4000).then(function() {
+  sleep(6000).then(function() {
     $div.animate({
       opacity: 0
     }, 2500);
