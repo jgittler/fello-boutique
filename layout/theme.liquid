@@ -39,25 +39,8 @@ src="https://www.facebook.com/tr?id=156715738012257&ev=PageView&noscript=1"
 /></noscript>
 <!-- DO NOT MODIFY -->
 <!-- End Facebook Pixel Code -->
- 
+</head>
 
- <!-- Hits Analytics tracking code -->
-{% if shop.customer_accounts_enabled %}
-  {% if customer %}
-    <script type="text/javascript">
-        function hitsReady() {
-            if (typeof hits != 'undefined')
-                hits('user','identify', {'id' : '{{ customer.id }}'});
-            else
-                setTimeout(hitsReady,500);
-        }
-        window.attachEvent ? window.attachEvent('onload', hitsReady) : window.addEventListener('load', hitsReady, false);
-    </script>
-  {% endif %}
-{% endif %}
-<!-- end of Hits Analytics code -->
-
- </head>
 <body class="home {% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" id="{{ page_title | handle }}" style="padding-right: 0;">
 
   {% unless handle contains 'pay-invoice' or handle contains 'cb' or handle contains 'thank-you' or handle contains 'kalani' %}

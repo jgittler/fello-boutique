@@ -15,15 +15,3 @@ Array.prototype.diff = function(a) {
 $("#wizard .pillar").hover(function() {
   $(this).find("h1").toggleClass("highlight");
 });
-
-$("#AddToCart").click(function() {
-  fbq("track", "AddToCart");
-});
-
-$("input[name='checkout']").click(function() {
-  fbq("track", "InitiateCheckout");
-});
-
-$("a[href='/checkout']").click(function() {
-  fbq("track", "InitiateCheckout");
-});

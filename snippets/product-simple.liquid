@@ -197,19 +197,6 @@
 
             </div>
 
-            <div class="cart-form hidden-lg hidden-md">
-
-                <a id="AddToCart"
-                  class="v-center minor-v-marg full-w button button-add-cart boutique__add-to-cart"
-                  data-pid="{{ product.variants.first.id }}"
-                  >
-                  <span id="AddToCartText">
-                    {{ 'products.product.add_to_cart' | t }}
-                  </span>
-                </a>
-              
-            </div>
-            
           </form>
           
         </div>
@@ -291,6 +278,9 @@
         >
         <span id="AddToCartText">
           {{ 'products.product.add_to_cart' | t }}
+        </span>
+        <span style="color: black; font-size: 10px; display: block;">
+          (if this is being slow, try refreshing the page)
         </span>
       </a>
 

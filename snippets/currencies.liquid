@@ -51,7 +51,9 @@ jQuery('[name=currencies]').val(Currency.currentCurrency).change(function() {
 var original_selectCallback = window.selectCallback;
 var selectCallback = function(variant, selector) {
   original_selectCallback(variant, selector);
+  try {
   Currency.convertAll(shopCurrency, jQuery('[name=currencies]').val());
+  } catch(e) {}
   jQuery('.selected-currency').text(Currency.currentCurrency);
 };
 jQuery('body').on('ajaxCart.afterCartLoad', function(cart) {
