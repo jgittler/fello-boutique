@@ -1,15 +1,4 @@
-{% if false %}
-  {% if settings.use_slider_hp10 %}
-  <!-- Home slide -->
-  <div class="slider-homepage">
-    {% include 'shortcode-slider' %}
-  </div>
-  <!-- ./Home slide -->
-  {% endif %}
-{% endif %}
-
 <div id="home-banner" class="no-pads col-xs-12 no-margin">
-
   <div class="hidden-xs text-center full-w video-text text-drop-shadow row-eq-height"
     style="position: absolute;
     width: 100%;
@@ -31,18 +20,15 @@
   </div>
 
 
-  <img class="hidden-xs" src="{{ 'blurred-vision-angle.jpg' | file_url }}" alt="Fello Eyewear">
+  <img class="hidden-xs" src="{{ 'blurred-vision-angle-2.jpg' | file_url }}" alt="Fello Eyewear">
   
   <a href="/pages/kalani" title="shop kalani" id="for-ios" class="hidden visible-xs">
-    <img class="full-w" src="{{ 'kalani-front-pg-tk-2.jpg' | file_url }}" alt="Shop Kalani">
+    <img class="full-w" src="{{ 'kalani-front-pg-tk-mobile.jpg' | file_url }}" alt="Shop Kalani">
   </a>
 </div>
 
 {% include 'shop-sale' %}
 
-{% if settings.use_banner_carousel_home10 %}
-{% include 'shortcode-banner-slide'  %}
-{% endif %}
 <div class="no-margin med-v-pads charity-hp full-w minor-h-pads">
   <div class="row">
     <h1 class="text-center">Help A Fello Out</h1>
@@ -74,41 +60,22 @@
   <div class="row text-center minor-v-marg">
     <h1 class="blue">Lives Changed</h1>
   </div>
-
 </div>
-
-
-  	{% include 'header2' with "Instagram" %}
-
-<script 
-src='https://snapppt.com/widgets/widget_loader/5aae36b1-7142-4fe2-a099-0abc609ab375/grid.js'
- class='snapppt-widget'></script>
 
 {{ 'odometer.js' | asset_url | script_tag }}
 <script>
   window.odometerOptions = {
     auto: true, // Don't automatically initialize everything with class 'odometer'
-//     selector: '.my-numbers', // Change the selector used to automatically find things to be animated
+    //     selector: '.my-numbers', // Change the selector used to automatically find things to be animated
     format: 'd', // Change how digit groups are formatted, and how many digits are shown after the decimal point
     duration: 2000, // Change how long the javascript expects the CSS animation to take
     theme: 'train-station', // Specify the theme (if you have more than one theme css file on the page)
     animation: 'count' // Count is a simpler animation method which just increments the value,
     // use it when you're looking for something more subtle.
   };
-
-    $(document).ready(function() {
-//   $(window).scroll(function() {
-//     var hT = $('.charity-hp').offset().top,
-//         hH = $('.charity-hp').outerHeight(),
-//         wH = $(window).height(),
-//         wS = $(this).scrollTop();
-//     if (wS > (hT+hH-wH-350)){
-      $('.odometer').html(3709);
-//     }
+  $(document).ready(function() {
+    $('.odometer').html(3754);
   });
-</script>
-
-<script>
   $(document).ready(function() {
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
       $(".video-placeholder").remove();
@@ -120,35 +87,5 @@ src='https://snapppt.com/widgets/widget_loader/5aae36b1-7142-4fe2-a099-0abc609ab
     } else {
       $(".video-wrapper").removeClass("hidden");
     }
-  });
-
-//   $(".video-wrapper").ready(function() {
-//     $("#bg-video").ready(function() {
-//       sleep(500).then(function() {
-//         console.log("HERE");
-//         $(".video-placeholder").remove();
-//       });
-//     });
-//   });
-  
-/**
- * @author       Rob W <gwnRob@gmail.com>
- * @website      http://stackoverflow.com/a/7513356/938089
- * @version      20131010
- * @description  Executes function on a framed YouTube video (see website link)
- *               For a full list of possible functions, see:
- *               https://developers.google.com/youtube/js_api_reference
- * @param String frame_id The id of (the div containing) the frame
- * @param String func     Desired function to call, eg. "playVideo"
- *        (Function)      Function to call when the player is ready.
- * @param Array  args     (optional) List of arguments to pass to function func
- */
-  $("iframe").ready(function() {
-    sleep(4100).then(function() {
-      $(".snptwdgt__ftr").hide();
-      $(".snptcrd__ovrly").hide();
-      $(".snptwdgt__item").attr('style', function(i,s) { return s + ' padding: 5px !important; margin: 0px !important;' })
-      $(".snptwdgt__item .fauximg-bin").attr('style', 'border-radius: 0px !important;')
-    });
   });
 </script>

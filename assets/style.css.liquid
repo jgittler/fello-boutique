@@ -492,6 +492,37 @@ span.doc-donate {
 }
 /* End Optometry Page */
 /* Start Home Page Styles */
+@media (min-width: 992px) {
+  .sale-bg {
+    clear: both;
+    height: 800px;
+    background: url('https://cdn.shopify.com/s/files/1/1321/8937/files/sale-bg-big.jpg');
+    background-size: cover;
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 992px) {
+  .sale-bg {
+    margin-bottom: 10px;
+  }
+}
+@media (min-width: 992px) {
+  .shop-sale {
+    clear: both;
+    padding-top: 190px;
+    margin-left: 16.66666667%;
+  }
+}
+@media (max-width: 992px) {
+  .shop-sale {
+    clear: both;
+    border-top: 1px solid #1fa7d6;
+    border-bottom: 1px solid #1fa7d6;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    text-align: center;
+  }
+}
 .sale-section {
   clear: both;
   padding-left: 20px;
@@ -557,11 +588,25 @@ span.doc-donate {
 }
 .pillar .panel.amb {
   box-shadow: none;
-  border-width: 10px;
+  border-top-width: 10px;
   border-style: solid;
   border-color: transparent;
   padding: 0px;
   margin: 0px;
+}
+@media (min-width: 768px) {
+  .pillar .panel.amb {
+  }
+}
+@media (max-width: 768px) {
+  .pillar .panel.amb {
+    margin: auto;
+    float: none;
+    clear: both;
+    max-width: 400px;
+    padding: 10px;
+    border: none;
+  }
 }
 .pillar .panel-body.outline .pillar-cover {
   border: 1px solid #1fa7d6;
@@ -698,7 +743,7 @@ span.doc-donate {
     height: 100%;
     z-index: 0;
     opacity: 0.1;
-  	background-image: url({{ "charity_hp.jpg" | asset_url }});
+  	background-image: url({{ "charity-hp-2.jpg" | file_url }});
     background-repeat: no-repeat;
     -ms-background-size: cover;
     -o-background-size: cover;

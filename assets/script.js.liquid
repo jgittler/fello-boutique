@@ -240,7 +240,6 @@
       storage.set('compare', {});
     }
     } catch(e) {
-      storage.set('compare', {});
     }
     function compare_to_table(data) {
       if (Object.keys(data).length <= 0) {
@@ -747,7 +746,9 @@
 
       var view_mode  = $.localStorage;
 
-      var get_view_mode = view_mode.get('view_mode');
+      try {
+        var get_view_mode = view_mode.get('view_mode');
+      } catch(e) {}
       setTimeout(function(){
         if(get_view_mode == 'list'){
           $(".show-list").trigger('click');
