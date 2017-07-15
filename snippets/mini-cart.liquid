@@ -1,3 +1,21 @@
+<script>
+  window.onpageshow = function() {
+    try {
+      var $cCount = $(".count.cartCount");
+      if ($cCount.text() == 0) {
+        $.ajax({
+          url: ' /cart.js',
+          type: 'GET',
+          dataType: 'json',
+          success: function(data) {
+            $cCount.text(data.item_count);
+          }
+        });
+      }
+    } catch(e) {}
+  }
+</script>
+
 {% if position =="cattegories" %}
 <li class="mini-cart">
   <a class="cart-link" href="#">
