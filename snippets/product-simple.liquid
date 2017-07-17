@@ -20,6 +20,7 @@
 <div class="product-details-full">                            
   <div class="container">
     <div class="row" id="product-single">
+      <h4 class="text-center hidden-md hidden-lg">Free returns on all purchases.</h4>
       <div class="col-md-9 col-lg-9 col-sm-12 col-xs-12">
         <div class="product-detail-image">
            <div class="thumbnails hidden-sm hidden-xs" id="ProductThumbs">
@@ -275,11 +276,8 @@
         class="v-center no-margin full-w button button-add-cart boutique__add-to-cart"
         data-pid="{{ product.variants.first.id }}"
         >
-        <span id="AddToCartText" style="display: inline-block; margin-top: 15px;">
-          {{ 'products.product.add_to_cart' | t }}
-        </span>
-        <span style="color: black; font-size: 10px; display: block; margin-bottom: 10px;">
-          (if this is being slow, try refreshing the page)
+        <span id="AddToCartText" style="display: inline-block; margin-top: 15px; margin-bottom: 15px;">
+          Purchase
         </span>
       </a>
 
