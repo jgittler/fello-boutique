@@ -122,40 +122,41 @@
             {% endif %}
           </span>
           
-          
           {% if product.title contains "Collaboration" %}
             <hr />
             {{ product.description | html }}
             <hr />
-            {% else %}
-
-          {% if product.price == 5900 or product.title contains 'Kalani' %}
-          <br />
-          <br />
+          {% elsif product.title contains "Kalani" %}
+            <hr />
+            {{ product.description | html }}
           {% else %}
-          <div id="size-link">
-            <hr>
-            <h2><a href="{{ product.url }}#tab-1" title="size guide">Size Guide</a></h2>
-          </div>
-          {% endif %}
-          
-          
-          <script>
-            if (window.location.href.includes("products")) {
-              $("#size-link a").attr("href", "#tab-1");
-            }
-          </script>
-          
 
-          {% unless product.title contains 'Kalani' %}
-            <div class="short-descript">
-              {% if product.metafields.meta.description %}
-                {{ product.metafields.meta.description | html }}
-              {%else%}
-                {{ product.description | html }}
-              {% endif %}
-            </div>  
-          {% endunless %}
+            {% if product.price == 5900 or product.title contains 'Kalani' %}
+              <br />
+              <br />
+            {% else %}
+              <div id="size-link">
+                <hr>
+                <h2><a href="{{ product.url }}#tab-1" title="size guide">Size Guide</a></h2>
+              </div>
+            {% endif %}
+
+            <script>
+              if (window.location.href.includes("products")) {
+                $("#size-link a").attr("href", "#tab-1");
+              }
+            </script>
+
+
+            {% unless product.title contains 'Kalani' %}
+              <div class="short-descript">
+                {% if product.metafields.meta.description %}
+                  {{ product.metafields.meta.description | html }}
+                {%else%}
+                  {{ product.description | html }}
+                {% endif %}
+              </div>  
+            {% endunless %}
           {% endif %}
           <style>
             .single-option-selector {
@@ -221,7 +222,7 @@
     }
   </style>
 
-    <div id="product-variants" class="minor-v-marg" style="text-align: center; font-weight: bolder;">
+    <div id="product-variants" class="screen-mobile-xs minor-v-marg" style="text-align: center; font-weight: bolder;">
       {% assign variantCount = product.variants | size %}
       {% if product.available %} 
         {% if variantCount > 1 %}	

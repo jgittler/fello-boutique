@@ -503,7 +503,6 @@ span.doc-donate {
 }
 @media (max-width: 992px) {
   .sale-bg {
-    margin-bottom: 10px;
   }
 }
 @media (min-width: 992px) {
@@ -730,10 +729,10 @@ span.doc-donate {
 }
 .charity-hp {
   position: relative;
-  background: white;
   overflow: hidden;
 }
-.charity-hp:before {
+@media (min-width: 768px) {
+  .charity-hp:before {
     content: ' ';
     display: block;
     position: absolute;
@@ -743,13 +742,35 @@ span.doc-donate {
     height: 100%;
     z-index: 0;
     opacity: 0.1;
-  	background-image: url({{ "charity-hp-2.jpg" | file_url }});
+    background: white;
+    background-image: url({{ "charity-hp-2.jpg" | file_url }});
     background-repeat: no-repeat;
     -ms-background-size: cover;
     -o-background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;
     background-size: cover;
+  }
+}
+@media (max-width: 768px) {
+  .charity-hp:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.1;
+    background-color: #1fa7d6;
+    background-repeat: no-repeat;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
 }
 .header.style2 hr {
   border-color: rgba(31, 167, 214, 0.15);
