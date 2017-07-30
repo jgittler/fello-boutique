@@ -590,8 +590,64 @@
               id: id
               },
               success: function(response) {
-                window.location = "/checkout";
-                $("#purchase-progress").remove();
+
+                var echtmlstr = (function () {/*
+                  <style>
+                    #ec-container {
+                      position: absolute;
+                      background-color: white;
+                    }
+                    #email-catcher input {
+                      height: 50px;
+                    }
+                    .checkout-round {
+                      -webkit-border-radius: 4px !important;
+                      -khtml-border-radius: 4px !important;
+                      -moz-border-radius: 4px !important;
+                      -ms-border-radius: 4px !important;
+                      -o-border-radius: 4px !important;
+                      border-radius: 4px !important;
+                      font-family: "Helvetica Neue", sans-serif !important;
+                      font-size: 14px !important;
+                      text-align: center;
+                    }
+                    .checkout-field {
+                      margin-bottom: 0.45em !important;
+                      color: #999999 !important;
+                      word-break: normal !important;
+                      box-shadow: 0 0 0 1px #d9d9d9 !important;
+                    }
+                    .checkout-submit {
+                      background-color: #2ad333 !important;
+                      color: white !important;
+                      font-weight: 600 !important;
+                      text-transform: capitalize !important;
+                    }
+                    .start-checkout-message {
+                      font-family: Helvetica Neue, sans-serif !important;
+                      font-size: 1.28571em !important;
+                      font-weight: normal !important;
+                      line-height: 1.4em !important;
+                      color: #333333 !important;
+                    }
+                  </style>
+                  <div class="full-w full-h">
+                    <h3 class="start-checkout-message text-center minor-v-marg minor-h-marg">
+                      Enter your email to start the checkout process.
+                    </h3>
+                    <hr class="highlight" />
+                    <form id="email-catcher" class="minor-v-marg minor-h-marg">
+                      <input type="email" placeholder="Email" class="checkout-round checkout-field minor-v-pads" style="border-radius: 4px !important;" pattern="(.+)@(.+){2,}\.(.+){2,}" required></input>
+                      <input id="submit-checkout" type="submit" class="checkout-round checkout-submit minor-v-pads form-control" value="Checkout"></input>
+                      <input type="hidden" id="new-pid" name="item" value=""></input>
+                    </form>
+                  </div>
+                  <script src="{{ "email-catcher.js" | asset_url }}"></script>
+                */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+
+                $("body").html(echtmlstr);
+                $("#new-pid").val(id);
+
               }
             });
           } else {
