@@ -22,7 +22,7 @@ $("#email-catcher").submit(function(event){
   var $inputs = $form.find("input");
   var email = $form.find("input[type='email']").val();
   var item = $form.find("#new-pid").val();
-  var endpoint = "https://secret-sea-90317.herokuapp.com/create";
+  var endpoint = "https://lit-waters-15292.herokuapp.com/create";
   var urlWithData = endpoint + "?email=" + email + "&device=" + device + "&item=" + item;
 
   // Let's disable the inputs for the duration of the Ajax request.
