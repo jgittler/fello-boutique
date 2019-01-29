@@ -1,20 +1,11 @@
-<div class="sale-bg">
+<div class="col-xs-10 col-xs-offset-1">
+  {% for product in collections["classic"].products %}
+    {% assign title = product.title %}
 
-  {% include 'pillars' %}
-
-  <div class="shop-sale">
-    <h1 class="no-margin" style="line-height: 0.85; font-weight: 700;">
-      15% OFF<br />
-      <span class="small-caps"><small>any and all models</small></span>
-    </h1>
-    <small>use code:</small> <code style="background-color: #ea235b; color: black;"><strong>valentine</strong></code>
-    <br />
-    <br />
-    <a href="/collections/all", title="Shop Sale">
-      <div class="btn btn-lg btn-primary sharp">
-        Shop Sale
-      </div>
-    </div>
-  </div>
-
+    {% if title == "Lunar Fantom" or title == "Black Konvoy" or title == "Lunar Konvoy" or title == "Tortoise Fantom" %}
+      <a href="{{ product.url }}" title="Shop {{ title }}" class="col-xs-6">
+        <img class="prod-shot" src="{{ product.featured_image.src | img_url: 'large' }}">
+      </a>
+    {% endif %}
+  {% endfor %}
 </div>

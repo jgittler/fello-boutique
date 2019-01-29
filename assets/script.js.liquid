@@ -592,6 +592,7 @@
               success: function(response) {
 
                 var echtmlstr = (function () {/*
+                  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=.|Josefin+Sans:normal" media="all">
                   <style>
                     #ec-container {
                       position: absolute;
@@ -624,7 +625,7 @@
                       text-transform: capitalize !important;
                     }
                     .start-checkout-message {
-                      font-family: Helvetica Neue, sans-serif !important;
+                      font-family: "Josefin Sans", "HelveticaNeue", "Helvetica Neue", sans-serif !important;
                       font-size: 1.28571em !important;
                       font-weight: normal !important;
                       line-height: 1.4em !important;
@@ -632,11 +633,11 @@
                     }
                   </style>
                   <div class="full-w full-h">
-                    <h3 class="start-checkout-message text-center minor-v-marg minor-h-marg">
-                      Enter your email to start the checkout process.
-                    </h3>
+                  <h3 class="start-checkout-message text-center minor-v-marg minor-h-marg">
+                    Enter your email to start the checkout process.
+                  </h3>
                     <hr class="highlight" />
-                    <form id="email-catcher" class="minor-v-marg minor-h-marg">
+                    <form id="email-catcher" class="col-xs-6 col-xs-offset-3 minor-v-marg">
                       <input type="email" placeholder="Email" class="checkout-round checkout-field minor-v-pads" style="border-radius: 4px !important;" pattern="(.+)@(.+){2,}\.(.+){2,}" required></input>
                       <input id="submit-checkout" type="submit" class="checkout-round checkout-submit minor-v-pads form-control" value="Checkout"></input>
                       <input type="hidden" id="new-pid" name="item" value=""></input>

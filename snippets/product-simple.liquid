@@ -91,21 +91,11 @@
           {% else %}
             {% include 'breadcrumb-product' %}
 
-            {% unless product.title contains 'Kalani' %}
-              <br />
-              <span class="h4 small-caps"><strong>Free Shipping</strong></span>
-              <span class="small-caps"><small>(US & Canada)</small></span>
-            {% endunless %}
             <br />
-
-            {% if product.price > 7000 or product.title contains 'Kalani' %}
-              {% unless product.title contains 'Kalani' %}
-                <br />
-                <p class="no-margin"><span class="small-caps">Use Code:</span> <code>tistheseason</code></p>
-                <h6>15% Off Classic Pairs</h6>
-                <hr />
-              {% endunless %}
-            {% endif %}
+            <span class="h4 small-caps"><strong>Free Shipping</strong></span>
+            <span class="small-caps"><small>(US & Canada)</small></span>
+            <br />
+            <br />
 
           {% endif %}
 
@@ -295,12 +285,8 @@
 
     <div class="tab-details-product style2">
       <ul class="box-tabs nav-tab">
-        
-        {% unless product.title contains "Lunar" or product.title contains 'Kalani' %}
-        <li class="active"><a data-toggle="tab" href="#tab-1">Find Your Face</a></li>
-        {% endunless %}
 
-        <li class="{% if product.title contains "Lunar" %}active{% endif %}"><a data-toggle="tab" href="#tab-2">Size Guide</a></li>
+        <li class="active"><a data-toggle="tab" href="#tab-1">Size Guide</a></li>
 
         {% if false %}
           <li><a data-toggle="tab" href="#tab-3">{{settings.product_tab_title_3}}</a></li>
@@ -310,19 +296,14 @@
         {% endif %}
       </ul>
       <div class="tab-container">
-        {% unless product.title contains "Lunar" or product.title contains 'Kalani' %}
-        <div id="tab-1" class="tab-panel active">
-          {% include 'product-find-your-face' %}
-        </div>
-        {% endunless %}
        
-        <div id="tab-2" class="{% if product.title contains "Lunar" or product.title contains 'Kalani' %}active{% endif %} tab-panel text-center">
+        <div id="tab-1" class="active tab-panel text-center">
           {% if product.title contains 'Fantom' %}
-          <img class="col-md-6 pull-none col-xs-12" src="{{ 'fantom_size_guide_small.jpg' | asset_url }}" />
+          <img class="col-md-6 pull-none col-xs-12" src="{{ 'fantom_size_guide_small_t.png' | file_url }}" />
           {% elsif product.title contains 'Konvoy' %}
-          <img class="col-md-6 pull-none col-xs-12" src="{{ 'konvoy_size_guide_small.jpg' | asset_url }}" />
+          <img class="col-md-6 pull-none col-xs-12" src="{{ 'konvoy_size_guide_small_t.png' | file_url }}" />
           {% elsif product.title contains 'Heron' %}
-          <img class="col-md-6 pull-none col-xs-12" src="{{ 'heron_size_guide_small.jpg' | asset_url }}" />
+          <img class="col-md-6 pull-none col-xs-12" src="{{ 'heron_size_guide_small_t.png' | file_url }}" />
           {% elsif product.title contains 'Kalani' %}
           <img class="col-md-6 pull-none col-xs-12" src="{{ 'kalani_size_guide_small_p.png' | file_url }}" />
           {% endif %}

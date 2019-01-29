@@ -1,33 +1,32 @@
 <div id="home-banner" class="no-pads col-xs-12 no-margin">
-  <div class="hidden-xs text-center full-w video-text text-drop-shadow row-eq-height"
+  <div class="text-center full-w video-text text-drop-shadow row-eq-height"
     style="position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, .15);
+    background-color: rgba(255, 255, 255, .15);
     z-index: 1;"
     >
 
     <div style="margin: auto;">
-      <h1>Vision Promotes Progress</h1>
-      <span class="h3">Lack of vision translates to failure at school, work and health. Those who cannot see are often mired in poverty.</span>
-      <hr class="minor-h-marg highlight" />
+      <h1 class="hidden-xs">Give the Gift of Vision</h1>
+      <!-- <span class="h3">Lack of vision translates to failure at school, work and health. Those who cannot see are often mired in poverty.</span> -->
+      <!-- <hr class="minor&#45;h&#45;marg highlight" /> -->
       <a href="/collections/all" class="cta-bttin sharp btn btn-lg">
         <p class="h2">SHOP SUNGLASSES</p>
-        <br>
-        <span class="h4" style="font-weight: 900;">and change a life</span>
+        <div class="hidden-xs">
+          <span class="h4" style="font-weight: 900;">and change a life</span>
+        </div>
       </a>
     </div>
   </div>
 
 
-  <img class="hidden-xs" src="{{ 'blurred-vision-angle-2.jpg' | file_url }}" style="width: 150%;" alt="Fello Eyewear">
+  <img src="{{ 'mf_fashion_home_85_min.png' | file_url }}" style="width: 150%;" alt="Fello Eyewear">
   
-  <a href="/pages/kalani" title="shop kalani" id="for-ios" class="hidden visible-xs">
-    <img class="full-w" src="{{ 'kalani-front-pg-tk-mobile.jpg' | file_url }}" alt="Shop Kalani">
-  </a>
+  <!-- <a href="/pages/kalani" title="shop kalani" id="for&#45;ios" class="hidden visible&#45;xs"> -->
+  <!--   <img class="full&#45;w" src="{{ 'kalani&#45;front&#45;pg&#45;tk&#45;mobile.jpg' | file_url }}" alt="Shop Kalani"> -->
+  <!-- </a> -->
 </div>
-
-{% include 'shop-sale' %}
 
 <div class="no-margin med-v-pads charity-hp full-w minor-h-pads">
   <div class="row">
@@ -74,7 +73,7 @@
     // use it when you're looking for something more subtle.
   };
   $(document).ready(function() {
-    $('.odometer').html(4529);
+    $('.odometer').html(4809);
   });
   $(document).ready(function() {
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {

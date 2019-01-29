@@ -210,7 +210,7 @@
   var models = [{% for product in collections.all.products %}{% if product.available %}["{{ product.title }}", "{{ product.images[0].src | img_url }}"],{% endif %}{% endfor %}];
   $(document).ready(function() {
                 {% if page_title contains 'All' or page_title contains 'Changing ' %}
-      sleep(8000).then(function() {
+      sleep(22000).then(function() {
         var $div = $("#recent-buy");
         var model = models[Math.floor(Math.random()*models.length)];
         $div.find(".model").html(model[0]);

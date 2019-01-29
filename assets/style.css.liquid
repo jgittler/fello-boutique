@@ -350,7 +350,8 @@ hr.highlight {
 /* End Blogs */
 /* Start Collections Page Styles */
 .collection-body-bg {
-  background: url("https://cdn.shopify.com/s/files/1/1321/8937/files/classic-div-bg-mw-3-final.jpg");
+ /* background: url("https://cdn.shopify.com/s/files/1/1321/8937/files/classic-div-bg-mw-3-final.jpg"); */
+  background: url("https://cdn.shopify.com/s/files/1/1321/8937/files/classic-div-bg-ww-final.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -643,7 +644,7 @@ span.doc-donate {
   margin-top: 0 !important;
 }
 .video-text {
-  color: white;
+  color: black;
 }
 .video-text .h2, .video-text h1 {
   color: inherit;
@@ -713,8 +714,8 @@ span.doc-donate {
 }
 .cta-bttin {
   background-color: transparent;
-  color: white;
-  border: 4px solid white;
+  color: black;
+  border: 4px solid black;
   padding: 5px 8px;
 }
 .cta-bttin:hover {
@@ -742,6 +743,17 @@ span.doc-donate {
 @media (min-width: 768px) {
   .cta-bttin {
     padding: 20px 22px;
+  }
+}
+@media (max-width: 768px) {
+  .cta-bttin .h2 {
+    margin: 0px;
+    font-weight: 400;
+  }
+}
+@media (max-width: 768px) {
+  .cta-bttin {
+    border: 2px solid black;
   }
 }
 .charity-hp {

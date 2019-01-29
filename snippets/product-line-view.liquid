@@ -112,20 +112,6 @@
         </div>
       </div>
 
-      <div id="gallery-holder" class="text-center">
-        <div class="shadow" style="left: 0;"></div>
-        <div class="full-h">
-          {% include 'find-your-face-counts' %}
-          {% for face in face_matrix %}
-            {% assign lowered_model = model_name | downcase %}
-            {% if face contains lowered_model %}
-              <img src="{{ face | append: '.jpg' | file_url }}" data-activate="{{ forloop.index }}">
-            {% endif %}
-          {% endfor %}        
-        </div>
-        <div class="shadow" style="right: 0;"></div>
-      </div>
-
     </div>
   </div>
 </div>

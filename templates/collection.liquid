@@ -17,10 +17,9 @@
 {% assign rows = settings.collections_rows %}
 {% assign total_products = products_per_row | times: rows %}
 
-<h1 class="jumbotron text-center shop-all-banner hidden-xs">Shop</h1>
-<h1 class="jumbotron text-center shop-all-banner visible-xs" style="color: white;"><strong>Shop</strong></h1>
+<h1 class="text-center" style="margin-top: 15px; height: 0px; position: relative; top: 15px;">Shop</h1>
 
-<div class="main-container left-slidebar collection-body-bg">
+<div class="main-container left-slidebar collection-body-bg" style="margin-top: -25px;">
   <div class="container">
     <div class="row">
       <div class="main-content col-xs-12">
@@ -40,6 +39,9 @@
             </div>
           </div>
 
+          <br />
+          <br />
+          <br />
         <ul class="product-list-grid desktop-columns-3 tablet-columns-2 mobile-columns-1 row" id="collection-product">
           {% for product in collection.products %}
             {% assign grid_item_width = 'col-sm-6 col-md-4' %}
